@@ -38,7 +38,7 @@
                             @foreach ($bonuses as $bonus)
                                 <tr>
                                     <td>{{$bonus->title}}</td>
-                                    <td>{{$bonus->move_type}}</td>
+                                    <td>{{$bonus->movetype}}</td>
                                     <td>{{$bonus->price}}</td>
                                     <td>{{$bonus->start_date}}</td>
                                     <td>{{$bonus->end_date}}</td>

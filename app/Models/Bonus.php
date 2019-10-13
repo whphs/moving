@@ -8,5 +8,5 @@ class Bonus extends Model
 {
     //
     protected $table = 'bonuses';
-    protected $fillable = ['title', 'move_type', 'price', 'start_date', 'end_date'];
+    protected $fillable = ['title', 'movetype', 'price', 'start_date', 'end_date'];
 }

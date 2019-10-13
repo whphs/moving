@@ -16,7 +16,7 @@ class CreateBonusesTable extends Migration
         Schema::create('bonuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title')->nullable();
-            $table->tinyInteger('move_type')->default(0);
+            $table->tinyInteger('movetype')->default(0);
             $table->integer('price')->default(0);
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="utf-8" />
@@ -15,10 +15,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- CSS Files -->
-    <link href={{asset('assets/css/bootstrap.min.css')}} rel="stylesheet" />
-    <link href={{asset('assets/css/now-ui-dashboard.css?v=1.3.0')}} rel="stylesheet" />
+    {!! Html::style('backend/assets/css/bootstrap.min.css') !!}
+    {!! Html::style('backend/assets/css/now-ui-dashboard.css?v=1.3.0') !!}
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href={{asset('assets/demo/demo.css')}} rel="stylesheet" />
+    {!! Html::style('backend/assets/demo/demo.css') !!}
 </head>
 
 <body class="">
@@ -30,7 +30,7 @@
 
             </a>
             <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                Moving App
+                {{ __('string.app_title') }}
             </a>
         </div>
         <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -38,57 +38,57 @@
                 <li class="{{'dashboard' == substr(request()->path(), 0, 9) ? 'active' : ''}}">
                     <a href="{{ route('admin.dashboard') }}">
                         <i class="now-ui-icons design_app"></i>
-                        <p>Dashboard</p>
+                        <p>{{ __('string.dashboard') }}</p>
                     </a>
                 </li>
                 <li class="{{'user' == substr(request()->path(), 0, 4) ? 'active' : ''}}">
                     <a href="{{ route('admin.user') }}">
                         <i class="now-ui-icons users_single-02"></i>
-                        <p>User Management</p>
+                        <p>{{ __('string.user_management') }}</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.aboutus') }}">
                         <i class="now-ui-icons education_atom"></i>
-                        <p>About Us</p>
+                        <p>{{ __('string.about_us') }}</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.terms') }}">
                         <i class="now-ui-icons location_map-big"></i>
-                        <p>Terms & Conditions</p>
+                        <p>{{ __('string.terms_conditions') }}</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.bonuses.index') }}">
                         <i class="now-ui-icons ui-1_bell-53"></i>
-                        <p>Bonus Management</p>
+                        <p>{{ __('string.bonus_management') }}</p>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                         {{-- <a href="{{ route('standard') }}"> --}}
                         <i class="now-ui-icons design_bullet-list-67"></i>
-                        <p>Standard</p>
+                        <p>{{ __('string.standard') }}</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.movetypes.index') }}">
                         <i class="now-ui-icons text_caps-small"></i>
-                        <p>Move Types</p>
+                        <p>{{ __('string.move_types') }}</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.vehicles.index') }}">
                         <i class="now-ui-icons text_caps-small"></i>
-                        <p>Vechicles</p>
+                        <p>{{ __('string.vehicles') }}</p>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                         {{-- <a href="{{ route('booking') }}"> --}}
                         <i class="now-ui-icons text_caps-small"></i>
-                        <p>Booking List</p>
+                        <p>{{ __('string.booking_list') }}</p>
                     </a>
                 </li>
             </ul>
@@ -176,20 +176,20 @@
     </div>
 </div>
 <!--   Core JS Files   -->
-<script src={{asset('assets/js/core/jquery.min.js')}}></script>
-<script src={{asset('assets/js/core/popper.min.js')}}></script>
-<script src={{asset('assets/js/core/bootstrap.min.js')}}></script>
-<script src={{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}></script>
+{!! Html::script('backend/assets/js/core/jquery.min.js') !!}
+{!! Html::script('backend/assets/js/core/popper.min.js') !!}
+{!! Html::script('backend/assets/js/core/bootstrap.min.js') !!}
+{!! Html::script('backend/assets/js/plugins/perfect-scrollbar.jquery.min.js') !!}
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+{!! Html::script('//maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE') !!}
 <!-- Chart JS -->
-<script src={{asset('assets/js/plugins/chartjs.min.js')}}></script>
+{!! Html::script('backend/assets/js/plugins/chartjs.min.js') !!}
 <!--  Notifications Plugin    -->
-<script src={{asset('assets/js/plugins/bootstrap-notify.js')}}></script>
+{!! Html::script('backend/assets/js/plugins/bootstrap-notify.js') !!}
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-<script src={{asset('assets/js/now-ui-dashboard.min.js?v=1.3.0')}} type="text/javascript"></script>
+{!! Html::script('backend/assets/js/now-ui-dashboard.min.js?v=1.3.0') !!}
 <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-<script src={{asset('assets/demo/demo.js')}}></script>
+{!! Html::script('backend/assets/demo/demo.js') !!}
 
 @yield('scripts')
 

@@ -1,7 +1,7 @@
 @extends('backend.master')
 
 @section('title')
-    Terms and Conditions
+    {{ __('string.terms_conditions') }}
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Edit Terms and Conditions
+                            {{ __('string.terms_conditions') }}
                             <button type="submit" class="btn btn-primary float-right" style="font-size: 14px; margin: 0">Update</button>
                         </h3>
                         @if (session('status'))
@@ -32,7 +32,7 @@
 @endsection
 
 @section('scripts')
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    {!! Html::script('//cdn.tinymce.com/4/tinymce.min.js') !!}
     <script>
         tinymce.init({
             selector: 'textarea'

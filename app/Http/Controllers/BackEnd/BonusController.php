@@ -42,7 +42,7 @@ class BonusController extends Controller
         //
         $bonus = new Bonus;
         $bonus->title       = $request->title;
-        $bonus->move_type   = $request->move_type;
+        $bonus->movetype   = $request->movetype;
         $bonus->price       = $request->price;
         $bonus->start_date  = $request->start_date;
         $bonus->end_date    = $request->end_date;
@@ -87,7 +87,7 @@ class BonusController extends Controller
         //
         $bonus = Bonus::find($id);
         $bonus->title       = $request->title;
-        $bonus->move_type   = $request->move_type;
+        $bonus->movetype   = $request->movetype;
         $bonus->price       = $request->price;
         $bonus->start_date  = $request->start_date;
         $bonus->end_date    = $request->end_date;
