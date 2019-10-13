@@ -23,6 +23,7 @@ class ComposerStaticInitb5970511de421d431438c96688e5c8de
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'b6ec61354e97f32c0ae683041c78392a' => __DIR__ . '/..' . '/scrivo/highlight.php/HighlightUtilities/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -130,6 +131,7 @@ class ComposerStaticInitb5970511de421d431438c96688e5c8de
         'C' => 
         array (
             'Cron\\' => 5,
+            'Collective\\Html\\' => 16,
             'Carbon\\' => 7,
         ),
         'A' => 
@@ -357,6 +359,10 @@ class ComposerStaticInitb5970511de421d431438c96688e5c8de
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
+        ),
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
@@ -407,8 +413,19 @@ class ComposerStaticInitb5970511de421d431438c96688e5c8de
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\BackEnd\\AboutUsController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackEnd/AboutUsController.php',
+        'App\\Http\\Controllers\\BackEnd\\BonusController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackEnd/BonusController.php',
+        'App\\Http\\Controllers\\BackEnd\\BookingController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackEnd/BookingController.php',
+        'App\\Http\\Controllers\\BackEnd\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackEnd/DashboardController.php',
+        'App\\Http\\Controllers\\BackEnd\\MoveTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackEnd/MoveTypeController.php',
+        'App\\Http\\Controllers\\BackEnd\\StandardContoller' => __DIR__ . '/../..' . '/app/Http/Controllers/BackEnd/StandardContoller.php',
+        'App\\Http\\Controllers\\BackEnd\\TermsController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackEnd/TermsController.php',
+        'App\\Http\\Controllers\\BackEnd\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackEnd/UserController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\FrontEnd\\FrontEndController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontEnd/FrontEndController.php',
+        'App\\Http\\Controllers\\FrontEnd\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontEnd/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -416,6 +433,10 @@ class ComposerStaticInitb5970511de421d431438c96688e5c8de
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\AboutUs' => __DIR__ . '/../..' . '/app/Models/AboutUs.php',
+        'App\\Models\\Bonus' => __DIR__ . '/../..' . '/app/Models/Bonus.php',
+        'App\\Models\\MoveType' => __DIR__ . '/../..' . '/app/Models/MoveType.php',
+        'App\\Models\\Terms' => __DIR__ . '/../..' . '/app/Models/Terms.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -456,6 +477,13 @@ class ComposerStaticInitb5970511de421d431438c96688e5c8de
         'Carbon\\Traits\\Units' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Units.php',
         'Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'Collective\\Html\\Componentable' => __DIR__ . '/..' . '/laravelcollective/html/src/Componentable.php',
+        'Collective\\Html\\Eloquent\\FormAccessible' => __DIR__ . '/..' . '/laravelcollective/html/src/Eloquent/FormAccessible.php',
+        'Collective\\Html\\FormBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/FormBuilder.php',
+        'Collective\\Html\\FormFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/FormFacade.php',
+        'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
+        'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
+        'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',

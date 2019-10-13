@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('front_end/index');
 });
 
+<<<<<<< HEAD
 Route::get('/user_center', function () {
     return view('front_end/user_center/user_center');
 });
@@ -58,3 +59,7 @@ Route::get('/charging_standard', function () {
 Route::get('/about_us', function () {
 	return view('front_end/user_center/set_up/about_us');
 });
+=======
+Auth::routes();
+
+>>>>>>> backend
