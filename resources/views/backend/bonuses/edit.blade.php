@@ -6,30 +6,21 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        {{ __('string.edit_a_bonus') }}
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <div class="col-md-12">
-                        {!! Form:: model($bonus, ['method' => 'PUT', 'route' => ['admin.bonuses.update', $bonus->id]]) !!}
-                            {!! Form::inputGroup('title', 'Title', $bonus->title) !!}
-                            {!! Form::selectGroup('movetype', 'Move Type', Config::get('constants.MOVE_TYPES'), $bonus->movetype) !!}
-                            {!! Form::inputGroup('price', 'Price', $bonus->price) !!}
-                            {!! Form::inputGroup('start_date', 'Start Date', $bonus->start_date, 'date') !!}
-                            {!! Form::inputGroup('end_date', 'End Date', $bonus->end_date, 'date') !!}
-                            {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                        {!! Form:: close() !!}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    @component('components.normal.container', [
+        'title' => __('string.edit_a_bonus'),
+        'rightButton' => null,
+        'showStatus' => false,
+    ])
+        {!! Form:: model($bonus, ['method' => 'PUT', 'route' => ['admin.bonuses.update', $bonus->id]]) !!}
+            {!! Form::inputGroup('title', __('string.title'), $bonus->title) !!}
+            {!! Form::selectGroup('movetype', __('string.move_type'), Config::get('constants.MOVE_TYPES'), $bonus->movetype) !!}
+            {!! Form::inputGroup('price', __('string.price'), $bonus->price) !!}
+            {!! Form::inputGroup('start_date', __('string.start_date'), $bonus->start_date, 'date') !!}
+            {!! Form::inputGroup('end_date', __('string.end_date'), $bonus->end_date, 'date') !!}
+            {!! Form::submit(__('string.save'), ['class' => 'btn btn-primary']) !!}
+            {!! link_to('admin/bonuses', __('string.cancel'), ['class' => 'btn btn-cancel']) !!}
+        {!! Form:: close() !!}
+    @endcomponent
 
 @endsection
 

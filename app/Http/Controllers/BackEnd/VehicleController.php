@@ -49,7 +49,7 @@ class VehicleController extends Controller
         $vehicle->description = $request->description;
         $vehicle->save();
         
-        return redirect('admin/vehicles')->with('status', 'Created successfully');
+        return redirect('admin/vehicles')->with('status', __('string.created_success'));
     }
 
     /**
@@ -95,7 +95,7 @@ class VehicleController extends Controller
         $vehicle->description = $request->description;
         $vehicle->save();
         
-        return redirect('admin/vehicles')->with('status', 'Updated successfully');
+        return redirect('admin/vehicles')->with('status', __('string.updated_success'));
     }
 
     /**
@@ -110,6 +110,6 @@ class VehicleController extends Controller
         $vehicle = Vehicle::find($id);
         $vehicle->delete();
         
-        return redirect('admin/vehicles')->with('status', 'Deleted successfully');
+        return redirect('admin/vehicles')->with('status', __('string.deleted_success'));
     }
 }

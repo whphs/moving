@@ -29,6 +29,6 @@ class AboutUsController extends Controller
         $aboutus->website = $request->input('website');
         $aboutus->update();
 
-        return redirect('/admin/aboutus')->with('status', 'Updated successfully');
+        return redirect('/admin/aboutus')->with('status', __('string.updated_success'));
     }
 }

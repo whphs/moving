@@ -24,7 +24,7 @@ class TermsController extends Controller
         $terms->content = $request->input('content');
         $terms->update();
 
-        return redirect('/admin/terms')->with('status', 'Your data is updated');
+        return redirect('/admin/terms')->with('status', __('string.updated_success'));
     }
 
 }

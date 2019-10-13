@@ -1,33 +1,25 @@
 @extends('backend.master')
 
 @section('title')
-    Vehicles List
+    {{ __('string.vehicles') }}
 @endsection
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Vehicle List
-                        <a href="{{ route('admin.vehicles.create') }}" class="btn btn-success float-right" style="font-size: 14px; margin: 0">Add</a>
-                    </h3>
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{session('status')}}
-                        </div>
-                    @endif
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @component('components.normal.container', [
+        'title' => __('string.vehicle_list'),
+        'rightButton' => ['route' => 'admin.vehicles.create', 'title' => __('string.add'), 'params' => null],
+        'showStatus' => true,
+    ])
+        @component('components.table.action', [
+            'columns' => [__('string.name'), __('string.move_type'), __('string.size'), __('string.load_weight'), __('string.volume'), __('string.description')],
+            'rows' => $vehicles,
+            'keys' => ['name', 'movetype', 'size', 'load_weight', 'volume', 'description'],
+            'route' => 'admin.vehicles'
+        ])
+        @endcomponent
 
+    @endcomponent
 
 @endsection
 

@@ -12,8 +12,8 @@
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    {!! Html::style('//fonts.googleapis.com/css?family=Montserrat:400,700,200') !!}
+    {!! Html::style('//use.fontawesome.com/releases/v5.7.1/css/all.css') !!}
     <!-- CSS Files -->
     {!! Html::style('backend/assets/css/bootstrap.min.css') !!}
     {!! Html::style('backend/assets/css/now-ui-dashboard.css?v=1.3.0') !!}
@@ -26,12 +26,8 @@
     <div class="sidebar" data-color="orange">
         <!-- Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow" -->
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-
-            </a>
-            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                {{ __('string.app_title') }}
-            </a>
+            {!! link_to(null, '', ['class' => 'simple-text logo-mini']) !!}
+            {!! link_to(null, __('string.app_title'), ['class' => 'simple-text logo-mini']) !!}
         </div>
         <div class="sidebar-wrapper" id="sidebar-wrapper">
             <ul class="nav">
@@ -42,7 +38,7 @@
                     </a>
                 </li>
                 <li class="{{'user' == substr(request()->path(), 0, 4) ? 'active' : ''}}">
-                    <a href="{{ route('admin.user') }}">
+                    <a href="{{ route('admin.users.index') }}">
                         <i class="now-ui-icons users_single-02"></i>
                         <p>{{ __('string.user_management') }}</p>
                     </a>

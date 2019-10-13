@@ -45,7 +45,7 @@ class MoveTypeController extends Controller
         $movetype->area = $request->area;
         $movetype->save();
 
-        return redirect('admin/movetypes')->with('status', 'Created successfully');
+        return redirect('admin/movetypes')->with('status', __('string.created_success'));
     }
 
     /**
@@ -87,7 +87,7 @@ class MoveTypeController extends Controller
         $movetype->area = $request->area;
         $movetype->save();
 
-        return redirect('admin/movetypes')->with('status', 'Updated successfully');
+        return redirect('admin/movetypes')->with('status', __('string.updated_success'));
     }
 
     /**
@@ -101,6 +101,6 @@ class MoveTypeController extends Controller
         //
         $movetype = MoveType::find($id);
         $movetype->delete();
-        return redirect('admin/movetypes')->with('status', 'Deleted successfully');
+        return redirect('admin/movetypes')->with('status', __('string.deleted_success'));
     }
 }

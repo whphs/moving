@@ -1,39 +1,23 @@
 @extends('backend.master')
 
 @section('title')
-    Move Types
+    {{ __('string.move_types') }}
 @endsection
 
 @section('content')
+    @component('components.normal.container', [
+        'title' => __('string.edit_a_move_type'),
+        'rightButton' => null,
+        'showStatus' => false,
+    ])
+        {!! Form:: model($movetype, ['method' => 'PUT', 'route' => ['admin.movetypes.update', $movetype->id]]) !!}
+            {!! Form::inputGroup('name', __('string.name'), $movetype->name) !!}
+            {!! Form::inputGroup('area', __('string.area'), $movetype->area) !!}
+            {!! Form::submit(__('string.save'), ['class' => 'btn btn-primary']) !!}
+            {!! link_to('admin/movetypes', __('string.cancel'), ['class' => 'btn btn-cancel']) !!}
+        {!! Form:: close() !!}
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Edit a Move Type
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <div class="col-md-12">
-                        {!! Form:: model($movetype, ['method' => 'PUT', 'route' => ['admin.movetypes.update', $movetype->id]]) !!}
-                            {!! Form::token() !!}
-                            <div class="form-group">
-                                {!! Form::label('name', 'Name') !!}
-                                {!! Form::text('name', $movetype->name, ['class' => 'form-control', 'placeholder' => 'Name here ...']) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('area', 'Area') !!}
-                                {!! Form::text('area', $movetype->area, ['class' => 'form-control', 'placeholder' => 'Area here ...']) !!}
-                            </div>
-                            {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                        {!! Form:: close() !!}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    @endcomponent
 
 @endsection
 

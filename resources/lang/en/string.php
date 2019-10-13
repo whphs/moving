@@ -20,7 +20,50 @@ return [
     'website'           => 'Website',
   
     'bonuses'           => 'Bonuses',
+    'bonus_list'        => 'Bonus List',
     'add_a_bonus'       => 'Add a Bonus',
     'edit_a_bonus'      => 'Edit a Bonus',
+    
+    'move_type'         => 'Move Type',
+    'price'             => 'Price',
+    'start_date'        => 'Start Date',
+    'end_date'          => 'End Date',
+
+    'move_type_list'    => 'Move Type List',
+    'add_a_move_type'   => 'Add a Move Type',
+    'edit_a_move_type'  => 'Edit a Move Type',
+
+    'name'              => 'Name',
+    'area'              => 'Area',
+    
+    'add'               => 'Add',
+    'edit'              => 'Edit',
+    'delete'            => 'Delete',
+    'update'            => 'Update',
+    'save'              => 'Save',
+    'cancel'            => 'Cancel',
+    'back'              => 'Back',
+
+    'content'           => 'Content',
+
+    'updated_success'   => 'Updated successfully',
+    'deleted_success'   => 'Deleted successfully',
+    'created_success'   => 'Created successfully',
+
+    'users'             => 'Users',
+    'user_roles'        => 'User Roles',
+    'assign_roles'      => 'Assign Roles',
+
+    'role'              => 'Role',
+
+    'vehicles'          => 'Vehicles',
+    'vehicle_list'      => 'Vehicle List',
+    'add_a_vehicle'     => 'Add a Vehicle',
+    'edit_a_vehicle'    => 'Edit a Vehicle',
+
+    'size'              => 'Size',
+    'load_weight'       => 'Load Weight',
+    'volume'            => 'Volume',
+    'description'       => 'Description'
     
 ];

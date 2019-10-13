@@ -25,7 +25,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function editRole(Request $request, $id) {
+    public function edit(Request $request, $id) {
         $user = User::find($id);
         return view('backend.users.edit', compact('user'));
     }
@@ -37,13 +37,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function updateRole(Request $request, $id) {
+    public function update(Request $request, $id) {
         $user = User::find($id);
-        $user->name = $request->username;
+        $user->name = $request->name;
         $user->role = $request->role;
-        $user->update();
+        $user->save();
 
-        return redirect('/admin/users')->with('status', 'Updated Successfully');
+        return redirect('/admin/users')->with('status', __('string.updated_success'));
     }
 
     /**
@@ -53,9 +53,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function delete(Request $request, $id) {
-        $user = User::findOrFail($id);
+    public function destroy(Request $request, $id) {
+        $user = User::find($id);
         $user->delete();
-        return redirect('/admin/users')->with('status', 'Deleted Successfully');
+        return redirect('/admin/users')->with('status', __('string.deleted_success'));
     }
 }

@@ -1,39 +1,25 @@
 @extends('backend.master')
 
 @section('title')
-    Move Types
+    {{ __('string.move_types') }}
 @endsection
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Add a Move Type
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <div class="col-md-12">
-                        {!! Form:: open(['route' => 'admin.movetypes.store']) !!}
-                            {!! Form::token() !!}
-                            <div class="form-group">
-                                {!! Form::label('name', 'Name') !!}
-                                {!! Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Name here ...']) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('area', 'Area') !!}
-                                {!! Form::text('area', '', ['class' => 'form-control', 'placeholder' => 'Area here ...']) !!}
-                            </div>
-                            {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                        {!! Form:: close() !!}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @component('components.normal.container', [
+        'title' => __('string.add_a_move_type'),
+        'rightButton' => null,
+        'showStatus' => false,
+    ])
+        {!! Form:: open(['route' => 'admin.movetypes.store']) !!}
+            {!! Form::token() !!}
+            {!! Form::inputGroup('name', __('string.name')) !!}
+            {!! Form::inputGroup('area', __('string.area')) !!}
+            {!! Form::submit(__('string.save'), ['class' => 'btn btn-primary']) !!}
+            {!! link_to('admin/movetypes', __('string.cancel'), ['class' => 'btn btn-cancel']) !!}
+        {!! Form:: close() !!}
 
+    @endcomponent
 
 @endsection
 

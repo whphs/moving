@@ -1,27 +1,29 @@
 @extends('backend.master')
 
 @section('title')
-    Vehicles
+    {{ _('string.vehicles') }}
 @endsection
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Add a Vehicle
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <div class="col-md-12">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @component('components.normal.container', [
+        'title' => __('string.add_a_vehicle'),
+        'rightButton' => null,
+        'showStatus' => false,
+    ])
+        {!! Form:: open(['route' => 'admin.vehicles.store']) !!}
+            {!! Form::token() !!}
+            {!! Form::inputGroup('name', __('string.name')) !!}
+            {!! Form::selectGroup('movetype', __('string.move_type'), Config::get('constants.MOVE_TYPES')) !!}
+            {!! Form::inputGroup('size', __('string.size')) !!}
+            {!! Form::inputGroup('load_weight', __('string.load_weight'), null, 'number') !!}
+            {!! Form::inputGroup('volume', __('string.volume'), null, 'number') !!}
+            {!! Form::inputGroup('description', __('string.description'), null, 'textarea') !!}
+            {!! Form::submit(__('string.save'), ['class' => 'btn btn-primary']) !!}
+            {!! link_to('admin/vehicles', __('string.cancel'), ['class' => 'btn btn-cancel']) !!}
+        {!! Form:: close() !!}
 
+    @endcomponent
 
 @endsection
 

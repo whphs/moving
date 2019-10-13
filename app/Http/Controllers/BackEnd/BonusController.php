@@ -48,7 +48,7 @@ class BonusController extends Controller
         $bonus->end_date    = $request->end_date;
         $bonus->save();
 
-        return redirect('admin/bonuses')->with('status', 'Created successfully.');
+        return redirect('admin/bonuses')->with('status', __('string.created_success'));
     }
 
     /**
@@ -93,7 +93,7 @@ class BonusController extends Controller
         $bonus->end_date    = $request->end_date;
         $bonus->save();
 
-        return redirect('admin/bonuses')->with('status', 'Updated successfully.');
+        return redirect('admin/bonuses')->with('status', __('string.updated_success'));
 }
 
     /**
@@ -107,6 +107,6 @@ class BonusController extends Controller
         //
         $bonus = Bonus::find($id);
         $bonus->delete();
-        return redirect('admin/bonuses')->with('status', 'Deleted successfully.');
+        return redirect('admin/bonuses')->with('status', __('string.deleted_success'));
     }
 }
