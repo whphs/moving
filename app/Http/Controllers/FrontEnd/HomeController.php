@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontEnd;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,12 +18,12 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the frontend homepage.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        return view('home');
+        return view('frontend.home');
     }
 }
