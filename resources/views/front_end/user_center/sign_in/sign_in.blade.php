@@ -93,10 +93,10 @@
         </div>
         <div class="mt-50">
             <button class="btn btn-circle btn-block" id="myBtn" style="background-color: #1aad19;"><img src="assets/wechat.png"><span style="color: white;">Wechat Authorized SignIn</span></button>
-            <button class="btn green btn-circle btn-block" style="margin-top: 30px;">Mobile phone number SignIn</button>
+            <a href="/sign_phone" class="btn green btn-circle btn-block" style="margin-top: 30px;">Mobile phone number SignIn</a>
         </div>
         <div class="mt-50">
-            <a href="/user_agreement">User Agreement</a>
+            <a href="/user_agreement">Go to User Agreement</a>
         </div>
     </div>
 

@@ -13,7 +13,7 @@
             <!-- SIDEBAR USER TITLE -->
             <div class="profile-usertitle">
                 <div class="profile-usertitle-name">
-                    Sign In
+                    <a href="/sign_in">Sign In</a>
                 </div>
             </div>
             <!-- END SIDEBAR USER TITLE -->
