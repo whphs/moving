@@ -12,49 +12,49 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('front_end/index');
 });
 
 Route::get('/user_center', function () {
-    return view('user_center');
+    return view('front_end/user_center/user_center');
 });
 
 Route::get('/sign_in', function () {
-    return view('sign_in');
+    return view('front_end/user_center/sign_in/sign_in');
 });
 
 Route::get('/sign_wechat', function () {
-	return view('sign_wechat');
+	return view('front_end/user_center/sign_in/sign_wechat');
 });
 
 Route::get('/sign_othermobile', function () {
-	return view('sign_othermobile');
+	return view('front_end/user_center/sign_in/sign_othermobile');
 });
 
 Route::get('/sign_phone', function () {
-	return view('sign_phone');
+	return view('front_end/user_center/sign_in/sign_phone');
 });
 
 Route::get('/order_record', function () {
-	return view('order_record');
+	return view('front_end/user_center/order_record');
 });
 
 Route::get('/bonus_list', function () {
-	return view('bonus_list');
+	return view('front_end/user_center/bonus_list');
 });
 
 Route::get('/set_up', function () {
-	return view('set_up');
+	return view('front_end/user_center/set_up/set_up');
 });
 
 Route::get('/user_agreement', function () {
-	return view('user_agreement');
+	return view('front_end/user_center/set_up/user_agreement');
 });
 
 Route::get('/charging_standard', function () {
-	return view('charging_standard');
+	return view('front_end/user_center/set_up/charging_standard');
 });
 
 Route::get('/about_us', function () {
-	return view('about_us');
+	return view('front_end/user_center/set_up/about_us');
 });

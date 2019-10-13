@@ -1,4 +1,4 @@
-@extends('app')
+@extends('front_end.user_center.app')
 
 @section('title', 'Bonus List')
 
