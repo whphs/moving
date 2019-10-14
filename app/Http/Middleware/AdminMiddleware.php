@@ -18,7 +18,7 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         $admin = Config::get('constants.USER_ROLES.ADMIN');
-        if (Auth::user()->role === $admin) {
+        if (Auth::user()->role_id === $admin) {
             return $next($request);
         } else {
             return redirect('/home')->with('status', 'You are not allowed to Admin Dashboard');

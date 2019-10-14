@@ -35,6 +35,7 @@ return [
 
     'name'              => 'Name',
     'area'              => 'Area',
+    'areas'             => 'Areas',
     
     'add'               => 'Add',
     'edit'              => 'Edit',
@@ -64,6 +65,13 @@ return [
     'size'              => 'Size',
     'load_weight'       => 'Load Weight',
     'volume'            => 'Volume',
-    'description'       => 'Description'
+    'description'       => 'Description',
     
+    'china'             => 'China',
+
+    'add_an_area'       => 'Add an area',
+    'edit_an_area'      => 'Edit an area',
+    'country'           => 'Country',
+    'zip_code'          => 'Zip Code',
+    'area_list'         => 'Area List'
 ];

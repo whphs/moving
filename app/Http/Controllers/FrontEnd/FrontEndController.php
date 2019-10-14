@@ -20,7 +20,7 @@ class FrontEndController extends Controller
         if (count($aboutus) > 0) {
             $aboutus = $aboutus[0];
         }
-        return view('frontend.aboutus.index')->with('aboutus', $aboutus);
+        return view('frontend.about_us.index')->with('aboutus', $aboutus);
     }
 
     /**
@@ -33,7 +33,7 @@ class FrontEndController extends Controller
         if (count($terms) > 0) {
             $terms = $terms[0];
         }
-        return view('frontend.terms.index')->with('terms', $terms);
+        return view('frontend.term_condition.index')->with('terms', $terms);
     }
 
     /**
@@ -43,7 +43,7 @@ class FrontEndController extends Controller
      */
     public function bonusList() {
         $bonuses = Bonus::all();
-        return view('frontend.bonuses.index', compact('bonuses'));
+        return view('frontend.bonus.index', compact('bonuses'));
     }
 
     /**
@@ -54,7 +54,7 @@ class FrontEndController extends Controller
      */
     public function showBonus($id) {
         $bonus = Bonus::find($id);
-        return view('frontend.bonuses.show', compact('bonus'));
+        return view('frontend.bonus.show', compact('bonus'));
     }
 
     

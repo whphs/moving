@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMovetypesTable extends Migration
+class CreateBonusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateMovetypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('movetypes', function (Blueprint $table) {
+        Schema::create('bonus', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('area');
+            $table->string('title')->nullable();
+            $table->integer('area_id')->default(0);
+            $table->integer('price')->default(0);
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateMovetypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movetypes');
+        Schema::dropIfExists('bonus');
     }
 }

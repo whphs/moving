@@ -14,8 +14,8 @@
         @component('components.table.action', [
             'columns' => [__('string.name'), __('string.phone'), __('string.email'), __('string.role')],
             'rows' => $users,
-            'keys' => ['name', 'phone', 'email', 'role'],
-            'route' => 'admin.users'
+            'keys' => ['name', 'phone', 'email', 'role_id'],
+            'route' => 'admin.user'
         ])
         @endcomponent
 

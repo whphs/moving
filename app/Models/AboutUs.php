@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AboutUs extends Model
 {
     //
-    protected $table = 'aboutus';
+    protected $table = 'about_us';
     protected $fillable = ['title', 'introduction', 'email', 'phone', 'address', 'website', 'logo'];
     
 }

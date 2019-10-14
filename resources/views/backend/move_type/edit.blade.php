@@ -10,11 +10,11 @@
         'rightButton' => null,
         'showStatus' => false,
     ])
-        {!! Form:: model($movetype, ['method' => 'PUT', 'route' => ['admin.movetypes.update', $movetype->id]]) !!}
-            {!! Form::inputGroup('name', __('string.name'), $movetype->name) !!}
-            {!! Form::inputGroup('area', __('string.area'), $movetype->area) !!}
+        {!! Form:: model($moveType, ['method' => 'PUT', 'route' => ['admin.move_type.update', $moveType->id]]) !!}
+            {!! Form::inputGroup('name', __('string.name'), $moveType->name) !!}
+            {!! Form::selectGroup('area_id', __('string.area'), $areas, $moveType->area_id) !!}
             {!! Form::submit(__('string.save'), ['class' => 'btn btn-primary']) !!}
-            {!! link_to('admin/movetypes', __('string.cancel'), ['class' => 'btn btn-cancel']) !!}
+            {!! link_to('admin/move_type', __('string.cancel'), ['class' => 'btn btn-cancel']) !!}
         {!! Form:: close() !!}
 
     @endcomponent

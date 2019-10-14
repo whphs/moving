@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Terms extends Model
+class TermCondition extends Model
 {
     //
-    protected $table = 'terms';
+    protected $table = 'term_condition';
     protected $fillable = ['content'];
-
 }

@@ -8,14 +8,14 @@
 
     @component('components.normal.container', [
         'title' => __('string.vehicle_list'),
-        'rightButton' => ['route' => 'admin.vehicles.create', 'title' => __('string.add'), 'params' => null],
+        'rightButton' => ['route' => 'admin.vehicle.create', 'title' => __('string.add'), 'params' => null],
         'showStatus' => true,
     ])
         @component('components.table.action', [
-            'columns' => [__('string.name'), __('string.move_type'), __('string.size'), __('string.load_weight'), __('string.volume'), __('string.description')],
+            'columns' => [__('string.name'), __('string.move_type'), __('string.area'), __('string.size')],
             'rows' => $vehicles,
-            'keys' => ['name', 'movetype', 'size', 'load_weight', 'volume', 'description'],
-            'route' => 'admin.vehicles'
+            'keys' => ['name', ['move_type', 'name'], ['area', 'name'], 'size'],
+            'route' => 'admin.vehicle'
         ])
         @endcomponent
 

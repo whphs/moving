@@ -10,25 +10,25 @@ class AboutUsController extends Controller
 {
     //
     public function index() {
-        $aboutus = AboutUs::all();
-        if (count($aboutus) > 0) {
-            $aboutus = $aboutus[0];
+        $aboutUs = AboutUs::all();
+        if (count($aboutUs) > 0) {
+            $aboutUs = $aboutUs[0];
         } else {
-            $aboutus = AboutUs::create(['title' => '']);
+            $aboutUs = AboutUs::create(['title' => '']);
         }
-        return view('backend.aboutus.index')->with('aboutus', $aboutus);
+        return view('backend.about_us.index', compact('aboutUs'));
     }
 
     public function update(Request $request) {
-        $aboutus = AboutUs::firstOrFail();
-        $aboutus->title = $request->input('title');
-        $aboutus->introduction = $request->input('introduction');
-        $aboutus->email = $request->input('email');
-        $aboutus->phone = $request->input('phone');
-        $aboutus->address = $request->input('address');
-        $aboutus->website = $request->input('website');
-        $aboutus->update();
+        $aboutUs = AboutUs::firstOrFail();
+        $aboutUs->title         = $request->input('title');
+        $aboutUs->introduction  = $request->input('introduction');
+        $aboutUs->email         = $request->input('email');
+        $aboutUs->phone         = $request->input('phone');
+        $aboutUs->address       = $request->input('address');
+        $aboutUs->website       = $request->input('website');
+        $aboutUs->update();
 
-        return redirect('/admin/aboutus')->with('status', __('string.updated_success'));
+        return redirect('/admin/about_us')->with('status', __('string.updated_success'));
     }
 }
