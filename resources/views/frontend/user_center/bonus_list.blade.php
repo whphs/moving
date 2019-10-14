@@ -1,4 +1,4 @@
-@extends('front_end.user_center.app')
+@extends('frontend.user_center.app')
 
 @section('title', 'Bonus List')
 
@@ -18,7 +18,7 @@
         <div class="mt-30">
             <table class="mb-20">
                 <td style="text-align: center;">
-                    <img src="assets/about.png" style="width: 50%;">
+                    <img src="frontend/assets/image/about.png" style="width: 50%;">
                     <p>Order reduction</p>
                 </td>
                 <td>
@@ -29,7 +29,7 @@
             </table>
             <table class="mb-20">
                 <td style="text-align: center;">
-                    <img src="assets/about.png" style="width: 50%;">
+                    <img src="frontend/assets/image/about.png" style="width: 50%;">
                     <p style="margin-bottom: 0px;">Order reduction</p>
                 </td>
                 <td>
@@ -40,7 +40,7 @@
             </table>
             <table class="mb-20">
                 <td style="text-align: center;">
-                    <img src="assets/about.png" style="width: 50%;">
+                    <img src="frontend/assets/image/about.png" style="width: 50%;">
                     <p style="margin-bottom: 0px;">Order reduction</p>
                 </td>
                 <td>
@@ -51,7 +51,7 @@
             </table>
             <table class="mb-20">
                 <td style="text-align: center;">
-                    <img src="assets/about.png" style="width: 50%;">
+                    <img src="frontend/assets/image/about.png" style="width: 50%;">
                     <p style="margin-bottom: 0px;">Order reduction</p>
                 </td>
                 <td>
@@ -62,7 +62,7 @@
             </table>
             <table class="mb-20">
                 <td style="text-align: center;">
-                    <img src="assets/about.png" style="width: 50%;">
+                    <img src="frontend/assets/image/about.png" style="width: 50%;">
                     <p style="margin-bottom: 0px;">Order reduction</p>
                 </td>
                 <td>

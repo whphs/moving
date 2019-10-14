@@ -1,4 +1,4 @@
-@extends('front_end.user_center.app')
+@extends('frontend.user_center.app')
 
 @section('title', 'User Agreement')
 

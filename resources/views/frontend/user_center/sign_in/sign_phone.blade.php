@@ -1,4 +1,4 @@
-@extends('front_end.user_center.app')
+@extends('frontend.user_center.app')
 
 @section('title', 'Sign In')
 
@@ -89,7 +89,7 @@
 
     <div class="container" style="text-align: center;">
         <div class="mt-50">
-            <img src="assets/logo.png" alt="">
+            <img src="frontend/assets/image/logo.png" alt="">
         </div>
         <div class="mt-50">
             <div class="input-group has-success mb-30">
@@ -106,7 +106,7 @@
         <hr>
         <div>
             <p class="text-success">---------------One-click Signin---------------</p>
-            <img class="img-circle" id="myBtn" src="assets/wechat.png">
+            <img class="img-circle" id="myBtn" src="frontend/assets/image/wechat.png">
         </div>
     </div>
 

@@ -1,4 +1,4 @@
-@extends('front_end.user_center.app')
+@extends('frontend.user_center.app')
 
 @section('title', 'Order Record')
 
@@ -17,12 +17,12 @@
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane active" id="tab_15_1">
-					<img class="mt-10" src="assets/document.png" style="width: 20%;">
+					<img class="mt-10" src="frontend/assets/image/document.png" style="width: 20%;">
 					<P class="mt-10">No order yet</P>
 					<button type="button" class="btn blue btn-sm mt-20">Go to order</button>
 				</div>
 				<div class="tab-pane" id="tab_15_2">
-					<img class="mt-10" src="assets/document.png" style="width: 20%;">
+					<img class="mt-10" src="frontend/assets/image/document.png" style="width: 20%;">
 					<P class="mt-10">No order yet</P>
 					<button type="button" class="btn blue btn-sm mt-20">Go to order</button>
 				</div>

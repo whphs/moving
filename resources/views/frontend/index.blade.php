@@ -50,6 +50,7 @@
 
                     <!-- Logo -->
                     <!-- <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a> -->
+                    <a href="/user_center" style="color: white;">user</a>
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
                         <span class="navbarToggler"><span></span><span></span><span></span></span>
