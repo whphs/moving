@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index() {
         $users = User::all();
-        return view('backend.users.index', compact('users'));
+        return view('backend.user.index', compact('users'));
     }
 
     /**
@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function edit(Request $request, $id) {
         $user = User::find($id);
-        return view('backend.users.edit', compact('user'));
+        return view('backend.user.edit', compact('user'));
     }
 
     /**
@@ -40,10 +40,10 @@ class UserController extends Controller
     public function update(Request $request, $id) {
         $user = User::find($id);
         $user->name = $request->name;
-        $user->role = $request->role;
+        $user->role_id = $request->role_id;
         $user->save();
 
-        return redirect('/admin/users')->with('status', __('string.updated_success'));
+        return redirect('/admin/user')->with('status', __('string.updated_success'));
     }
 
     /**
@@ -56,6 +56,6 @@ class UserController extends Controller
     public function destroy(Request $request, $id) {
         $user = User::find($id);
         $user->delete();
-        return redirect('/admin/users')->with('status', __('string.deleted_success'));
+        return redirect('/admin/user')->with('status', __('string.deleted_success'));
     }
 }

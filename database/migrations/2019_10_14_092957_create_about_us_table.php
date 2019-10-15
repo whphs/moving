@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAboutusTable extends Migration
+class CreateAboutUsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAboutusTable extends Migration
      */
     public function up()
     {
-        Schema::create('aboutus', function (Blueprint $table) {
+        Schema::create('about_us', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->longText('introduction')->nullable();
@@ -33,6 +33,6 @@ class CreateAboutusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aboutus');
+        Schema::dropIfExists('about_us');
     }
 }

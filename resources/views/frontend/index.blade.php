@@ -27,8 +27,7 @@
     <!-- <div id="preloader">
         <div class="south-load"></div>
     </div> -->
-  
-  <header class="header-area">
+    <header class="header-area">
         <!-- Top Header Area -->
         <div class="top-header-area">
             <div class="h-100 d-md-flex justify-content-between align-items-center">

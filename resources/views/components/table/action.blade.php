@@ -13,7 +13,15 @@
         @for ($i = 0 ; $i < count($rows) ; $i ++)
             <tr>
             @for ($j = 0 ; $j < count($keys) ; $j ++)
-                <td>{{ $rows[$i][$keys[$j]] }}</td>
+                @if (is_array($keys[$j]))
+                    @if (count($keys[$j]) > 2)
+                        <td>{!! Html::image('storage/' . $rows[$i][$keys[$j][0]], null, ['width' => $keys[$j][1], 'height' => $keys[$j][2]]) !!}</td>                    
+                    @else
+                        <td>{{ $rows[$i][$keys[$j][0]][$keys[$j][1]] }}
+                    @endif
+                @else
+                    <td>{{ $rows[$i][$keys[$j]] }}</td>
+                @endif
             @endfor
                 <td>
                     {!! link_to_route($route . '.edit', __('string.edit'), [$rows[$i]['id']], ['class' => 'btn btn-success']) !!}

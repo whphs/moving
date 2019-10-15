@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin', function () {
+        return view('auth/login');
+    })->name('admin');
+});

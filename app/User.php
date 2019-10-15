@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\Models\Bonus;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'role'
+        'name', 'email', 'password', 'phone', 'role_id'
     ];
 
     /**
@@ -37,4 +38,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'phone_verified_at' => 'datetime',
     ];
+
+    public function bonuses()
+    {
+        return $this->belongsToMany(Bonus::class);
+    }
 }

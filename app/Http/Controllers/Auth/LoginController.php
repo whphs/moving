@@ -37,11 +37,11 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         $admin = Config::get('constants.USER_ROLES.ADMIN');
-        if (Auth::user()->role === $admin) {
+        if (Auth::user()->role_id === $admin) {
             return 'admin/dashboard';
         }
 
-        return 'home';
+        return '/';
     }
 
     /**

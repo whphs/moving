@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMovetypesTable extends Migration
+class CreateAgreementTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateMovetypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('movetypes', function (Blueprint $table) {
+        Schema::create('agreement', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('area');
+            $table->longText('content')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateMovetypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movetypes');
+        Schema::dropIfExists('agreement');
     }
 }

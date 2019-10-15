@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\BackEnd;
 
 use App\Models\Area;
-use App\Models\MoveType;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class MoveTypeController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +16,8 @@ class MoveTypeController extends Controller
     public function index()
     {
         //
-        $moveTypes = MoveType::all();
-        return view('backend.move_type.index', compact('moveTypes'));
+        $areas = Area::all();
+        return view('backend.area.index', compact('areas'));
     }
 
     /**
@@ -30,8 +28,7 @@ class MoveTypeController extends Controller
     public function create()
     {
         //
-        $areas = Arr::pluck(Area::all(), 'name', 'id');
-        return view('backend.move_type.create', compact('areas'));
+        return view('backend.area.create');
     }
 
     /**
@@ -43,9 +40,8 @@ class MoveTypeController extends Controller
     public function store(Request $request)
     {
         //
-        $this->saveMoveType(new MoveType, $request);
-
-        return redirect('admin/move_type')->with('status', __('string.created_success'));
+        $this->saveArea(new Area, $request);
+        return redirect('admin/area')->with('status', __('string.created_success'));
     }
 
     /**
@@ -68,9 +64,8 @@ class MoveTypeController extends Controller
     public function edit($id)
     {
         //
-        $moveType = MoveType::find($id);
-        $areas = Arr::pluck(Area::all(), 'name', 'id');
-        return view('backend.move_type.edit', compact('moveType', 'areas'));
+        $area = Area::find($id);
+        return view('backend.area.edit', compact('area'));
     }
 
     /**
@@ -83,9 +78,9 @@ class MoveTypeController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->saveMoveType(MoveType::find($id), $request);
+        $this->saveArea(Area::find($id), $request);
 
-        return redirect('admin/move_type')->with('status', __('string.updated_success'));
+        return redirect('admin/area')->with('status', __('string.updated_success'));
     }
 
     /**
@@ -97,21 +92,22 @@ class MoveTypeController extends Controller
     public function destroy($id)
     {
         //
-        $moveType = MoveType::find($id);
-        $moveType->delete();
-        return redirect('admin/move_type')->with('status', __('string.deleted_success'));
+        $area = Area::find($id);
+        $area->delete();
+        return redirect('admin/area')->with('status', __('string.deleted_success'));
     }
 
     /**
      * Save the data to database
      * 
-     * @param App\Models\MoveType $moveType
+     * @param App\Models\Area $area
      * @param \Illuminate\Http\Request  $request
      * @return void
      */
-    public function saveMoveType($moveType, $request) {
-        $moveType->name = $request->name;
-        $moveType->area_id = $request->area_id;
-        $moveType->save();
+    public function saveArea($area, $request) {
+        $area->name        = $request->name;
+        $area->country     = $request->country;
+        $area->zip_code    = $request->zip_code;
+        $area->save();
     }
 }

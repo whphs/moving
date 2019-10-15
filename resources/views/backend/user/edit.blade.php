@@ -11,11 +11,11 @@
         'rightButton' => null,
         'showStatus' => true,
     ])
-        {!! Form:: model($user, ['method' => 'PUT', 'route' => ['admin.users.update', $user->id]]) !!}
+        {!! Form:: model($user, ['method' => 'PUT', 'route' => ['admin.user.update', $user->id]]) !!}
             {!! Form::inputGroup('name', __('string.name'), $user->name) !!}
-            {!! Form::selectGroup('role', __('string.role'), Config::get('constants.USER_ROLES'), $user->role) !!}
+            {!! Form::selectGroup('role_id', __('string.role'), Config::get('constants.USER_ROLES'), $user->role_id) !!}
             {!! Form::submit(__('string.update'), ['class' => 'btn btn-primary']) !!}
-            {!! link_to('admin/users', __('string.cancel'), ['class' => 'btn btn-cancel']) !!}
+            {!! link_to('admin/user', __('string.cancel'), ['class' => 'btn btn-cancel']) !!}
         {!! Form:: close() !!}
 
     @endcomponent

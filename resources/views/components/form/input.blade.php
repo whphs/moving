@@ -16,6 +16,9 @@
         @case('date')
             {!! Form::date($name, $value, array_merge(['class' => 'form-control'], $attributes)) !!}
             @break
+        @case('file')
+            {!! Form::file($name, array_merge(['class' => 'form-control-file', 'style' => 'opacity: 1;position:inherit'], $attributes)) !!}
+            @break
         @default
             {!! Form::text($name, $value, array_merge(['class' => 'form-control'], $attributes)) !!}
             

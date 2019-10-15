@@ -38,25 +38,25 @@
                     </a>
                 </li>
                 <li class="{{'user' == substr(request()->path(), 0, 4) ? 'active' : ''}}">
-                    <a href="{{ route('admin.users.index') }}">
+                    <a href="{{ route('admin.user.index') }}">
                         <i class="now-ui-icons users_single-02"></i>
                         <p>{{ __('string.user_management') }}</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.aboutus') }}">
+                    <a href="{{ route('admin.about_us') }}">
                         <i class="now-ui-icons education_atom"></i>
                         <p>{{ __('string.about_us') }}</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.terms') }}">
+                    <a href="{{ route('admin.agreement') }}">
                         <i class="now-ui-icons location_map-big"></i>
                         <p>{{ __('string.terms_conditions') }}</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.bonuses.index') }}">
+                    <a href="{{ route('admin.bonus.index') }}">
                         <i class="now-ui-icons ui-1_bell-53"></i>
                         <p>{{ __('string.bonus_management') }}</p>
                     </a>
@@ -69,13 +69,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.movetypes.index') }}">
+                    <a href="{{ route('admin.area.index') }}">
+                        <i class="now-ui-icons text_caps-small"></i>
+                        <p>{{ __('string.areas') }}</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.move_type.index') }}">
                         <i class="now-ui-icons text_caps-small"></i>
                         <p>{{ __('string.move_types') }}</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.vehicles.index') }}">
+                    <a href="{{ route('admin.vehicle.index') }}">
                         <i class="now-ui-icons text_caps-small"></i>
                         <p>{{ __('string.vehicles') }}</p>
                     </a>

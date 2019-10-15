@@ -8,14 +8,15 @@
 
     @component('components.normal.container', [
         'title' => __('string.move_type_list'),
-        'rightButton' => ['route' => 'admin.movetypes.create', 'title' => __('string.add'), 'params' => null],
+        'rightButton' => ['route' => 'admin.move_type.create', 'title' => __('string.add'), 'params' => null],
         'showStatus' => true,
     ])
+    {{-- {{ $moveTypes[0]['area']['name'] }} --}}
         @component('components.table.action', [
             'columns' => [__('string.name'), __('string.area')],
-            'rows' => $movetypes,
-            'keys' => ['name', 'area'],
-            'route' => 'admin.movetypes'
+            'rows' => $moveTypes,
+            'keys' => ['name', ['area', 'name']],
+            'route' => 'admin.move_type'
         ])
         @endcomponent
 

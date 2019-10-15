@@ -2,9 +2,9 @@
 
 return [
     'USER_ROLES' => [
-        'ADMIN'     => 'Admin',
-        'USER'      => 'User',
-        'HELPER'    => 'Helper',
+        'ADMIN'     => 0,
+        'USER'      => 1,
+        'HELPER'    => 2,
     ],
 
     'MOVE_TYPES' => [
