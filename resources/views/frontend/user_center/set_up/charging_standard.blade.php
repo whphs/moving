@@ -19,16 +19,17 @@
 	    }
 	    .swiper-container {
 	      width: 300px;
-	      height: 100px;
+	      /*height: 120px;
 	      position: absolute;
 	      left: 50%;
 	      top: 30%;
 	      margin-left: -150px;
-	      margin-top: -150px;
+	      margin-top: -150px;*/
 	    }
 	    .swiper-slide {
-	      background-position: center;
-	      background-size: cover;
+	      /*background-position: center;
+	      background-size: cover;*/
+	      height: 130px;
 	    }
   	</style>
 
@@ -36,37 +37,27 @@
         <!-- Swiper -->
 	  	<div class="swiper-container">
 		    <div class="swiper-wrapper">
-		      	<div class="swiper-slide" style="background-image:url(frontend/assets/image/truck1.png)"></div>
-		      	<div class="swiper-slide" style="background-image:url(frontend/assets/image/truck2.png)"></div>
-		      	<div class="swiper-slide" style="background-image:url(frontend/assets/image/truck3.png)"></div>
-		      	<div class="swiper-slide" style="background-image:url(frontend/assets/image/truck4.png)"></div>
+		      	<div class="swiper-slide"><img src="frontend/assets/image/truck1.png" style="width: 100%;"></div>
+		      	<div class="swiper-slide"><img src="frontend/assets/image/truck2.png" style="width: 100%;"></div>
+		      	<div class="swiper-slide"><img src="frontend/assets/image/truck3.png" style="width: 100%;"></div>
+		      	<div class="swiper-slide"><img src="frontend/assets/image/truck4.png" style="width: 100%;"></div>
 		    </div>
 	    	<!-- Add Pagination -->
-	    	<div class="swiper-pagination"></div>
+	    	<!-- <div class="swiper-pagination"></div> -->
 	  	</div>
 
-	  	<div class="tabbable-line" style="margin-top: 200px; text-align: center;">
-			<!-- <ul class="nav nav-tabs">
-				<li class="active">
-					<a href="#tab_15_1" data-toggle="tab">
-					Convenient Moving</a>
-				</li>
-				<li style="float: right;">
-					<a href="#tab_15_2" data-toggle="tab">
-					Care-Free Moving</a>
-				</li>
-			</ul> -->
+	  	<div class="tabbable-line">
 			<div class="tab-content">
-				<div class="tab-pane active" id="truck_1">
+				<div class="tab-pane active" id="t1">
 					1
 				</div>
-				<div class="tab-pane" id="truck_2">
+				<div class="tab-pane" id="t2">
 					2
 				</div>
-				<div class="tab-pane" id="truck_2">
+				<div class="tab-pane" id="t3">
 					3
 				</div>
-				<div class="tab-pane" id="truck_2">
+				<div class="tab-pane" id="t4">
 					4
 				</div>
 			</div>
@@ -78,25 +69,34 @@
 	  	<!-- Initialize Swiper -->
 	  	<script>
 	    	var swiper = new Swiper('.swiper-container', {
-		      	effect: 'cube',
-		      	grabCursor: true,
-		      	cubeEffect: {
-			        shadow: true,
-			        slideShadows: true,
-			        shadowOffset: 20,
-			        shadowScale: 0.94,
-		      	},
-		      	pagination: {
-		        	el: '.swiper-pagination',
-		      	},
+		      	// effect: 'cube',
+		      	// grabCursor: true,
+		      	// cubeEffect: {
+			      //   shadow: true,
+			      //   slideShadows: true,
+			      //   shadowOffset: 20,
+			      //   shadowScale: 0.94,
+		      	// },
+		      	// pagination: {
+		       //  	el: '.swiper-pagination',
+		      	// },
 		    });
 
-		    swiper.on('slideNextTransitionEnd',function(){
-				$("#truck_2").append("class", "active");
+		    swiper.on('slideNextTransitionEnd', function () {
+		    	var prev_truck = swiper.activeIndex;
+		    	var active_truck = prev_truck + 1;
+
+		    	$("#t" + active_truck).addClass("active");
+		    	$("#t" + prev_truck).removeClass("active");
 			})
 
-			swiper.on('slidePrevTransitionEnd',function(){
-				alert("prev");
+			swiper.on('slidePrevTransitionEnd', function () {
+		    	var prev_truck = swiper.activeIndex;
+		    	var active_truck = prev_truck + 1;
+		    	prev_truck = active_truck + 1;
+
+		    	$("#t" + active_truck).addClass("active");
+		    	$("#t" + prev_truck).removeClass("active");
 			})
 
 	  	</script>

@@ -19,17 +19,17 @@
             <!-- END SIDEBAR USER TITLE -->
         </div>
         <div class="mt-50">
-            <div class="margin-top-20 profile-desc-link">
+            <div class="mt-20 profile-desc-link">
                 <i class="fa fa-file-text"></i>
                 <a href="/order_record">Order Record</a>
                 <i class="fa fa-angle-right" style="float: right;"></i>
             </div>
-            <div class="margin-top-20 profile-desc-link">
+            <div class="mt-20 profile-desc-link">
                 <i class="fa fa-th-list"></i>
                 <a href="/bonuses">Bonus List</a>
                 <i class="fa fa-angle-right" style="float: right;"></i>
             </div>
-            <div class="margin-top-20 profile-desc-link">
+            <div class="mt-20 profile-desc-link">
                 <i class="fa fa-cog"></i>
                 <a href="/set_up">Set Up</a>
                 <i class="fa fa-angle-right" style="float: right;"></i>

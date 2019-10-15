@@ -31,8 +31,7 @@
     @yield('content')
 
 </body>
-    {!! Html::script('frontend/assets/plugins/jquery.js') !!}
+    {!! Html::script('frontend/assets/js/jquery.js') !!}
     {!! Html::script('frontend/assets/plugins/jquery.min.js') !!}
     {!! Html::script('frontend/assets/plugins/bootstrap/js/bootstrap.min.js') !!}
-    {!! Html::script('frontend/assets/js/swiper.min.js') !!}
 </html>
