@@ -1,6 +1,7 @@
 <?php
 
 Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
+    
     Route::get('/dashboard', function () {
         return view('backend.dashboard');
     })->name('dashboard');
