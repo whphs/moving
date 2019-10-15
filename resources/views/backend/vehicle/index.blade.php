@@ -12,10 +12,10 @@
         'showStatus' => true,
     ])
         @component('components.table.action', [
-            'columns' => [__('string.name'), __('string.move_type'), __('string.area'), __('string.size')],
-            'rows' => $vehicles,
-            'keys' => ['name', ['move_type', 'name'], ['area', 'name'], 'size'],
-            'route' => 'admin.vehicle'
+            'columns'   => [__('string.thumbnail'), __('string.name'), __('string.move_type'), __('string.area'), __('string.size')],
+            'rows'      => $vehicles,
+            'keys'      => [['vehicle_thumb', 100, 100], 'name', ['move_type', 'name'], ['area', 'name'], 'size'],
+            'route'     => 'admin.vehicle'
         ])
         @endcomponent
 

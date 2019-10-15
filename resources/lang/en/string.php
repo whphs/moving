@@ -73,5 +73,18 @@ return [
     'edit_an_area'      => 'Edit an area',
     'country'           => 'Country',
     'zip_code'          => 'Zip Code',
-    'area_list'         => 'Area List'
+    'area_list'         => 'Area List',
+
+    'available_baggages'    => 'Available Baggages',
+    'unavailable_baggages'  => 'Unavailable Baggages',
+
+    'vehicle_thumbnail' => 'Vehicle Thumbnail',
+    'baggage_thumbnail' => 'Baggage Thumbnail',
+    'photo_side'        => 'Photo (Side)',
+    'photo_back'        => 'Photo (Back)',
+    'photo_half_side'   => 'Photo (Half-Side)',
+    'thumbnail'         => 'Thumbnail',
+
+    
+    
 ];
