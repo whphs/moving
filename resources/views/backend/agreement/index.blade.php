@@ -11,8 +11,8 @@
         'rightButton' => null,
         'showStatus' => true,
     ])
-        {!! Form::model($termCondition, ['method' => 'PUT', 'route' => 'admin.term_condition.update']) !!}
-            {!! Form::inputGroup('content', __('string.content'), $termCondition->content, 'textarea') !!}
+        {!! Form::model($agreement, ['method' => 'PUT', 'route' => 'admin.agreement.update']) !!}
+            {!! Form::inputGroup('content', __('string.content'), $agreement->content, 'textarea') !!}
             {!! Form::submit(__('string.update'), ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}
 

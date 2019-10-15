@@ -11,9 +11,9 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
         Route::put('/update', 'AboutUsController@update')->name('about_us.update');
     });
 
-    Route::group(['prefix' => 'term_condition'], function () {
-        Route::get('/', 'TermConditionController@index')->name('term_condition');
-        Route::put('/update', 'TermConditionController@update')->name('term_condition.update');
+    Route::group(['prefix' => 'agreement'], function () {
+        Route::get('/', 'AgreementController@index')->name('agreement');
+        Route::put('/update', 'AgreementController@update')->name('agreement.update');
     });
 
     Route::resource('user', 'UserController')->except(['create', 'store', 'show']);

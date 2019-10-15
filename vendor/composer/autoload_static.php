@@ -439,6 +439,7 @@ class ComposerStaticInitb5970511de421d431438c96688e5c8de
         'App\\Models\\Area' => __DIR__ . '/../..' . '/app/Models/Area.php',
         'App\\Models\\Bonus' => __DIR__ . '/../..' . '/app/Models/Bonus.php',
         'App\\Models\\MoveType' => __DIR__ . '/../..' . '/app/Models/MoveType.php',
+        'App\\Models\\Standard' => __DIR__ . '/../..' . '/app/Models/Standard.php',
         'App\\Models\\TermCondition' => __DIR__ . '/../..' . '/app/Models/TermCondition.php',
         'App\\Models\\Vehicle' => __DIR__ . '/../..' . '/app/Models/Vehicle.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

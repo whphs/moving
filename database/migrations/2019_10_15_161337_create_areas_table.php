@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMoveTypeTable extends Migration
+class CreateAreasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateMoveTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('move_type', function (Blueprint $table) {
+        Schema::create('areas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('area_id');
+            $table->string('country')->default(__('string.china'));
+            $table->string('zip_code');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateMoveTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('move_type');
+        Schema::dropIfExists('areas');
     }
 }

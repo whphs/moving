@@ -39,6 +39,7 @@ return array(
     'App\\Models\\Area' => $baseDir . '/app/Models/Area.php',
     'App\\Models\\Bonus' => $baseDir . '/app/Models/Bonus.php',
     'App\\Models\\MoveType' => $baseDir . '/app/Models/MoveType.php',
+    'App\\Models\\Standard' => $baseDir . '/app/Models/Standard.php',
     'App\\Models\\TermCondition' => $baseDir . '/app/Models/TermCondition.php',
     'App\\Models\\Vehicle' => $baseDir . '/app/Models/Vehicle.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.term_condition') }}">
+                    <a href="{{ route('admin.agreement') }}">
                         <i class="now-ui-icons location_map-big"></i>
                         <p>{{ __('string.terms_conditions') }}</p>
                     </a>

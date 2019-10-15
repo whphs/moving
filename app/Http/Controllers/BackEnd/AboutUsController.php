@@ -8,27 +8,24 @@ use App\Http\Controllers\Controller;
 
 class AboutUsController extends Controller
 {
-    //
     public function index() {
-        $aboutUs = AboutUs::all();
-        if (count($aboutUs) > 0) {
-            $aboutUs = $aboutUs[0];
-        } else {
+        $aboutUs = AboutUs::first();
+        if (!$aboutUs) {
             $aboutUs = AboutUs::create(['title' => '']);
         }
         return view('backend.about_us.index', compact('aboutUs'));
     }
 
     public function update(Request $request) {
-        $aboutUs = AboutUs::firstOrFail();
-        $aboutUs->title         = $request->input('title');
-        $aboutUs->introduction  = $request->input('introduction');
-        $aboutUs->email         = $request->input('email');
-        $aboutUs->phone         = $request->input('phone');
-        $aboutUs->address       = $request->input('address');
-        $aboutUs->website       = $request->input('website');
-        $aboutUs->update();
+        $aboutUs = AboutUs::first();
+        $aboutUs->title         = $request->title;
+        $aboutUs->introduction  = $request->introduction;
+        $aboutUs->email         = $request->email;
+        $aboutUs->phone         = $request->phone;
+        $aboutUs->address       = $request->address;
+        $aboutUs->website       = $request->website;
+        $aboutUs->save();
 
-        return redirect('/admin/about_us')->with('status', __('string.updated_success'));
+        return redirect('admin/about_us')->with('status', __('string.updated_success'));
     }
 }

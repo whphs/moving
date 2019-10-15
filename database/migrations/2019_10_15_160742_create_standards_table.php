@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAreaTable extends Migration
+class CreateStandardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateAreaTable extends Migration
      */
     public function up()
     {
-        Schema::create('area', function (Blueprint $table) {
+        Schema::create('standards', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('country')->default(__('string.china'));
-            $table->string('zip_code');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ class CreateAreaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('area');
+        Schema::dropIfExists('standards');
     }
 }

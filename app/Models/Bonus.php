@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bonus extends Model
 {
     //
-    protected $table = 'bonus';
+    protected $table = 'bonuses';
     protected $fillable = ['title', 'move_type_id', 'area_id', 'price', 'start_date', 'end_date'];
 
     public function area()
