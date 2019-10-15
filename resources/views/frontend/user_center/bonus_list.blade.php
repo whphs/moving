@@ -9,68 +9,26 @@
                 <input type="text" class="form-control input-sm" placeholder="Click here to enter the exchange code">
             </div>
             <span class="input-group-btn btn-right">
-                <button class="btn green-haze" type="button">Exchange</button>
+                <button class="btn grey-haze" type="button">Exchange</button>
             </span>
         </div>
         <hr>
-        <span>You have a pull ticket that is about to expire.</span>
+        <span>You have <span style="font-weight: bold;">{{ count($bonuses) }}</span> tickets that is about to expire.</span>
         <a style="float: right;">Instructions</a>
         <div class="mt-30">
-            <table class="mb-20">
-                <td style="text-align: center;">
-                    <img src="frontend/assets/image/about.png" style="width: 50%;">
-                    <p>Order reduction</p>
-                </td>
-                <td>
-                    <p style="font-weight: bold;">Care-Free Moving - Workday</p>
-                    <p>2019-10-10 ~ 2019-10-12</p>
-                    <a>More datails</a>
-                </td>
-            </table>
-            <table class="mb-20">
-                <td style="text-align: center;">
-                    <img src="frontend/assets/image/about.png" style="width: 50%;">
-                    <p style="margin-bottom: 0px;">Order reduction</p>
-                </td>
-                <td>
-                    <p style="font-weight: bold;">Care-Free Moving - Workday</p>
-                    <p>2019-10-10 ~ 2019-10-12</p>
-                    <a>More datails</a>
-                </td>
-            </table>
-            <table class="mb-20">
-                <td style="text-align: center;">
-                    <img src="frontend/assets/image/about.png" style="width: 50%;">
-                    <p style="margin-bottom: 0px;">Order reduction</p>
-                </td>
-                <td>
-                    <p style="font-weight: bold;">Convenient Moving</p>
-                    <p>2019-10-02 ~ 2019-10-10</p>
-                    <a>More datails</a>
-                </td>
-            </table>
-            <table class="mb-20">
-                <td style="text-align: center;">
-                    <img src="frontend/assets/image/about.png" style="width: 50%;">
-                    <p style="margin-bottom: 0px;">Order reduction</p>
-                </td>
-                <td>
-                    <p style="font-weight: bold;">Convenient Moving</p>
-                    <p>2019-10-02 ~ 2019-10-10</p>
-                    <a>More datails</a>
-                </td>
-            </table>
-            <table class="mb-20">
-                <td style="text-align: center;">
-                    <img src="frontend/assets/image/about.png" style="width: 50%;">
-                    <p style="margin-bottom: 0px;">Order reduction</p>
-                </td>
-                <td>
-                    <p style="font-weight: bold;">Convenient Moving</p>
-                    <p>2019-10-02 ~ 2019-10-10</p>
-                    <a>More datails</a>
-                </td>
-            </table>
+            @foreach ($bonuses as $bonus)
+                <table class="mb-10">
+                    <td style="text-align: center;">
+                        <p style="font-size: 40px; font-weight: bold; color: grey;">{{ $bonus->price }}$</p>
+                        <p>Order reduction</p>
+                    </td>
+                    <td style="padding-left: 20px;">
+                        <p style="font-weight: bold;">{{ $bonus->title }}</p>
+                        <p>{{ $bonus->start_date }} ~ {{ $bonus->end_date }}</p>
+                        <a>More details</a>
+                    </td>
+                </table>
+            @endforeach
         </div>
     </div>
 @endsection

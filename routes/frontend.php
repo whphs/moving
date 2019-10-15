@@ -1,11 +1,9 @@
 <?php
 // Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('/aboutus', 'FrontEndController@aboutUs')->name('aboutus');
-
 // Route::get('/terms', 'FrontEndController@terms')->name('terms');
 
-// Route::get('/bonuses', 'FrontEndController@bonusList')->name('bonuses');
+
 // Route::get('/bonuses/{id}', 'FrontEndController@showBonus')->name('bonuses.show');
 
 
@@ -37,9 +35,7 @@ Route::get('/order_record', function () {
 	return view('frontend/user_center/order_record');
 });
 
-Route::get('/bonus_list', function () {
-	return view('frontend/user_center/bonus_list');
-});
+Route::get('/bonuses', 'FrontEndController@bonusList')->name('bonuses');
 
 Route::get('/set_up', function () {
 	return view('frontend/user_center/set_up/set_up');
@@ -53,6 +49,4 @@ Route::get('/charging_standard', function () {
 	return view('frontend/user_center/set_up/charging_standard');
 });
 
-Route::get('/about_us', function () {
-	return view('frontend/user_center/set_up/about_us');
-});
+Route::get('/about_us', 'FrontEndController@aboutUs')->name('aboutus');

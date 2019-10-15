@@ -26,7 +26,7 @@
             </div>
             <div class="margin-top-20 profile-desc-link">
                 <i class="fa fa-th-list"></i>
-                <a href="/bonus_list">Bonus List</a>
+                <a href="/bonuses">Bonus List</a>
                 <i class="fa fa-angle-right" style="float: right;"></i>
             </div>
             <div class="margin-top-20 profile-desc-link">

@@ -12,13 +12,13 @@
     <title>Moving app</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="frontend/assets/south/img/core-img/favicon.ico">
 
     <!-- Style CSS -->
-    <link rel="stylesheet" href="assets/south/style.css">
-    <link rel="stylesheet" href="assets/south/css/custom-modal.css">
-    <link rel="stylesheet" href="assets/south/css/mystyle.css">
-    <link rel="stylesheet" href="assets/south/css/mytabs.css">
+    <link rel="stylesheet" href="frontend/assets/south/style.css">
+    <link rel="stylesheet" href="frontend/assets/south/css/custom-modal.css">
+    <link rel="stylesheet" href="frontend/assets/south/css/mystyle.css">
+    <link rel="stylesheet" href="frontend/assets/south/css/mytabs.css">
     
 </head>
 
@@ -34,7 +34,7 @@
             <div class="h-100 d-md-flex justify-content-between align-items-center">
                 <div class="phone-number d-flex">
                     <div class="icon">
-                        <img src="assets/south/img/icons/phone-call.png" alt="">
+                        <img src="frontend/assets/south/img/icons/phone-call.png" alt="">
                     </div>
                     <div class="number">
                         <a href="tel:+86 13394260131">+86 13394260131</a>
@@ -63,7 +63,7 @@
     <section class="hero-area">
         <div class="hero-slides owl-carousel">
             <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(assets/south/img/bg-img/hero1.jpg);">
+            <div class="single-hero-slide bg-img" style="background-image: url(frontend/assets/south/img/bg-img/hero1.jpg);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(assets/south/img/bg-img/hero2.jpg);">
+            <div class="single-hero-slide bg-img" style="background-image: url(frontend/assets/south/img/bg-img/hero2.jpg);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
@@ -87,7 +87,7 @@
                 </div>
             </div>
             <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(assets/south/img/bg-img/hero3.jpg);">
+            <div class="single-hero-slide bg-img" style="background-image: url(frontend/assets/south/img/bg-img/hero3.jpg);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
@@ -124,7 +124,7 @@
                         <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="200ms">                       
                             <!-- Property Content -->
                             <div class="property-content">  
-                            <p class="location" id = "moveType"><img src="assets/south/img/icons/location.png" alt="">Small Move</p><span>$65</span>     
+                            <p class="location" id = "moveType"><img src="frontend/assets/south/img/icons/location.png" alt="">Small Move</p><span>$65</span>     
                                 <div class="row">
                                     <div class="col-8">
                                         <p>Integer nec.</p>
@@ -134,7 +134,7 @@
                                         <button type="button" class="btn btn-link btn-sm" id="myBtn">Details</button>
                                     </div>    
                                     <div class="col-4">
-                                       <img src="assets/south/img/furniture.jpg" style="width: 60px;"/>
+                                       <img src="frontend/assets/south/img/furniture.jpg" style="width: 60px;"/>
                                        <button type="submit" class="btn south-btn">Details</button>
                                     </div>
                                 </div>      
@@ -178,13 +178,13 @@
     <!-- The slideshow -->
       <div class="carousel-inner" style="min-width: 310px;max-width:768px;height: 100px;">
         <div class="carousel-item active">
-          <img src="assets/south/img/bg-img/hero4.jpg" alt="Los Angeles" width="1100" height="500">
+          <img src="frontend/assets/south/img/bg-img/hero4.jpg" alt="Los Angeles" width="1100" height="500">
         </div>
         <div class="carousel-item">
-          <img src="assets/south/img/bg-img/cta.jpg" alt="Chicago" width="1100" height="500">
+          <img src="frontend/assets/south/img/bg-img/cta.jpg" alt="Chicago" width="1100" height="500">
         </div>
         <div class="carousel-item">
-          <img src="assets/south/img/bg-img/future4.jpg" alt="New York" width="1100" height="500">
+          <img src="frontend/assets/south/img/bg-img/future4.jpg" alt="New York" width="1100" height="500">
         </div>
       </div>
       
@@ -224,20 +224,20 @@
    
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="assets/south/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="frontend/assets/south/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="assets/south/js/popper.min.js"></script>
+    <script src="frontend/assets/south/js/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="assets/south/js/bootstrap.min.js"></script>
+    <script src="frontend/assets/south/js/bootstrap.min.js"></script>
     <!-- Plugins js -->
-    <script src="assets/south/js/plugins.js"></script>
-    <script src="assets/south/js/classy-nav.min.js"></script>
-    <script src="assets/south/js/jquery-ui.min.js"></script>
+    <script src="frontend/assets/south/js/plugins.js"></script>
+    <script src="frontend/assets/south/js/classy-nav.min.js"></script>
+    <script src="frontend/assets/south/js/jquery-ui.min.js"></script>
     <!-- Custom js -->
-    <script src="assets/south/js/custom-modal.js"></script>
-    <script src="assets/south/js/mytabs.js"></script>
+    <script src="frontend/assets/south/js/custom-modal.js"></script>
+    <script src="frontend/assets/south/js/mytabs.js"></script>
     <!-- Active js -->    
-    <script src="assets/south/js/active.js"></script>
+    <script src="frontend/assets/south/js/active.js"></script>
 
 </body>
 
