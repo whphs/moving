@@ -52,9 +52,9 @@
 						<div class="mt-10">
 							<table style="width: 100%;">
 								<tr>
-									<th>Load</th>
-									<th>Size</th>
-									<th>Volume</th>
+									<th style="width: 30%;">Load</th>
+									<th style="width: 40%;">Size</th>
+									<th style="width: 30%;">Volume</th>
 								</tr>
 								<tr>
 									<td>{{ $vehicle->load_weight }}</td>
