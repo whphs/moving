@@ -62,10 +62,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        {{-- <a href="{{ route('standard') }}"> --}}
+                    <a href="{{ route('admin.price.index') }}">
                         <i class="now-ui-icons design_bullet-list-67"></i>
-                        <p>{{ __('string.standard') }}</p>
+                        <p>{{ __('string.prices_standard') }}</p>
                     </a>
                 </li>
                 <li>

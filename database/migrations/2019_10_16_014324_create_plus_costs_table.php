@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStandardsTable extends Migration
+class CreatePlusCostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateStandardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('standards', function (Blueprint $table) {
+        Schema::create('plus_costs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('vehicle_id');
+            $table->integer('distance_from')->nullable();
+            $table->integer('distance_to')->nullable();
+            $table->integer('amount')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateStandardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('standards');
+        Schema::dropIfExists('plus_costs');
     }
 }

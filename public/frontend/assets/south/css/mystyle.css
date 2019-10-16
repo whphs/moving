@@ -3,7 +3,7 @@ header {
   width: 100%;
   min-height: 2.5em;
   background-color: #947054;
-  z-index: 1;
+  z-index: 20;
 }
 
 html:not([data-scroll='0']) body {
