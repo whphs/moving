@@ -9,7 +9,7 @@ use App\Models\AboutUs;
 use App\Models\Vehicle;
 use App\Models\MoveType;
 use Illuminate\Http\Request;
-use App\Models\TermCondition;
+use App\Models\Agreement;
 use App\Http\Controllers\Controller;
 
 class FrontEndController extends Controller

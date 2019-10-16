@@ -85,6 +85,21 @@ return [
     'photo_half_side'   => 'Photo (Half-Side)',
     'thumbnail'         => 'Thumbnail',
 
-    
+    'prices_standard'   => 'Prices Standard',
+    'add_a_price'       => 'Add a Price',
+    'edit_a_price'      => 'Edit a Price',
+    'distance_from'     => 'Distance From',
+    'distance_to'       => 'Distance To',
+    'amount'            => 'Amount',
+
+    'km'                => ' (km)',
+    'money_unit'        => ' ($)',
+    'unit_km'           => ' ($ / km)',
+
+    'no'                => 'No',
+    'prices'            => 'Prices',
+
+    'init_distance'     => 'Init Distance',
+    'init_cost'         => 'Init Cost'
     
 ];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\BackEnd;
 use App\Models\Area;
 use App\Models\Vehicle;
 use App\Models\MoveType;
+use App\Models\PlusCost;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -102,7 +103,8 @@ class VehicleController extends Controller
         //
         $vehicle = Vehicle::find($id);
         $vehicle->delete();
-        
+        PlusCost::where('vehicle_id', $id)->delete();
+
         return redirect('admin/vehicle')->with('status', __('string.deleted_success'));
     }
 
@@ -115,20 +117,35 @@ class VehicleController extends Controller
      */
     public function saveVeichle($vehicle, $request) {
         // $this->validate($request, ['vehicle_thumb' => 'dimensions:width=150,height=100']);
-        $vehicle->name = $request->name;
-        $vehicle->move_type_id = $request->move_type_id;
-        $vehicle->area_id = $request->area_id;
-        $vehicle->size = $request->size;
-        $vehicle->load_weight = $request->load_weight;
-        $vehicle->volume = $request->volume;
-        $vehicle->description = $request->description;
-        $vehicle->available_baggages = $request->available_baggages;
-        $vehicle->unavailable_baggages = $request->unavailable_baggages;
-        $vehicle->vehicle_thumb = $request->vehicle_thumb->store('uploads', 'public');
-        $vehicle->baggage_thumb = $request->baggage_thumb->store('uploads', 'public');
-        $vehicle->photo_0 = $request->photo_0->store('uploads', 'public');
-        $vehicle->photo_1 = $request->photo_1->store('uploads', 'public');
-        $vehicle->photo_2 = $request->photo_2->store('uploads', 'public');
+        
+        $vehicle->name                  = $request->name;
+        $vehicle->move_type_id          = $request->move_type_id;
+        $vehicle->area_id               = $request->area_id;
+        $vehicle->size                  = $request->size;
+        $vehicle->load_weight           = $request->load_weight;
+        $vehicle->volume                = $request->volume;
+        $vehicle->init_distance         = $request->init_distance;
+        $vehicle->init_cost             = $request->init_cost;
+        $vehicle->description           = $request->description;
+        $vehicle->available_baggages    = $request->available_baggages;
+        $vehicle->unavailable_baggages  = $request->unavailable_baggages;
+        $vehicle->vehicle_thumb         = $request->vehicle_thumb->store('uploads', 'public');
+        $vehicle->baggage_thumb         = $request->baggage_thumb->store('uploads', 'public');
+        $vehicle->photo_0               = $request->photo_0->store('uploads', 'public');
+        $vehicle->photo_1               = $request->photo_1->store('uploads', 'public');
+        $vehicle->photo_2               = $request->photo_2->store('uploads', 'public');
         $vehicle->save();
+
+        PlusCost::where('vehicle_id', $vehicle->id)->delete();
+
+        foreach ($request->distance_from as $key => $n) {
+            $plusCost = new PlusCost;
+            $plusCost->distance_from    = $request->distance_from[$key];
+            $plusCost->distance_to      = $request->distance_to[$key];
+            $plusCost->amount           = $request->amount[$key];
+            $plusCost->vehicle_id       = $vehicle->id;
+            $plusCost->save();
+        }
     }
+
 }

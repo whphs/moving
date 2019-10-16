@@ -21,6 +21,8 @@ class CreateVehiclesTable extends Migration
             $table->string('size');
             $table->float('load_weight');
             $table->float('volume');
+            $table->integer('init_distance');
+            $table->integer('init_cost');
             $table->longText('description');
             $table->string('available_baggages')->nullable();
             $table->string('unavailable_baggages')->nullable();
