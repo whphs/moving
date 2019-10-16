@@ -86,5 +86,11 @@ return [
     'thumbnail'         => 'Thumbnail',
 
     
-    
+    // phs definiton
+    'esay_move'         => 'Easy Move',
+    'safe_move'         => 'Safe Move',
+    'standard_costs'    => 'Normal Costs',
+    'easy_moving_notes'       => 'Choose a moving type and move now.', 
+    'more_button'       => 'More',
+    'detail_button'     => 'Details'
 ];

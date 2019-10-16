@@ -1,3 +1,52 @@
+
+header {
+  width: 100%;
+  min-height: 2.5em;
+  background-color: #947054;
+  z-index: 1;
+}
+
+html:not([data-scroll='0']) body {
+  padding-top: 3em;
+}
+html:not([data-scroll='0']) header {
+  position: fixed;
+  top: 0;
+  background-color: #947054;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+}
+
+header {
+  box-sizing: border-box;
+  /*padding: 1em;*/
+  transition: background-color .25s;
+}
+
+main {
+  padding: 0 1em;
+}
+
+/*easy move*/
+.icon{
+	background-color: #ffffff;
+	width: 45px;
+	height: 45px;
+	text-align: center;
+	display: inline-block;
+}
+.icon img{
+	padding: 16px 0;
+	max-width: 15px;
+}
+.number{
+	align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.number a{
+	color: white;
+}
+
 #moveType{
 	display: inline-block;;
 }
@@ -28,7 +77,7 @@
 	margin-left: auto;
 	margin-right: auto;	
 	margin-top: 23px;
-	box-shadow: -1px 3px 7px 0px #00000082;
+	box-shadow: -1px 3px 7px 0px #e1dddd;
 	z-index: 0;
 }
 .nav-tabs{
@@ -50,4 +99,43 @@
    margin-left: auto!important;
    margin-right: auto!important;	
 
+}
+
+/*details*/
+.card-header{
+	font-weight: bold;
+	max-height: 46px;
+}
+.card{
+  box-shadow: -1px 3px 7px 0px #e1dddd;
+}
+/*modal button of details page*/
+.detail{
+	float: right;margin-right: -17px;color:black
+}
+.watch{
+	font-weight: 200;
+	float: right;margin-right: -17px;color:black
+}
+#phoneNum{
+	display: inline-flex;
+	width: 186px;    
+    margin-bottom: 0px;
+}
+.footer{
+	min-height: 50px;
+    border: 1px solid rgba(0,0,0,.125);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-shadow: -1px 3px 7px 0px #00000082;
+    background-color: white;
+}
+.follow{
+	width:76px;
+}
+/*safe move details*/
+#orderNote{
+	border: unset;
 }
