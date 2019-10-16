@@ -33,7 +33,7 @@
                   {!! Html::image('frontend/assets/south/img/icons/flat.png') !!}
               </div>
               <div class="number">                        
-                {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
+                  {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
               </div>
           </div>
         </header>

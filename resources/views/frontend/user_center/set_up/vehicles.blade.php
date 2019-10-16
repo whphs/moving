@@ -39,6 +39,14 @@
 		th {
 			text-align: center;
 		}
+		span {
+			font-size: 16px;
+			font-weight: 600;
+			color: #ff6600;
+		}
+		table {
+			margin-top: 5px;
+		}
   	</style>
 
     <div class="container">
@@ -52,13 +60,13 @@
 						<div class="mt-10">
 							<table style="width: 100%;">
 								<tr>
-									<th style="width: 30%;">Load</th>
-									<th style="width: 40%;">Size</th>
-									<th style="width: 30%;">Volume</th>
+									<th style="width: 20%;">Load</th>
+									<th style="width: 60%;">Length*Width*High</th>
+									<th style="width: 20%;">Volume</th>
 								</tr>
 								<tr>
-									<td>{{ $vehicle->load_weight }}</td>
-									<td>{{ $vehicle->size }}</td>
+									<td>{{ $vehicle->load_weight }}kg</td>
+									<td>{{ $vehicle->size }}M</td>
 									<td>{{ $vehicle->volume }}</td>
 								</tr>
 							</table>
@@ -67,43 +75,79 @@
 				@endforeach
 		    </div>
 	    	<!-- Add Pagination -->
-	    	<!-- <div class="swiper-pagination"></div> -->
+	    	<div class="swiper-pagination"></div>
 	  	</div>
 
-	  	<div class="tabbable-line">
+	  	<div class="tabbable-line mt-20">
 			<div class="tab-content">
-				<div class="tab-pane active" id="t1">
-					truck_1
-				</div>
-				<div class="tab-pane" id="t2">
-				truck_2
-				</div>
-				<div class="tab-pane" id="t3">
-				truck_3
-				</div>
-				<div class="tab-pane" id="t4">
-				truck_4
-				</div>
+				@for ($i = 0; $i < count($vehicles); $i ++)
+					<div class="tab-pane" id="t{{ $i + 1 }}">
+						<span>Basic fare({{ $vehicles[$i]->name }})</span>
+						<table class="table table-striped table-hover">
+							<tr>
+								<td>
+									Starting Price(5km)
+								</td>
+								<td>
+									30 yuan
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Super Mileage(5~9999km)
+								</td>
+								<td>
+									+3 yuan/km
+								</td>
+							</tr>
+						</table>
+						<span>Extermal demand handling</span>
+						<table class="table table-striped table-hover">
+							<tr>
+								<td>
+									Preview
+								</td>
+								<td>
+									<a>Help me to calculate the price</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Trolley
+								</td>
+								<td>
+									Free Admission
+								</td>
+							</tr>
+						</table>
+						{{ $vehicles[$i]->description }}
+					</div>
+				@endfor
 			</div>
 		</div>
 
 	  	<!-- Swiper JS -->
-	  	<script src="frontend/assets/js/swiper.min.js"></script>
+		{!! Html::script('frontend/assets/js/jquery.js') !!}
+		{!! Html::script('frontend/assets/js/swiper.min.js') !!}
 
 	  	<!-- Initialize Swiper -->
 	  	<script>
+		  	$(document).ready(function () {
+				$("#t1").addClass("active");
+			});
+
 	    	var swiper = new Swiper('.swiper-container', {
-		      	// effect: 'cube',
-		      	// grabCursor: true,
-		      	// cubeEffect: {
-			      //   shadow: true,
-			      //   slideShadows: true,
-			      //   shadowOffset: 20,
-			      //   shadowScale: 0.94,
-		      	// },
-		      	// pagination: {
-		       //  	el: '.swiper-pagination',
-		      	// },
+		      	effect: 'cube',
+		      	grabCursor: true,
+		      	cubeEffect: {
+			        shadow: true,
+			        slideShadows: true,
+			        shadowOffset: 20,
+			        shadowScale: 0.94,
+		      	},
+		      	pagination: {
+		        	el: '.swiper-pagination',
+		      	},
 		    });
 
 		    swiper.on('slideChange', function () {
