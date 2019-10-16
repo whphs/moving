@@ -21,43 +21,24 @@
     <link rel="stylesheet" href="frontend/assets/south/css/mytabs.css">
     
 </head>
-
-<body>
-    <!-- Preloader -->
-    <!-- <div id="preloader">
-        <div class="south-load"></div>
-    </div> -->
-    <header class="header-area">
-        <!-- Top Header Area -->
-        <div class="top-header-area">
-            <div class="h-100 d-md-flex justify-content-between align-items-center">
-                <div class="phone-number d-flex">
-                    <div class="icon">
-                        <img src="frontend/assets/south/img/icons/phone-call.png" alt="">
-                    </div>
-                    <div class="number">
-                        <a href="tel:+86 13394260131">+86 13394260131</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Menu Area -->
-        <div class="main-header-area" id="stickyHeader">
-            <div class="classy-nav-container breakpoint-off">
-                <!-- Classy Menu -->
-                <nav class="classy-navbar justify-content-between" id="southNav">
-
-                    <!-- Logo -->
-                    <!-- <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a> -->
-                    <a href="/user_center" style="color: white;">user</a>
-                    <!-- Navbar Toggler -->
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header>
+<body>  
+ 
+        <!-- Top Header Area -->        
+        <header>
+          <div class="phone-number d-flex"> 
+              <div class = "icon">              
+                  {!! Html::image('frontend/assets/south/img/icons/house1.png') !!}
+              </div>
+              <div class="icon">
+                  {!! Html::image('frontend/assets/south/img/icons/flat.png') !!}
+              </div>
+              <div class="number">                        
+                {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
+              </div>
+          </div>
+        </header>
+               
+ 
     <!-- Top slider start -->
     <section class="hero-area">
         <div class="hero-slides owl-carousel">
@@ -112,25 +93,26 @@
     </div>    
     <!-- Tabs Area end -->
     
-    <div class="section-heading wow fadeInUp">                
-        <p>选套餐,搬家无忧</p>
-    </div>
-    <section class="featured-properties-area section-padding-10-50">
+    <div class="section-heading wow fadeInUp">
+        <p>{{__('string.easy_moving_notes')}}</p>
+    </div>  
+    <main>   
+    <!-- Move type start -->
+    
+      <section class="featured-properties-area section-padding-10-50">
             <div class="container">             
-                <div class="row">
-                    <!-- Single Featured Property -->
-                    <div class="col-12 col-md-6 col-xl-4">
-                        <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="200ms">                       
-                            <!-- Property Content -->
+                <div class="row">  
+                @foreach($vehicles as $value) <!-- Gettig vehicles info -->                  
+                    <div class="col-12 col-lg-6" style="margin-bottom: -30px">
+                        <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="200ms">                            
                             <div class="property-content">  
-                            <p class="location" id = "moveType"><img src="frontend/assets/south/img/icons/location.png" alt="">Small Move</p><span>$65</span>     
+                            <p class="location" id = "moveType">
+                            {!! Html::image($value->vehicle_thumb) !!} {{$value->name}}</p><span>$50</span>     
                                 <div class="row">
                                     <div class="col-8">
-                                        <p>Integer nec.</p>
-                                        <p>Integer nec.</p>
-                                        <p>Integer nec.</p>
-                                        <!-- easy to move modal details start -->
-                                        <button type="button" class="btn btn-link btn-sm" id="myBtn">Details</button>
+                                        <p>{{$value->description}}</p>                                       
+                                        <!-- easy to move modal details button -->                                        
+                                        {!! Form::submit(__('string.more_button'),['class' => 'btn btn-link btn-sm','id' => 'modalBtn'.$value->id,'onclick' => 'modal_sel('.$value->id.')' ]) !!}
                                     </div>    
                                     <div class="col-4">
                                        <img src="frontend/assets/south/img/furniture.jpg" style="width: 60px;"/>
@@ -139,88 +121,86 @@
                                 </div>      
                             </div>
                         </div>
-                    </div>                                          
+                    </div>  
+                     <!-- Modal area  start-->
+                    <div id="eMoveModal{{$value->id}}" class="modal">                     
+                      <div class="modal-content">
+                        <div class="modal-header">
+                                <!-- Nav Start -->
+                                <div class="classynav">
+                                    <ul>                    
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Properties</a></li>
+                                        <li><a href="#">Blog</a></li>                               
+                                        <li><a href="#">Contact</a></li>                    
+                                    </ul>
+                                    <span class="close" id = "eMoveClose{{$value->id}}" onclick="modal_close({{$value->id}})" style="padding: unset;margin-top: -28px; margin-right: auto;">&times;</span>
+                                </div>
+                                <!-- Nav End -->                         
+                        </div>
+                          <div class="modal-body">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+                            <!-- Indicators -->
+                            <ul class="carousel-indicators">
+                              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                              <li data-target="#myCarousel" data-slide-to="1"></li>
+                              <li data-target="#myCarousel" data-slide-to="2"></li>
+                            </ul>
+                            
+                          <!-- The slideshow -->
+                            <div class="carousel-inner" style="min-width: 310px;max-width:768px;height: 100px;">
+                              <div class="carousel-item active">
+                                <img src="img/bg-img/about.jpg" alt="Los Angeles" width="1100" height="500">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="img/bg-img/cta.jpg" alt="Chicago" width="1100" height="500">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="img/bg-img/editor.jpg" alt="New York" width="1100" height="500">
+                              </div>
+                            </div>
+                            
+                            <!-- Left and right controls -->
+                            <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                              <span class="carousel-control-prev-icon"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                              <span class="carousel-control-next-icon"></span>
+                            </a>
+                          </div>
+                          <!-- Truck descrition -->
+                          <div class="row">
+                            <div class="col-12">
+                              <h6 style="font-weight: bold;color: #000000d9;line-height: 2; ">????</h6>
+                              <p style="background-color: #dee2e6a1;font-size: 12px; ">??????,?????????</p>
+                              <div>
+                                <p style= "font-size: 12px;font-weight: bold;display: inline-block; color: #000000d9;">????? :</p>
+                                <p style= "font-size: 12px;font-weight: bold;display: inline-block; ">?????????</p>  
+                              </div>
+                              <div>
+                                <p style= "font-size: 12px;font-weight: bold;display: inline-block;color: #000000d9; ">?????? : </p> 
+                                <p style= "font-size: 12px;font-weight: bold;display: inline-block; ">??1.5???????????</p>
+                              </div>   
+                              <div>
+                                <p style= "font-size: 12px;font-weight: bold; ">PS: ?????????,????????</p>
+                              </div>     
+                            </div>      
+                          </div>    
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type = "submit" class="btn south-btn m-1">????</button>
+                        </div>
+                      </div>
+                      <!-- Modal area end -->
+                    </div>
+                @endforeach                                             
                 </div>
             </div>
-    </section>
 
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">      
-        
-            <!-- Nav Start -->
-            <div class="classynav">
-                <ul>                    
-                    <li><a href="#">small</a></li>
-                    <li><a href="#">big</a></li>
-                    <li><a href="#">small</a></li>                               
-                    <li><a href="#">big</a></li>                    
-                </ul>
-                <span class="close" style="padding: unset;margin-top: -28px; margin-right: auto;">&times;</span>
-            </div>
-            <!-- Nav End -->                         
-    </div>
-    <div class="modal-body">
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-      <!-- Indicators -->
-      <ul class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ul>
-      
-    <!-- The slideshow -->
-      <div class="carousel-inner" style="min-width: 310px;max-width:768px;height: 100px;">
-        <div class="carousel-item active">
-          <img src="frontend/assets/south/img/bg-img/hero4.jpg" alt="Los Angeles" width="1100" height="500">
-        </div>
-        <div class="carousel-item">
-          <img src="frontend/assets/south/img/bg-img/cta.jpg" alt="Chicago" width="1100" height="500">
-        </div>
-        <div class="carousel-item">
-          <img src="frontend/assets/south/img/bg-img/future4.jpg" alt="New York" width="1100" height="500">
-        </div>
-      </div>
-      
-      <!-- Left and right controls -->
-      <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    </div>
-    <!-- Truck descrition -->
-    <div class="row">
-      <div class="col-12">
-        <h6 style="font-weight: bold;color: #000000d9;line-height: 2; ">用车提示</h6>
-        <p style="background-color: #dee2e6a1;font-size: 12px; ">适合单人搬家,无大型家电家具人群</p>
-        <div>
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block; color: #000000d9;">可装载物品 :</p>
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block; ">小型洗衣机或空调等</p>  
-        </div>
-        <div>
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block;color: #000000d9; ">不可装载物品 : </p> 
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block; ">超过1.5米床垫以及双门以上家电</p>
-        </div>   
-        <div>
-          <p style= "font-size: 12px;font-weight: bold; ">PS: 照片、尺寸仅供参考,以实际接单车为准</p>
-        </div>     
-      </div>      
-    </div>    
-  </div>
-
-    <div class="modal-footer">
-      <button type = "submit" class="btn south-btn m-1">立即下单</button>
-    </div>
-</div>
-<!-- Modal content end -->
-   
+      </section>  
+</main>
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="frontend/assets/south/js/jquery/jquery-2.2.4.min.js"></script>
@@ -233,11 +213,40 @@
     <script src="frontend/assets/south/js/classy-nav.min.js"></script>
     <script src="frontend/assets/south/js/jquery-ui.min.js"></script>
     <!-- Custom js -->
-    <script src="frontend/assets/south/js/custom-modal.js"></script>
-    <script src="frontend/assets/south/js/mytabs.js"></script>
+    <!-- {!! Html::script('frontend/assets/south/js/custom-modal.js') !!} --> 
+    {!! Html::script('frontend/assets/south/js/mytabs.js') !!}      
     <!-- Active js -->    
-    <script src="frontend/assets/south/js/active.js"></script>
+    {!! Html::script('frontend/assets/south/js/active.js') !!}
+    {!! Html::script('frontend/assets/south/js/dump.js') !!} 
+    <script type="text/javascript">
+      
+      function modal_sel(mbId)
+      {
+        let modalBtn = "modalBtn" + mbId;
+        let eMoveModal = "eMoveModal" + mbId;            
+        document.getElementById(eMoveModal).style.display = "block"; 
 
+        window.onclick = function(event) 
+        {  
+          console.log(event.target.id);
+          console.log(eMoveModal);
+
+          if (event.target.id == eMoveModal) 
+          {
+            document.getElementById(eMoveModal).style.display = "none";             
+          } 
+        }
+      }
+     
+      function modal_close(mbId)
+      {
+         let eMoveClose = "eMoveClose" + mbId;
+         let eMoveModal = "eMoveModal" + mbId; 
+         document.getElementById(eMoveModal).style.display = "none"; 
+      }
+
+
+    </script>
 </body>
 
 </html>
