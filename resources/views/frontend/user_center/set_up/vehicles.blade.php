@@ -23,24 +23,48 @@
 	      position: absolute;
 	      left: 50%;
 	      top: 30%;
-	      margin-left: -150px;
-	      margin-top: -150px;*/
+	      margin-left: -150px;*/
+	      margin-top: 20px;
+		  text-align: center;
 	    }
 	    .swiper-slide {
 	      /*background-position: center;
 	      background-size: cover;*/
-	      height: 130px;
+	      height: 150px;
 	    }
+		img {
+			margin-top: 10px;
+			height: 30%;
+		}
+		th {
+			text-align: center;
+		}
   	</style>
 
     <div class="container">
         <!-- Swiper -->
 	  	<div class="swiper-container">
 		    <div class="swiper-wrapper">
-		      	<div class="swiper-slide"><img src="frontend/assets/image/truck1.png" style="width: 100%;"></div>
-		      	<div class="swiper-slide"><img src="frontend/assets/image/truck2.png" style="width: 100%;"></div>
-		      	<div class="swiper-slide"><img src="frontend/assets/image/truck3.png" style="width: 100%;"></div>
-		      	<div class="swiper-slide"><img src="frontend/assets/image/truck4.png" style="width: 100%;"></div>
+				@foreach ($vehicles as $vehicle)
+					<div class="swiper-slide">
+						<h4 style="font-weight: bold;">{{ $vehicle->name }}</h4>
+						<img src="{{ $vehicle->photo_0 }}">
+						<div class="mt-10">
+							<table style="width: 100%;">
+								<tr>
+									<th>Load</th>
+									<th>Size</th>
+									<th>Volume</th>
+								</tr>
+								<tr>
+									<td>{{ $vehicle->load_weight }}</td>
+									<td>{{ $vehicle->size }}</td>
+									<td>{{ $vehicle->volume }}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				@endforeach
 		    </div>
 	    	<!-- Add Pagination -->
 	    	<!-- <div class="swiper-pagination"></div> -->
@@ -49,16 +73,16 @@
 	  	<div class="tabbable-line">
 			<div class="tab-content">
 				<div class="tab-pane active" id="t1">
-					1
+					truck_1
 				</div>
 				<div class="tab-pane" id="t2">
-					2
+				truck_2
 				</div>
 				<div class="tab-pane" id="t3">
-					3
+				truck_3
 				</div>
 				<div class="tab-pane" id="t4">
-					4
+				truck_4
 				</div>
 			</div>
 		</div>
@@ -82,21 +106,14 @@
 		      	// },
 		    });
 
-		    swiper.on('slideNextTransitionEnd', function () {
-		    	var prev_truck = swiper.activeIndex;
-		    	var active_truck = prev_truck + 1;
+		    swiper.on('slideChange', function () {
+		    	var active_truck = swiper.activeIndex + 1;
 
-		    	$("#t" + active_truck).addClass("active");
-		    	$("#t" + prev_truck).removeClass("active");
-			})
+				for (var i = 1; i <= 4; i ++) {
+					$("#t" + i).removeClass("active");
+				}
 
-			swiper.on('slidePrevTransitionEnd', function () {
-		    	var prev_truck = swiper.activeIndex;
-		    	var active_truck = prev_truck + 1;
-		    	prev_truck = active_truck + 1;
-
-		    	$("#t" + active_truck).addClass("active");
-		    	$("#t" + prev_truck).removeClass("active");
+		    	$("#t" + active_truck).addClass("active");		    	
 			})
 
 	  	</script>

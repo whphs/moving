@@ -9,7 +9,7 @@ use App\Models\AboutUs;
 use App\Models\Vehicle;
 use App\Models\MoveType;
 use Illuminate\Http\Request;
-use App\Models\TermCondition;
+use App\Models\Agreement;
 use App\Http\Controllers\Controller;
 
 class FrontEndController extends Controller
@@ -34,6 +34,13 @@ class FrontEndController extends Controller
      * @param int $moveTypeId
      * @return Arr
      */
+
+    public function vehicles() {
+        $vehicles = Vehicle::all();
+
+        return view('frontend.user_center.set_up.vehicles')->with('vehicles', $vehicles);
+    }
+    
     public function vehiclesWithParams($areaId, $moveTypeId) {
         return Vehicle::where('area_id', $areaId)
                       ->where('move_type_id', $moveTypeId)
@@ -48,7 +55,7 @@ class FrontEndController extends Controller
      */
     public function aboutUs() {
         $aboutUs = AboutUs::first();
-        return view('frontend.user_center.set_up.about_us', compact('aboutUs'));
+        return view('frontend.user_center.set_up.about_us', compact('aboutUs'))->with('aboutus', $aboutUs);
     }
 
     /**
@@ -57,8 +64,8 @@ class FrontEndController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function termCondition() {
-        $termCondition = TermCondition::first();
-        return view('frontend.user_center.set_up.term_condition', compact('termCondition'));
+        $termCondition = Agreement::first();
+        return view('frontend.user_center.set_up.term_condition', compact('termCondition'))->with('termcondition', $termCondition);
     }
 
     /**
@@ -68,7 +75,7 @@ class FrontEndController extends Controller
      */
     public function bonuses() {
         $bonuses = Bonus::all();
-        return view('frontend.user_center.bonus_list', compact('bonuses'))->with('bonuses', $bonuses);
+        return view('frontend.user_center.bonuses', compact('bonuses'))->with('bonuses', $bonuses);
     }
 
     /**

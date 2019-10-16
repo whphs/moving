@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container">
+    <!-- {{ $termcondition->content }} -->
         <div class="mt-20">
             <p>I agree that the installaion, operation and related services of the software (as defined below) will be governed by the following terms and conditions.</p>
         </div>
