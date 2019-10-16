@@ -22,7 +22,8 @@
 </head>
 
 <body>  
-  <header class="header-area">
+ 
+
         <!-- Top Header Area -->        
         <header>
           <div class="phone-number d-flex"> 
@@ -36,9 +37,9 @@
                 {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
               </div>
           </div>
-        </header>
-        <main>        
-    </header>
+        </header>              
+ 
+
     <!-- Top slider start -->
     <section class="hero-area">
         <div class="hero-slides owl-carousel">
@@ -91,26 +92,27 @@
             {!! link_to('standard_costs', __('string.standard_costs'), $attributes = [], $secure = null) !!}                 
           </nav>
     </div>    
-    <!-- Tabs Area end -->
-    <!-- Moving notes  start-->
-    <div class="section-heading wow fadeInUp">                
+    <!-- Tabs Area end -->    
+    <div class="section-heading wow fadeInUp">
         <p>{{__('string.easy_moving_notes')}}</p>
-    </div>    
-    <!-- Move type start -->
-    @foreach($vehicles as $value)
-     <section class="featured-properties-area section-padding-10-50">
+    </div>  
+    <main>   
+    <!-- Move type start -->    
+      <section class="featured-properties-area section-padding-10-50">
             <div class="container">             
-                <div class="row">                    
-                    <div class="col-12 col-md-6 col-xl-4">
+                <div class="row">  
+                @foreach($vehicles as $value) <!-- Gettig vehicles info -->                  
+                    <div class="col-12 col-lg-6" style="margin-bottom: -30px">
                         <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="200ms">                            
                             <div class="property-content">  
                             <p class="location" id = "moveType">
-                            {!! Html::image($value->vehicle) !!} {{$value->name}}</p><span>$50</span>     
+                            {!! Html::image($value->vehicle_thumb) !!} {{$value->name}}</p><span>$50</span>     
                                 <div class="row">
                                     <div class="col-8">
                                         <p>{{$value->description}}</p>                                       
-                                        <!-- easy to move modal details button -->
-                                        <button type="button" class="btn btn-link btn-sm" id="myBtn">{{__('string.more_button')}}</button>
+                                        <!-- easy to move modal details button -->                                        
+                                        {!! Form::submit(__('string.more_button'),['class' => 'btn btn-link btn-sm','id' => 'modalBtn'.$value->id,'onclick' => 'modal_sel('.$value->id.')' ]) !!}
+
                                     </div>    
                                     <div class="col-4">                                       
                                        {!! Html::image($value->baggage_thumb) !!}
@@ -119,89 +121,87 @@
                                 </div>      
                            </div>
                         </div>
-                    </div>                                          
+
+                    </div>  
+                     <!-- Modal area  start-->
+                    <div id="eMoveModal{{$value->id}}" class="modal">                     
+                      <div class="modal-content">
+                        <div class="modal-header">
+                                <!-- Nav Start -->
+                                <div class="classynav">
+                                    <ul>                    
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Properties</a></li>
+                                        <li><a href="#">Blog</a></li>                               
+                                        <li><a href="#">Contact</a></li>                    
+                                    </ul>
+                                    <span class="close" id = "eMoveClose{{$value->id}}" onclick="modal_close({{$value->id}})" style="padding: unset;margin-top: -28px; margin-right: auto;">&times;</span>
+                                </div>
+                                <!-- Nav End -->                         
+                        </div>
+                          <div class="modal-body">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+                            <!-- Indicators -->
+                            <ul class="carousel-indicators">
+                              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                              <li data-target="#myCarousel" data-slide-to="1"></li>
+                              <li data-target="#myCarousel" data-slide-to="2"></li>
+                            </ul>
+                            
+                          <!-- The slideshow -->
+                            <div class="carousel-inner" style="min-width: 310px;max-width:768px;height: 100px;">
+                              <div class="carousel-item active">
+                                <img src="img/bg-img/about.jpg" alt="Los Angeles" width="1100" height="500">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="img/bg-img/cta.jpg" alt="Chicago" width="1100" height="500">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="img/bg-img/editor.jpg" alt="New York" width="1100" height="500">
+                              </div>
+                            </div>
+                            
+                            <!-- Left and right controls -->
+                            <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                              <span class="carousel-control-prev-icon"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                              <span class="carousel-control-next-icon"></span>
+                            </a>
+                          </div>
+                          <!-- Truck descrition -->
+                          <div class="row">
+                            <div class="col-12">
+                              <h6 style="font-weight: bold;color: #000000d9;line-height: 2; ">????</h6>
+                              <p style="background-color: #dee2e6a1;font-size: 12px; ">??????,?????????</p>
+                              <div>
+                                <p style= "font-size: 12px;font-weight: bold;display: inline-block; color: #000000d9;">????? :</p>
+                                <p style= "font-size: 12px;font-weight: bold;display: inline-block; ">?????????</p>  
+                              </div>
+                              <div>
+                                <p style= "font-size: 12px;font-weight: bold;display: inline-block;color: #000000d9; ">?????? : </p> 
+                                <p style= "font-size: 12px;font-weight: bold;display: inline-block; ">??1.5???????????</p>
+                              </div>   
+                              <div>
+                                <p style= "font-size: 12px;font-weight: bold; ">PS: ?????????,????????</p>
+                              </div>     
+                            </div>      
+                          </div>    
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type = "submit" class="btn south-btn m-1">????</button>
+                        </div>
+                      </div>
+                      <!-- Modal area end -->
+                    </div>
+                @endforeach                                             
                 </div>
             </div>
-  </section>
-	@endforeach		
+
+      </section>  
 </main>
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">      
-        
-            <!-- Nav Start -->
-            <div class="classynav">
-                <ul>                    
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Properties</a></li>
-                    <li><a href="#">Blog</a></li>                               
-                    <li><a href="#">Contact</a></li>                    
-                </ul>
-                <span class="close" style="padding: unset;margin-top: -28px; margin-right: auto;">&times;</span>
-            </div>
-            <!-- Nav End -->                         
-    </div>
-    <div class="modal-body">
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-      <!-- Indicators -->
-      <ul class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ul>
-      
-    <!-- The slideshow -->
-      <div class="carousel-inner" style="min-width: 310px;max-width:768px;height: 100px;">
-        <div class="carousel-item active">
-          <img src="img/bg-img/about.jpg" alt="Los Angeles" width="1100" height="500">
-        </div>
-        <div class="carousel-item">
-          <img src="img/bg-img/cta.jpg" alt="Chicago" width="1100" height="500">
-        </div>
-        <div class="carousel-item">
-          <img src="img/bg-img/editor.jpg" alt="New York" width="1100" height="500">
-        </div>
-      </div>
-      
-      <!-- Left and right controls -->
-      <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    </div>
-    <!-- Truck descrition -->
-    <div class="row">
-      <div class="col-12">
-        <h6 style="font-weight: bold;color: #000000d9;line-height: 2; ">????</h6>
-        <p style="background-color: #dee2e6a1;font-size: 12px; ">??????,?????????</p>
-        <div>
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block; color: #000000d9;">????? :</p>
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block; ">?????????</p>  
-        </div>
-        <div>
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block;color: #000000d9; ">?????? : </p> 
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block; ">??1.5???????????</p>
-        </div>   
-        <div>
-          <p style= "font-size: 12px;font-weight: bold; ">PS: ?????????,????????</p>
-        </div>     
-      </div>      
-    </div>    
-  </div>
-
-    <div class="modal-footer">
-      <button type = "submit" class="btn south-btn m-1">????</button>
-    </div>
-    </div>
-<!-- Modal content end -->
-   
-
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     {!! Html::script('frontend/assets/south/js/jquery/jquery-2.2.4.min.js') !!}      
     <!-- Popper js -->
@@ -213,12 +213,38 @@
     {!! Html::script('frontend/assets/south/js/classy-nav.min.js') !!} 
     {!! Html::script('frontend/assets/south/js/jquery-ui.min.js') !!}
     <!-- Custom js -->
-    {!! Html::script('frontend/assets/south/js/custom-modal.js') !!} 
+    <!-- {!! Html::script('frontend/assets/south/js/custom-modal.js') !!} --> 
     {!! Html::script('frontend/assets/south/js/mytabs.js') !!}      
     <!-- Active js -->    
     {!! Html::script('frontend/assets/south/js/active.js') !!}
     {!! Html::script('frontend/assets/south/js/dump.js') !!} 
+    <script type="text/javascript">
+      
+      function modal_sel(mbId)
+      {
+        let modalBtn = "modalBtn" + mbId;
+        let eMoveModal = "eMoveModal" + mbId;            
+        document.getElementById(eMoveModal).style.display = "block"; 
 
+        window.onclick = function(event) 
+        {  
+          console.log(event.target.id);
+          console.log(eMoveModal);
+
+          if (event.target.id == eMoveModal) 
+          {
+            document.getElementById(eMoveModal).style.display = "none";             
+          } 
+        }
+      }
+     
+      function modal_close(mbId)
+      {
+         let eMoveClose = "eMoveClose" + mbId;
+         let eMoveModal = "eMoveModal" + mbId; 
+         document.getElementById(eMoveModal).style.display = "none"; 
+      }
+    </script>
 </body>
 
 </html>

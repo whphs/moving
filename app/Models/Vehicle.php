@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Area;
+use App\Models\PlusCost;
 use App\Models\MoveType;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,5 +36,19 @@ class Vehicle extends Model
     public function area()
     {
         return $this->belongsTo(Area::class);
+    }
+
+    public function plusCosts()
+    {
+        return $this->hasMany(PlusCost::class);
+    }
+
+    public function costsToString() {
+        $list = $this->plusCosts;
+        $returnString = $this->init_distance . 'km = $' . $this->init_cost . '<br/>';
+        foreach ($list as $cost) {
+            $returnString .= $cost->distance_from . ' ~ ' . $cost->distance_to . 'km = +$' . $cost->amount . '/km<br/>';
+        }
+        return $returnString;
     }
 }

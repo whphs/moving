@@ -21,5 +21,6 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
     Route::resource('area', 'AreaController')->except(['show']);
     Route::resource('move_type', 'MoveTypeController')->except(['show']);
     Route::resource('vehicle', 'VehicleController')->except(['show']);
+    Route::resource('price', 'PriceController')->except(['show']);
 });
 
