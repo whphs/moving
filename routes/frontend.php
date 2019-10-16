@@ -2,6 +2,14 @@
 
 Route::get('/', 'FrontEndController@index')->name('index');
 
+Route::get('easymove_detail', function () { return view('frontend.easymove_detail'); });
+
+Route::get('safe_move', 'FrontEndController@safe_move')->name('safe_move');
+
+Route::get('safemove_more', function () { return view('frontend.safemove_more'); });
+
+Route::get('safemove_detail', function () { return view('frontend.safemove_detail'); });
+
 Route::get('/user_center', function () { return view('frontend/user_center/user_center'); });
 
 Route::get('/sign_in', function () { return view('frontend/user_center/sign_in/sign_in'); });

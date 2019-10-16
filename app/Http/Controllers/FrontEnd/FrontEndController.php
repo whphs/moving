@@ -27,6 +27,12 @@ class FrontEndController extends Controller
         return view('frontend.index', compact('areas', 'moveTypes', 'vehicles'));
     }
 
+    public function safe_move() {
+        $vehicles = $this->vehiclesWithParams(Area::first()->id, '2');
+
+        return view('frontend.safe_move', compact('vehicles'));
+    }
+
     /**
      * Get list of vehicle with the area and the move type from database.
      * 

@@ -1,43 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('frontend.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">   
-
-    <!-- Title  -->
-    <title>{{__('string.app_title')}}</title>
-
-    <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
-
-    <!-- Style CSS -->
-    {!! Html::style('frontend/assets/south/style.css') !!}
-    {!! Html::style('frontend/assets/south/css/custom-modal.css') !!}
-    {!! Html::style('frontend/assets/south/css/mystyle.css') !!}
-    {!! Html::style('frontend/assets/south/css/mytabs.css') !!}    
-    
-</head>
-
-<body>  
- 
-
-        <!-- Top Header Area -->        
-        <header>
-          <div class="phone-number d-flex"> 
-              <div class = "icon">              
-                  {!! Html::image('frontend/assets/south/img/icons/house1.png') !!}
-              </div>
-              <div class="icon">
-                  {!! Html::image('frontend/assets/south/img/icons/flat.png') !!}
-              </div>
-              <div class="number">                        
-                  {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
-              </div>
+@section('content')
+    <!-- Top Header Area -->        
+    <header>
+      <div class="phone-number d-flex"> 
+          <div class = "icon">              
+              {!! Html::image('frontend/assets/south/img/icons/house1.png') !!}
           </div>
-        </header>              
+          <div class="icon">
+              {!! Html::image('frontend/assets/south/img/icons/flat.png') !!}
+          </div>
+          <div class="icon">
+              {!! link_to('user_center', $title = 'user') !!}
+          </div>
+          <div class="number">                        
+              {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
+          </div>
+      </div>
+    </header>              
  
 
     <!-- Top slider start -->
@@ -81,8 +61,8 @@
             </div>
         </div>
     </section>
-<!-- Top slider end -->
-<!-- Tabs Area start -->
+    <!-- Top slider end -->
+    <!-- Tabs Area start -->
     
     <div class="wrapper"> 
           <nav class="tabs">
@@ -116,7 +96,8 @@
                                     </div>    
                                     <div class="col-4">                                       
                                        {!! Html::image($value->baggage_thumb) !!}
-                                       <button type="submit" class="btn south-btn">{{__('string.detail_button')}}</button>
+                                       <!-- <button type="submit" class="btn south-btn">{{__('string.detail_button')}}</button> -->
+                                       <a href="easymove_detail" class="btn south-btn">details</a>
                                     </div>
                                 </div>      
                            </div>
@@ -124,7 +105,7 @@
 
                     </div>  
                      <!-- Modal area  start-->
-                    <div id="eMoveModal{{$value->id}}" class="modal">                     
+                    <div id="eMoveModal{{$value->id}}" class="modal">
                       <div class="modal-content">
                         <div class="modal-header">
                                 <!-- Nav Start -->
@@ -152,13 +133,13 @@
                           <!-- The slideshow -->
                             <div class="carousel-inner" style="min-width: 310px;max-width:768px;height: 100px;">
                               <div class="carousel-item active">
-                                <img src="img/bg-img/about.jpg" alt="Los Angeles" width="1100" height="500">
+                                <img src="frontend/assets/south/img/bg-img/about.jpg" alt="Los Angeles" width="1100" height="500">
                               </div>
                               <div class="carousel-item">
-                                <img src="img/bg-img/cta.jpg" alt="Chicago" width="1100" height="500">
+                                <img src="frontend/assets/south/img/bg-img/cta.jpg" alt="Chicago" width="1100" height="500">
                               </div>
                               <div class="carousel-item">
-                                <img src="img/bg-img/editor.jpg" alt="New York" width="1100" height="500">
+                                <img src="frontend/assets/south/img/bg-img/editor.jpg" alt="New York" width="1100" height="500">
                               </div>
                             </div>
                             
@@ -200,24 +181,9 @@
                 </div>
             </div>
 
-      </section>  
-</main>
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    {!! Html::script('frontend/assets/south/js/jquery/jquery-2.2.4.min.js') !!}      
-    <!-- Popper js -->
-    {!! Html::script('frontend/assets/south/js/popper.min.js') !!}      
-    <!-- Bootstrap js -->
-    {!! Html::script('frontend/assets/south/js/bootstrap.min.js') !!}    
-    <!-- Plugins js -->
-    {!! Html::script('frontend/assets/south/js/plugins.js') !!}  
-    {!! Html::script('frontend/assets/south/js/classy-nav.min.js') !!} 
-    {!! Html::script('frontend/assets/south/js/jquery-ui.min.js') !!}
-    <!-- Custom js -->
-    <!-- {!! Html::script('frontend/assets/south/js/custom-modal.js') !!} --> 
-    {!! Html::script('frontend/assets/south/js/mytabs.js') !!}      
-    <!-- Active js -->    
-    {!! Html::script('frontend/assets/south/js/active.js') !!}
-    {!! Html::script('frontend/assets/south/js/dump.js') !!} 
+        </section>  
+    </main>
+    
     <script type="text/javascript">
       
       function modal_sel(mbId)
@@ -245,6 +211,4 @@
          document.getElementById(eMoveModal).style.display = "none"; 
       }
     </script>
-</body>
-
-</html>
+@endsection
