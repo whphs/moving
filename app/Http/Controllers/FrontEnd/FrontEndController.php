@@ -10,6 +10,7 @@ use App\Models\Vehicle;
 use App\Models\MoveType;
 use Illuminate\Http\Request;
 use App\Models\Agreement;
+use App\Models\PlusCost;
 use App\Http\Controllers\Controller;
 
 class FrontEndController extends Controller
@@ -43,8 +44,9 @@ class FrontEndController extends Controller
 
     public function vehicles() {
         $vehicles = Vehicle::all();
+        $pluscosts = PlusCost::all();
 
-        return view('frontend.user_center.set_up.vehicles')->with('vehicles', $vehicles);
+        return view('frontend.user_center.set_up.vehicles', compact('vehicles', 'pluscosts'));
     }
     
     public function vehiclesWithParams($areaId, $moveTypeId) {

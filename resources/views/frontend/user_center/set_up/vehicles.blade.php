@@ -82,25 +82,33 @@
 			<div class="tab-content">
 				@for ($i = 0; $i < count($vehicles); $i ++)
 					<div class="tab-pane" id="t{{ $i + 1 }}">
-						<span>Basic fare({{ $vehicles[$i]->name }})</span>
-						<table class="table table-striped table-hover">
-							<tr>
-								<td>
-									Starting Price(5km)
-								</td>
-								<td>
-									30 yuan
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Super Mileage(5~9999km)
-								</td>
-								<td>
-									+3 yuan/km
-								</td>
-							</tr>
-						</table>
+						<span>Basic fare</span>
+							<table class="table table-striped table-hover">
+								@for ($j = 0; $j < count($pluscosts); $j ++)
+									@if (($vehicles[$i]->id == $pluscosts[$j]->vehicle_id) && ($pluscosts[$j]->distance_from == 0))
+										<tr>
+											<td>
+												Starting Price(5km)
+											</td>
+											<td>
+												{{ $pluscosts[$j]->amount }} yuan
+											</td>
+										</tr>
+									@endif
+
+									@if (($vehicles[$i]->id == $pluscosts[$j]->vehicle_id) && ($pluscosts[$j]->distance_from != 0))
+										<tr>
+											<td>
+												Super Mileage({{ $pluscosts[$j]->distance_from }}~{{ $pluscosts[$j]->distance_to }}km)
+											</td>
+											<td>
+											{{ $pluscosts[$j]->amount }} yuan/km
+											</td>
+										</tr>
+									@endif
+								@endfor
+							</table>
+							
 						<span>Extermal demand handling</span>
 						<table class="table table-striped table-hover">
 							<tr>
