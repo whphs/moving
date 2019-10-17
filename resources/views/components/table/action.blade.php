@@ -1,12 +1,11 @@
 <div class="table-responsive">
-    <table class="table">
+    <table class="mv-table">
         <thead class="text-primary">
             <tr>
             @foreach($columns as $column)
                 <th>{{ $column }}</th>
             @endforeach
                 <th>{{ __('string.edit')}}</th>
-                <th>{{ __('string.delete')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -23,13 +22,11 @@
                     <td>{{ $rows[$i][$keys[$j]] }}</td>
                 @endif
             @endfor
-                <td>
-                    {!! link_to_route($route . '.edit', __('string.edit'), [$rows[$i]['id']], ['class' => 'btn btn-success']) !!}
-                </td>
-                <td>
+                <td class="w-150">
                     {!! Form::open(['route' => [$route . '.destroy', $rows[$i]['id']], 'method' => 'DELETE']) !!}
                         {!! Form::token() !!}
-                        {!! Form::submit(__('string.delete'), ['class' => 'btn btn-danger']) !!}
+                        {!! link_to_route($route . '.edit', __('string.edit'), [$rows[$i]['id']], ['class' => 'btn btn-info small w-60']) !!}
+                        {!! Form::submit(__('string.delete'), ['class' => 'btn btn-danger small w-60']) !!}
                     {!! Form::close() !!}
                 </td>
             </tr>
