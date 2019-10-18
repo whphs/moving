@@ -30,5 +30,9 @@
                 </div>
             </a>
         </div>
+        <hr>
+        <div style="text-align: center;">
+            <a href="/" class="btn blue btn-sm" style="position: center;">Sign Out&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a>
+        </div>
     </div>
 @endsection

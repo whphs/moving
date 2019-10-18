@@ -18,7 +18,7 @@ Route::get('/sign_phone', function () {	return view('frontend/user_center/sign_i
 
 Route::get('/sign_othermobile', function () { return view('frontend/user_center/sign_in/sign_othermobile'); });
 
-Route::get('/order_record', function () { return view('frontend/user_center/order_record'); });
+Route::get('/order_record', 'FrontEndController@record')->name('order_record');
 
 Route::get('/bonuses', 'FrontEndController@bonuses')->name('bonuses');
 
@@ -28,4 +28,4 @@ Route::get('/terms', 'FrontEndController@termCondition')->name('terms');
 
 Route::get('/vehicles', 'FrontEndController@vehicles')->name('vehicles');
 
-Route::get('/about_us', 'FrontEndController@aboutUs')->name('aboutus');
+Route::get('/about_us', 'FrontEndController@aboutUs')->name('about_us');

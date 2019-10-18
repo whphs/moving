@@ -55,6 +55,12 @@ class FrontEndController extends Controller
                       ->get();
     }
 
+    public function record() {
+        $movetypes = Movetype::all();
+
+        return view('frontend.user_center.order_record', compact('movetypes'));
+    }
+
 
     /**
      * Display About Us.
@@ -63,7 +69,7 @@ class FrontEndController extends Controller
      */
     public function aboutUs() {
         $aboutUs = AboutUs::first();
-        return view('frontend.user_center.set_up.about_us', compact('aboutUs'))->with('aboutus', $aboutUs);
+        return view('frontend.user_center.set_up.about_us', compact('aboutUs'));
     }
 
     /**
@@ -73,7 +79,7 @@ class FrontEndController extends Controller
      */
     public function termCondition() {
         $termCondition = Agreement::first();
-        return view('frontend.user_center.set_up.term_condition', compact('termCondition'))->with('termcondition', $termCondition);
+        return view('frontend.user_center.set_up.term_condition', compact('termCondition'));
     }
 
     /**
@@ -83,7 +89,7 @@ class FrontEndController extends Controller
      */
     public function bonuses() {
         $bonuses = Bonus::all();
-        return view('frontend.user_center.bonuses', compact('bonuses'))->with('bonuses', $bonuses);
+        return view('frontend.user_center.bonuses', compact('bonuses'));
     }
 
     /**
