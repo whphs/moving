@@ -108,6 +108,8 @@ return [
     'prices'            => 'Prices',
 
     'init_distance'     => 'Init Distance',
-    'init_cost'         => 'Init Cost'
+    'init_cost'         => 'Init Cost',
     
+    'action'            => 'Action',
+
 ];
