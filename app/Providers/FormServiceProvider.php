@@ -27,7 +27,7 @@ class FormServiceProvider extends ServiceProvider
         //
         Form::component('inputGroup', 'components.form.input', ['name', 'title', 'value' => null, 'type' => 'text', 'attributes' => []]);
         Form::component('alert', 'components.form.alert', ['status', 'message']);
-        Form::component('statusAlert', 'components.form.statusalert', ['status']);
+        Form::component('statusAlert', 'components.form.status-alert', ['status']);
         Form::component('selectGroup', 'components.form.select', ['name', 'title', 'list', 'selected' => null, 'attributes' => []]);
     }
 }

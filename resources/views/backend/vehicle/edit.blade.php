@@ -4,6 +4,10 @@
     {{ __('string.vehicles') }}
 @endsection
 
+@section('header')
+    <div class="panel-header panel-header-sm"></div>
+@endsection
+
 @section('content')
 
     @component('components.normal.container', [
@@ -68,7 +72,7 @@
                 </div>
                 @endforeach
             </div>
-    
+
             {!! Form::inputGroup('description', __('string.description'), $vehicle->description, 'textarea') !!}
             {!! Form::inputGroup('available_baggages', __('string.available_baggages'), $vehicle->available_baggages, 'textarea') !!}
             {!! Form::inputGroup('unavailable_baggages', __('string.unavailable_baggages'), $vehicle->unavailable_baggages, 'textarea') !!}
@@ -92,7 +96,7 @@
                     {!! Form::inputGroup('photo_2', __('string.photo_half_side'), null, 'file') !!}
                 </div>
             </div>
-    
+
             {!! Form::submit(__('string.save'), ['class' => 'btn btn-primary w-80']) !!}
             {!! link_to('admin/vehicle', __('string.cancel'), ['class' => 'btn btn-cancel w-80']) !!}
         {!! Form:: close() !!}
@@ -104,7 +108,7 @@
 @section('scripts')
     <script>
         $('.add-cost').on('click', function() {
-            var plus_costs = 
+            var plus_costs =
             '<div class="form-group">' +
                 '<div class="mv-row">' +
                     '<div class="mv-col">' +
