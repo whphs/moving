@@ -1,7 +1,6 @@
 @extends('frontend.app')
 
-@section('content')
-<body>       
+@section('content')    
     <header>
       <div class="header-img">          
           {!! Html::image('frontend/assets/south/img/icons/house1.png') !!}

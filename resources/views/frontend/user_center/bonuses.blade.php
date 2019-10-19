@@ -17,7 +17,7 @@
         <a href="/bonus_instruction" style="float: right;">Instructions</a>
         <div class="mt-30">
             @foreach ($bonuses as $bonus)
-                <table class="mb-10">
+                <table>
                     <tr>
                         <td style="text-align: center;">
                             <p style="font-size: 39px; font-weight: bold; color: grey;">{{ $bonus->price }}$</p>
