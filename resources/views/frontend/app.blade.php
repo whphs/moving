@@ -26,10 +26,10 @@
 
 <body style ="font-family: Arial, Helvetica, sans-serif;">
     @yield('header')   
-    @yield('easyMoveContent')
-    @component('components.safe-move',['vehicles' =>$vehicles])
+    @yield('content')
+    @component('components.safe-move',['vehicles' =>$vehicles ])
     @endcomponent
-    @component('components.normal-price',['vehicles' =>$vehicles])
+    @component('components.normal-price')
     @endcomponent
 
 </body>

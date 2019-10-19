@@ -74,7 +74,7 @@
         <p>{{__('string.easy_moving_notes')}}</p>
     </div>  
 @endsection('header')
-@section('easyMoveContent')
+@section('content')
     <main id = "easyMove">   
     <!-- Move type start -->
     <section class="featured-properties-area section-padding-10-50">
