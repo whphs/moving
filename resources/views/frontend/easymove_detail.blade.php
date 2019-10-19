@@ -3,11 +3,11 @@
 @section('content')
 <body>       
     <header>
-      <div style="background-color: #ffffff;width: 45px;height: 45px;text-align: center;display: inline-block;">
-          <img src="frontend/assets/south/img/icons/phone-call.png" alt="" style="padding: 16px 0;max-width: 15px;">
+      <div class="header-img">          
+          {!! Html::image('frontend/assets/south/img/icons/house1.png') !!}
       </div>
-      <div style="background-color: #ffffff;width: 45px;height: 45px;text-align: center;display: inline-block;margin-left: -4px">
-          <img src="frontend/assets/south/img/icons/phone-call.png" alt="" style="padding: 16px 0;max-width: 15px;">
+      <div class = "header-img" style="position: relative;left: -4px;top:-1px">          
+          {!! Html::image('frontend/assets/south/img/icons/phone-call.png') !!}
       </div>
     </header>
     <main>
@@ -18,15 +18,16 @@
         <div class="col-12">
           <div class="content-sidebar">
             <div class="card" style="margin:10px 0">
-              <div class="card-header">基础服务</div>            
+              <div class="card-header">{{__('string.basic_service')}}</div>            
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        已选车型                        
-                    <button type="submit" class="btn btn-link btn-sm detail" id="myBtn">
-                    小面包车》</button>
+                        {{__('string.select_model')}}
+                    <p class ="detail" id="vehicleSelBtn" data-toggle = "modal" data-target = "#vehicleSelModal">{{$selVehicle->name}}</p>
+                    <!-- setting hidden id --> 
+                     <input type="hidden"  id = "vehicleId" value="">                     
                     </li>
                     <li class="list-group-item" style="padding-top: 8px;padding-bottom: 0px;z-index: 0;">
-                      需要搬运服务              
+                        {{__('string.option_service')}}             
                     <label class="switch">
                       <input type="checkbox" class="primary">
                       <span class="slider round"></span>
@@ -43,20 +44,21 @@
         <div class="col-12">
           <div class="content-sidebar">
             <div class="card" style="margin:10px 0">
-              <div class="card-header">搬家信息</div>   
+              <div class="card-header">{{__('string.moving_info')}}</div>   
                 <ul class="timeline">       
                   <li class="current-location">
-                    <span>您从哪里搬出</span>                          
+                    <span>{{__('string.moving_location')}}</span>                          
                   </li>
                   <li class="destination-location">
-                    <span>您搬到哪里去</span>                          
+                    <span>{{__('string.moving_destination')}}</span>                          
                   </li>
                 </ul>   
                 <ul class="list-group list-group-flush">
-                <li class="list-group-item"><img src="frontend/assets/south/img/icons/garage.png" />
-                    搬家时间                        
-                <button type="submit" class="btn btn-link btn-sm watch" id="myTimeBtn">
-                请选择时间》</button>
+                <li class="list-group-item">                  
+                  {!! Html::image("frontend/assets/south/img/icons/garage.png") !!}
+                  {{__('string.moving_time')}}                
+                <p class="detail" id="myTimeBtn">
+                {{__('string.set_time')}}</p>
                 </li> 
                 </ul>         
             </div> 
@@ -83,23 +85,27 @@
       <div class="row">  
         <div class="col-12">
           <div class="card" style="margin:10px 0">
-            <div class="card-header">订单备注 
-              <button type="submit" class="btn btn-link btn-sm watch">如搬家物品及照片></button>
+            <div class="card-header">{{__('string.order_note')}} 
+              <p class="detail" style="font-weight: 100">{{__('string.upload_photo')}}</p>
             </div>              
               <ul class="list-group list-group-flush" >
               <li class="list-group-item" style="z-index: 0;min-width: 287px;">
-              <button type="button" class="btn south-btn follow">一人跟车</button>             
-              <button type="button" class="btn south-btn follow">两人跟车</button>             
-              <button type="button" class="btn south-btn follow">小推车</button>                           
+              <input type="radio" id="hOne" name="hOne">
+              <input type="radio" id="hTwo"  name = "hTwo" style="display: none;">
+              <input type="checkbox" id="hSmall" name = "hSmall" style="display: none;">
+
+              <button type="button" id = "one" class="btn south-btn follow">{{__('string.one')}}</button>             
+              <button type="button" id = "two" class="btn south-btn follow">{{__('string.two')}}</button>             
+              <button type="button" id = "small" class="btn south-btn follow">{{__('string.small_cart')}}</button>                           
               </li>
               <li class="list-group-item" style="z-index: 0;">
-                  <p style="display: inline-block;margin-bottom: 0px;margin-top: 4px;">联系电话</p>              
-                  <input type="input" class="form-control" name="phoneNum" id = "phoneNum" placeholder="phone-number" >              
+                  <p style="display: inline-block;margin-bottom: 0px;margin-top: 4px;">{{__('string.contact_number')}}</p>              
+                  <input type="input" class="form-control" name="phoneNum" id = "phoneNum" placeholder="13394260131" >              
               </li>  
               </ul>         
           </div> 
         </div>
-        </div>
+      </div>
       
 
       </div>
@@ -107,118 +113,45 @@
 
     <!-- terms and policy -->
     <div class="container">
-       <p style="font-size: 12px;margin-bottom: initial;">若产生高速费、停车费,请用户额外支付</p>   
-       <input type="checkbox" name="" style="margin-right: 5px;" /><span style="font-size: 12px;">fsjfjsj<a href="#" style="color: #947054">kkkkkd</a></span>
+       <p style="font-size: 12px;margin-bottom: initial;">{{__('string.note_detail')}}</p>   
+       <input type="checkbox" name="" style="margin-right: 5px;" /><span style="font-size: 12px;">aaaaa<a href="#" style="color: #947054">{{__('string.note_link')}}</a></span>
     </div>
     <div class="container" style="position: relative;top:20px;">     
-      <p>&nbsp</p>     
+        <p>&nbsp</p>     
     </div>
    <!-- footer start -->
    <div class="footer">
        <div class="container">
          <div class="row">
-          <div class="col-8" style="padding-right: 15px;padding-left: 15px;">
-            <div>
-              <p style="display: inline-block;font-size: 20px;margin-bottom: 0px;color:#ef6774;line-height: normal">$25</p><span style="text-decoration: line-through;">$30</span>
-            </div>            
-            <p style="display: inline-block;">aaaaaa$5</p>
-            <a href = "#" style="float: right;position: relative;top:-10px;left: 25px;color:#947054 ">preview</a>
+          <div class="col-8 footer-content">
+            <div class="footer-price">
+              <p>$25</p><span>$30</span>
+            </div>
+            <div class="footer-price1">
+              <p>aaaaaa$5</p>
+              <a href = "#" style=" ">{{__('string.preview')}}</a>  
+            </div>
           </div>
           <div class="col-4">
-            <button type="button" class="btn south-btn" style="margin-top: 12px;min-width: 100px;min-height: 35px;">Submit</button> 
+            <button type="button" class="btn south-btn resv">{{__('string.reservation_btn')}}</button> 
           </div>           
          </div>
        </div>
    </div>
+</main>
 
-<!-- The Modal_1 -->
-<div id="myModal" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">      
-        
-            <!-- Nav Start -->
-            <div class="classynav">
-                <ul>                    
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Properties</a></li>
-                    <li><a href="#">Blog</a></li>                               
-                    <li><a href="#">Contact</a></li>                    
-                </ul>
-                <span class="close" style="padding: unset;margin-top: -28px; margin-right: auto;">&times;</span>
-            </div>
-            <!-- Nav End -->                         
-    </div>
-
-    <div class="modal-body">
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-      <!-- Indicators -->
-      <ul class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ul>
-      
-    <!-- The slideshow -->
-      <div class="carousel-inner" style="min-width: 310px;max-width:768px;height: 100px;">
-        <div class="carousel-item active">
-          <img src="frontend/assets/south/img/bg-img/about.jpg" alt="Los Angeles" width="1100" height="500">
-        </div>
-        <div class="carousel-item">
-          <img src="frontend/assets/south/img/bg-img/cta.jpg" alt="Chicago" width="1100" height="500">
-        </div>
-        <div class="carousel-item">
-          <img src="frontend/assets/south/img/bg-img/editor.jpg" alt="New York" width="1100" height="500">
-        </div>
-      </div>
-      
-      <!-- Left and right controls -->
-      <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    </div>
-    <!-- Truck descrition -->
-    <div class="row">
-      <div class="col-12">
-        <h6 style="font-weight: bold;color: #000000d9;line-height: 2; ">用车提示</h6>
-        <p style="background-color: #dee2e6a1;font-size: 12px; ">适合单人搬家,无大型家电家具人群</p>
-        <div>
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block; color: #000000d9;">可装载物品 :</p>
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block; ">小型洗衣机或空调等</p>  
-        </div>
-        <div>
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block;color: #000000d9; ">不可装载物品 : </p> 
-          <p style= "font-size: 12px;font-weight: bold;display: inline-block; ">超过1.5米床垫以及双门以上家电</p>
-        </div>   
-        <div>
-          <p style= "font-size: 12px;font-weight: bold; ">PS: 照片、尺寸仅供参考,以实际接单车为准</p>
-        </div>     
-      </div>      
-    </div>    
-  </div>
-
-    <div class="modal-footer">
-      <button type = "submit" class="btn south-btn m-1">立即下单</button>
-    </div>
-
-</div>
-</div>
-<!-- Modal content end -->
-
+<!-- Time Modal -->
 <div id="timeModal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header"> 
       <!-- Nav Start -->
             <div class="classynav">
-                <ul>                    
-                    <li><a href="#" style="font-size: 16px;">setting</a></li>                                    
+                <ul style="padding: 3px;">                    
+                    <li><span class = "time-setting" id = "setting">Setting</span></li>
+                    <li style="float: right;"><span id = "close" class = "time-setting" >Exit</span></li>                                    
                 </ul>
-                <span class="close" style="padding: unset;margin-top: -28px; margin-right: auto;font-size: 16px;">Exit</span>
+                
             </div>
             <!-- Nav End -->  
     </div>
@@ -232,20 +165,136 @@
   </div>
 </div>
 
-</main>
+<!-- The EasyMove Detail Modal -->
+ <div class="modal" id="vehicleSelModal" tabindex="-1" role="dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="vehicle-tab">        
+              <ul id="vehiclesTab" class="nav">
+                  @foreach($vehicles as $index => $vehicle)
+                  <li id="li{{$index}}" class="nav-item active">
+                      <a href="#vehicle{{$index}}"  class="nav-link active">{{$vehicle->name}}</a>
+                      <input type="hidden"  id = "vehicleMId{{$index}}" value="{{$vehicle->id}}">
+                      <input type="hidden"  id = "vehicleMName{{$index}}" value="{{$vehicle->name}}">
+                      <input type="hidden"  id = "vCount" value="{{count($vehicles)}}">
+                  </li>
+                 @endforeach 
+                 <li class="nav-item">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 </li>                 
+              </ul> 
+            </div>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body"> 
+            <div class="tab-content">
+               @foreach($vehicles as $index => $vehicle)
+                <div class="tab-pane fade" id="vehicle{{$index}}">
+                   <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                      <!-- Indicators -->
+                      <ul class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                      </ul>
+                      
+                    <!-- The slideshow -->
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          
+                          {!! Html::image($vehicle->photo_0,'fornt truck',['width'=>'1920', 'height' => '200']) !!}
+                        </div>
+                        <div class="carousel-item">
+                          
+                          {!! Html::image($vehicle->photo_1,'middle truck',['width'=>'1920', 'height' => '200']) !!}
+                        </div>
+                        <div class="carousel-item">
+                          
+                          {!! Html::image($vehicle->photo_2,'back truck',['width'=>'1920', 'height' => '500']) !!}
+                        </div>
+                      </div>
+                      
+                      <!-- Left and right controls -->
+                      <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                      </a>
+                      <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                      </a>
+                    </div>
+                     <!-- Truck descrition -->
+                    <div class="row">
+                      <div class="col-12 truck-des">
+                        <h6>{{__('string.car_tips')}}</h6>
+                        <p> {{$vehicle->description}}</p>
+                        <div class="truck-des-content">
+                          <p style= "color: #000000d9;">{{__('string.available_baggages')}} :</p>
+                          <p>{{$vehicle->available_baggages}}</p>  
+                        </div>
+                        <div class="truck-des-content">
+                          <p style= "color: #000000d9; ">{{__('string.unavailable_baggages')}} : </p> 
+                          <p>{{$vehicle->unavailable_baggages}}</p>
+                        </div>   
+                        <div class="truck-des-note">
+                          <p>PS: {{__('string.ps_note')}}</p>
+                        </div>     
+                      </div>      
+                    </div> 
+                </div>
+                @endforeach
+            </div>          
+      </div>
+        <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" id = "selTruckBtn" class ="btn south-btn m-1" data-dismiss="modal">{{__('string.select_car')}}</button>
+      </div>
 
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    {!! Html::script('frontend/assets/south/js/jquery/jquery-2.2.4.min.js') !!}      
-    <!-- Bootstrap js -->
-    {!! Html::script('frontend/assets/south/js/bootstrap.min.js') !!}    
-    {!! Html::script('frontend/assets/south/js/bootstrap-datetimepicker.min.js') !!}
-    <!-- Plugins js -->
-    {!! Html::script('frontend/assets/south/js/plugins.js') !!}  
-    <!-- Custom js -->
-    {!! Html::script('frontend/assets/south/js/custom-modal.js') !!} 
+      </div>
+    </div>
+ <!-- Modal content end -->
+@endsection
 
+@section('scripts')    
+    {!! Html::script('frontend/assets/south/js/custom-modal.js') !!}
     <script type="text/javascript">
-      $('#datepicker').datepicker();
+      $(document).ready(function(){ 
+        var selectedId = 0;
+      
+        $("#selTruckBtn").click(function(){
+
+            let vehicleMId = $('#vehicleMId'+selectedId).val();
+            let vehicleMName = $('#vehicleMName'+selectedId).val(); 
+            $("#vehicleSelBtn").text(vehicleMName);
+            $("#vehicleId").val(vehicleMId);                   
+        });        
+        $('#vehicleSelBtn').click(function(e){   
+
+          var vCount = $("#vCount").val();
+          $('.tab-pane').removeClass('show active'); 
+          for(i = 0; i < vCount; i++)
+          {
+            if(e.target.innerText == $("#vehicleMName"+i).val())
+            {
+              $('#vehicle'+i).addClass('show active'); 
+              selectedId = i;   
+            }
+            
+          }       
+          
+        });
+        $('.modal-header').on('click', 'li', function() {
+          var index = $(this)[0].id.substring(2, 3);
+          selectedId = index;
+
+          $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
+          $(this).parent().parent().parent().parent().find('#vehicle' + index).addClass('show active');
+        });
+      });
+
+    </script>
+    <script type="text/javascript">
+      $('#datepicker').datepicker('setDate', 'today');
+      
       $("#addBaggage").hide();
       $(".primary").click(function() {
           if(this.checked) {
@@ -257,5 +306,35 @@
           }
       });
 
+      $("#one").click(function(){
+        if($("#hOne").is(":checked") == false)
+        {
+          $("#hOne").prop("checked",true);
+          $("#hTwo").prop("checked",false);
+          
+          // $("#hOne").style.background-color = "#000000";
+        }        
+        
+      });
+      $("#two").click(function(){
+        if($("#hTwo").is(":checked") == false)
+        {
+          $("#hTwo").prop("checked",true);
+          $("#hOne").prop("checked",false);
+        }
+      });
+      $("#small").click(function(){
+        if($("#hSmall").is(":checked") == false)
+        {
+          $("#hSmall").prop("checked",true);
+        }
+        else
+        {
+          $("#hSmall").prop("checked",true); 
+        }
+        
+      })
+
     </script>
-@endsection
+
+@endsection    

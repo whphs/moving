@@ -2,7 +2,7 @@
 
 Route::get('/', 'FrontEndController@index')->name('index');
 
-Route::get('easymove_detail', function () { return view('frontend.easymove_detail'); });
+Route::get('easymove_detail/{vId}', 'FrontEndController@easymove_detail')->name('easymove_detail');
 
 Route::get('safe_move', 'FrontEndController@safe_move')->name('safe_move');
 

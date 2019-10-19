@@ -2,7 +2,7 @@
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+ /* z-index: 30;*/ /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -29,11 +29,17 @@
 }
 
 /* The Close Button */
+.time-setting{
+  color: #7d7d7d;font-size: 15px;
+  font-weight: bold;
+  padding-left: 5px;
+}
 .close {
   /*color: white;*/
   float: right;
   /*font-size: 28px;*/
   font-weight: bold;
+  font-size: 15px;
 }
 
 .close:hover,
@@ -53,6 +59,7 @@
 
 .modal-body {
   min-height: 150px;
+  max-height: 400px;
   overflow: auto;
   padding: 2px 16px;}
 

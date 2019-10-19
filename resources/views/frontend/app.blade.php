@@ -38,9 +38,12 @@
     {!! Html::script('frontend/assets/south/js/classy-nav.min.js') !!} 
     {!! Html::script('frontend/assets/south/js/jquery-ui.min.js') !!}
     <!-- Custom js -->
-    {!! Html::script('frontend/assets/south/js/custom-modal.js') !!} 
+    <!-- {!! Html::script('frontend/assets/south/js/custom-modal.js') !!}  -->
     {!! Html::script('frontend/assets/south/js/mytabs.js') !!}      
     <!-- Active js -->    
     {!! Html::script('frontend/assets/south/js/active.js') !!}
     {!! Html::script('frontend/assets/south/js/dump.js') !!}
+
+
+    @yield('scripts')
 </html>

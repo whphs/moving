@@ -27,6 +27,17 @@ class FrontEndController extends Controller
         return view('frontend.index', compact('areas', 'moveTypes', 'vehicles'));
     }
 
+    public function easymove_detail($vId)
+    {
+        $vechicleId = $vId;
+        $selVehicle = Vehicle::find($vechicleId);
+
+        // $areas = Area::all();
+        // $moveTypes = MoveType::all();
+        $vehicles = $this->vehiclesWithParams(Area::first()->id, MoveType::first()->id);
+
+        return view('frontend.easymove_detail',compact('vehicles','selVehicle'));
+    }
     public function safe_move() {
         $vehicles = $this->vehiclesWithParams(Area::first()->id, '2');
 
