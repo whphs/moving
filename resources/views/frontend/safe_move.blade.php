@@ -93,7 +93,7 @@
                                         <!-- easy to move modal details button -->                                        
                                         <!-- {!! Form::submit(__('string.more_button'),['class' => 'btn btn-link btn-sm','id' => 'modalBtn'.$value->id,'onclick' => 'modal_sel('.$value->id.')' ]) !!} -->
                                         {!! link_to('safemove_more', $title = 'more') !!}
-                                    </div>    
+                                    </div>
                                     <div class="col-4">
                                        {!! Html::image($value->baggage_thumb) !!}
                                        <!-- <button type="submit" class="btn south-btn">{{__('string.detail_button')}}</button> -->

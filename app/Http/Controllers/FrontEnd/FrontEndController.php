@@ -10,6 +10,7 @@ use App\Models\Vehicle;
 use App\Models\MoveType;
 use Illuminate\Http\Request;
 use App\Models\Agreement;
+use App\Models\PlusCost;
 use App\Http\Controllers\Controller;
 
 class FrontEndController extends Controller
@@ -54,14 +55,21 @@ class FrontEndController extends Controller
 
     public function vehicles() {
         $vehicles = Vehicle::all();
+        $pluscosts = PlusCost::all();
 
-        return view('frontend.user_center.set_up.vehicles')->with('vehicles', $vehicles);
+        return view('frontend.user_center.set_up.vehicles', compact('vehicles', 'pluscosts'));
     }
     
     public function vehiclesWithParams($areaId, $moveTypeId) {
         return Vehicle::where('area_id', $areaId)
                       ->where('move_type_id', $moveTypeId)
                       ->get();
+    }
+
+    public function record() {
+        $movetypes = Movetype::all();
+
+        return view('frontend.user_center.order_record', compact('movetypes'));
     }
 
 
@@ -72,7 +80,7 @@ class FrontEndController extends Controller
      */
     public function aboutUs() {
         $aboutUs = AboutUs::first();
-        return view('frontend.user_center.set_up.about_us', compact('aboutUs'))->with('aboutus', $aboutUs);
+        return view('frontend.user_center.set_up.about_us', compact('aboutUs'));
     }
 
     /**
@@ -82,7 +90,7 @@ class FrontEndController extends Controller
      */
     public function termCondition() {
         $termCondition = Agreement::first();
-        return view('frontend.user_center.set_up.term_condition', compact('termCondition'))->with('termcondition', $termCondition);
+        return view('frontend.user_center.set_up.term_condition', compact('termCondition'));
     }
 
     /**
@@ -92,7 +100,7 @@ class FrontEndController extends Controller
      */
     public function bonuses() {
         $bonuses = Bonus::all();
-        return view('frontend.user_center.bonuses', compact('bonuses'))->with('bonuses', $bonuses);
+        return view('frontend.user_center.bonuses', compact('bonuses'));
     }
 
     /**
