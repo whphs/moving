@@ -23,7 +23,7 @@
     
 </head>
 
-<body>  
+<body style ="font-family: Arial, Helvetica, sans-serif;">   
     @yield('content')
 </body>
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
