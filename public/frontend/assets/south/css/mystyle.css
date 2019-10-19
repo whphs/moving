@@ -8,14 +8,14 @@ header {
 	z-index: 20;
   }
   
-  html:not([data-scroll='0']) body {
-	padding-top: 3em;
+   body {
+	/*padding-top: 3em;*/
   }
-  html:not([data-scroll='0']) header {
+   header {
 	position: fixed;
 	top: 0;
 	background-color: #947054;
-	box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+	/*box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);*/
   }
   
   header {
@@ -223,3 +223,6 @@ header {
   .south-btn{
     z-index: 0;
   }
+.south-contact-area{
+  padding-top:3em;
+}

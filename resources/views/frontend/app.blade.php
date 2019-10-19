@@ -26,11 +26,7 @@
 
 <body style ="font-family: Arial, Helvetica, sans-serif;">
     @yield('header')   
-    @yield('content')
-    @component('components.safe-move',['vehicles' =>$vehicles ])
-    @endcomponent
-    @component('components.normal-price')
-    @endcomponent
+    @yield('content')   
 
 </body>
     <!-- jQuery (Necessary for All JavaScript Plugins) -->

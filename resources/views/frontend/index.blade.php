@@ -194,6 +194,11 @@
       </div>
     </div>
     <!-- Modal area end -->
+
+    @component('components.safe-move',['vehicles' =>$vehicles ])
+    @endcomponent
+    @component('components.normal-price')
+    @endcomponent
 @endsection
 @section('scripts')
 <script type="text/javascript">
