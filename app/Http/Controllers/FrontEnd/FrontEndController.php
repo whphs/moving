@@ -10,6 +10,7 @@ use App\Models\Vehicle;
 use App\Models\MoveType;
 use Illuminate\Http\Request;
 use App\Models\Agreement;
+use App\Models\PlusCost;
 use App\Http\Controllers\Controller;
 
 class FrontEndController extends Controller
@@ -24,7 +25,24 @@ class FrontEndController extends Controller
         $moveTypes = MoveType::all();
         $vehicles = $this->vehiclesWithParams(Area::first()->id, MoveType::first()->id);
 
-        return view('frontend.index', compact('areas', 'moveTypes', 'vehicles'));
+        return view('frontend.easy_move', compact('areas', 'moveTypes', 'vehicles'));
+    }
+
+    public function easymove_detail($vId)
+    {
+        $vechicleId = $vId;
+        $selVehicle = Vehicle::find($vechicleId);
+
+        // $areas = Area::all();
+        // $moveTypes = MoveType::all();
+        $vehicles = $this->vehiclesWithParams(Area::first()->id, MoveType::first()->id);
+
+        return view('frontend.easymove_detail',compact('vehicles','selVehicle'));
+    }
+    public function safe_move() {
+        $vehicles = $this->vehiclesWithParams(Area::first()->id, '2');
+
+        return view('frontend.safe_move', compact('vehicles'));
     }
 
     /**
@@ -34,10 +52,24 @@ class FrontEndController extends Controller
      * @param int $moveTypeId
      * @return Arr
      */
+
+    public function vehicles() {
+        $vehicles = Vehicle::all();
+        $pluscosts = PlusCost::all();
+
+        return view('frontend.user_center.set_up.vehicles', compact('vehicles', 'pluscosts'));
+    }
+    
     public function vehiclesWithParams($areaId, $moveTypeId) {
         return Vehicle::where('area_id', $areaId)
                       ->where('move_type_id', $moveTypeId)
                       ->get();
+    }
+
+    public function record() {
+        $movetypes = Movetype::all();
+
+        return view('frontend.user_center.order_record', compact('movetypes'));
     }
 
 
@@ -57,7 +89,7 @@ class FrontEndController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function termCondition() {
-        $termCondition = TermCondition::first();
+        $termCondition = Agreement::first();
         return view('frontend.user_center.set_up.term_condition', compact('termCondition'));
     }
 
@@ -68,7 +100,11 @@ class FrontEndController extends Controller
      */
     public function bonuses() {
         $bonuses = Bonus::all();
-        return view('frontend.user_center.bonus_list', compact('bonuses'))->with('bonuses', $bonuses);
+        return view('frontend.user_center.bonuses', compact('bonuses'));
+    }
+
+    public function bonusinstruction() {
+        return view('frontend.user_center.bonus_instruction');
     }
 
     /**

@@ -7,21 +7,21 @@
         label {
             width: 20%;
         }
-        span {
+        a {
             margin-left: 5%;
         }
     </style>
     <div class="container">
-        <div class="mb-50" style="text-align: center;">
-            <img class="mx-auto d-block" src="{{ $aboutus->logo }}">
-            <h4 style="color: #ff6600;">{{ $aboutus->title }}</h4>
+        <div class="mt-30 mb-30" style="text-align: center; background-color: #f1f2f4;">
+            <img class="mx-auto d-block" src="{{ $aboutUs->logo }}">
+            <h4 style="padding-bottom: 20px; color: #ff6600;">{{ $aboutUs->title }}</h4>
         </div>
-        <p>{{ $aboutus->introduction }}</p>
+        <p>{{ $aboutUs->introduction }}</p>
         <hr>
         <div class="mt-30">
-            <label>Word</label>:<span>{{ $aboutus->phone }}</span><br>
-            <label>Box</label>:<span>{{ $aboutus->email }}</span><br>
-            <label>Website</label>:<span>{{ $aboutus->website }}</span>
+            <label>Phone</label>:<a>{{ $aboutUs->phone }}</a>
+            <label>Email</label>:<a>{{ $aboutUs->email }}</a>
+            <label>Website</label>:<a>{{ $aboutUs->website }}</a>
         </div>
     </div>
 @endsection

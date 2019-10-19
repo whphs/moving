@@ -67,7 +67,7 @@
 
         /* Add Animation */
         @-webkit-keyframes slideIn {
-            from {bottom: -300px; opacity: 0} 
+            from {bottom: -300px; opacity: 0}
             to {bottom: 0; opacity: 1}
         }
 
@@ -77,12 +77,12 @@
         }
 
         @-webkit-keyframes fadeIn {
-            from {opacity: 0} 
+            from {opacity: 0}
             to {opacity: 1}
         }
 
         @keyframes fadeIn {
-            from {opacity: 0} 
+            from {opacity: 0}
             to {opacity: 1}
         }
     </style>
@@ -96,7 +96,7 @@
             <a href="/sign_phone" class="btn green btn-circle btn-block" style="margin-top: 30px;">Mobile phone number SignIn</a>
         </div>
         <div class="mt-50">
-            <a href="/user_agreement">Go to User Agreement</a>
+            <a href="/terms">Go to User Agreement</a>
         </div>
     </div>
 
@@ -107,14 +107,14 @@
             <div style="margin-left: 5%; margin-right: 5%;">
                 <span class="close">&times;</span>
                 <h4 style="font-weight: bold;">requests to use</h4>
-                <h1 class="mb-30">Your mobile number</h1>
-                <div class="mb-30">
-                    <span style="font-weight: bold;">13394260131</span><span style="margin-left: 10%;">Linked to Wechat</span><input type="checkbox" checked="" style="float: right;">
-                </div>
+                <h2>Your mobile number</h2>
+                <hr>
+                <span style="font-weight: bold;">13394260131</span><span style="margin-left: 10%;">Linked to Wechat</span><input type="checkbox" checked="" style="float: right;">
+                <hr>
                 <a href="/sign_othermobile">Use Other Mobile Number</a>
                 <div class="mt-30 mb-30" style="text-align: center;">
-                    <button type="button" class="btn btn-default" style="width: 30%;">Reject</button>
-                    <button type="button" class="btn btn-success" style="width: 30%; margin-left: 10%;">Allow</button>    
+                    <button type="button" class="btn btn-default" style="width: 30%; color: green;">Reject</button>
+                    <button type="button" class="btn btn-success" style="width: 30%; margin-left: 10%;">Allow</button>
                 </div>
             </div>
         </div>
@@ -130,7 +130,7 @@
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
+        // When the user clicks the button, open the modal
         btn.onclick = function() {
             modal.style.display = "block";
         }
