@@ -178,10 +178,9 @@
                       <input type="hidden"  id = "vehicleMName{{$index}}" value="{{$vehicle->name}}">
                       <input type="hidden"  id = "vCount" value="{{count($vehicles)}}">
                   </li>
-                 @endforeach 
-                 <li class="nav-item">
+                 @endforeach                  
                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                 </li>                 
+                                
               </ul> 
             </div>
         </div>
