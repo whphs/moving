@@ -1,6 +1,6 @@
 @extends('frontend.app')
 
-@section('content')
+@section('header')
     <!-- Top Header Area -->        
     <header>
       <div class="phone-number d-flex"> 
@@ -17,9 +17,7 @@
               {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
           </div>
       </div>
-    </header>              
- 
-
+    </header> 
     <!-- Top slider start -->
     <section class="hero-area">
         <div class="hero-slides owl-carousel">
@@ -62,21 +60,22 @@
         </div>
     </section>
     <!-- Top slider end -->
-    <!-- Tabs Area start -->
-    
+    <!-- Tabs Area start -->    
     <div class="wrapper"> 
           <nav class="tabs">
             <div class="selector"></div>
-            {!! link_to('esay_move', __('string.esay_move'), $attributes = ['class'=>'active'], $secure = null) !!}
-            {!! link_to('safe_move', __('string.safe_move'), $attributes = [], $secure = null) !!}
-            {!! link_to('standard_costs', __('string.standard_costs'), $attributes = [], $secure = null) !!}                 
+            {!! link_to('easy-move', __('string.esay_move'), $attributes = ['class'=>'active'], $secure = null) !!}
+            {!! link_to('safe-move', __('string.safe_move'), $attributes = [], $secure = null) !!}
+            {!! link_to('standard-costs', __('string.standard_costs'), $attributes = [], $secure = null) !!}                       
           </nav>
     </div>    
     <!-- Tabs Area end -->    
     <div class="section-heading wow fadeInUp">
         <p>{{__('string.easy_moving_notes')}}</p>
     </div>  
-    <main>   
+@endsection('header')
+@section('easyMoveContent')
+    <main id = "easyMove">   
     <!-- Move type start -->
     <section class="featured-properties-area section-padding-10-50">
             <div class="container">             
@@ -95,7 +94,11 @@
                                     </div>    
                                     <div class="col-4">                                       
                                        {!! Html::image($value->baggage_thumb) !!}
-                                       {!! Form::submit(__('string.detail_button'),['class' =>'btn south-btn']) !!}
+                                       <!-- {!! Form::submit(__('string.detail_button'),['class' =>'','id' => '']) !!} -->
+                                       <button type="button" class="btn south-btn" onclick = easymove_details({{$value->id}})>
+                                         {{__('string.detail_button')}}
+                                       </button>
+                                       <input type="hidden" id="detailsBtn{{$value->id}}" value="{{$value->id}}">
                                     </div>
                                 </div>      
                            </div>
@@ -104,8 +107,9 @@
                 @endforeach                                                   
                 </div>
             </div>
+    </section>   
 
-      </section>      
+    <!-- Safe move -->   
     </main>
     <!-- Modal area start -->
     <div class="modal" id="vehiclesModal" tabindex="-1" role="dialog">
@@ -118,12 +122,10 @@
                       <a href="#vehicle{{$index}}"  class="nav-link active">{{$vehicle->name}}</a>
                       <input type="hidden"  id = "vehicleId{{$index}}" value="{{$vehicle->id}}">
                   </li>
-                 @endforeach 
-                 <li class="nav-item">
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                 </li>                 
+                 @endforeach                                   
               </ul> 
-            </div>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
         </div>
         <!-- Modal body -->
         <div class="modal-body"> 
@@ -192,30 +194,25 @@
       </div>
     </div>
     <!-- Modal area end -->
-    
-
 @endsection
-
 @section('scripts')
-
 <script type="text/javascript">
   $(document).ready(function(){ 
-    var selectedId = 0;
-  
-    $("#orderBtn").click(function(){  
-        console.log(selectedId);      
+    var selectedId = 0;  
+
+    $("#orderBtn").click(function(){               
         let vehicleId = $('#vehicleId'+selectedId).val();
         window.location.href = "easymove_detail/" + vehicleId;
     });
     $('.more-btn').on('click', 'button', function() {
-      var moreBtnIndex = $(this)[0].id.substring(4, 5);
+      var moreBtnIndex = $(this)[0].id.substring(4, 5);//get id
       selectedId = moreBtnIndex;
       $('.tab-pane').removeClass('show active');
       $('#vehicle'+moreBtnIndex).addClass('show active');
     });
 
     $('.modal-header').on('click', 'li', function() {
-      var index = $(this)[0].id.substring(2, 3);
+      var index = $(this)[0].id.substring(2, 3);//get id
       selectedId = index;
 
       $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
@@ -223,6 +220,10 @@
     });
   });
 
-  
+   function easymove_details(id)
+   { 
+      let vehicleIds = $('#detailsBtn'+id).val();
+      window.location.href = "easymove_detail/" + vehicleIds;
+   }
 </script>
 @endsection

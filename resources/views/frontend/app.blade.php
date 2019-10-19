@@ -20,11 +20,18 @@
     {!! Html::style('frontend/assets/south/css/mytabs.css') !!}
     {!! Html::style('frontend/assets/south/css/custom-switch.css') !!}
     {!! Html::style('frontend/assets/south/css/timeline.css') !!}
+    {!! Html::style('frontend/assets/south/css/custom-checkbox.css') !!}
     
 </head>
 
-<body style ="font-family: Arial, Helvetica, sans-serif;">   
-    @yield('content')
+<body style ="font-family: Arial, Helvetica, sans-serif;">
+    @yield('header')   
+    @yield('easyMoveContent')
+    @component('components.safe-move',['vehicles' =>$vehicles])
+    @endcomponent
+    @component('components.normal-price',['vehicles' =>$vehicles])
+    @endcomponent
+
 </body>
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     {!! Html::script('frontend/assets/south/js/jquery/jquery-2.2.4.min.js') !!}      

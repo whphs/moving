@@ -25,9 +25,10 @@ header {
   }
   
   main {
-	padding: 0 1em;
+	/*padding: 0 1em;*/
 	font-size: 14px;
 	font-family: sans-serif;
+  padding-top: 8px;
 
   }
   
@@ -109,7 +110,7 @@ header {
   /*details*/
   .card-header{
 	  font-weight: bold;
-	  max-height: 46px;
+	  max-height: 40px;
   }
   .card{
 	box-shadow: -1px 3px 7px 0px #e1dddd;
@@ -143,7 +144,7 @@ header {
 	  background-color: white;
   }
   .follow{
-	  width:80px;
+	  width:86px;
 	  font-size: 10px;font-weight: inherit;
   }
   /*safe move details*/
@@ -178,6 +179,7 @@ header {
   	height: 45px;
   	text-align: center;
   	display: inline-block;
+    vertical-align: top;
   }
   .header-img img{
   	padding: 16px 0;
@@ -188,15 +190,20 @@ header {
   	padding-right: 15px;
   	padding-left: 15px;
   }
+  .footer-price{
+    position: relative;
+    top: 4px;
+  }
   .footer-price p{
- 	display: inline-block;
- 	font-size: 20px;
- 	margin-bottom: 0px;
- 	color:#ef6774;
- 	line-height: normal;
+   	display: inline-block;
+   	font-size: 20px;
+   	margin-bottom: 0px;
+   	color:#ef6774;
+   	line-height: normal;
+  
   }
   .footer-price p span{
- 	text-decoration: line-through;
+  	/*text-decoration: line-through;*/
   }
   .footer-price1 p{
   	display: inline-block;
@@ -205,11 +212,14 @@ header {
   	float: right;
   	position: relative;
   	top:-6px;
-  	left: 13px;
+  	left: 0px;
   	color:#947054;
   }
   .resv{
   	margin-top: 12px!important;
-  	min-width: 100px;
-  	min-height: 35px;
+  	min-width: 110px;
+  	min-height: 33px;
+  }
+  .south-btn{
+    z-index: 0;
   }

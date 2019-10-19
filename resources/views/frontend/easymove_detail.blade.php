@@ -6,7 +6,7 @@
       <div class="header-img">          
           {!! Html::image('frontend/assets/south/img/icons/house1.png') !!}
       </div>
-      <div class = "header-img" style="position: relative;left: -4px;top:-1px">          
+      <div class = "header-img" style="position: relative;left: -4px;">          
           {!! Html::image('frontend/assets/south/img/icons/phone-call.png') !!}
       </div>
     </header>
@@ -71,11 +71,9 @@
         <div class="col-12">
           <div class="content-sidebar">
             <div class="card" style="margin:10px 0">
-              <div class="card-header" style="font-size: 14px;">
-                Big baggage(washer,refrigerator...)
-                <p style="display: inline-block;">aaa</p>
+              <div class="card-header">
+                Big baggage(washer,refrigerator...)<span>aaaaa</span>                
               </div>
-
             </div>
           </div>
         </div>
@@ -88,9 +86,9 @@
             <div class="card-header">{{__('string.order_note')}} 
               <p class="detail" style="font-weight: 100">{{__('string.upload_photo')}}</p>
             </div>              
-              <ul class="list-group list-group-flush" >
-              <li class="list-group-item" style="z-index: 0;min-width: 287px;">
-              <input type="radio" id="hOne" name="hOne">
+              <ul>
+              <li style="z-index: 0;min-width: 287px;padding:10px;border-bottom: 1px solid rgba(0,0,0,.125);">
+              <input type="radio" id="hOne" name="hOne" style="display: none;">
               <input type="radio" id="hTwo"  name = "hTwo" style="display: none;">
               <input type="checkbox" id="hSmall" name = "hSmall" style="display: none;">
 
@@ -98,7 +96,7 @@
               <button type="button" id = "two" class="btn south-btn follow">{{__('string.two')}}</button>             
               <button type="button" id = "small" class="btn south-btn follow">{{__('string.small_cart')}}</button>                           
               </li>
-              <li class="list-group-item" style="z-index: 0;">
+              <li style="z-index: 0;padding-left: 10px;padding-top: 3px;padding-bottom: 3px;">
                   <p style="display: inline-block;margin-bottom: 0px;margin-top: 4px;">{{__('string.contact_number')}}</p>              
                   <input type="input" class="form-control" name="phoneNum" id = "phoneNum" placeholder="13394260131" >              
               </li>  
@@ -113,8 +111,12 @@
 
     <!-- terms and policy -->
     <div class="container">
-       <p style="font-size: 12px;margin-bottom: initial;">{{__('string.note_detail')}}</p>   
-       <input type="checkbox" name="" style="margin-right: 5px;" /><span style="font-size: 12px;">aaaaa<a href="#" style="color: #947054">{{__('string.note_link')}}</a></span>
+       <p style="font-size: 12px;margin-bottom: initial;">{{__('string.note_detail')}}</p>
+      <div id="holder">
+          <input type="checkbox" id="checkboxTerm" class="regular-checkbox" /><label for="checkboxTerm"></label>
+          <span style="font-size: 12px;position: relative;bottom: 13px;">
+           This is test example<a href="#" style="color: #947054;font-size: 12px;">{{__('string.note_link')}}</a></span>
+      </div>
     </div>
     <div class="container" style="position: relative;top:20px;">     
         <p>&nbsp</p>     
@@ -125,14 +127,14 @@
          <div class="row">
           <div class="col-8 footer-content">
             <div class="footer-price">
-              <p>$25</p><span>$30</span>
+              <p>$25</p><span style="text-decoration: line-through;">$30</span>
             </div>
             <div class="footer-price1">
               <p>aaaaaa$5</p>
-              <a href = "#" style=" ">{{__('string.preview')}}</a>  
+              <a href = "#">{{__('string.preview')}}</a>  
             </div>
           </div>
-          <div class="col-4">
+          <div class="col-4" style="margin-left: -10px;">
             <button type="button" class="btn south-btn resv">{{__('string.reservation_btn')}}</button> 
           </div>           
          </div>
@@ -169,7 +171,7 @@
  <div class="modal" id="vehicleSelModal" tabindex="-1" role="dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <div class="vehicle-tab">        
+                  
               <ul id="vehiclesTab" class="nav">
                   @foreach($vehicles as $index => $vehicle)
                   <li id="li{{$index}}" class="nav-item active">
@@ -182,7 +184,7 @@
                      <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 
               </ul> 
-            </div>
+            
         </div>
         <!-- Modal body -->
         <div class="modal-body"> 
@@ -310,8 +312,8 @@
         {
           $("#hOne").prop("checked",true);
           $("#hTwo").prop("checked",false);
-          
-          // $("#hOne").style.background-color = "#000000";
+          $("#one").css("background-color", "#000000");
+          $("#two").css({"background-color": "#947054"});
         }        
         
       });
@@ -320,16 +322,20 @@
         {
           $("#hTwo").prop("checked",true);
           $("#hOne").prop("checked",false);
+          $("#one").css({"background-color": "#947054"});
+          $("#two").css({"background-color": "#000000"});
         }
       });
       $("#small").click(function(){
         if($("#hSmall").is(":checked") == false)
         {
           $("#hSmall").prop("checked",true);
+          $("#small").css({"background-color": "#000000"});
         }
         else
         {
-          $("#hSmall").prop("checked",true); 
+          $("#hSmall").prop("checked",false); 
+          $("#small").css({"background-color": "#947054"});
         }
         
       })

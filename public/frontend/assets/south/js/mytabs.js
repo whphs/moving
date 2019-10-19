@@ -8,6 +8,11 @@ $(".selector").css({
   "width": activeWidth + "px"
 });
 
+
+$('#easyMove').show();
+$('#safeMove').hide();
+$('#normalPrice').hide();
+
 $(".tabs").on("click","a",function(e){
   e.preventDefault();
   $('.tabs a').removeClass("active");
@@ -18,4 +23,25 @@ $(".tabs").on("click","a",function(e){
     "left":itemPos.left + "px", 
     "width": activeWidth + "px"
   });
+  
+  var selTab = e.target.pathname.substring(1);
+  if(selTab == "easy-move")
+  {
+     $('#easyMove').show();
+     $('#safeMove').hide();
+     $('#normalPrice').hide();
+  }
+  else if(selTab == "safe-move")
+  {
+    $('#easyMove').hide();
+    $('#safeMove').show();
+    $('#normalPrice').hide();
+  }
+  else
+  {
+    $('#easyMove').hide();
+    $('#safeMove').hide();
+    $('#normalPrice').show();
+  }
+
 });
