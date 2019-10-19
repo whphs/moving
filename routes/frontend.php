@@ -22,6 +22,8 @@ Route::get('/order_record', 'FrontEndController@record')->name('order_record');
 
 Route::get('/bonuses', 'FrontEndController@bonuses')->name('bonuses');
 
+Route::get('bonus_instruction', 'FrontEndController@bonusinstruction')->name('bonus_instruction');
+
 Route::get('/set_up', function () {	return view('frontend/user_center/set_up/set_up'); });
 
 Route::get('/terms', 'FrontEndController@termCondition')->name('terms');

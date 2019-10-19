@@ -50,12 +50,22 @@
   	</style>
 
     <div class="container">
-        <!-- Swiper -->
+        
+		<div class="tabbable-line" style="margin-bottom: -40px;">
+			<div class="tab-content">
+				@for ($i = 0; $i < count($vehicles); $i ++)
+					<div class="tab-pane" id="vehicle_name{{ $i }}">
+						<h4 style="font-weight: bold; text-align: center;">{{ $vehicles[$i]->name }}</h4>
+					</div>
+				@endfor
+			</div>
+		</div>
+		
+		<!-- Swiper -->
 	  	<div class="swiper-container">
 		    <div class="swiper-wrapper">
 				@foreach ($vehicles as $vehicle)
 					<div class="swiper-slide">
-						<h4 style="font-weight: bold;">{{ $vehicle->name }}</h4>
 						<img src="{{ $vehicle->photo_0 }}">
 						<div class="mt-10">
 							<table style="width: 100%;">
@@ -81,33 +91,33 @@
 	  	<div class="tabbable-line mt-20">
 			<div class="tab-content">
 				@for ($i = 0; $i < count($vehicles); $i ++)
-					<div class="tab-pane" id="t{{ $i + 1 }}">
+					<div class="tab-pane" id="vehicle_info{{ $i }}">
 						<span>Basic fare</span>
-							<table class="table table-striped table-hover">
-								@for ($j = 0; $j < count($pluscosts); $j ++)
-									@if (($vehicles[$i]->id == $pluscosts[$j]->vehicle_id) && ($pluscosts[$j]->distance_from == 0))
-										<tr>
-											<td>
-												Starting Price(5km)
-											</td>
-											<td>
-												{{ $pluscosts[$j]->amount }} yuan
-											</td>
-										</tr>
-									@endif
+						<table class="table table-striped table-hover">
+							@for ($j = 0; $j < count($pluscosts); $j ++)
+								@if (($vehicles[$i]->id == $pluscosts[$j]->vehicle_id) && ($pluscosts[$j]->distance_from == 0))
+									<tr>
+										<td>
+											Starting Price(5km)
+										</td>
+										<td>
+											{{ $pluscosts[$j]->amount }} yuan
+										</td>
+									</tr>
+								@endif
 
-									@if (($vehicles[$i]->id == $pluscosts[$j]->vehicle_id) && ($pluscosts[$j]->distance_from != 0))
-										<tr>
-											<td>
-												Super Mileage({{ $pluscosts[$j]->distance_from }}~{{ $pluscosts[$j]->distance_to }}km)
-											</td>
-											<td>
-											{{ $pluscosts[$j]->amount }} yuan/km
-											</td>
-										</tr>
-									@endif
-								@endfor
-							</table>
+								@if (($vehicles[$i]->id == $pluscosts[$j]->vehicle_id) && ($pluscosts[$j]->distance_from != 0))
+									<tr>
+										<td>
+											Super Mileage({{ $pluscosts[$j]->distance_from }}~{{ $pluscosts[$j]->distance_to }}km)
+										</td>
+										<td>
+										{{ $pluscosts[$j]->amount }} yuan/km
+										</td>
+									</tr>
+								@endif
+							@endfor
+						</table>
 							
 						<span>Extermal demand handling</span>
 						<table class="table table-striped table-hover">
@@ -141,7 +151,8 @@
 	  	<!-- Initialize Swiper -->
 	  	<script>
 		  	$(document).ready(function () {
-				$("#t1").addClass("active");
+				$("#vehicle_info0").addClass("active");
+				$("#vehicle_name0").addClass("active");
 			});
 
 	    	var swiper = new Swiper('.swiper-container', {
@@ -159,13 +170,15 @@
 		    });
 
 		    swiper.on('slideChange', function () {
-		    	var active_truck = swiper.activeIndex + 1;
+		    	var active_truck = swiper.activeIndex;
 
-				for (var i = 1; i <= 4; i ++) {
-					$("#t" + i).removeClass("active");
+				for (var i = 0; i <= 3; i ++) {
+					$("#vehicle_info" + i).removeClass("active");
+					$("#vehicle_name" + i).removeClass("active");
 				}
 
-		    	$("#t" + active_truck).addClass("active");		    	
+		    	$("#vehicle_info" + active_truck).addClass("active");		    	
+				$("#vehicle_name" + active_truck).addClass("active");		    	
 			})
 
 	  	</script>

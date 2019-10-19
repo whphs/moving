@@ -103,6 +103,10 @@ class FrontEndController extends Controller
         return view('frontend.user_center.bonuses', compact('bonuses'));
     }
 
+    public function bonusinstruction() {
+        return view('frontend.user_center.bonus_instruction');
+    }
+
     /**
      * Display the bonus.
      *
