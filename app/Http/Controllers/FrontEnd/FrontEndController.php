@@ -29,9 +29,8 @@ class FrontEndController extends Controller
     }
 
     public function easymove_detail($vId)
-    {
-        $vechicleId = $vId;
-        $selVehicle = Vehicle::find($vechicleId);
+    {        
+        $selVehicle = Vehicle::find($vId);
 
         // $areas = Area::all();
         // $moveTypes = MoveType::all();
