@@ -14,7 +14,7 @@
         </div>
         <hr>
         <span>You have <span style="font-weight: bold;">{{ count($bonuses) }}</span> tickets that is about to expire.</span>
-        <a href="/bonus_instruction" style="float: right;">Instructions</a>
+        <a href="/bonus_guide" style="float: right;">Instructions</a>
         <div class="mt-30">
             @foreach ($bonuses as $bonus)
                 <table>

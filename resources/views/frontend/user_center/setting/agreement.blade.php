@@ -9,6 +9,6 @@
         }
     </style>
     <div class="container">
-        {!! $termCondition->content !!}
+        {!! $agreement->content !!}
     </div>
 @endsection
