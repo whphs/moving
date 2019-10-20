@@ -10,7 +10,7 @@
       </div>
     </header>
     <main>
-    <section class="south-contact-area" style="padding-top: 3em;">
+    <section class="south-contact-area">
       <div class="container">
       <!-- select truck start -->
       <div class="row">  
