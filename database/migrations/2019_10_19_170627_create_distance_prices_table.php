@@ -15,6 +15,8 @@ class CreateDistancePricesTable extends Migration
     {
         Schema::create('distance_prices', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('vehicle_id')->default(0);
+            $table->integer('scale_id')->default(0);
             $table->integer('from')->nullable();
             $table->integer('to')->nullable();
             $table->integer('amount')->nullable();

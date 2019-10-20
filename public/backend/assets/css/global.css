@@ -272,9 +272,18 @@ a.btn.small, button.btn.small, input.btn.small {
 .form-group .form-control:focus, .input-group .form-control:focus {
     border: 1px solid #f96332 !important;
 }
+
 input.form-control {
     height: 39px !important;
 }
+
 .card label {
     color: #666 !important;
+}
+
+label.group-title {
+    padding-top: 10px;
+    text-decoration-line: underline;
+    font-size: 14px !important;
+    color: #222 !important;
 }

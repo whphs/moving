@@ -4,7 +4,7 @@ namespace App\Http\Controllers\BackEnd;
 
 use App\Models\Area;
 use App\Models\Vehicle;
-use App\Models\PlusCost;
+use App\Models\DistancePrice;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -84,7 +84,6 @@ class VehicleController extends Controller
     {
         //
         $this->saveVehicle(Vehicle::find($id), $request) ;
-
         return redirect('admin/vehicle')->with('status', __('string.updated_success'));
     }
 
@@ -99,7 +98,7 @@ class VehicleController extends Controller
         //
         $vehicle = Vehicle::find($id);
         $vehicle->delete();
-        PlusCost::where('vehicle_id', $id)->delete();
+        DistancePrice::where('vehicle_id', $id)->delete();
 
         return redirect('admin/vehicle')->with('status', __('string.deleted_success'));
     }
@@ -114,31 +113,39 @@ class VehicleController extends Controller
     public function saveVehicle($vehicle, $request) {
         // $this->validate($request, ['vehicle_thumb' => 'dimensions:width=150,height=100']);
 
-        $vehicle->name                  = $request->name;
-        $vehicle->move_type_id          = 0;
-        $vehicle->area_id               = $request->area_id;
-        $vehicle->size                  = $request->size;
-        $vehicle->load_weight           = $request->load_weight;
-        $vehicle->volume                = $request->volume;
-        $vehicle->description           = $request->description;
-        $vehicle->available_items       = $request->available_items;
-        $vehicle->unavailable_items     = $request->unavailable_items;
-        $vehicle->vehicle_thumb         = $request->vehicle_thumb->store('uploads', 'public');
-        $vehicle->baggage_thumb         = $request->baggage_thumb->store('uploads', 'public');
-        $vehicle->photo_0               = $request->photo_0->store('uploads', 'public');
-        $vehicle->photo_1               = $request->photo_1->store('uploads', 'public');
-        $vehicle->photo_2               = $request->photo_2->store('uploads', 'public');
+        $vehicle->name                          = $request->name;
+        $vehicle->move_type_id                  = 0;
+        $vehicle->area_id                       = $request->area_id;
+        $vehicle->size                          = $request->size;
+        $vehicle->load_weight                   = $request->load_weight;
+        $vehicle->volume                        = $request->volume;
+
+        $vehicle->init_price_for_items          = $request->init_price_for_items;
+        $vehicle->price_per_floor               = $request->price_per_floor;
+        $vehicle->price_per_big_item            = $request->price_per_big_item;
+        $vehicle->price_per_floor_for_big_item  = $request->price_per_floor_for_big_item;
+
+        $vehicle->description                   = $request->description;
+        $vehicle->available_items               = $request->available_items;
+        $vehicle->unavailable_items             = $request->unavailable_items;
+
+        $vehicle->vehicle_thumb                 = $request->vehicle_thumb->store('uploads', 'public');
+        $vehicle->baggage_thumb                 = $request->baggage_thumb->store('uploads', 'public');
+        $vehicle->photo_0                       = $request->photo_0->store('uploads', 'public');
+        $vehicle->photo_1                       = $request->photo_1->store('uploads', 'public');
+        $vehicle->photo_2                       = $request->photo_2->store('uploads', 'public');
+
         $vehicle->save();
 
-        PlusCost::where('vehicle_id', $vehicle->id)->delete();
+        DistancePrice::where('vehicle_id', $vehicle->id)->delete();
 
         foreach ($request->distance_from as $key => $n) {
-            $plusCost = new PlusCost;
-            $plusCost->distance_from    = $request->distance_from[$key];
-            $plusCost->distance_to      = $request->distance_to[$key];
-            $plusCost->amount           = $request->amount[$key];
-            $plusCost->vehicle_id       = $vehicle->id;
-            $plusCost->save();
+            $price = new DistancePrice;
+            $price->from        = $request->distance_from[$key];
+            $price->to          = $request->distance_to[$key];
+            $price->amount      = $request->amount[$key];
+            $price->vehicle_id  = $vehicle->id;
+            $price->save();
         }
     }
 

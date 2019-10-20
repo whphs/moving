@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\BackEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
+use App\Models\DistancePrice;
+use App\Models\FloorPrice;
+use App\Models\Scale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class ScaleController extends Controller
 {
@@ -15,6 +20,9 @@ class ScaleController extends Controller
     public function index()
     {
         //
+        $scales = Scale::all();
+        return view('backend.scale.index', compact('scales'));
+
     }
 
     /**
@@ -25,6 +33,8 @@ class ScaleController extends Controller
     public function create()
     {
         //
+        $areas = Arr::pluck(Area::all(), 'name', 'id');
+        return view('backend.scale.create', compact('areas'));
     }
 
     /**
@@ -36,6 +46,8 @@ class ScaleController extends Controller
     public function store(Request $request)
     {
         //
+        $this->saveScale(new Scale, $request);
+        return redirect('admin/scale')->with('status', __('string.created_success'));
     }
 
     /**
@@ -58,6 +70,9 @@ class ScaleController extends Controller
     public function edit($id)
     {
         //
+        $scale = Scale::find($id);
+        $areas = Arr::pluck(Area::all(), 'name', 'id');
+        return view('backend.scale.edit', compact('scale', 'areas'));
     }
 
     /**
@@ -70,6 +85,8 @@ class ScaleController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->saveScale(Scale::find($id), $request) ;
+        return redirect('admin/scale')->with('status', __('string.updated_success'));
     }
 
     /**
@@ -81,5 +98,45 @@ class ScaleController extends Controller
     public function destroy($id)
     {
         //
+        $scale = Scale::find($id);
+        $scale->delete();
+        DistancePrice::where('scale_id', $id)->delete();
+
+        return redirect('admin/scale')->with('status', __('string.deleted_success'));
+    }
+
+    public function saveScale($scale, $request) {
+        $scale->name                = $request->name;
+        $scale->move_type_id        = 1;
+        $scale->area_id             = $request->area_id;
+        $scale->vehicle_description = $request->vehicle_description;
+        $scale->helper_description  = $request->helper_description;
+        $scale->init_price          = $request->init_price;
+        $scale->vehicle_photo       = $request->vehicle_photo->store('uploads', 'public');
+        $scale->helper_photo        = $request->helper_photo->store('uploads', 'public');
+
+        $scale->save();
+
+        DistancePrice::where('scale_id', $scale->id)->delete();
+
+        foreach ($request->distance_from as $key => $n) {
+            $price = new DistancePrice;
+            $price->from        = $request->distance_from[$key];
+            $price->to          = $request->distance_to[$key];
+            $price->amount      = $request->amount[$key];
+            $price->scale_id    = $scale->id;
+            $price->save();
+        }
+
+        FloorPrice::where('scale_id', $scale->id)->delete();
+
+        foreach ($request->floor_from as $key => $n) {
+            $price = new FloorPrice;
+            $price->from        = $request->floor_from[$key];
+            $price->to          = $request->floor_to[$key];
+            $price->amount      = $request->amount[$key];
+            $price->scale_id    = $scale->id;
+            $price->save();
+        }
     }
 }
