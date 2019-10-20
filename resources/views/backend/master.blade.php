@@ -12,13 +12,13 @@
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
-{!! Html::style('//fonts.googleapis.com/css?family=Montserrat:400,700,200') !!}
-{!! Html::style('//use.fontawesome.com/releases/v5.7.1/css/all.css') !!}
-<!-- CSS Files -->
-{!! Html::style('backend/assets/css/bootstrap.min.css') !!}
-{!! Html::style('backend/assets/css/global.css') !!}
-{!! Html::style('backend/assets/css/now-ui-dashboard.css?v=1.3.0') !!}
-<!-- CSS Just for demo purpose, don't include it in your project -->
+    {!! Html::style('//fonts.googleapis.com/css?family=Montserrat:400,700,200') !!}
+    {!! Html::style('//use.fontawesome.com/releases/v5.7.1/css/all.css') !!}
+    <!-- CSS Files -->
+    {!! Html::style('backend/assets/css/bootstrap.min.css') !!}
+    {!! Html::style('backend/assets/css/global.css') !!}
+    {!! Html::style('backend/assets/css/now-ui-dashboard.css?v=1.3.0') !!}
+    <!-- CSS Just for demo purpose, don't include it in your project -->
     {!! Html::style('backend/assets/demo/demo.css') !!}
 </head>
 
@@ -101,6 +101,21 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
             <div class="container-fluid">
+                <div class="navbar-wrapper">
+                    <div class="navbar-toggle">
+                        <button type="button" class="navbar-toggler">
+                            <span class="navbar-toggler-bar bar1"></span>
+                            <span class="navbar-toggler-bar bar2"></span>
+                            <span class="navbar-toggler-bar bar3"></span>
+                        </button>
+                    </div>
+                    <a class="navbar-brand" href="#pablo">{{Auth::user()->role}}</a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navigation">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
@@ -127,9 +142,7 @@
         </nav>
         <!-- End Navbar -->
 
-
-        <div class="panel-header panel-header-sm">
-        </div>
+        @yield('header')
         <div class="content">
             @yield('content')
         </div>
@@ -152,6 +165,8 @@
 {!! Html::script('backend/assets/js/now-ui-dashboard.min.js?v=1.3.0') !!}
 <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 {!! Html::script('backend/assets/demo/demo.js') !!}
+
+@yield('styles');
 
 @yield('scripts')
 

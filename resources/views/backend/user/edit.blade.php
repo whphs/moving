@@ -4,6 +4,10 @@
     {{ __('string.assign_roles')}}
 @endsection
 
+@section('header')
+    <div class="panel-header panel-header-sm"></div>
+@endsection
+
 @section('content')
 
     @component('components.normal.container', [

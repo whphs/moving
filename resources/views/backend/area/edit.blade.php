@@ -4,6 +4,10 @@
     {{ __('string.areas') }}
 @endsection
 
+@section('header')
+    <div class="panel-header panel-header-sm"></div>
+@endsection
+
 @section('content')
     @component('components.normal.container', [
         'title' => __('string.edit_an_area'),

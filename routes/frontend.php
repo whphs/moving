@@ -2,30 +2,32 @@
 
 Route::get('/', 'FrontEndController@index')->name('index');
 
-Route::get('easymove_detail/{vId}', 'FrontEndController@easymove_detail')->name('easymove_detail');
+Route::get('easy_move_detail/{vehicleId}', 'FrontEndController@easyMoveDetail')->name('easy_move_detail');
 
-Route::get('safemove_more', function () { return view('frontend.safemove_more'); });
+Route::get('safe_move', 'FrontEndController@safe_move')->name('safe_move');
 
-Route::get('safemove_detail', function () { return view('frontend.safemove_detail'); });
+Route::get('safe_move_more', function () { return view('frontend.safe_move_more'); });
 
-Route::get('/user_center', function () { return view('frontend/user_center/user_center'); });
+Route::get('safe_move_detail', function () { return view('frontend.safe_move_detail'); });
 
-Route::get('/sign_in', function () { return view('frontend/user_center/sign_in/sign_in'); });
+Route::get('/user_center', function () { return view('frontend/user_center/index'); });
 
-Route::get('/sign_phone', function () {	return view('frontend/user_center/sign_in/sign_phone'); });
+Route::get('/sign_in', function () { return view('frontend/user_center/sign_in/index'); });
 
-Route::get('/sign_othermobile', function () { return view('frontend/user_center/sign_in/sign_othermobile'); });
+Route::get('/sign_in/phone', function () {	return view('frontend/user_center/sign_in/phone'); });
 
-Route::get('/order_record', 'FrontEndController@record')->name('order_record');
+Route::get('/sign_in/other', function () { return view('frontend/user_center/sign_in/other'); });
+
+Route::get('/bookings', 'FrontEndController@bookings')->name('bookings');
 
 Route::get('/bonuses', 'FrontEndController@bonuses')->name('bonuses');
 
-Route::get('bonus_instruction', 'FrontEndController@bonusinstruction')->name('bonus_instruction');
+Route::get('bonus_guide', 'FrontEndController@bonusGuide')->name('bonus_guide');
 
-Route::get('/set_up', function () {	return view('frontend/user_center/set_up/set_up'); });
+Route::get('/setting', function () {	return view('frontend/user_center/setting/index'); });
 
-Route::get('/terms', 'FrontEndController@termCondition')->name('terms');
+Route::get('/agreement', 'FrontEndController@agreement')->name('agreement');
 
-Route::get('/vehicles', 'FrontEndController@vehicles')->name('vehicles');
+Route::get('/vehicle_standards', 'FrontEndController@vehicleStandards')->name('vehicle_standards');
 
 Route::get('/about_us', 'FrontEndController@aboutUs')->name('about_us');
