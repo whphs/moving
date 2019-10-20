@@ -17,7 +17,7 @@ class CreateBonusesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title')->nullable();
             $table->integer('area_id')->default(0);
-            $table->integer('vehicle_id')->default(0);
+            $table->integer('move_type_id')->default(0);
             $table->integer('price')->default(0);
             $table->date('start_date');
             $table->date('end_date');

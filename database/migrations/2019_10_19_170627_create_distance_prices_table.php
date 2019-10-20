@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScalesTable extends Migration
+class CreateDistancePricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateScalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('scales', function (Blueprint $table) {
+        Schema::create('distance_prices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('vehicle_description');
-            $table->string('helper_description');
-            $table->double('init_price');
-            $table->string('vehicle_photo');
-            $table->string('helper_photo');
+            $table->integer('from')->nullable();
+            $table->integer('to')->nullable();
+            $table->integer('amount')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateScalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scales');
+        Schema::dropIfExists('distance_prices');
     }
 }

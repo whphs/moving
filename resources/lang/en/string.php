@@ -75,8 +75,8 @@ return [
     'zip_code'          => 'Zip Code',
     'area_list'         => 'Area List',
 
-    'available_baggages'    => 'Available Baggages',
-    'unavailable_baggages'  => 'Unavailable Baggages',
+    'available_items'    => 'Available Baggages',
+    'unavailable_items'  => 'Unavailable Baggages',
 
     'vehicle_thumbnail' => 'Vehicle Thumbnail',
     'baggage_thumbnail' => 'Baggage Thumbnail',

@@ -21,8 +21,6 @@ class CreateVehiclesTable extends Migration
             $table->string('size');
             $table->float('load_weight');
             $table->float('volume');
-            $table->integer('init_distance');
-            $table->integer('init_price');
             $table->double('init_price_for_items');
             $table->integer('price_per_floor');
             $table->integer('price_per_big_item');

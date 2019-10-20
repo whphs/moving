@@ -168,12 +168,12 @@
                         <h6>{{__('string.car_tips')}}</h6>
                         <p> {{$vehicle->description}}</p>
                         <div class="truck-des-content">
-                          <p style= "color: #000000d9;">{{__('string.available_baggages')}} :</p>
-                          <p>{{$vehicle->available_baggages}}</p>  
+                          <p style= "color: #000000d9;">{{__('string.available_items')}} :</p>
+                          <p>{{$vehicle->available_items}}</p>  
                         </div>
                         <div class="truck-des-content">
-                          <p style= "color: #000000d9; ">{{__('string.unavailable_baggages')}} : </p> 
-                          <p>{{$vehicle->unavailable_baggages}}</p>
+                          <p style= "color: #000000d9; ">{{__('string.unavailable_items')}} : </p> 
+                          <p>{{$vehicle->unavailable_items}}</p>
                         </div>   
                         <div class="truck-des-note">
                           <p>PS: {{__('string.ps_note')}}</p>
