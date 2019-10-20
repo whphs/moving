@@ -21,7 +21,7 @@ class CreateBonusesTable extends Migration
             $table->integer('price')->default(0);
             $table->date('start_date');
             $table->date('end_date');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

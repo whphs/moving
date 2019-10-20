@@ -63,12 +63,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.price.index') }}">
-                        <i class="now-ui-icons design_bullet-list-67"></i>
-                        <p>{{ __('string.prices_standard') }}</p>
-                    </a>
-                </li>
-                <li>
                     <a href="{{ route('admin.area.index') }}">
                         <i class="now-ui-icons text_caps-small"></i>
                         <p>{{ __('string.areas') }}</p>

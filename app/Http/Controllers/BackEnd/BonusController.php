@@ -106,17 +106,19 @@ class BonusController extends Controller
 
     /**
      * Save the data to database
-     * 
+     *
      * @param App\Models\Bonus $bonus
      * @param \Illuminate\Http\Request  $request
      * @return void
      */
     public function saveBonus($bonus, $request) {
-        $bonus->title           = $request->title;
-        $bonus->area_id         = $request->area_id;
-        $bonus->price           = $request->price;
-        $bonus->start_date      = $request->start_date;
-        $bonus->end_date        = $request->end_date;
+        $bonus->title       = $request->title;
+        $bonus->area_id     = $request->area_id;
+        $bonus->price       = $request->price;
+        $bonus->start_date  = $request->start_date;
+        $bonus->end_date    = $request->end_date;
+        $bonus->description = $request->description;
+        
         $bonus->save();
     }
 }
