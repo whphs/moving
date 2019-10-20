@@ -87,6 +87,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.scale.index') }}">
+                        <i class="now-ui-icons text_caps-small"></i>
+                        <p>{{ __('string.scales') }}</p>
+                    </a>
+                </li>
+                <li>
                     <a href="#">
                         {{-- <a href="{{ route('booking') }}"> --}}
                         <i class="now-ui-icons text_caps-small"></i>

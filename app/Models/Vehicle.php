@@ -3,32 +3,12 @@
 namespace App\Models;
 
 use App\Models\Area;
-use App\Models\PlusCost;
 use App\Models\DistancePrice;
 use App\Models\MoveType;
 use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {
-    //
-    // protected $table = 'vehicles';
-    // protected $fillable = [
-    //     'name',
-    //     'move_type_id',
-    //     'area_id',
-    //     'size',
-    //     'load_weight',
-    //     'volume',
-    //     'description',
-    //     'available_items',
-    //     'unavailable_items',
-    //     'vehicle_thumb',
-    //     'baggage_thumb',
-    //     'photo_0',
-    //     'photo_1',
-    //     'photo_2',
-    // ];
-
     public function move_type()
     {
         return $this->belongsTo(MoveType::class);
@@ -43,17 +23,21 @@ class Vehicle extends Model
         return $this->hasMany(DistancePrice::class);
     }
 
-    public function plusCosts()
-    {
-        return $this->hasMany(PlusCost::class);
-    }
-
-    public function costsToString() {
-        $list = $this->plusCosts;
-        $returnString = $this->init_distance . 'km = $' . $this->init_cost . '<br/>';
-        foreach ($list as $cost) {
-            $returnString .= $cost->distance_from . ' ~ ' . $cost->distance_to . 'km = +$' . $cost->amount . '/km<br/>';
+    public function distancePriceSToString() {
+        $list = $this->distancePrices;
+        $returnString = '';
+        foreach ($list as $price) {
+            $returnString .= $price->from . ' ~ ' . $price->to . 'km = $' . $price->amount . '/km<br/>';
         }
         return $returnString;
     }
+
+    public function itemPricesToString() {
+        $returnString = __('string.init_price') . ' = $' . $this->init_price_for_items . '<br/>';
+        $returnString .= __('string.price_per_floor') . ' = $' . $this->price_per_floor . '<br/>';
+        $returnString .= __('string.price_per_big_item') . ' = $' . $this->price_per_big_item . '<br/>';
+        $returnString .= __('string.price_per_floor_for_big_item') . ' = $' . $this->price_per_floor_for_big_item . '<br/>';
+        return $returnString;
+    }
+
 }
