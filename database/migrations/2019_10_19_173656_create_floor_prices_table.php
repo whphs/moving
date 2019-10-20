@@ -15,6 +15,7 @@ class CreateFloorPricesTable extends Migration
     {
         Schema::create('floor_prices', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('scale_id');
             $table->integer('from')->nullable();
             $table->integer('to')->nullable();
             $table->integer('amount')->nullable();

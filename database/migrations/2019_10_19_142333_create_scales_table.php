@@ -16,6 +16,8 @@ class CreateScalesTable extends Migration
         Schema::create('scales', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->integer('move_type_id');
+            $table->integer('area_id');
             $table->string('vehicle_description');
             $table->string('helper_description');
             $table->double('init_price');

@@ -10,6 +10,7 @@ return [
     'standard'          => 'Standard',
     'move_types'        => 'Move Types',
     'vehicles'          => 'Vehicles',
+    'scales'            => 'Scales',
     'booking_list'      => 'Booking List',
 
     'title'             => 'Title',
@@ -18,16 +19,20 @@ return [
     'phone'             => 'Phone',
     'address'           => 'Address',
     'website'           => 'Website',
-  
+
     'bonuses'           => 'Bonuses',
     'bonus_list'        => 'Bonus List',
     'add_a_bonus'       => 'Add a Bonus',
     'edit_a_bonus'      => 'Edit a Bonus',
-    
+
     'move_type'         => 'Move Type',
     'price'             => 'Price',
     'start_date'        => 'Start Date',
     'end_date'          => 'End Date',
+
+    'prices_for_distance'   => 'Prices For Distance',
+    'prices_for_item'       => 'Prices For Item',
+    'prices_for_floor'      => 'Prices For Floor',
 
     'move_type_list'    => 'Move Type List',
     'add_a_move_type'   => 'Add a Move Type',
@@ -36,7 +41,7 @@ return [
     'name'              => 'Name',
     'area'              => 'Area',
     'areas'             => 'Areas',
-    
+
     'add'               => 'Add',
     'edit'              => 'Edit',
     'delete'            => 'Delete',
@@ -57,16 +62,20 @@ return [
 
     'role'              => 'Role',
 
-    'vehicles'          => 'Vehicles',
     'vehicle_list'      => 'Vehicle List',
     'add_a_vehicle'     => 'Add a Vehicle',
     'edit_a_vehicle'    => 'Edit a Vehicle',
+
+
+    'scale_list'        => 'Scale List',
+    'add_a_scale'       => 'Add a Scale',
+    'edit_a_scale'      => 'Edit a Scale',
 
     'size'              => 'Size',
     'load_weight'       => 'Load Weight',
     'volume'            => 'Volume',
     'description'       => 'Description',
-    
+
     'china'             => 'China',
 
     'add_an_area'       => 'Add an area',
@@ -75,8 +84,14 @@ return [
     'zip_code'          => 'Zip Code',
     'area_list'         => 'Area List',
 
-    'available_items'    => 'Available Baggages',
-    'unavailable_items'  => 'Unavailable Baggages',
+    'init_price'                    => 'Init Price',
+    'init_price_for_items'          => 'Init Price For Items',
+    'price_per_floor'               => 'Price / Floor',
+    'price_per_big_item'            => 'Price / Big Item',
+    'price_per_floor_for_big_item'  => 'Price / Floor / Big Item',
+
+    'available_items'    => 'Available Baggage',
+    'unavailable_items'  => 'Unavailable Baggage',
 
     'vehicle_thumbnail' => 'Vehicle Thumbnail',
     'baggage_thumbnail' => 'Baggage Thumbnail',
@@ -85,12 +100,12 @@ return [
     'photo_half_side'   => 'Photo (Half-Side)',
     'thumbnail'         => 'Thumbnail',
 
-    
-    // phs definiton
-    'esay_move'         => 'Easy Move',
+
+    // phs definition
+    'easy_move'         => 'Easy Move',
     'safe_move'         => 'Safe Move',
     'standard_costs'    => 'Normal Costs',
-    'easy_moving_notes' => 'Choose a moving type and move now.', 
+    'easy_moving_notes' => 'Choose a moving type and move now.',
     'more_button'       => 'More',
     'detail_button'     => 'Details',
     'car_tips'          => 'Car Tips',
@@ -99,7 +114,7 @@ return [
     'basic_service'     => 'Basic Services',
     'select_model'      => 'Selected Model',
     'option_service'    => 'Need to carry service',
-    'moving_info'       => 'Moving Infomation',
+    'moving_info'       => 'Moving Information',
     'moving_location'    => 'Where are you from moving?',
     'moving_destination' => 'Where are you moving?',
     'moving_time'       => 'Time',
@@ -113,10 +128,12 @@ return [
     'note_detail'   => 'If high-speed fees and parking fees are incurred, please pay extra.',
     'note_link'     => 'Terms and police',
     'preview'     => 'Preview',
-    'reservation_btn' => 'Resevation',
+    'reservation_btn' => 'Reservation',
     'select_car' => 'Select Truck',
 
 
+    'from'              => 'From',
+    'to'                => 'To',
 
     'prices_standard'   => 'Prices Standard',
     'add_a_price'       => 'Add a Price',
@@ -134,7 +151,12 @@ return [
 
     'init_distance'     => 'Init Distance',
     'init_cost'         => 'Init Cost',
-    
+
     'action'            => 'Action',
 
+    'vehicle'           => 'Vehicle',
+    'helpers'           => 'Helpers',
+
+    'vehicle_photo'     => 'Vehicle Photo',
+    'helper_photo'      => 'Helper Photo',
 ];

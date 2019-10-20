@@ -37,10 +37,30 @@
                 </div>
             </div>
             <div>
-                <label class="p-t-10">Price Standards For Distance</label>
+                <label class="group-title">{{ __('string.prices_for_distance') }}</label>
                 <a href="#" class="btn btn-info add-price float-right w-30">+</a>
             </div>
             <div class="price-group m-t-10">
+            </div>
+
+            <div class="m-t-10">
+                <label class="group-title">{{ __('string.prices_for_item') }}</label>
+                <div class="mv-row">
+                    <div class="mv-col">
+                        {!! Form::inputGroup('init_price_for_items', __('string.init_price'), null, 'number') !!}
+                    </div>
+                    <div class="mv-col">
+                        {!! Form::inputGroup('price_per_floor', __('string.price_per_floor'), null, 'number') !!}
+                    </div>
+                </div>
+                <div class="mv-row">
+                    <div class="mv-col">
+                        {!! Form::inputGroup('price_per_big_item', __('string.price_per_big_item'), null, 'number') !!}
+                    </div>
+                    <div class="mv-col">
+                        {!! Form::inputGroup('price_per_floor_for_big_item', __('string.price_per_floor_for_big_item'), null, 'number') !!}
+                    </div>
+                </div>
             </div>
 
             {!! Form::inputGroup('description', __('string.description'), null, 'textarea') !!}
@@ -80,24 +100,24 @@
 @section('scripts')
     <script>
         $('.add-price').on('click', function() {
-            var plus_costs =
+            let priceGroup =
             '<div class="form-group">' +
                 '<div class="mv-row">' +
                     '<div class="mv-col">' +
-                        '{!! Form::number("distance_from[]", null, ["class" => "form-control", "placeholder" => "Distance From"]) !!}' +
+                        '{!! Form::number("distance_from[]", null, ["class" => "form-control", "placeholder" => __('string.from')]) !!}' +
                     '</div>' +
                     '<div class="mv-col">' +
-                        '{!! Form::number("distance_to[]", null, ["class" => "form-control", "placeholder" => "Distance To"]) !!}' +
+                        '{!! Form::number("distance_to[]", null, ["class" => "form-control", "placeholder" => __('string.to')]) !!}' +
                     '</div>' +
                     '<div class="mv-col">' +
-                        '{!! Form::number("amount[]", null, ["class" => "form-control", "placeholder" => "Cost"]) !!}' +
+                        '{!! Form::number("amount[]", null, ["class" => "form-control", "placeholder" => __('string.price')]) !!}' +
                     '</div>' +
                     '<div class="mv-col w-30">' +
                         '<a href="#" class="btn btn-danger delete-price w-30">-</a>' +
                     '</div>' +
                 '</div>' +
             '</div>';
-            $('.price-group').append(plus_costs);
+            $('.price-group').append(priceGroup);
         });
 
         $('.price-group').on('click', '.delete-price', function() {
