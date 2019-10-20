@@ -64,7 +64,7 @@
     <div class="wrapper">
           <nav class="tabs">
             <div class="selector"></div>
-            {!! link_to('easy-move', __('string.esay_move'), $attributes = ['class'=>'active'], $secure = null) !!}
+            {!! link_to('easy-move', __('string.easy_move'), $attributes = ['class'=>'active'], $secure = null) !!}
             {!! link_to('safe-move', __('string.safe_move'), $attributes = [], $secure = null) !!}
             {!! link_to('standard-costs', __('string.standard_costs'), $attributes = [], $secure = null) !!}
           </nav>
@@ -80,22 +80,25 @@
     <section class="featured-properties-area section-padding-10-50">
             <div class="container">
                 <div class="row">
-                @foreach($vehicles as $indexKey => $value) <!-- Gettig vehicles info -->
+                @foreach($vehicles as $indexKey => $value) <!-- Getting vehicles info -->
                     <div class="col-12 col-lg-6" style="margin-bottom: -30px">
                         <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="200ms">
                             <div class="property-content">
-                            <p class="location" id = "moveType">
-                            {!! Html::image($value->vehicle_thumb) !!} {{$value->name}}</p><span>$50</span>
                                 <div class="row">
-                                    <div class="col-8 more-btn">
-                                        <p>{{$value->description}}</p>
+                                    <div class="col-1" style="padding: unset;margin-right: 10px;">
+                                        <p class="location" id = "moveType">
+                                            {!! Html::image('storage/' . $value->vehicle_thumb, null, ['style'=>'width:30px;height:30px;']) !!} </p>
+                                    </div>
+                                    <div class="col-7 more-btn">
+                                        <p class="vehicle-name">{{$value->name}}</p>
+                                        <span>{{__('string.format_price')}}{{$value->init_price_for_items}}</span>
+                                        <p class="vehicle-description">{{$value->description}}</p>
                                         <!-- easy to move modal details button -->
                                         <button id = "vBtn{{$indexKey}}" class = "btn btn-link btn-sm" data-toggle = "modal" data-target = "#vehiclesModal">{{__('string.more_button')}}</button>
                                     </div>
-                                    <div class="col-4">
-                                       {!! Html::image($value->baggage_thumb) !!}
-                                       <!-- {!! Form::submit(__('string.detail_button'),['class' =>'','id' => '']) !!} -->
-                                       <button type="button" class="btn south-btn" onclick = easymove_details({{$value->id}})>
+                                    <div class="col-3" style="padding: unset;margin-left: auto;margin-right: auto;">
+                                       {!! Html::image('storage/'.$value->baggage_thumb,null, ['style'=>'width:78px;height:78px;']) !!}
+                                       <button type="button" class="btn south-btn" onclick = easyMoveDetails({{$value->id}})>
                                          {{__('string.detail_button')}}
                                        </button>
                                        <input type="hidden" id="detailsBtn{{$value->id}}" value="{{$value->id}}">
@@ -225,7 +228,7 @@
     });
   });
 
-   function easymove_details(id)
+   function easyMoveDetails(id)
    {
       let vehicleIds = $('#detailsBtn'+id).val();
       window.location.href = "easymove_detail/" + vehicleIds;
