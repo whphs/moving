@@ -45,7 +45,6 @@ return array(
     'App\\Models\\DistancePrice' => $baseDir . '/app/Models/DistancePrice.php',
     'App\\Models\\FloorPrice' => $baseDir . '/app/Models/FloorPrice.php',
     'App\\Models\\MoveType' => $baseDir . '/app/Models/MoveType.php',
-    'App\\Models\\PlusCost' => $baseDir . '/app/Models/PlusCost.php',
     'App\\Models\\Scale' => $baseDir . '/app/Models/Scale.php',
     'App\\Models\\Standard' => $baseDir . '/app/Models/Standard.php',
     'App\\Models\\Vehicle' => $baseDir . '/app/Models/Vehicle.php',

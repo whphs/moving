@@ -7,7 +7,7 @@ header {
 	background-color: #947054;
 	z-index: 20;
   }
-  
+
    body {
 	/*padding-top: 3em;*/
   }
@@ -17,13 +17,13 @@ header {
 	background-color: #947054;
 	/*box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);*/
   }
-  
+
   header {
 	box-sizing: border-box;
 	/*padding: 1em;*/
 	transition: background-color .25s;
   }
-  
+
   main {
 	/*padding: 0 1em;*/
 	font-size: 14px;
@@ -31,7 +31,7 @@ header {
   padding-top: 8px;
 
   }
-  
+
   /*easy move*/
   .icon{
 	  background-color: #ffffff;
@@ -52,16 +52,11 @@ header {
   .number a{
 	  color: white;
   }
-  
+
   #moveType{
 	  display: inline-block;;
   }
-  .property-content span{
-	  color: red;
-	  font-weight: bold;
-	  margin-left: 20px;
-	  font-size: 20px;
-  }
+
   .col-8,.col-4{
 	  padding: unset;
   }
@@ -73,15 +68,15 @@ header {
 	  padding: unset;
   }
   .col-4 img{
-	   margin-left: auto; 
+	   margin-left: auto;
 	   margin-right: auto;
 	   display: block;
   }
   /*align center of cols*/
-  .col-4 button{ 
+  .col-4 button{
 	  display: block;
 	  margin-left: auto;
-	  margin-right: auto;	
+	  margin-right: auto;
 	  margin-top: 23px;
 	  box-shadow: -1px 3px 7px 0px #e1dddd;
 	  z-index: 0;
@@ -103,10 +98,10 @@ header {
 	 box-shadow: -1px 3px 7px 0px #00000082;
 	 display: block;
 	 margin-left: auto!important;
-	 margin-right: auto!important;	
-  
+	 margin-right: auto!important;
+
   }
-  
+
   /*details*/
   .card-header{
 	  font-weight: bold;
@@ -129,7 +124,7 @@ header {
   }
   #phoneNum{
 	  display: inline-flex;
-	  width: 170px;    
+	  width: 170px;
 	  margin-bottom: 0px;
 	  border:unset;
   }
@@ -151,7 +146,7 @@ header {
   #orderNote{
 	  border: unset;
   }
-  
+
   .truck-des h6{
 	  font-weight: bold;
 	  color: #000000d9;
@@ -200,7 +195,7 @@ header {
    	margin-bottom: 0px;
    	color:#ef6774;
    	line-height: normal;
-  
+
   }
   .footer-price p span{
   	/*text-decoration: line-through;*/
@@ -221,8 +216,39 @@ header {
   	min-height: 33px;
   }
   .south-btn{
-    z-index: 0;
+      z-index: 0;
+      bottom: -8px;
+      max-width: 200px;
+      min-width: 75px;
+      width: inherit;
   }
 .south-contact-area{
   padding-top:3em;
 }
+.vehicle-name{
+    font-size: 16px;
+    font-width: bold;
+    display: inline-block;
+    margin-bottom: 0px;
+    color:#0b0b0b;
+}
+.property-content span{
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+.more-btn{
+    padding: unset;
+}
+.more-btn button{
+    padding-left: 0px;
+    position: absolute;
+    bottom: -10px;
+}
+.vehicle-description{
+    margin-bottom: 0px;
+    line-height:1.5;
+    font-weight: initial;
+}
+
+

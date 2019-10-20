@@ -130,6 +130,7 @@ return [
     'preview'     => 'Preview',
     'reservation_btn' => 'Reservation',
     'select_car' => 'Select Truck',
+    'format_price' => '$',
 
 
     'from'              => 'From',
