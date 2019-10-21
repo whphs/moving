@@ -15,11 +15,11 @@
                                         <p class="vehicle-description">{{ $scale->vehicle_description }}</p>
                                         <p class="vehicle-description">{{ $scale->helper_description }}</p>
                                         <!-- safe to move modal details button -->
-                                        <button class="btn btn-link btn-sm" style="bottom: 1px;" onclick="safeMoveMore({{ $scale->id }});">{{ __('string.more_button') }}</button>
+                                        <button class="btn btn-link btn-sm" style="bottom: -5px;" onclick="safeMoveMore({{ $scale->id }});">{{ __('string.more_button') }}</button>
                                     </div>
                                     <div class="col-4" style="padding: unset; margin-left: auto; margin-right: auto;">
-                                        {!! Html::image('storage/'.$scale->vehicle_photo, null, ['style'=>'width:90px; height:80px;']) !!}
-                                        <button type="button" class="btn south-btn" onclick="safeMoveDetail({{ $scale->id }});">{{ __('string.detail_button') }}</button>
+                                        {!! Html::image('storage/'.$scale->vehicle_photo, null, ['style'=>'width:105px; height:105px;']) !!}
+                                        <button type="button" class="btn south-btn safe-move-detail" onclick="safeMoveDetail({{ $scale->id }});">{{ __('string.detail_button') }}</button>
                                     </div>
                                 </div>
                             </div>

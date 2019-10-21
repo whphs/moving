@@ -5,10 +5,10 @@
     <header>
       <div class="phone-number d-flex">
           <div class = "icon">
-              {!! Html::image('frontend/assets/south/img/icons/house1.png') !!}
+              {!! Html::image('frontend/assets/img/icons/house1.png') !!}
           </div>
           <div class="icon">
-              {!! Html::image('frontend/assets/south/img/icons/flat.png',null,['id'=>'userCenter']) !!}
+              {!! Html::image('frontend/assets/img/icons/flat.png',null,['id'=>'userCenter']) !!}
           </div>
           <div class="number">
               {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
@@ -19,7 +19,7 @@
     <section class="hero-area">
         <div class="hero-slides owl-carousel">
             <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url({{ URL::asset('frontend/assets/south/img/bg-img/hero1.jpg') }});">
+            <div class="single-hero-slide bg-img" style="background-image: url({{ URL::asset('frontend/assets/img/bg-img/hero1.jpg') }});">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url({{ URL::asset('frontend/assets/south/img/bg-img/hero2.jpg') }});">
+            <div class="single-hero-slide bg-img" style="background-image: url({{ URL::asset('frontend/assets/img/bg-img/hero2.jpg') }});">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url({{ URL::asset('frontend/assets/south/img/bg-img/hero3.jpg') }});">
+            <div class="single-hero-slide bg-img" style="background-image: url({{ URL::asset('frontend/assets/img/bg-img/hero3.jpg') }});">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
@@ -157,13 +157,13 @@
                       </div>
 
                       <!-- Left and right controls -->
-
-                      <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                      </a>
                        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
                            <span class="carousel-control-prev-icon"></span>
                        </a>
+                       <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                       </a>
+
                     </div>
                      <!-- Truck description -->
                     <div class="row">
@@ -202,8 +202,6 @@
     @endcomponent
 @endsection
 @section('scripts')
- {!! Html::script('frontend/assets/south/js/jquery-mobile.js') !!}
- {!! Html::script('frontend/assets/south/js/custom-swipe.js') !!}
 <script type="text/javascript">
   $(document).ready(function(){
     let selectedId = 0;
