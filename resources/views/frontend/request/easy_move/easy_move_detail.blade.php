@@ -3,10 +3,10 @@
 @section('content')
     <header>
       <div class="header-img">
-          {!! Html::image('frontend/assets/south/img/icons/house1.png') !!}
+          {!! Html::image('frontend/assets/img/icons/house1.png') !!}
       </div>
       <div class = "header-img" style="position: relative;left: -4px;">
-          {!! Html::image('frontend/assets/south/img/icons/phone-call.png') !!}
+          {!! Html::image('frontend/assets/img/icons/phone-call.png') !!}
       </div>
     </header>
     <main>
@@ -54,7 +54,7 @@
                 </ul>
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                  {!! Html::image("frontend/assets/south/img/icons/garage.png") !!}
+                  {!! Html::image("frontend/assets/img/icons/garage.png") !!}
                   {{__('string.moving_time')}}
                 <p class="detail" id="myTimeBtn">
                 {{__('string.set_time')}}</p>
@@ -197,20 +197,19 @@
                         <li data-target="#myCarousel" data-slide-to="1"></li>
                         <li data-target="#myCarousel" data-slide-to="2"></li>
                       </ul>
-
                     <!-- The slideshow -->
                       <div class="carousel-inner">
                         <div class="carousel-item active">
 
-                          {!! Html::image($vehicle->photo_0,'front truck',['width'=>'1920', 'height' => '200']) !!}
+                          {!! Html::image('storage/'.$vehicle->photo_0,'front truck',['class'=>'easyMoveSlider']) !!}
                         </div>
                         <div class="carousel-item">
 
-                          {!! Html::image($vehicle->photo_1,'middle truck',['width'=>'1920', 'height' => '200']) !!}
+                          {!! Html::image('storage/'.$vehicle->photo_1,'middle truck',['class'=>'easyMoveSlider']) !!}
                         </div>
                         <div class="carousel-item">
 
-                          {!! Html::image($vehicle->photo_2,'back truck',['width'=>'1920', 'height' => '500']) !!}
+                          {!! Html::image('storage/'.$vehicle->photo_2,'back truck',['class'=>'easyMoveSlider']) !!}
                         </div>
                       </div>
 
@@ -222,7 +221,7 @@
                         <span class="carousel-control-next-icon"></span>
                       </a>
                     </div>
-                     <!-- Truck descrition -->
+                     <!-- Truck description -->
                     <div class="row">
                       <div class="col-12 truck-des">
                         <h6>{{__('string.car_tips')}}</h6>
@@ -255,7 +254,7 @@
 @endsection
 
 @section('scripts')
-    {!! Html::script('frontend/assets/south/js/custom-modal.js') !!}
+    {!! Html::script('frontend/assets/js/custom-modal.js') !!}
     <script type="text/javascript">
       $(document).ready(function(){
         var selectedId = 0;

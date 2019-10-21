@@ -16,7 +16,7 @@ $(document).ready(function(){
         threshold: 0,
         tap: function(event, target) {
 
-            window.location = $(this).find('.carousel-item.active a').attr('href');
+            // window.location = $(this).find('.carousel-item.active a').attr('href');
         },
 
         excludedElements:"label, button, input, select, textarea, .noSwipe"

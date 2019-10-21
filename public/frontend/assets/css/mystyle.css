@@ -1,3 +1,4 @@
+
 .hero_area{
 
 }
@@ -221,6 +222,14 @@ header {
   .easy-move-detail{
       z-index: 0;
       bottom: -8px;
+      max-width: 200px;
+      min-width: 75px;
+      width: inherit;
+  }
+  .safe-move-detail{
+      z-index: 0;
+      bottom: -8px;
+      margin-top: 0px!important;
       max-width: 200px;
       min-width: 75px;
       width: inherit;
