@@ -10,8 +10,8 @@
 
     <title>@yield('title')</title>
 
-    {!! Html::style('frontend/assets/css/style.css') !!}
-    
+    {!! Html::style('frontend/assets/css/custom.css') !!}
+
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     {!! Html::style('frontend/assets/plugins/font-awesome/css/font-awesome.min.css') !!}
     {!! Html::style('frontend/assets/plugins/bootstrap/css/bootstrap.min.css') !!}
@@ -19,8 +19,8 @@
 
     <!-- BEGIN PAGE LEVEL STYLES -->
     {!! Html::style('frontend/assets/css/profile.css') !!}
-    {!! Html::style('frontend/assets/css/components.css') !!} 
-    {!! Html::style('frontend/assets/css/swiper.min.css') !!} 
+    {!! Html::style('frontend/assets/css/components.css') !!}
+    {!! Html::style('frontend/assets/css/swiper.min.css') !!}
 
 </head>
 

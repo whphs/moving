@@ -230,11 +230,12 @@
     });
   });
 
-   function easyMoveDetails(id)
-   {
-      let vehicleIds = $('#detailsBtn'+id).val();
-      window.location.href = "easymove_detail/" + vehicleIds;
-   }
+  function easyMoveDetails(id)
+  {
+    let vehicleIds = $('#detailsBtn'+id).val();
+    window.location.href = "easy_move_detail/" + vehicleIds;
+  }
+
   $("#myCarousel").swipe( {
       swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
 
