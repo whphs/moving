@@ -13,6 +13,7 @@
     <link rel="icon" href="frontend/assets/south/img/core-img/favicon.ico">
 
     <!-- Style CSS -->
+    {!! Html::style('css/app.css') !!}
     {!! Html::style('frontend/assets/south/style.css') !!}
     {!! Html::style('frontend/assets/south/css/bootstrap-datepicker.standalone.min.css') !!}
     {!! Html::style('frontend/assets/south/css/custom-modal.css') !!}
@@ -42,7 +43,6 @@
     {!! Html::script('frontend/assets/south/js/classy-nav.min.js') !!}
     {!! Html::script('frontend/assets/south/js/jquery-ui.min.js') !!}
     <!-- Custom js -->
-    <!-- {!! Html::script('frontend/assets/south/js/custom-modal.js') !!}  -->
     {!! Html::script('frontend/assets/south/js/mytabs.js') !!}
     <!-- Active js -->
     {!! Html::script('frontend/assets/south/js/active.js') !!}
