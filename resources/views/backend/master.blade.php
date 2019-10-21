@@ -6,6 +6,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>
         @yield('title')
@@ -15,8 +16,10 @@
     {!! Html::style('//fonts.googleapis.com/css?family=Montserrat:400,700,200') !!}
     {!! Html::style('//use.fontawesome.com/releases/v5.7.1/css/all.css') !!}
     <!-- CSS Files -->
-    {!! Html::style('backend/assets/css/bootstrap.min.css') !!}
-    {!! Html::style('backend/assets/css/global.css') !!}
+{{--    {!! Html::style('backend/assets/css/bootstrap.min.css') !!}--}}
+    {!! Html::style('css/app.css') !!}
+    {!! Html::style('css/style.css') !!}
+    {!! Html::style('backend/assets/css/backend.css') !!}
     {!! Html::style('backend/assets/css/now-ui-dashboard.css?v=1.3.0') !!}
     <!-- CSS Just for demo purpose, don't include it in your project -->
     {!! Html::style('backend/assets/demo/demo.css') !!}
@@ -150,17 +153,15 @@
         </footer>
     </div>
 </div>
+
+{!! Html::script('js/app.js') !!}
 <!--   Core JS Files   -->
-{!! Html::script('backend/assets/js/core/jquery.min.js') !!}
-{!! Html::script('backend/assets/js/core/popper.min.js') !!}
-{!! Html::script('backend/assets/js/core/bootstrap.min.js') !!}
 {!! Html::script('backend/assets/js/plugins/perfect-scrollbar.jquery.min.js') !!}
 <!--  Google Maps Plugin    -->
-{!! Html::script('//maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE') !!}
+{{--{!! Html::script('//maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE') !!}--}}
 <!-- Chart JS -->
 {!! Html::script('backend/assets/js/plugins/chartjs.min.js') !!}
 <!--  Notifications Plugin    -->
-{!! Html::script('backend/assets/js/plugins/bootstrap-notify.js') !!}
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 {!! Html::script('backend/assets/js/now-ui-dashboard.min.js?v=1.3.0') !!}
 <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->

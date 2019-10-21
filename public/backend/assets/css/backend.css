@@ -1,0 +1,90 @@
+
+.mv-table {
+    width: 100%;
+}
+.mv-table > thead > tr > th,
+.mv-table > tbody > tr > th,
+.mv-table > tfoot > tr > th,
+.mv-table > thead > tr > td,
+.mv-table > tbody > tr > td,
+.mv-table > tfoot > tr > td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.mv-table > thead > tr > th:first-child {
+    border-top-left-radius: 4px;
+}
+.mv-table > thead > tr > th:last-child {
+    border-top-right-radius: 4px;
+}
+.mv-table > thead > tr > th {
+    background: #2a5687;
+    font-size: 1.2em;
+    font-weight: 300;
+    color: white;
+}
+
+.mv-table > tbody > tr:nth-child(even) {
+    background: #eee;
+}
+a.btn, button.btn, input.btn {
+    padding: 7px 10px !important;
+    margin: 2px 1px !important;
+    font-size: 14px;
+    font-weight: 300;
+}
+a.btn.small, button.btn.small, input.btn.small {
+    font-size: 12px;
+    padding: 5px 8px !important;
+}
+.card-header > .title {
+    margin-top: 10px;
+    font-size: 1.7em;
+    font-weight: 400;
+}
+.card-header > .action {
+    float: right;
+}
+.mv-row {
+    display: table;
+    width: 100%;
+}
+
+.mv-col {
+    padding: 0 5px;
+    display: table-cell;
+}
+
+.mv-row .mv-col:first-child {
+    padding-left: 0;
+}
+.mv-row .mv-col:last-child {
+    padding-right: 0;
+}
+
+.form-control {
+    border-radius: .25rem !important;
+}
+.form-group .form-control, .input-group .form-control {
+    padding: 10px 8px !important;
+    border: 1px solid #ccc !important;
+}
+.form-group .form-control:focus, .input-group .form-control:focus {
+    border: 1px solid #f96332 !important;
+}
+
+input.form-control {
+    height: 39px !important;
+}
+
+.card label {
+    color: #666 !important;
+}
+
+label.group-title {
+    padding-top: 10px;
+    text-decoration-line: underline;
+    font-size: 14px !important;
+    color: #222 !important;
+}
