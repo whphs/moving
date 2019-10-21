@@ -12,7 +12,8 @@
                                     <div class="col-8 more-btn">
                                         <p class="vehicle-name">{{ $scale->name }}</p>
                                         <span>{{ __('string.format_price') }}{{ $scale->init_price }}</span>
-                                        <p class="vehicle-description">{{ $scale->description }}</p>
+                                        <p class="vehicle-description">{{ $scale->vehicle_description }}</p>
+                                        <p class="vehicle-description">{{ $scale->helper_description }}</p>
                                         <!-- safe to move modal details button -->
                                         <button class="btn btn-link btn-sm" style="bottom: 1px;" onclick="safeMoveMore({{ $scale->id }});">{{ __('string.more_button') }}</button>
                                     </div>
