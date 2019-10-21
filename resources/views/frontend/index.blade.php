@@ -8,10 +8,7 @@
               {!! Html::image('frontend/assets/south/img/icons/house1.png') !!}
           </div>
           <div class="icon">
-              {!! Html::image('frontend/assets/south/img/icons/flat.png') !!}
-          </div>
-          <div class="icon">
-              {!! link_to('user_center', $title = 'user') !!}
+              {!! Html::image('frontend/assets/south/img/icons/flat.png',null,['id'=>'userCenter']) !!}
           </div>
           <div class="number">
               {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
@@ -66,7 +63,7 @@
             <div class="selector"></div>
             {!! link_to('easy-move', __('string.easy_move'), $attributes = ['class'=>'active'], $secure = null) !!}
             {!! link_to('safe-move', __('string.safe_move'), $attributes = [], $secure = null) !!}
-            {!! link_to('standard-costs', __('string.standard_costs'), $attributes = [], $secure = null) !!}
+            {!! link_to('standard-costs', __('string.prices'), $attributes = [], $secure = null) !!}
           </nav>
     </div>
     <!-- Tabs Area end -->
@@ -98,7 +95,7 @@
                                     </div>
                                     <div class="col-3" style="padding: unset;margin-left: auto;margin-right: auto;">
                                        {!! Html::image('storage/'.$value->baggage_thumb,null, ['style'=>'width:78px;height:78px;']) !!}
-                                       <button type="button" class="btn south-btn" onclick = easyMoveDetails({{$value->id}})>
+                                       <button type="button" class="btn south-btn easy-move-detail" onclick = easyMoveDetails({{$value->id}})>
                                          {{__('string.detail_button')}}
                                        </button>
                                        <input type="hidden" id="detailsBtn{{$value->id}}" value="{{$value->id}}">
@@ -135,7 +132,7 @@
             <div class="tab-content">
                @foreach($vehicles as $index => $vehicle)
                 <div class="tab-pane fade" id="vehicle{{$index}}">
-                   <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                   <div id="myCarousel" class="carousel slide" data-ride="carousel" data-touch="true">
                       <!-- Indicators -->
                       <ul class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -147,15 +144,15 @@
                       <div class="carousel-inner">
                         <div class="carousel-item active">
 
-                          {!! Html::image($vehicle->photo_0,'fornt truck',['width'=>'1920', 'height' => '200']) !!}
+                          {!! Html::image('storage/'.$vehicle->photo_0,'front truck',['class'=>'easyMoveSlider']) !!}
                         </div>
                         <div class="carousel-item">
 
-                          {!! Html::image($vehicle->photo_1,'middle truck',['width'=>'1920', 'height' => '200']) !!}
+                          {!! Html::image('storage/'.$vehicle->photo_1,'middle truck',['class'=>'easyMoveSlider']) !!}
                         </div>
                         <div class="carousel-item">
 
-                          {!! Html::image($vehicle->photo_2,'back truck',['width'=>'1920', 'height' => '500']) !!}
+                          {!! Html::image('storage/'.$vehicle->photo_2,'back truck',['class'=>'easyMoveSlider']) !!}
                         </div>
                       </div>
 
@@ -167,7 +164,7 @@
                         <span class="carousel-control-next-icon"></span>
                       </a>
                     </div>
-                     <!-- Truck descrition -->
+                     <!-- Truck description -->
                     <div class="row">
                       <div class="col-12 truck-des">
                         <h6>{{__('string.car_tips')}}</h6>
@@ -204,23 +201,28 @@
     @endcomponent
 @endsection
 @section('scripts')
+  {!! Html::script('frontend/assets/css/swiper.min.css') !!}
+  {!! Html::script('frontend/assets/js/swiper.min.js') !!}
+
 <script type="text/javascript">
   $(document).ready(function(){
-    var selectedId = 0;
-
+    let selectedId = 0;
+    $('#userCenter').click(function () {
+        window.location.href = "user_center";
+    });
     $("#orderBtn").click(function(){
         let vehicleId = $('#vehicleId'+selectedId).val();
         window.location.href = "easymove_detail/" + vehicleId;
     });
     $('.more-btn').on('click', 'button', function() {
-      var moreBtnIndex = $(this)[0].id.substring(4, 5);//get id
+      let moreBtnIndex = $(this)[0].id.substring(4, 5);//get id
       selectedId = moreBtnIndex;
       $('.tab-pane').removeClass('show active');
       $('#vehicle'+moreBtnIndex).addClass('show active');
     });
 
     $('.modal-header').on('click', 'li', function() {
-      var index = $(this)[0].id.substring(2, 3);//get id
+      let index = $(this)[0].id.substring(2, 3);//get id
       selectedId = index;
 
       $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
@@ -233,5 +235,17 @@
       let vehicleIds = $('#detailsBtn'+id).val();
       window.location.href = "easymove_detail/" + vehicleIds;
    }
+  $("#myCarousel").swipe( {
+      swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+
+          if(direction=='left'){
+              $(this).carousel('next');
+          }else if(direction=='right'){
+              $(this).carousel('prev');
+          }
+
+      }
+  });
+
 </script>
 @endsection
