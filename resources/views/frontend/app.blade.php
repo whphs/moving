@@ -31,6 +31,7 @@
 </body>
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     {!! Html::script('frontend/assets/south/js/jquery/jquery-2.2.4.min.js') !!}
+
     <!-- Popper js -->
     {!! Html::script('frontend/assets/south/js/popper.min.js') !!}
     <!-- Bootstrap js -->
