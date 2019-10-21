@@ -104,7 +104,7 @@ return [
     // phs definition
     'easy_move'         => 'Easy Move',
     'safe_move'         => 'Safe Move',
-    'standard_costs'    => 'Normal Costs',
+//    'standard_costs'    => 'Prices',
     'easy_moving_notes' => 'Choose a moving type and move now.',
     'more_button'       => 'More',
     'detail_button'     => 'Details',

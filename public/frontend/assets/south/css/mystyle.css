@@ -217,11 +217,15 @@ header {
   }
   .south-btn{
       z-index: 0;
+  }
+  .easy-move-detail{
+      z-index: 0;
       bottom: -8px;
       max-width: 200px;
       min-width: 75px;
       width: inherit;
   }
+
 .south-contact-area{
   padding-top:3em;
 }
@@ -250,5 +254,12 @@ header {
     line-height:1.5;
     font-weight: initial;
 }
+.easyMoveSlider{
+    width:100%;
+    max-width:1920px;
+    min-width:285px;
+    height:160px;
+}
+
 
 
