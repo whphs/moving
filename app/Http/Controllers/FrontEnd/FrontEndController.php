@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Models\Area;
 use App\Models\Bonus;
 use App\Models\AboutUs;
+use App\Models\Booking;
 use App\Models\Scale;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
@@ -26,12 +27,21 @@ class FrontEndController extends Controller
         return view('frontend.index', compact('areas', 'vehicles', 'scales'));
     }
 
-    public function easyMoveDetail($vehicleId)
-    {
+    public function easyMoveDetail($id) {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
-        $selectedVehicle = Vehicle::find($vehicleId);
+        $selectedVehicle = Vehicle::find($id);
 
         return view('frontend.easy_move_detail',compact('vehicles','selectedVehicle'));
+    }
+
+    public function safeMoveMore($id) {
+        $scale = Scale::find($id);
+        return view('frontend.request.safe_move.more', compact('scale'));
+    }
+
+    public function safeMoveDetail($id) {
+        $scale = Scale::find($id);
+        return view('frontend.request.safe_move.detail', compact('scale'));
     }
 
     public function vehiclesWithParams($areaId) {
@@ -43,12 +53,12 @@ class FrontEndController extends Controller
     }
 
     public function bookings() {
-        return view('frontend.user_center.bookings');
+        $bookings = Booking::all();
+        return view('frontend.user_center.bookings', compact('bookings'));
     }
 
     public function vehicleStandards() {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
-
         return view('frontend.user_center.setting.standards', compact('vehicles'));
     }
 

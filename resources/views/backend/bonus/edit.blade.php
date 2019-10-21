@@ -1,4 +1,4 @@
-@extends('backend.master')
+@extends('backend.layout')
 
 @section('title')
     {{ __('string.bonuses') }}
@@ -21,6 +21,7 @@
             {!! Form::inputGroup('price', __('string.price'), $bonus->price) !!}
             {!! Form::inputGroup('start_date', __('string.start_date'), $bonus->start_date, 'date') !!}
             {!! Form::inputGroup('end_date', __('string.end_date'), $bonus->end_date, 'date') !!}
+            {!! Form::inputGroup('description', __('string.description'), $bonus->description) !!}
             {!! Form::submit(__('string.save'), ['class' => 'btn btn-primary']) !!}
             {!! link_to('admin/bonus', __('string.cancel'), ['class' => 'btn btn-cancel']) !!}
         {!! Form:: close() !!}

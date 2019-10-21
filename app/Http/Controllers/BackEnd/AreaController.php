@@ -45,17 +45,6 @@ class AreaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -99,7 +88,7 @@ class AreaController extends Controller
 
     /**
      * Save the data to database
-     * 
+     *
      * @param App\Models\Area $area
      * @param \Illuminate\Http\Request  $request
      * @return void

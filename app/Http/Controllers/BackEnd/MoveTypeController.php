@@ -44,19 +44,7 @@ class MoveTypeController extends Controller
     {
         //
         $this->saveMoveType(new MoveType, $request);
-
         return redirect('admin/move_type')->with('status', __('string.created_success'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -104,7 +92,7 @@ class MoveTypeController extends Controller
 
     /**
      * Save the data to database
-     * 
+     *
      * @param App\Models\MoveType $moveType
      * @param \Illuminate\Http\Request  $request
      * @return void

@@ -160,4 +160,9 @@ return [
 
     'vehicle_photo'     => 'Vehicle Photo',
     'helper_photo'      => 'Helper Photo',
+
+    'bookings'          => 'Bookings',
+    'user'              => 'User',
+    'booking_detail'    => 'Booking Detail',
+
 ];
