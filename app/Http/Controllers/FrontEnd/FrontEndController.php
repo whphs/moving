@@ -27,12 +27,21 @@ class FrontEndController extends Controller
         return view('frontend.index', compact('areas', 'vehicles', 'scales'));
     }
 
-    public function easyMoveDetail($vehicleId)
-    {
+    public function easyMoveDetail($id) {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
-        $selectedVehicle = Vehicle::find($vehicleId);
+        $selectedVehicle = Vehicle::find($id);
 
         return view('frontend.easy_move_detail',compact('vehicles','selectedVehicle'));
+    }
+
+    public function safeMoveMore($id) {
+        $scale = Scale::find($id);
+        return view('frontend.request.safe_move.more', compact('scale'));
+    }
+
+    public function safeMoveDetail($id) {
+        $scale = Scale::find($id);
+        return view('frontend.request.safe_move.detail', compact('scale'));
     }
 
     public function vehiclesWithParams($areaId) {

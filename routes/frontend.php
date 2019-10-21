@@ -2,13 +2,11 @@
 
 Route::get('/', 'FrontEndController@index')->name('index');
 
-Route::get('easy_move_detail/{vehicleId}', 'FrontEndController@easyMoveDetail')->name('easy_move_detail');
+Route::get('easy_move_detail/{id}', 'FrontEndController@easyMoveDetail')->name('easy_move_detail');
 
-Route::get('safe_move', 'FrontEndController@safe_move')->name('safe_move');
+Route::get('safe_move/more/{id}', 'FrontEndController@safeMoveMore')->name('safe_move.more');
 
-Route::get('safe_move_more', function () { return view('frontend.safe_move_more'); });
-
-Route::get('safe_move_detail', function () { return view('frontend.safe_move_detail'); });
+Route::get('safe_move/detail/{id}', 'FrontEndController@safeMoveDetail')->name('safe_move.detail');
 
 Route::get('/user_center', function () { return view('frontend/user_center/index'); });
 

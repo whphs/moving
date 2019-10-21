@@ -3,7 +3,7 @@
 Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
 
     Route::get('/dashboard', function () {
-        return view('backend.dashboard');
+        return view('backend.dashboard.index');
     })->name('dashboard');
 
     Route::group(['prefix' => 'about_us'], function () {

@@ -1,4 +1,4 @@
-@extends('backend.master')
+@extends('backend.layout')
 
 @section('title')
     {{ __('string.areas') }}

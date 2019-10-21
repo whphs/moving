@@ -16,7 +16,6 @@
     {!! Html::style('//fonts.googleapis.com/css?family=Montserrat:400,700,200') !!}
     {!! Html::style('//use.fontawesome.com/releases/v5.7.1/css/all.css') !!}
     <!-- CSS Files -->
-{{--    {!! Html::style('backend/assets/css/bootstrap.min.css') !!}--}}
     {!! Html::style('css/app.css') !!}
     {!! Html::style('css/style.css') !!}
     {!! Html::style('backend/assets/css/backend.css') !!}
@@ -90,8 +89,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        {{-- <a href="{{ route('booking') }}"> --}}
+                    <a href="{{ route('admin.booking.index') }}">
                         <i class="now-ui-icons text_caps-small"></i>
                         <p>{{ __('string.booking_list') }}</p>
                     </a>
