@@ -132,7 +132,7 @@
             <div class="tab-content">
                @foreach($vehicles as $index => $vehicle)
                 <div class="tab-pane fade" id="vehicle{{$index}}">
-                   <div id="myCarousel" class="carousel slide" data-ride="carousel" data-touch="true">
+                   <div id="myCarousel" class="carousel slide" data-ride="carousel" >
                       <!-- Indicators -->
                       <ul class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -157,12 +157,13 @@
                       </div>
 
                       <!-- Left and right controls -->
-                      <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                      </a>
+
                       <a class="carousel-control-next" href="#myCarousel" data-slide="next">
                         <span class="carousel-control-next-icon"></span>
                       </a>
+                       <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                           <span class="carousel-control-prev-icon"></span>
+                       </a>
                     </div>
                      <!-- Truck description -->
                     <div class="row">
@@ -201,9 +202,8 @@
     @endcomponent
 @endsection
 @section('scripts')
-  {!! Html::script('frontend/assets/css/swiper.min.css') !!}
-  {!! Html::script('frontend/assets/js/swiper.min.js') !!}
-
+ {!! Html::script('frontend/assets/south/js/jquery-mobile.js') !!}
+ {!! Html::script('frontend/assets/south/js/custom-swipe.js') !!}
 <script type="text/javascript">
   $(document).ready(function(){
     let selectedId = 0;
@@ -212,7 +212,7 @@
     });
     $("#orderBtn").click(function(){
         let vehicleId = $('#vehicleId'+selectedId).val();
-        window.location.href = "easymove_detail/" + vehicleId;
+        window.location.href = "easy_move_detail/" + vehicleId;
     });
     $('.more-btn').on('click', 'button', function() {
       let moreBtnIndex = $(this)[0].id.substring(4, 5);//get id
@@ -228,25 +228,13 @@
       $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
       $(this).parent().parent().parent().parent().find('#vehicle' + index).addClass('show active');
     });
+
   });
 
-  function easyMoveDetails(id)
-  {
-    let vehicleIds = $('#detailsBtn'+id).val();
-    window.location.href = "easy_move_detail/" + vehicleIds;
-  }
-
-  $("#myCarousel").swipe( {
-      swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-
-          if(direction=='left'){
-              $(this).carousel('next');
-          }else if(direction=='right'){
-              $(this).carousel('prev');
-          }
-
-      }
-  });
-
+   function easyMoveDetails(id)
+   {
+      let vehicleIds = $('#detailsBtn'+id).val();
+      window.location.href = "easy_move_detail/" + vehicleIds;
+   }
 </script>
 @endsection
