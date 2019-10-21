@@ -17,13 +17,14 @@ class CreateBookingsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('vehicle_id');
+            $table->integer('scale_id');
             $table->string('where_from');
-            $table->integer('from_floor');
+            $table->integer('floor_from');
             $table->string('where_to');
-            $table->integer('to_floor');
+            $table->integer('floor_to');
+            $table->dateTime('when');
             $table->float('distance');
             $table->float('price');
-            $table->dateTime('when');
             $table->longText('description');
             $table->string('photo_0');
             $table->string('photo_1');

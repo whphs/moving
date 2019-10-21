@@ -23,5 +23,6 @@ Route::group(['middleware' => ['admin'], 'as' => 'admin.'], function () {
     Route::resource('vehicle', 'VehicleController')->except(['show']);
     Route::resource('scale', 'ScaleController')->except(['show']);
     Route::resource('price', 'PriceController')->except(['show']);
+    Route::resource('booking', 'BookingController')->only(['index', 'show']);
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Models\Area;
 use App\Models\Bonus;
 use App\Models\AboutUs;
+use App\Models\Booking;
 use App\Models\Scale;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
@@ -43,12 +44,12 @@ class FrontEndController extends Controller
     }
 
     public function bookings() {
-        return view('frontend.user_center.bookings');
+        $bookings = Booking::all();
+        return view('frontend.user_center.bookings', compact('bookings'));
     }
 
     public function vehicleStandards() {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
-
         return view('frontend.user_center.setting.standards', compact('vehicles'));
     }
 
