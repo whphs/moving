@@ -93,10 +93,10 @@
         </div>
         <div class="mt-50">
             <button class="btn btn-circle btn-block" id="myBtn" style="background-color: #1aad19;"><img src="frontend/assets/image/wechat.png"><span style="color: white;">Wechat Authorized SignIn</span></button>
-            <a href="/sign_phone" class="btn green btn-circle btn-block" style="margin-top: 30px;">Mobile phone number SignIn</a>
+            <a href="sign_in/phone" class="btn green btn-circle btn-block" style="margin-top: 30px;">Mobile phone number SignIn</a>
         </div>
         <div class="mt-50">
-            <a href="/terms">Go to User Agreement</a>
+            <a href="/agreement">Go to User Agreement</a>
         </div>
     </div>
 
@@ -111,7 +111,7 @@
                 <hr>
                 <span style="font-weight: bold;">13394260131</span><span style="margin-left: 10%;">Linked to Wechat</span><input type="checkbox" checked="" style="float: right;">
                 <hr>
-                <a href="/sign_othermobile">Use Other Mobile Number</a>
+                <a href="/sign_in/other">Use Other Mobile Number</a>
                 <div class="mt-30 mb-30" style="text-align: center;">
                     <button type="button" class="btn btn-default" style="width: 30%; color: green;">Reject</button>
                     <button type="button" class="btn btn-success" style="width: 30%; margin-left: 10%;">Allow</button>

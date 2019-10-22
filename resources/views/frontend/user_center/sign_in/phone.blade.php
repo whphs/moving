@@ -89,7 +89,7 @@
 
     <div class="container" style="text-align: center;">
         <div class="mt-50">
-            <img src="frontend/assets/image/logo.png" alt="">
+            <img src="/frontend/assets/image/logo.png" alt="">
         </div>
         <div class="mt-50">
             <div class="input-group has-success mb-30">
@@ -101,12 +101,12 @@
             <button class="btn green btn-circle btn-block">SignIn</button>
         </div>
         <div class="mt-30">
-            <a href="/terms">Go to User Agreement</a>
+            <a href="/agreement">Go to User Agreement</a>
         </div>
         <hr>
         <div>
             <p class="text-success">---------------One-click Signin---------------</p>
-            <img class="img-circle" id="myBtn" src="frontend/assets/image/wechat.png">
+            <img class="img-circle" id="myBtn" src="/frontend/assets/image/wechat.png">
         </div>
     </div>
 
@@ -121,7 +121,7 @@
                 <hr>
                 <span style="font-weight: bold;">13394260131</span><span style="margin-left: 10%;">Linked to Wechat</span><input type="checkbox" checked="" style="float: right;">
                 <hr>
-                <a href="/sign_othermobile">Use Other Mobile Number</a>
+                <a href="/sign_in/other">Use Other Mobile Number</a>
                 <div class="mt-30 mb-30" style="text-align: center;">
                     <button type="button" class="btn btn-default" style="width: 30%; color: green;">Reject</button>
                     <button type="button" class="btn btn-success" style="width: 30%; margin-left: 10%;">Allow</button>    

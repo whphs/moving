@@ -520,7 +520,6 @@ class ComposerStaticInitb5970511de421d431438c96688e5c8de
         'App\\Models\\DistancePrice' => __DIR__ . '/../..' . '/app/Models/DistancePrice.php',
         'App\\Models\\FloorPrice' => __DIR__ . '/../..' . '/app/Models/FloorPrice.php',
         'App\\Models\\MoveType' => __DIR__ . '/../..' . '/app/Models/MoveType.php',
-        'App\\Models\\PlusCost' => __DIR__ . '/../..' . '/app/Models/PlusCost.php',
         'App\\Models\\Scale' => __DIR__ . '/../..' . '/app/Models/Scale.php',
         'App\\Models\\Standard' => __DIR__ . '/../..' . '/app/Models/Standard.php',
         'App\\Models\\Vehicle' => __DIR__ . '/../..' . '/app/Models/Vehicle.php',

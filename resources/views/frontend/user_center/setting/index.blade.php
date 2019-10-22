@@ -11,13 +11,13 @@
     </style>
     <div class="container">
         <div class="mt-30" style="margin-left: 15px;">
-            <a href="/terms">
+            <a href="/agreement">
                 <div class="margin-top-20 profile-desc-link">
                     <span>User Agreement</span>
                     <i class="fa fa-angle-right" style="float: right;"></i>
                 </div>
             </a>
-            <a href="/vehicles">
+            <a href="/vehicle_standards">
                 <div class="margin-top-20 profile-desc-link">
                     <span>Charging Standard</span>
                     <i class="fa fa-angle-right" style="float: right;"></i>

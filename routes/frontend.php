@@ -22,7 +22,7 @@ Route::get('/bonuses', 'FrontEndController@bonuses')->name('bonuses');
 
 Route::get('bonus_guide', 'FrontEndController@bonusGuide')->name('bonus_guide');
 
-Route::get('/setting', function () {	return view('frontend/user_center/setting/index'); });
+Route::get('/setting', function () { return view('frontend/user_center/setting/index'); });
 
 Route::get('/agreement', 'FrontEndController@agreement')->name('agreement');
 

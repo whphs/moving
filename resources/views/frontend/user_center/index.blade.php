@@ -26,7 +26,7 @@
         </div>
         <hr>
         <div class="mt-20" style="margin-left: 15px;">
-            <a href="/order_record">
+            <a href="/bookings">
                 <div class="mt-20 profile-desc-link">
                     <i class="fa fa-file-text"></i>
                     <span>Order Record</span>
@@ -40,10 +40,10 @@
                     <i class="fa fa-angle-right" style="float: right;"></i>
                 </div>
             </a>
-            <a href="/set_up">
+            <a href="/setting">
                 <div class="mt-20 profile-desc-link">
                     <i class="fa fa-cog"></i>
-                    <span>Set Up</span>
+                    <span>Setting</span>
                     <i class="fa fa-angle-right" style="float: right;"></i>
                 </div>
             </a>
