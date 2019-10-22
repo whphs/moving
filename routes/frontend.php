@@ -33,3 +33,5 @@ Route::get('/agreement', 'FrontEndController@agreement')->name('agreement');
 Route::get('/vehicle_standards', 'FrontEndController@vehicleStandards')->name('vehicle_standards');
 
 Route::get('/about_us', 'FrontEndController@aboutUs')->name('about_us');
+
+Route::post('booking/submit', 'FrontEndController@submitBooking')->name('booking.submit');

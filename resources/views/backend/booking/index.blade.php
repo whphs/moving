@@ -21,7 +21,7 @@
                         <table class="mv-table">
                             <thead class="text-primary">
                             <tr>
-                                <th>{{ __('string.no')}}</th>
+                                <th>{{ __('string.date')}}</th>
                                 <th>{{ __('string.move_type')}}</th>
                                 <th>{{ __('string.from')}}</th>
                                 <th>{{ __('string.to')}}</th>
@@ -31,8 +31,8 @@
                             </thead>
                             <tbody>
                             @foreach($bookings as $index => $booking)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
+                                <tr class="clickable" onclick="gotoDetail({{ $booking->id }});">
+                                    <td>{{ $booking->created_at }}</td>
                                     <td>{{ $booking->vehicle_id ? __('string.easy_move') : __('string.safe_move')}}</td>
                                     <td>{{ $booking->where_from }}</td>
                                     <td>{{ $booking->where_to }}</td>
@@ -51,7 +51,18 @@
 
 @endsection
 
+@section('styles')
+    <style>
+        .clickable {
+            cursor: pointer;
+        }
+    </style>
+@endsection
 @section('scripts')
-
+    <script>
+        function gotoDetail(id) {
+            window.location.href = 'booking/' + id;
+        }
+    </script>
 @endsection
 

@@ -19,8 +19,8 @@ class CreateVehiclesTable extends Migration
             $table->integer('move_type_id');
             $table->integer('area_id');
             $table->string('size');
-            $table->float('load_weight');
-            $table->float('volume');
+            $table->string('load_weight');
+            $table->string('volume');
             $table->double('init_price_for_items');
             $table->integer('price_per_floor');
             $table->integer('price_per_big_item');
