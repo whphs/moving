@@ -3,6 +3,7 @@
 Route::get('/', 'FrontEndController@index')->name('index');
 
 Route::get('easy_move/detail/{id}', 'FrontEndController@easyMoveDetail')->name('easy_move_detail');
+
 Route::get('easy_move/preview', function () { return view('frontend/request/easy_move/preview'); });
 
 Route::get('safe_move/more/{id}', 'FrontEndController@safeMoveMore')->name('safe_move.more');
