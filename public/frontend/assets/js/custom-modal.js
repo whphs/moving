@@ -1,5 +1,5 @@
 
-  // Get the modal
+// Get the modal
 // var modal = document.getElementById("myModal");
 var timeModal = document.getElementById("timeModal");
 
@@ -14,12 +14,11 @@ var span = document.getElementById("close");
 // When the user clicks the button, open the modal
 
 timeSetting.onclick = function(){ 
-  
   $("#myTimeBtn").text($('#datepicker').val());
-   timeModal.style.display = "none";
+  timeModal.style.display = "none";
 } 
 timeBtn.onclick = function() {
- timeModal.style.display = "block";
+  timeModal.style.display = "block";
 }
 span.onclick = function() {
   timeModal.style.display = "none";

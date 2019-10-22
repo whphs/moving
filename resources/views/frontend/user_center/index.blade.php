@@ -13,7 +13,7 @@
         <div class="portlet light profile-sidebar-portlet">
             <!-- SIDEBAR USERPIC -->
             <div class="profile-userpic">
-                <img src="frontend/assets/image/profile_user.jpg" class="img-responsive" alt="" style="width: 30%;">
+                <img src="frontend/assets/img/icons/profile_user.jpg" class="img-responsive" alt="" style="width: 30%;">
             </div>
             <!-- END SIDEBAR USERPIC -->
             <!-- SIDEBAR USER TITLE -->

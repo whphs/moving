@@ -31,7 +31,7 @@
                             </a>
                         </td>
                         <td style="padding-left: 20px;">
-                            <a href="/" class="btn btn-circle btn-xs btn-default" style="color: #5b9bd1; width: 60px; font-weight: bold; padding: 0px;"> Use </a>
+                            <a href="/safe_move/detail/{{ $bonus->price }}" class="btn btn-circle btn-xs btn-default" style="color: #5b9bd1; width: 60px; font-weight: bold; padding: 0px;"> Use </a>
                         </td>
                     </tr>
                 </table>
