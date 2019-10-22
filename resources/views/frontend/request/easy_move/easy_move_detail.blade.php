@@ -3,10 +3,10 @@
 @section('content')
     <header>
       <div class="header-img">
-          {!! Html::image('frontend/assets/img/icons/house1.png') !!}
+          {!! Html::image('frontend/assets/img/icons/user.png') !!}
       </div>
       <div class = "header-img" style="position: relative;left: -4px;">
-          {!! Html::image('frontend/assets/img/icons/phone-call.png') !!}
+          {!! Html::image('frontend/assets/img/icons/history.png') !!}
       </div>
     </header>
     <main>
@@ -54,7 +54,7 @@
                 </ul>
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                  {!! Html::image("frontend/assets/img/icons/garage.png") !!}
+                  {!! Html::image("frontend/assets/img/icons/calendar.png",'calendar',['style' => 'width: 30px;height: 22px;']) !!}
                   {{__('string.moving_time')}}
                 <p class="detail" id="myTimeBtn">
                 {{__('string.set_time')}}</p>
@@ -66,7 +66,7 @@
       </div>
 
         <!-- Add big baggage -->
-      <div class="row"  id = "addBaggage">
+      <div class="row"  id = "addBaggage"  data-toggle = "modal" data-target = "#specialItemModal">
         <div class="col-12">
           <div class="content-sidebar">
             <div class="card" style="margin:10px 0">
@@ -83,7 +83,7 @@
         <div class="col-12">
           <div class="card" style="margin:10px 0">
             <div class="card-header">{{__('string.order_note')}}
-              <p class="detail" style="font-weight: 100">{{__('string.upload_photo')}}</p>
+              <p class="detail" id="photoSelBtn" data-toggle = "modal" data-target = "#movingPhotoModal" style="font-weight: 100">{{__('string.upload_photo')}}</p>
             </div>
               <ul>
               <li style="z-index: 0;min-width: 287px;padding:10px;border-bottom: 1px solid rgba(0,0,0,.125);">
@@ -124,17 +124,17 @@
    <div class="footer">
        <div class="container">
          <div class="row">
-          <div class="col-8 footer-content">
-            <div class="footer-price">
-              <p>$25</p><span style="text-decoration: line-through;">$30</span>
-            </div>
-            <div class="footer-price1">
-              <p>aaaaaa$5</p>
-              <a href = "#">{{__('string.preview')}}</a>
+          <div class="col-4">
+            <div class="easy-move-footer-price">
+              <p>$25</p>
             </div>
           </div>
-          <div class="col-4" style="margin-left: -10px;">
-            <button type="button" class="btn south-btn resv">{{__('string.reservation_btn')}}</button>
+          <div class="col-8">
+              <div class="easy-move-footer-price1">
+{{--                  <a href = "/easy_move_detail/preview">{{__('string.preview')}}</a>--}}
+                  {!! link_to('easy_move/preview', __('string.preview'), $attributes = [], $secure = null) !!}
+                  <button type="button" class="btn south-btn resv-btn">{{__('string.reservation_btn')}}</button>
+              </div>
           </div>
          </div>
        </div>
@@ -165,7 +165,7 @@
     </div>
   </div>
 </div>
-
+{{--Time Modal End--}}
 <!-- The EasyMove Detail Modal -->
  <div class="modal" id="vehicleSelModal" tabindex="-1" role="dialog">
       <div class="modal-content">
@@ -250,17 +250,87 @@
 
       </div>
     </div>
- <!-- Modal content end -->
+ <!-- The EasyMove Detail Modal end -->
+{{--The Moving Items and Photo Start --}}
+    <div class="modal" id="movingPhotoModal" tabindex="-1" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom: unset;">
+                <button type="button" class="close" data-dismiss="modal" style="font-size: 29px;margin-right: -3px;">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" style="padding: 1rem;">
+                <div class="item-description">
+                    <textarea id = "itemDescription" rows = "4" cols ="10" placeholder="Please enter moving item description."></textarea>
+                    <div class="clear-description">
+                        <span>200character</span>
+                        <span style="float: right;">{{__('string.clear')}}</span>
+                    </div>
+                </div>
+                <div class="history-description">
+                    <p>This is test</p>
+                    <p>This is test</p>
+                    <p>This is test</p>
+                </div>
+                <div class="upload-photo">
+                    <p style="font-size: 15px;font-weight: bold">Upload Photo</p>
+                    <div class="upload-photo-image">
+                        {!! Html::image('frontend/assets/img/icons/camera.png','take photo')!!}
+                        <input type="file" id = "fileUpload" name = "fileUpload" style="display: none">
+                        <p>Upload</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" id = "photoSettingBtn" class ="btn south-btn m-1" data-dismiss="modal">Submit</button>
+            </div>
+
+        </div>
+    </div>
+{{--The Moving Items and Photo End --}}
+{{--The Special Item Modal Start--}}
+    <div class="modal" id="specialItemModal" tabindex="-1" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="big-item-title">Big Item</span>
+                <button type="button" class="close" data-dismiss="modal" style="font-size: 29px;margin-right: -18px;">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="special-item">
+                    <span>furniture:</span>
+                    <span>45kg dkdkdkf fkdf fdfdfdk</span>
+                </div>
+                <div class="special-item">
+                    <span>furniture:</span>
+                    <span>45kg dkdkdkf fkdf fdfdfdk</span>
+                </div>
+                <div class="add-special-item">
+                    <p>Add Item</p>
+                    <div class="d-inline-flex">
+                        {!! Html::image('frontend/assets/img/icons/minus.png','minus button',['class' => 'min-button']) !!}
+                        <p id="qty" name="qty">1</p>
+                        {!! Html::image('frontend/assets/img/icons/plus.png','minus button',['class' => 'plus-button']) !!}
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" id = "specialItemBtn" class ="btn south-btn m-1" data-dismiss="modal">Submit</button>
+            </div>
+
+        </div>
+    </div>
+{{--The Special Item Modal End--}}
+
 @endsection
 
 @section('scripts')
     {!! Html::script('frontend/assets/js/custom-modal.js') !!}
     <script type="text/javascript">
       $(document).ready(function(){
-        var selectedId = 0;
-
+        let selectedId = 0;
         $("#selTruckBtn").click(function(){
-
             let vehicleMId = $('#vehicleMId'+selectedId).val();
             let vehicleMName = $('#vehicleMName'+selectedId).val();
             $("#vehicleSelBtn").text(vehicleMName);
@@ -268,7 +338,7 @@
         });
         $('#vehicleSelBtn').click(function(e){
 
-          var vCount = $("#vCount").val();
+          let vCount = $("#vCount").val();
           $('.tab-pane').removeClass('show active');
           for(i = 0; i < vCount; i++)
           {
@@ -282,7 +352,7 @@
 
         });
         $('.modal-header').on('click', 'li', function() {
-          var index = $(this)[0].id.substring(2, 3);
+          let index = $(this)[0].id.substring(2, 3);
           selectedId = index;
 
           $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
@@ -293,7 +363,6 @@
     </script>
     <script type="text/javascript">
       $('#datepicker').datepicker('setDate', 'today');
-
       $("#addBaggage").hide();
       $(".primary").click(function() {
           if(this.checked) {

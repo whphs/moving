@@ -43,7 +43,7 @@ header {
   }
   .icon img{
 	  padding: 16px 0;
-	  max-width: 15px;
+	  max-width: 18px;
   }
   .number{
 	  align-self: center;
@@ -179,7 +179,7 @@ header {
   }
   .header-img img{
   	padding: 16px 0;
-  	max-width: 15px;
+  	max-width: 18px;
   }
 
   .footer-content{
@@ -211,6 +211,30 @@ header {
   	left: 0px;
   	color:#947054;
   }
+.easy-move-footer-price p{
+    font-size: 20px;
+    color: #ef6774;
+    line-height: normal;
+    position: relative;
+    top: 13px;
+    left: 8px;
+}
+
+.easy-move-footer-price1 a{
+    color: #947054;
+    position: relative;
+    top: 12px;
+    right: 155px;
+    float: right;
+}
+.resv-btn{
+    display: inline-block;
+    position: absolute;
+    width: 135px;
+    float: right;
+    right: 10px;
+    top: 10px;
+}
   .resv{
   	margin-top: 12px!important;
   	min-width: 110px;
@@ -269,6 +293,75 @@ header {
     min-width:285px;
     height:160px;
 }
+.preview-heading span{
+    position: relative;
+    top:17px;
+}
+#itemDescription{
+    border:unset;
+    width: 100%;
+}
+.item-description {
+    border: 1px solid #e9ecef;
+    padding:5px;
+    border-radius: 10px;
+}
+.clear-description{
+    color:#6c757dbf;
+}
+.history-description {
+    border-bottom: 1px solid #e9ecef;
+}
 
+.history-description p{
+    color: #212529;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 100;
+    position: relative;
+    top: 4px;
+}
+.upload-photo{
+    margin-top:8px;
+}
+.upload-photo h6{
+    line-height: 2;
+}
+.upload-photo img{
+    width: 30px;
+    height: 30px;
+    margin-left: 6px;
+}
+.upload-photo p{
+    font-weight: initial;
+    margin-bottom: 0px;
+}
+.upload-photo-image{
+    border: dashed 2px burlywood;
+    width:fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    border-radius: 5px;
+}
+.special-item{
 
+}
+.big-item-title{
+    color: #000000;font-size: 16px;font-weight: bold;position: relative;left: 16px;
+}
+.add-special-item p{
+    font-size: 15px;
+    width: max-content;
+    margin-right: auto;
+    margin-left: auto;
+}
+.min-button{
+    width:30px;
+    height:30px;
+}
+.plus-button{
+    width:30px;
+    height:30px;
+}
 

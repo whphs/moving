@@ -131,6 +131,7 @@ return [
     'reservation_btn' => 'Reservation',
     'select_car' => 'Select Truck',
     'format_price' => '$',
+    'clear'        => 'Clear',
 
 
     'from'              => 'From',

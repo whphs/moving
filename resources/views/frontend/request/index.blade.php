@@ -5,10 +5,10 @@
     <header>
       <div class="phone-number d-flex">
           <div class = "icon">
-              {!! Html::image('frontend/assets/img/icons/house1.png') !!}
+              {!! Html::image('frontend/assets/img/icons/user.png',null,['id'=>'userCenter']) !!}
           </div>
           <div class="icon">
-              {!! Html::image('frontend/assets/img/icons/flat.png',null,['id'=>'userCenter']) !!}
+              {!! Html::image('frontend/assets/img/icons/history.png') !!}
           </div>
           <div class="number">
               {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
@@ -210,7 +210,7 @@
     });
     $("#orderBtn").click(function(){
         let vehicleId = $('#vehicleId'+selectedId).val();
-        window.location.href = "easy_move_detail/" + vehicleId;
+        window.location.href = "easy_move/detail/" + vehicleId;
     });
     $('.more-btn').on('click', 'button', function() {
       let moreBtnIndex = $(this)[0].id.substring(4, 5);//get id
@@ -232,7 +232,7 @@
    function easyMoveDetails(id)
    {
       let vehicleIds = $('#detailsBtn'+id).val();
-      window.location.href = "easy_move_detail/" + vehicleIds;
+      window.location.href = "easy_move/detail/" + vehicleIds;
    }
 </script>
 @endsection
