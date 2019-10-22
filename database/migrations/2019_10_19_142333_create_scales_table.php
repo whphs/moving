@@ -21,6 +21,7 @@ class CreateScalesTable extends Migration
             $table->string('vehicle_description');
             $table->string('helper_description');
             $table->double('init_price');
+            $table->string('main_photo');
             $table->string('vehicle_photo');
             $table->string('helper_photo');
             $table->timestamps();

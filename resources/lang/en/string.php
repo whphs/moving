@@ -147,6 +147,7 @@ return [
     'unit_km'           => ' ($ / km)',
 
     'no'                => 'No',
+    'date'              => 'Date',
     'prices'            => 'Prices',
 
     'init_distance'     => 'Init Distance',
@@ -157,6 +158,7 @@ return [
     'vehicle'           => 'Vehicle',
     'helpers'           => 'Helpers',
 
+    'main_photo'        => 'Main Photo',
     'vehicle_photo'     => 'Vehicle Photo',
     'helper_photo'      => 'Helper Photo',
 

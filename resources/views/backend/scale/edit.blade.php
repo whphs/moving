@@ -89,6 +89,9 @@
 
             <div class="mv-row">
                 <div class="mv-col">
+                    {!! Form::inputGroup('main_photo', __('string.main_photo'), null, 'file') !!}
+                </div>
+                <div class="mv-col">
                     {!! Form::inputGroup('vehicle_photo', __('string.vehicle_photo'), null, 'file') !!}
                 </div>
                 <div class="mv-col">
