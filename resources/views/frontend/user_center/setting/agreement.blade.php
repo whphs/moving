@@ -1,14 +1,9 @@
-@extends('frontend.user_center.app')
+@extends('frontend.user_center.layout')
 
 @section('title', 'User Agreement')
 
 @section('content')
-    <style>
-        h4 {
-            font-weight: bold;
-        }
-    </style>
-    <div class="container">
+    <div class="container m-t-20">
         {!! $agreement->content !!}
     </div>
 @endsection

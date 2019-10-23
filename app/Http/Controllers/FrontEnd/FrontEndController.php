@@ -58,7 +58,7 @@ class FrontEndController extends Controller
 
     public function bookings() {
         $bookings = Booking::all();
-        return view('frontend.user_center.bookings', compact('bookings'));
+        return view('frontend.user_center.booking.bookings', compact('bookings'));
     }
 
     public function vehicleStandards() {
@@ -93,11 +93,11 @@ class FrontEndController extends Controller
      */
     public function bonuses() {
         $bonuses = Bonus::all();
-        return view('frontend.user_center.bonuses', compact('bonuses'));
+        return view('frontend.user_center.bonus.bonuses', compact('bonuses'));
     }
 
     public function bonusGuide() {
-        return view('frontend.user_center.bonus_guide');
+        return view('frontend.user_center.bonus.bonus_guide');
     }
 
     public function submitBooking(Request $request) {

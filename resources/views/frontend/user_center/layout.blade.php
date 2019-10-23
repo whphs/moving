@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -10,26 +9,20 @@
 
     <title>@yield('title')</title>
 
-    {!! Html::style('frontend/assets/css/custom.css') !!}
+    {!! Html::style('css/style.css') !!}
 
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
     {!! Html::style('frontend/assets/css/font-awesome.min.css') !!}
     {!! Html::style('css/app.css') !!}
-    <!-- END GLOBAL MANDATORY STYLES -->
 
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    {!! Html::style('frontend/assets/css/profile.css') !!}
-    {!! Html::style('frontend/assets/css/components.css') !!}
     {!! Html::style('frontend/assets/css/swiper.min.css') !!}
 
-</head>
-
-<body style="background-color: #eee;">
-
-    @yield('content')
-
-</body>
     {!! Html::script('frontend/assets/js/jquery.js') !!}
     {!! Html::script('frontend/assets/js/jquery/jquery-2.2.4.min.js') !!}
     {!! Html::script('frontend/assets/js/bootstrap.min.js') !!}
+</head>
+
+<body style="font-family: Arial, Helvetica, sans-serif; background-color: #eee;">
+@yield('content')
+@yield('scripts')
+</body>
 </html>
