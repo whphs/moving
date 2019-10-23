@@ -35,6 +35,14 @@
                     {!! Form::inputGroup('volume', __('string.volume'), $vehicle->volume, 'number') !!}
                 </div>
             </div>
+            <div class="mv-row">
+                <div class="mv-col">
+                    {!! Form::inputGroup('init_distance', __('string.init_distance'), $vehicle->init_distance, 'number') !!}
+                </div>
+                <div class="mv-col">
+                    {!! Form::inputGroup('init_price', __('string.init_price'), $vehicle->init_price, 'number') !!}
+                </div>
+            </div>
             <div>
                 <label class="p-t-10">{{ __('string.prices_for_distance') }}</label>
                 <a href="#" class="btn btn-info add-price float-right w-30">+</a>

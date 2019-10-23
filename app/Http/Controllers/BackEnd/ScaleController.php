@@ -95,14 +95,14 @@ class ScaleController extends Controller
     }
 
     public function saveScale($scale, $request) {
-        $scale->name                = $request->name;
-        $scale->move_type_id        = 1;
-        $scale->area_id             = $request->area_id;
-        $scale->vehicle_description = $request->vehicle_description;
-        $scale->helper_description  = $request->helper_description;
-        $scale->init_price          = $request->init_price;
-        $scale->vehicle_photo       = $request->vehicle_photo->store('uploads', 'public');
-        $scale->helper_photo        = $request->helper_photo->store('uploads', 'public');
+        $scale->name                    = $request->name;
+        $scale->move_type_id            = 1;
+        $scale->area_id                 = $request->area_id;
+        $scale->vehicle_description     = $request->vehicle_description;
+        $scale->helper_description      = $request->helper_description;
+        $scale->init_price              = $request->init_price;
+        $scale->vehicle_photo           = $request->vehicle_photo->store('uploads', 'public');
+        $scale->helper_photo            = $request->helper_photo->store('uploads', 'public');
 
         $scale->save();
 
