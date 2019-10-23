@@ -13,8 +13,8 @@
     {!! Html::style('frontend/assets/css/custom.css') !!}
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    {!! Html::style('frontend/assets/plugins/font-awesome/css/font-awesome.min.css') !!}
-    {!! Html::style('frontend/assets/plugins/bootstrap/css/bootstrap.min.css') !!}
+    {!! Html::style('frontend/assets/css/font-awesome.min.css') !!}
+    {!! Html::style('css/app.css') !!}
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL STYLES -->
@@ -24,12 +24,12 @@
 
 </head>
 
-<body>
+<body style="background-color: #eee;">
 
     @yield('content')
 
 </body>
     {!! Html::script('frontend/assets/js/jquery.js') !!}
-    {!! Html::script('frontend/assets/plugins/jquery.min.js') !!}
-    {!! Html::script('frontend/assets/plugins/bootstrap/js/bootstrap.min.js') !!}
+    {!! Html::script('frontend/assets/js/jquery/jquery-2.2.4.min.js') !!}
+    {!! Html::script('frontend/assets/js/bootstrap.min.js') !!}
 </html>

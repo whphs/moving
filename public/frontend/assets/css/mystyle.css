@@ -117,7 +117,7 @@ header {
 	  margin-bottom: unset;
 	  font-weight: unset;
 	  line-height: unset;
-	  color:#343a40;}
+	  color:#7d7d7d;}
   .watch{
 	  font-weight: 200;
 	  float: right;
@@ -344,8 +344,15 @@ header {
     padding-top: 5px;
     border-radius: 5px;
 }
-.special-item{
-
+.special-item-group{
+    margin-top: 8px;
+    background-color: #7d7d7d1f;
+    padding-left: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 3px;
+}
+.special-item span{
+    line-height: 2;
 }
 .big-item-title{
     color: #000000;font-size: 16px;font-weight: bold;position: relative;left: 16px;
@@ -363,5 +370,8 @@ header {
 .plus-button{
     width:30px;
     height:30px;
+}
+.direct{
+    margin-left: 6px;
 }
 
