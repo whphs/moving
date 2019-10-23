@@ -355,7 +355,7 @@ header {
     line-height: 2;
 }
 .big-item-title{
-    color: #000000;font-size: 16px;font-weight: bold;position: relative;left: 16px;
+    color: #000000;font-size: 16px;font-weight: bold;position: relative;left: 16px;line-height: 2.2;
 }
 .add-special-item p{
     font-size: 15px;
@@ -374,4 +374,53 @@ header {
 .direct{
     margin-left: 6px;
 }
+.nav{
+    flex-wrap: inherit;
+}
+.nav-link {
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+.custom-control-label:after, .custom-control-label:before {
+    position: absolute;
+    top: .22rem;
+    left: -1.5rem;
+    display: block;
+    width: 25px;
+    height: 25px;
+    content: "";
+}
+.reservation-price{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 2px;
+    color: #947054;
+}
+.reservation-img{
+    width: 35px;
+    height: 35px;
+    border-radius:5px;
+}
+.search-area{
+    border-bottom: 1px solid #2125290f;height:10%;height: 45px;
+}
+.search-area span{
+    position: fixed;
+    margin-top:8px;
+}
+.select-area{
+    border-right: 1px solid #2125290f;height: 45px;
+}
+.search-address{
 
+}
+.select-item p{
+    font-weight: 100;
+    position: relative;
+    right: -18px;
+    line-height: 1.5;
+    margin-bottom: 0px;
+    font-size: 15px;
+}
