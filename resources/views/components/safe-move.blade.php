@@ -9,7 +9,7 @@
                         <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="200ms">
                             <div class="property-content">
                                 <div class="row">
-                                    <div class="col-8 more-btn">
+                                    <div class="col-9 more-btn">
                                         <p class="vehicle-name">{{ $scale->name }}</p>
                                         <span>{{ __('string.format_price') }}{{ $scale->init_price }}</span>
                                         <p class="vehicle-description">{{ $scale->vehicle_description }}</p>
@@ -17,8 +17,8 @@
                                         <!-- safe to move modal details button -->
                                         <button class="btn btn-link btn-sm" style="bottom: -5px;" onclick="safeMoveMore({{ $scale->id }});">{{ __('string.more_button') }}</button>
                                     </div>
-                                    <div class="col-4" style="padding: unset; margin-left: auto; margin-right: auto;">
-                                        {!! Html::image('storage/'.$scale->vehicle_photo, null, ['style'=>'width:105px; height:105px;']) !!}
+                                    <div class="col-3" style="padding: unset; margin-left: auto; margin-right: auto;">
+                                        {!! Html::image('frontend/assets/img/icons/about.png', null, ['style'=>'width: 78px; height: 78px;']) !!}
                                         <button type="button" class="btn south-btn safe-move-detail" onclick="safeMoveDetail({{ $scale->id }});">{{ __('string.detail_button') }}</button>
                                     </div>
                                 </div>

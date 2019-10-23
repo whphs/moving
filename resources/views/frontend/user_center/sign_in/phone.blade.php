@@ -89,7 +89,7 @@
 
     <div class="container" style="text-align: center;">
         <div class="mt-50">
-            <img src="/frontend/assets/image/logo.png" alt="">
+            <img src="/frontend/assets/img/icons/logo.png" alt="">
         </div>
         <div class="mt-50">
             <div class="input-group has-success mb-30">
@@ -106,7 +106,7 @@
         <hr>
         <div>
             <p class="text-success">---------------One-click Signin---------------</p>
-            <img class="img-circle" id="myBtn" src="/frontend/assets/image/wechat.png">
+            <img class="img-circle" id="myBtn" src="/frontend/assets/img/icons/wechat.png">
         </div>
     </div>
 

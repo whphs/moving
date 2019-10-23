@@ -44,6 +44,10 @@ class FrontEndController extends Controller
         return view('frontend.request.safe_move.detail', compact('scale'));
     }
 
+    public function safeMovePreview() {
+        return view('frontend.request.safe_move.preview');
+    }
+
     public function vehiclesWithParams($areaId) {
         return Vehicle::where('area_id', $areaId)->get();
     }

@@ -89,10 +89,10 @@
 
     <div class="container" style="text-align: center;">
         <div class="mt-50">
-            <img src="frontend/assets/image/logo.png" alt="">
+            <img src="frontend/assets/img/icons/logo.png" alt="">
         </div>
         <div class="mt-50">
-            <button class="btn btn-circle btn-block" id="myBtn" style="background-color: #1aad19;"><img src="frontend/assets/image/wechat.png"><span style="color: white;">Wechat Authorized SignIn</span></button>
+            <button class="btn btn-circle btn-block" id="myBtn" style="background-color: #1aad19;"><img src="frontend/assets/img/icons/wechat.png"><span style="color: white;">Wechat Authorized SignIn</span></button>
             <a href="sign_in/phone" class="btn green btn-circle btn-block" style="margin-top: 30px;">Mobile phone number SignIn</a>
         </div>
         <div class="mt-50">

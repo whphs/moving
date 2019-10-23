@@ -8,6 +8,8 @@ Route::get('safe_move/more/{id}', 'FrontEndController@safeMoveMore')->name('safe
 
 Route::get('safe_move/detail/{id}', 'FrontEndController@safeMoveDetail')->name('safe_move.detail');
 
+Route::get('safe_move/preview', 'FrontEndController@safeMovePreview')->name('safe_move.preview');
+
 Route::get('/user_center', function () { return view('frontend/user_center/index'); });
 
 Route::get('/sign_in', function () { return view('frontend/user_center/sign_in/index'); });

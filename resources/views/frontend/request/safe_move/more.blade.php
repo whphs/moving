@@ -25,10 +25,10 @@
             <!-- Define Photo -->
             <div class="row">
                 <div class="col-6">
-                    <img src="/storage/{{ $scale->vehicle_photo }}"/>
+                    <img src="/storage/{{ $scale->vehicle_photo }}" style="height: 150px; width: 100%;"/>
                 </div>
                 <div class="col-6">
-                    <img src="/storage/{{ $scale->helper_photo }}"/>
+                    <img src="/storage/{{ $scale->helper_photo }}" style="height: 150px; width: 100%;"/>
                 </div>
             </div>
 
@@ -41,8 +41,22 @@
                     <div class="content-sidebar">
                         <div class="weekly-office-hours">
                             <ul>
-                                <li class="d-flex align-items-center justify-content-between"><span>Within 15 km of transportation</span> <span>free</span></li>
-                                <li class="d-flex align-items-center justify-content-between"><span>Full elevator or no elevator 1st floor</span><span>free</span></li>
+                                @foreach ($scale->distancePrices as $distanceprice)
+                                    @if ($distanceprice->from == 0)
+                                        <li class="d-flex align-items-center justify-content-between">
+                                            <span>Within {{ $distanceprice->to }}km of transportation</span>
+                                            <span>free</span>
+                                        </li>
+                                    @endif
+                                @endforeach
+                                @foreach ($scale->floorPrices as $floorprice)
+                                    @if ($floorprice->from == 0)
+                                        <li class="d-flex align-items-center justify-content-between">
+                                            <span>Full elevator or no elevator {{ $floorprice->to }}st floor</span>
+                                            <span>free</span>
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -55,54 +69,59 @@
                     <div class="content-sidebar">
                         <div class="weekly-office-hours">
                             <ul>
-                                @for ($i = 0; $i < count($scale->distancePrices); $i ++)
-                                    <li class="d-flex align-items-center justify-content-between">
-                                        <span>Transportation {{ $scale->distancePrices[$i]->from }}~{{ $scale->distancePrices[$i]->to }} km</span>
-                                        <span>{{ $scale->distancePrices[$i]->amount }}yuan/km</span>
-                                    </li>
-                                @endfor
+                                @foreach ($scale->distancePrices as $distanceprice)
+                                    @if ($distanceprice->from != 0)
+                                        <li class="d-flex align-items-center justify-content-between">
+                                            <span>Transportation {{ $distanceprice->from }}~{{ $distanceprice->to }} km</span>
+                                            <span>{{ $distanceprice->amount }} yuan/km</span>
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                 </div>
                 <!-- Package beyond description -->
                 <div class="col-12 col-lg-6" style="text-align: center;">
-                        <div class="contact-heading" style="margin-bottom: 10px; margin-top:30px;">
-                            <h6>Floor Description</h6>
-                        </div>
-                        <div class="content-sidebar">
-                            <div class="weekly-office-hours">
-                                <ul>
-                                    @for ($i = 0; $i < count($scale->floorPrices); $i ++)
+                    <div class="contact-heading" style="margin-bottom: 10px; margin-top:30px;">
+                        <h6>Floor Description</h6>
+                    </div>
+                    <div class="content-sidebar">
+                        <div class="weekly-office-hours">
+                            <ul>
+                                @foreach ($scale->floorPrices as $floorprice)
+                                    @if ($floorprice->from != 0)
                                         <li class="d-flex align-items-center justify-content-between">
-                                            <span>Transportation {{ $scale->floorPrices[$i]->from }}~{{ $scale->floorPrices[$i]->to }} layer</span>
-                                            <span>{{ $scale->distancePrices[$i]->amount }}yuan/layer</span>
+                                            <span>Transportation {{ $floorprice->from }}~{{ $floorprice->to }} floor</span>
+                                            <span>{{ $floorprice->amount }} yuan/floor</span>
                                         </li>
-                                    @endfor
-                                </ul>
-                            </div>
+                                    @endif
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
+                </div>
             </div>
 
             <!-- Note description -->
-            <div class="row" style="margin-top: 20px;">
+            <div class="row" style="margin-top: 20px; margin-bottom: 50px;">
                 <div class="col-12">
                     <p style="font-size: 12px;">Note:surcharges for exceeding the package or dismanting will be settled according to the
-                        <a href = "#" style="color: #ff7000">expense standard</a>
+                        <a href="#" style="color: #ff7000">expense standard</a>
                     </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <p>&nbsp</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- footer start -->
-    <div class="footer" style="background-color: #947054; color: white; text-align: center; padding-top:10px; ">
+    <div class="footer" style="background-color: #947054; color: white; text-align: center; padding-top:10px;" onclick="safeMoveDetail({{ $scale->id }});">
         Reservation Now
     </div>
+
+    <script>
+        function safeMoveDetail(scaleId) {
+            window.location.href = "/safe_move/detail/" + scaleId;
+        }
+    </script>
 @endsection

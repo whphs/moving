@@ -6,34 +6,14 @@
     <div class="container">
 		<div class="mt-30">
 			<div class="top-news">
-				<a href="javascript:;" class="btn green">
-					<span> Easy Move </span>
-					<em>Date: 2019-10-18 Distance : 25Km Price : 100yuan</em>
-					<em>Vehicle type : small van</em>
-					<em>Baggage Size : 450kg Baggage Volume : 2.5</em>
-					<em>Area : Dandong </em>
-					<i class="fa fa-globe top-news-icon"></i>
-				</a>
-			</div>
-			<div class="top-news">
-				<a href="javascript:;" class="btn green">
-					<span> Easy Move </span>
-					<em>Date: 2019-10-18 Distance : 25Km Price : 100yuan</em>
-					<em>Vehicle type : small van</em>
-					<em>Baggage Size : 450kg Baggage Volume : 2.5</em>
-					<em>Area : Dandong </em>
-					<i class="fa fa-globe top-news-icon"></i>
-				</a>
-			</div>
-			<div class="top-news">
-				<a href="javascript:;" class="btn green">
-					<span> Easy Move </span>
-					<em>Date: 2019-10-18 Distance : 25Km Price : 100yuan</em>
-					<em>Vehicle type : small van</em>
-					<em>Baggage Size : 450kg Baggage Volume : 2.5</em>
-					<em>Area : Dandong </em>
-					<i class="fa fa-globe top-news-icon"></i>
-				</a>
+				@foreach ($bookings as $booking)
+					<a href="javascript:;" class="btn default">
+						<em>Date: {{ $booking->when }}</em>
+						<em>Distance : {{ $booking->distance }} Km</em>
+						<em>Price : {{ $booking->price }}yuan</em>
+						<i class="fa fa-globe top-news-icon"></i>
+					</a>
+				@endforeach
 			</div>
 		</div>
     </div>
