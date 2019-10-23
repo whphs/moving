@@ -10,9 +10,9 @@
         }
     </style>
     <div class="container">
-        <div class="portlet light profile-sidebar-portlet">
+        <div class="portlet light profile-sidebar-portlet" style="background-color: #eee;">
             <!-- SIDEBAR USERPIC -->
-            <div class="profile-userpic">
+            <div class="profile-userpic" style="text-align: center;">
                 <img src="frontend/assets/img/icons/profile_user.jpg" class="img-responsive" alt="" style="width: 30%;">
             </div>
             <!-- END SIDEBAR USERPIC -->

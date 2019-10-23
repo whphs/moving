@@ -50,7 +50,7 @@
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
                             <div class="card-header">Bonus
-                                <a href="/bonuses" class="btn btn-link btn-sm watch">80yuan off ></a>
+                                <a href="/bonuses" class="btn btn-link btn-sm watch">Go to list ></a>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
             <!-- Note description -->
             <div class="row">
                 <div class="col-12">
-                    <p style="font-size: 12px;">after confirming the order, customer service will call yu for details as soon as possible.</p>
+                    <p style="font-size: 12px;">after confirming the order, customer service will call you for details as soon as possible.</p>
                 </div>
             </div>
         </div>
