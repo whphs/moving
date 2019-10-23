@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
             'distance'      => 10,
             'price'         => 500,
         ]);
-        
+
         AboutUs::create([
             'title'         => 'About This App',
             'introduction'  => 'This App is to move your baggage',
@@ -107,6 +107,8 @@ class DatabaseSeeder extends Seeder
             'size'                          => '2m * 2m * 2m',
             'load_weight'                   => '500kg',
             'volume'                        => '2',
+            'init_distance'                 => 15,
+            'init_price'                    => 30,
             'init_price_for_items'          => 30,
             'price_per_floor'               => 15,
             'price_per_big_item'            => 25,
@@ -128,6 +130,8 @@ class DatabaseSeeder extends Seeder
             'size'                          => '3m * 3m * 3m',
             'load_weight'                   => '1,000kg',
             'volume'                        => '3',
+            'init_distance'                 => 15,
+            'init_price'                    => 50,
             'init_price_for_items'          => 50,
             'price_per_floor'               => 25,
             'price_per_big_item'            => 25,
@@ -149,6 +153,8 @@ class DatabaseSeeder extends Seeder
             'size'                          => '4m * 4m * 4m',
             'load_weight'                   => '1,500kg',
             'volume'                        => '4',
+            'init_distance'                 => 15,
+            'init_price'                    => 80,
             'init_price_for_items'          => 80,
             'price_per_floor'               => 35,
             'price_per_big_item'            => 25,
@@ -170,6 +176,8 @@ class DatabaseSeeder extends Seeder
             'size'                          => '5m * 5m * 5m',
             'load_weight'                   => '2,000kg',
             'volume'                        => '5',
+            'init_distance'                 => 15,
+            'init_price'                    => 150,
             'init_price_for_items'          => 150,
             'price_per_floor'               => 70,
             'price_per_big_item'            => 25,
@@ -211,75 +219,51 @@ class DatabaseSeeder extends Seeder
         // Small Bus
         DistancePrice::create([
             'vehicle_id'    => 1,
-            'from'          => 0,
-            'to'            => 15,
-            'amount'        => 30,
-        ]);
-        DistancePrice::create([
-            'vehicle_id'    => 1,
             'from'          => 15,
             'to'            => 9999,
-            'amount'        => 35,
+            'amount'        => 5,
         ]);
 
         // Medium Bus
         DistancePrice::create([
             'vehicle_id'    => 2,
-            'from'          => 0,
-            'to'            => 15,
-            'amount'        => 50,
-        ]);
-        DistancePrice::create([
-            'vehicle_id'    => 2,
             'from'          => 15,
             'to'            => 9999,
-            'amount'        => 55,
+            'amount'        => 5,
         ]);
 
         // Small Truck
         DistancePrice::create([
             'vehicle_id'    => 3,
-            'from'          => 0,
-            'to'            => 15,
-            'amount'        => 70,
-        ]);
-        DistancePrice::create([
-            'vehicle_id'    => 3,
             'from'          => 15,
             'to'            => 9999,
-            'amount'        => 75,
+            'amount'        => 5,
         ]);
 
         // Medium Truck
         DistancePrice::create([
             'vehicle_id'    => 4,
-            'from'          => 0,
-            'to'            => 15,
-            'amount'        => 100,
-        ]);
-        DistancePrice::create([
-            'vehicle_id'    => 4,
             'from'          => 15,
             'to'            => 100,
-            'amount'        => 105,
+            'amount'        => 5,
         ]);
         DistancePrice::create([
             'vehicle_id'    => 4,
             'from'          => 100,
             'to'            => 500,
-            'amount'        => 110,
+            'amount'        => 6,
         ]);
         DistancePrice::create([
             'vehicle_id'    => 4,
             'from'          => 500,
             'to'            => 1000,
-            'amount'        => 115,
+            'amount'        => 7,
         ]);
         DistancePrice::create([
             'vehicle_id'    => 4,
             'from'          => 1000,
             'to'            => 9999,
-            'amount'        => 120,
+            'amount'        => 8,
         ]);
 
         // Small Move
