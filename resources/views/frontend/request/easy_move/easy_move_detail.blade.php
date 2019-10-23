@@ -21,7 +21,9 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         {{__('string.select_model')}}
-                    <p class ="detail" id="vehicleSelBtn" data-toggle = "modal" data-target = "#vehicleSelModal">{{$selectedVehicle->name}}</p>
+                    <p class ="detail" id="vehicleSelBtn" data-toggle = "modal" data-target = "#vehicleSelModal">
+                        {{$selectedVehicle->name}}<i class="fa fa-angle-right direct"></i>
+                    </p>
                     <!-- setting hidden id -->
                      <input type="hidden"  id = "vehicleId" value="">
                     </li>
@@ -57,7 +59,7 @@
                   {!! Html::image("frontend/assets/img/icons/calendar.png",'calendar',['style' => 'width: 30px;height: 22px;']) !!}
                   {{__('string.moving_time')}}
                 <p class="detail" id="myTimeBtn">
-                {{__('string.set_time')}}</p>
+                {{__('string.set_time')}}<i class="fa fa-angle-right direct"></i></p>
                 </li>
                 </ul>
             </div>
@@ -71,7 +73,8 @@
           <div class="content-sidebar">
             <div class="card" style="margin:10px 0">
               <div class="card-header">
-                Big baggage(washer,refrigerator...)<span>aaaaa</span>
+                  Big baggage<span style="color: #999;font-weight: 100;">(washer,refrigerator...)</span>
+                  <i class="fa fa-angle-right direct" style="float: right"></i>
               </div>
             </div>
           </div>
@@ -83,7 +86,9 @@
         <div class="col-12">
           <div class="card" style="margin:10px 0">
             <div class="card-header">{{__('string.order_note')}}
-              <p class="detail" id="photoSelBtn" data-toggle = "modal" data-target = "#movingPhotoModal" style="font-weight: 100">{{__('string.upload_photo')}}</p>
+              <p class="detail" id="photoSelBtn" data-toggle = "modal" data-target = "#movingPhotoModal" style="font-weight: 100">
+                  {{__('string.upload_photo')}}<i class="fa fa-angle-right direct"></i>
+              </p>
             </div>
               <ul>
               <li style="z-index: 0;min-width: 287px;padding:10px;border-bottom: 1px solid rgba(0,0,0,.125);">
@@ -296,20 +301,22 @@
                 <button type="button" class="close" data-dismiss="modal" style="font-size: 29px;margin-right: -18px;">&times;</button>
             </div>
             <!-- Modal body -->
-            <div class="modal-body">
-                <div class="special-item">
-                    <span>furniture:</span>
-                    <span>45kg dkdkdkf fkdf fdfdfdk</span>
-                </div>
-                <div class="special-item">
-                    <span>furniture:</span>
-                    <span>45kg dkdkdkf fkdf fdfdfdk</span>
+            <div class="modal-body" style="min-height: 390px;">
+                <div class="special-item-group">
+                    <div class="special-item">
+                        <span>furniture:</span>
+                        <span>45kg dkdkdkf fkdf fdfdfdk</span>
+                    </div>
+                    <div class="special-item">
+                        <span>furniture:</span>
+                        <span>45kg dkdkdkf fkdf fdfdfdk</span>
+                    </div>
                 </div>
                 <div class="add-special-item">
                     <p>Add Item</p>
-                    <div class="d-inline-flex">
+                    <div style="text-align: center;">
                         {!! Html::image('frontend/assets/img/icons/minus.png','minus button',['class' => 'min-button']) !!}
-                        <p id="qty" name="qty">1</p>
+                        <span id="qty" name="qty" style="padding: 15px;">1</span>
                         {!! Html::image('frontend/assets/img/icons/plus.png','minus button',['class' => 'plus-button']) !!}
                     </div>
                 </div>
@@ -366,7 +373,7 @@
       $("#addBaggage").hide();
       $(".primary").click(function() {
           if(this.checked) {
-              $("#addBaggage").show();
+            $("#addBaggage").show();
           }
           else
           {
@@ -405,8 +412,22 @@
           $("#small").css({"background-color": "#947054"});
         }
 
-      })
+      });
 
+// Add Special Item start
+      let addInput = '#qty';
+      let n = 1;
+      $(addInput).text(n);
+      $('.plus-button').on('click', function(){
+          $(addInput).text(++n);
+      });
+      $('.min-button').on('click', function(){
+          if (n >= 1) {
+              $(addInput).text(--n);
+          } else {
+          }
+      });
+// Add Special Item end
     </script>
 
 @endsection
