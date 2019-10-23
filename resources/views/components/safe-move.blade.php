@@ -1,4 +1,4 @@
-<main id = "safeMove">
+<main id="safeMove">
     <!-- Move type start -->
     <section class="featured-properties-area section-padding-10-50">
         <div class="container">

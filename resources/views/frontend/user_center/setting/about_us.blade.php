@@ -1,4 +1,4 @@
-@extends('frontend.user_center.app')
+@extends('frontend.user_center.layout')
 
 @section('title', 'About Us')
 
@@ -7,21 +7,21 @@
         label {
             width: 20%;
         }
-        a {
+        span {
             margin-left: 5%;
         }
     </style>
     <div class="container">
-        <div class="mt-30 mb-30" style="text-align: center; background-color: #f1f2f4;">
-            <img class="mx-auto d-block" src="frontend/assets/img/icons/about.png">
-            <h4 style="padding-bottom: 20px; color: #ff6600;">{{ $aboutUs->title }}</h4>
+        <div class="m-t-30 m-b-30 txt-align-c" style="background-color: #f1f2f4;">
+            <img src="frontend/assets/img/icons/about.png">
+            <h4 class="p-t-20 p-b-10" style="color: #ff6600;">{{ $aboutUs->title }}</h4>
         </div>
         <p>{{ $aboutUs->introduction }}</p>
         <hr>
         <div class="mt-30">
-            <label>Phone</label>:<a>{{ $aboutUs->phone }}</a><br>
-            <label>Email</label>:<a>{{ $aboutUs->email }}</a><br>
-            <label>Website</label>:<a>{{ $aboutUs->website }}</a><br>
+            <label>Phone</label>:<span>{{ $aboutUs->phone }}</span><br>
+            <label>Email</label>:<span>{{ $aboutUs->email }}</span><br>
+            <label>Website</label>:<span>{{ $aboutUs->website }}</span><br>
         </div>
     </div>
 @endsection

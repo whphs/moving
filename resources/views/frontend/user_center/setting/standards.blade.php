@@ -1,4 +1,4 @@
-@extends('frontend.user_center.app')
+@extends('frontend.user_center.layout')
 
 @section('title', 'Charging Standard')
 
@@ -50,8 +50,7 @@
   	</style>
 
     <div class="container">
-
-		<div class="tabbable-line" style="margin-bottom: -40px;">
+		<div class="tabbable-line m-t-20" style="margin-bottom: -20px;">
 			<div class="tab-content">
 				@for ($i = 0; $i < count($vehicles); $i ++)
 					<div class="tab-pane" id="vehicle_name{{ $i }}">
@@ -66,7 +65,7 @@
 		    <div class="swiper-wrapper">
 				@foreach ($vehicles as $vehicle)
 					<div class="swiper-slide">
-						<img src="storage/{{ $vehicle->photo_0 }}" alt="">
+						<img class="w-100p" style="height: 100px; background-color: white;" src="storage/{{ $vehicle->photo_0 }}" alt="">
 						<div class="mt-10">
 							<table style="width: 100%;">
 								<tr>
@@ -88,7 +87,7 @@
 	    	<div class="swiper-pagination"></div>
 	  	</div>
 
-	  	<div class="tabbable-line mt-20">
+	  	<div class="tabbable-line m-t-20">
 			<div class="tab-content">
                 @for ($i = 0; $i < count($vehicles); $i ++)
                     <div class="tab-pane" id="vehicle_info{{ $i }}">

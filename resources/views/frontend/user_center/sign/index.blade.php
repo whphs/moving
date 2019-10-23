@@ -1,4 +1,4 @@
-@extends('frontend.user_center.app')
+@extends('frontend.user_center.layout')
 
 @section('title', 'Sign In')
 
@@ -8,7 +8,7 @@
 
         /* The Modal (background) */
         .modal {
-            display: none; /* Hidden by default */.
+            display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
             left: 0;
@@ -38,7 +38,7 @@
 
         /* The Close Button */
         .close {
-            color: black;
+            color: white;
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -51,23 +51,9 @@
             cursor: pointer;
         }
 
-        .modal-header {
-            padding: 2px 16px;
-            background-color: #5cb85c;
-            color: white;
-        }
-
-        .modal-body {padding: 2px 16px;}
-
-        .modal-footer {
-            padding: 2px 16px;
-            background-color: #5cb85c;
-            color: white;
-        }
-
         /* Add Animation */
         @-webkit-keyframes slideIn {
-            from {bottom: -300px; opacity: 0} 
+            from {bottom: -300px; opacity: 0}
             to {bottom: 0; opacity: 1}
         }
 
@@ -77,36 +63,27 @@
         }
 
         @-webkit-keyframes fadeIn {
-            from {opacity: 0} 
+            from {opacity: 0}
             to {opacity: 1}
         }
 
         @keyframes fadeIn {
-            from {opacity: 0} 
+            from {opacity: 0}
             to {opacity: 1}
         }
     </style>
 
-    <div class="container" style="text-align: center;">
-        <div class="mt-50">
-            <img src="/frontend/assets/img/icons/logo.png" alt="">
+    <div class="txt-align-c">
+        <div class="h-200" style="background-color: white;">
+            <img style="margin-top: 60px;" src="frontend/assets/img/icons/logo.png" alt="">
         </div>
-        <div class="mt-50">
-            <div class="input-group has-success mb-30">
-                <span class="input-group-addon">
-                    <i class="fa fa-phone"></i>
-                </span>
-                <input type="text" class="form-control" placeholder="Please enter your cell phone number">
-            </div>
-            <button class="btn green btn-circle btn-block">SignIn</button>
-        </div>
-        <div class="mt-30">
-            <a href="/agreement">Go to User Agreement</a>
-        </div>
-        <hr>
-        <div>
-            <p class="text-success">---------------One-click Signin---------------</p>
-            <img class="img-circle" id="myBtn" src="/frontend/assets/img/icons/wechat.png">
+        <div class="container m-t-5 p-t-30" style="background-color: white;">
+            <button class="btn btn-circle btn-block" id="myBtn" style="background-color: #1aad19;">
+                <img src="frontend/assets/img/icons/wechat.png">
+                <span style="color: white;">Wechat Authorized SignIn</span>
+            </button>
+            <button class="btn btn-outline-secondary btn-block" style="margin-top: 20px; height: 50px;" onclick="goPhone();">Mobile phone number SignIn</button>
+            <p class="m-t-20 p-b-30" style="color: #f16622" onclick="goAgreement();">Go to User Agreement</p>
         </div>
     </div>
 
@@ -114,23 +91,36 @@
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
-            <div style="margin-left: 5%; margin-right: 5%;">
+            <div class="container">
                 <span class="close">&times;</span>
-                <h4 style="font-weight: bold;">requests to use</h4>
-                <h2>Your mobile number</h2>
+                <h5 class="m-t-10">requests to use</h5>
+                <h3 style="font-weight: bold;">Your mobile number</h3>
                 <hr>
-                <span style="font-weight: bold;">13394260131</span><span style="margin-left: 10%;">Linked to Wechat</span><input type="checkbox" checked="" style="float: right;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td><span style="font-weight: bold;">13394260131</span></td>
+                        <td>Linked to Wechat</td>
+                        <td><input type="checkbox" checked="" style="float: right;"></td>
+                    </tr>
+                </table>
                 <hr>
-                <a href="/sign_in/other">Use Other Mobile Number</a>
-                <div class="mt-30 mb-30" style="text-align: center;">
+                <a href="/sign/other">Use Other Mobile Number</a>
+                <div class="m-t-30 m-b-30" style="text-align: center;">
                     <button type="button" class="btn btn-default" style="width: 30%; color: green;">Reject</button>
-                    <button type="button" class="btn btn-success" style="width: 30%; margin-left: 10%;">Allow</button>    
+                    <button type="button" class="btn btn-success" style="width: 30%; margin-left: 10%;">Allow</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        function goPhone() {
+            window.location.href = "sign/phone";
+        }
+
+        function goAgreement() {
+            window.location.href = "agreement";
+        }
         // Get the modal
         var modal = document.getElementById("myModal");
 
@@ -140,7 +130,7 @@
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
+        // When the user clicks the button, open the modal
         btn.onclick = function() {
             modal.style.display = "block";
         }

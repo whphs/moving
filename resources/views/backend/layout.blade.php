@@ -165,7 +165,7 @@
 <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 {!! Html::script('backend/assets/demo/demo.js') !!}
 
-@yield('styles');
+@yield('styles')
 
 @yield('scripts')
 

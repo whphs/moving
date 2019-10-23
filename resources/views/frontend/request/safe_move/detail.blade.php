@@ -27,6 +27,9 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" id="floor_from" value="5">
+                <input type="hidden" id="floor_to" value="5">
+                <input type="hidden" id="distance" value="200">
 
                 <!-- Upload baggage photo  -->
                 <div class="col-12 col-lg-6">
@@ -50,17 +53,19 @@
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
                             <div class="card-header">Bonus
-                                <a href="/bonuses" class="btn btn-link btn-sm watch">80yuan off ></a>
+                                <a href="/bonuses" class="btn btn-link btn-sm watch">Bonus list ></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <input type="hidden" id="bonus_price" value="10">
+            <input type="hidden" id="bonus_id" value="1">
 
             <!-- Note description -->
             <div class="row">
                 <div class="col-12">
-                    <p style="font-size: 12px;">after confirming the order, customer service will call yu for details as soon as possible.</p>
+                    <p style="font-size: 12px;">after confirming the order, customer service will call you for details as soon as possible.</p>
                 </div>
             </div>
         </div>
@@ -72,14 +77,16 @@
             <div class="row">
                 <div class="col-8" style="padding-right: 15px; padding-left: 15px;">
                     <div>
-                        <p style="display: inline-block; font-size: 20px; margin-bottom: 0px; color:#ef6774; line-height: normal">{{ $scale->init_price }}$</p>
+                        <p style="display: inline-block; font-size: 20px; margin-bottom: 0px; color:#ef6774; line-height: normal">
+                            <span id="init_price">{{ $scale->init_price }}</span>$
+                        </p>
                         <span style="text-decoration: line-through;">{{ $scale->init_price }}$</span>
                     </div>
                     <p style="display: inline-block;">aaaaaa$5</p>
-                    <a href="/safe_move/preview" style="float: right; position: relative; top: -10px; left: 10px; color: #947054 ">preview</a>
+                    {{-- <a href="/safe_move/preview" style="float: right; position: relative; top: -10px; left: 10px; color: #947054 ">preview</a> --}}
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn south-btn" style="margin-top: 12px; min-width: 100px; min-height: 35px;">Submit</button>
+                    <button id="submitBtn" class="btn south-btn" style="margin-top: 10px; min-width: 100px; min-height: 35px;">Submit</button>
                 </div>
             </div>
         </div>
@@ -87,16 +94,15 @@
 
     <!-- Time Modal -->
     <div id="timeModal" class="modal">
-        <!-- Modal content -->`
+        <!-- Modal content -->
         <div class="modal-content">
             <div class="modal-header">
                 <!-- Nav Start -->
                 <div class="classynav">
                     <ul style="padding: 3px;">
-                        <li><span class = "time-setting" id = "setting">Setting</span></li>
-                        <li style="float: right;"><span id = "close" class = "time-setting" >Exit</span></li>
+                        <li><span class="time-setting" id="setting">Setting</span></li>
+                        <li style="float: right;"><span id="close" class="time-setting" >Exit</span></li>
                     </ul>
-
                 </div>
                 <!-- Nav End -->
             </div>
@@ -114,7 +120,21 @@
 @section('scripts')
 
     {!! Html::script('frontend/assets/js/custom-modal.js') !!}    
+
     <script type="text/javascript">
+        $(document).ready(function () {
+            var total_price = $('#init_price').text();
+
+            var floor_from = $('#floor_from').val();
+            var floor_to = $('#floor_to').val();
+            var distance = $('#distance').val();
+            var bonus_price = $('#bonus_price').val();
+
+            var init_price = {!!$scale->distancePrices!!};
+
+            alert(init_price.length);
+        });
+
         $('#datepicker').datepicker('setDate', 'today');
     </script>
 

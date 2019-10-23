@@ -109,6 +109,9 @@ class VehicleController extends Controller
         $vehicle->load_weight                   = $request->load_weight;
         $vehicle->volume                        = $request->volume;
 
+        $vehicle->init_distance                 = $request->init_distance;
+        $vehicle->init_price                    = $request->init_price;
+
         $vehicle->init_price_for_items          = $request->init_price_for_items;
         $vehicle->price_per_floor               = $request->price_per_floor;
         $vehicle->price_per_big_item            = $request->price_per_big_item;

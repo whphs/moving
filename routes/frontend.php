@@ -18,13 +18,15 @@ Route::get('safe_move/preview', 'FrontEndController@safeMovePreview')->name('saf
 
 Route::get('/user_center', function () { return view('frontend/user_center/index'); });
 
-Route::get('/sign_in', function () { return view('frontend/user_center/sign_in/index'); });
+Route::get('/sign_in', function () { return view('frontend/user_center/sign/index'); });
 
-Route::get('/sign_in/phone', function () {	return view('frontend/user_center/sign_in/phone'); });
+Route::get('/sign/phone', function () {	return view('frontend/user_center/sign/phone'); });
 
-Route::get('/sign_in/other', function () { return view('frontend/user_center/sign_in/other'); });
+Route::get('/sign/other', function () { return view('frontend/user_center/sign/other'); });
 
 Route::get('/bookings', 'FrontEndController@bookings')->name('bookings');
+
+Route::get('/booking/show/{id}', 'FrontEndController@bookingShow')->name('booking.show');
 
 Route::get('/bonuses', 'FrontEndController@bonuses')->name('bonuses');
 
