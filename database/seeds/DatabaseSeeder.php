@@ -57,6 +57,13 @@ class DatabaseSeeder extends Seeder
             'when'          => date('Y-m-d H:i:s'),
             'distance'      => 10,
             'price'         => 500,
+            'description'   => 'This is Easy Move.',
+            'big_item'      => 2,
+            'helper_count'  => 3,
+            'photo_0'       => 'uploads/bus00.png',
+            'photo_1'       => 'uploads/bus01.png',
+            'photo_2'       => 'uploads/bus02.png',
+            'phone'         => '13394260131',
         ]);
 
         Booking::create([
@@ -69,6 +76,13 @@ class DatabaseSeeder extends Seeder
             'when'          => date('Y-m-d H:i:s'),
             'distance'      => 10,
             'price'         => 500,
+            'description'   => 'This is Safe Move.',
+            'big_item'      => 2,
+            'helper_count'  => 3,
+            'photo_0'       => 'uploads/bus10.png',
+            'photo_1'       => 'uploads/bus11.png',
+            'photo_2'       => 'uploads/bus12.png',
+            'phone'         => '13394260131',
         ]);
 
         AboutUs::create([
