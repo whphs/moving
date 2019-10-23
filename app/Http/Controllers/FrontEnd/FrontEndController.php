@@ -61,6 +61,11 @@ class FrontEndController extends Controller
         return view('frontend.user_center.booking.bookings', compact('bookings'));
     }
 
+    public function bookingShow($bookingId) {
+        $booking = Booking::find($bookingId);
+        return view('frontend.user_center.booking.booking_show', compact('booking'));
+    }
+
     public function vehicleStandards() {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
         return view('frontend.user_center.setting.standards', compact('vehicles'));

@@ -1,38 +1,55 @@
-@extends('frontend.user_center.app')
+@extends('frontend.user_center.layout')
 
 @section('title', 'Set Up')
 
 @section('content')
     <style>
-        span {
-            font-size; 14px;
-            font-weight: 600;
+        table {
+            width: 100%;
+            background-color: white;
+        }
+        tr {
+            height: 50px;
+            border-bottom: 2px solid #eee;
+        }
+        tr:hover {
+            background-color: #ccc;
         }
     </style>
-    <div class="container">
-        <div class="mt-30" style="margin-left: 15px;">
-            <a href="/agreement">
-                <div class="margin-top-20 profile-desc-link">
-                    <span>User Agreement</span>
-                    <i class="fa fa-angle-right" style="float: right;"></i>
-                </div>
-            </a>
-            <a href="/vehicle_standards">
-                <div class="margin-top-20 profile-desc-link">
-                    <span>Charging Standard</span>
-                    <i class="fa fa-angle-right" style="float: right;"></i>
-                </div>
-            </a>
-            <a href="/about_us">
-                <div class="margin-top-20 profile-desc-link">
-                    <span>About Us</span>
-                    <i class="fa fa-angle-right" style="float: right;"></i>
-                </div>
-            </a>
-        </div>
-        <hr>
-        <div style="text-align: center;">
-            <a href="/" class="btn blue btn-sm" style="position: center;">Sign Out&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a>
-        </div>
+
+    <div class="m-t-5">
+        <table>
+            <tr onclick="goAgreement();">
+                <td class="p-l-10">User Agreement</td>
+                <td class="w-20"><i class="fa fa-angle-right"></i></td>
+            </tr>
+            <tr onclick="goStandard();">
+                <td class="p-l-10">Charging Standard</td>
+                <td><i class="fa fa-angle-right"></i></td>
+            </tr>
+            <tr onclick="goAbout();">
+                <td class="p-l-10">About Us</td>
+                <td><i class="fa fa-angle-right"></i></td>
+            </tr>
+        </table>
     </div>
+    <div class="txt-align-c m-t-10">
+        <a href="/" class="btn blue btn-sm" style="position: center;">Sign Out&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a>
+    </div>
+@endsection
+
+@section('scripts')
+    <script>
+        function goAgreement() {
+            window.location.href = '/agreement';
+        }
+
+        function goStandard() {
+            window.location.href = '/vehicle_standards';
+        }
+
+        function goAbout() {
+            window.location.href = '/about_us';
+        }
+    </script>
 @endsection
