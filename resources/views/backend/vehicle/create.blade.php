@@ -85,13 +85,18 @@
             </div>
             <div class="mv-row">
                 <div class="mv-col">
-                    {!! Form::inputGroup('photo_0', __('string.photo_side'), null, 'file') !!}
+                    <div>
+                        {!! Form::label('photo_0', __('string.photo_side')) !!}
+                    </div>
+                    <div class="photo-multi-thumb"></div>
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('photo_1', __('string.photo_back'), null, 'file') !!}
+                    {!! Form::label('photo_1', __('string.photo_back')) !!}
+                    <div class="photo-single-thumb"></div>
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('photo_2', __('string.photo_half_side'), null, 'file') !!}
+                    {!! Form::label('photo_2', __('string.photo_half_side')) !!}
+                    <div class="photo-single-thumb"></div>
                 </div>
             </div>
 
@@ -107,6 +112,11 @@
 
 @section('scripts')
     <script>
+        $(document).ready(function() {
+            photoSingleThumb.init();
+            photoMultiThumb.init();
+        });
+
         $('.add-price').on('click', function() {
             let priceGroup =
             '<div class="form-group">' +

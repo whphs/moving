@@ -153,6 +153,7 @@
 </div>
 
 {!! Html::script('js/app.js') !!}
+{!! Html::script('backend/assets/js/backend.js') !!}
 <!--   Core JS Files   -->
 {!! Html::script('backend/assets/js/plugins/perfect-scrollbar.jquery.min.js') !!}
 <!--  Google Maps Plugin    -->
