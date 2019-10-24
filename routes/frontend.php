@@ -16,6 +16,10 @@ Route::get('safe_move/detail/{id}', 'FrontEndController@safeMoveDetail')->name('
 
 Route::get('safe_move/preview', 'FrontEndController@safeMovePreview')->name('safe_move.preview');
 
+Route::get('safe_move/location', function () { return view('frontend/request/common/current_location'); });
+
+Route::get('easy_move/location/floor', function () { return view('frontend/request/common/floor'); });
+
 Route::get('/user_center', function () { return view('frontend/user_center/index'); });
 
 Route::get('/sign_in', function () { return view('frontend/user_center/sign/index'); });

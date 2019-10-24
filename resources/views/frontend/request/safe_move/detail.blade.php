@@ -27,9 +27,6 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="floor_from" value="5">
-                <input type="hidden" id="floor_to" value="5">
-                <input type="hidden" id="distance" value="200">
 
                 <!-- Upload baggage photo  -->
                 <div class="col-12 col-lg-6">
@@ -59,8 +56,6 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden" id="bonus_price" value="10">
-            <input type="hidden" id="bonus_id" value="1">
 
             <!-- Note description -->
             <div class="row">
@@ -78,12 +73,12 @@
                 <div class="col-8" style="padding-right: 15px; padding-left: 15px;">
                     <div>
                         <p style="display: inline-block; font-size: 20px; margin-bottom: 0px; color:#ef6774; line-height: normal">
-                            <span id="init_price">{{ $scale->init_price }}</span>$
+                            <span id="real_price"></span>$
                         </p>
-                        <span style="text-decoration: line-through;">{{ $scale->init_price }}$</span>
+                        <span style="text-decoration: line-through;"><span id="total_price"></span>$</span>
                     </div>
                     <p style="display: inline-block;">aaaaaa$5</p>
-                    {{-- <a href="/safe_move/preview" style="float: right; position: relative; top: -10px; left: 10px; color: #947054 ">preview</a> --}}
+                    <a href="/safe_move/preview" style="float: right; position: relative; top: -10px; left: 10px; color: #947054 ">preview</a>
                 </div>
                 <div class="col-4">
                     <button id="submitBtn" class="btn south-btn" style="margin-top: 10px; min-width: 100px; min-height: 35px;">Submit</button>
@@ -119,20 +114,68 @@
 
 @section('scripts')
 
-    {!! Html::script('frontend/assets/js/custom-modal.js') !!}    
+    {!! Html::script('frontend/assets/js/custom-modal.js') !!}
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var total_price = $('#init_price').text();
+            let totalPrice = {!! $scale->init_price !!};
 
-            var floor_from = $('#floor_from').val();
-            var floor_to = $('#floor_to').val();
-            var distance = $('#distance').val();
-            var bonus_price = $('#bonus_price').val();
+            let floorFrom = 6;
+            let floorTo = 6;
+            let distance = 250;
+            let bonusPrice = 10;
 
-            var init_price = {!!$scale->distancePrices!!};
+            let distancePrices = {!! $scale->distancePrices !!};
+            let distancePrice = 0;
 
-            alert(init_price.length);
+            for (let i = 0; i < distancePrices.length; i++) {
+                if ((distance > distancePrices[i].from && distance >= distancePrices[i].to)) {
+                    distancePrice += (distancePrices[i].to - distancePrices[i].from) * distancePrices[i].amount;
+                }
+
+                if ((distance > distancePrices[i].from && distance < distancePrices[i].to)) {
+                    distancePrice += (distance - distancePrices[i].from) * distancePrices[i].amount;
+                }
+            }
+
+            let floorPrices = {!! $scale->floorPrices !!};
+            let floorFromPrice = 0;
+
+            for (let i = 0; i < floorPrices.length; i++) {
+                if ((floorFrom > floorPrices[i].from && floorFrom >= floorPrices[i].to)) {
+                    floorFromPrice += (floorPrices[i].to - floorPrices[i].from) * floorPrices[i].amount;
+                }
+
+                if ((floorFrom > floorPrices[i].from && floorFrom < floorPrices[i].to)) {
+                    floorFromPrice += (floorFrom - floorPrices[i].from) * floorPrices[i].amount;
+                }
+            }
+
+            let floorToPrice = 0;
+
+            for (let i = 0; i < floorPrices.length; i++) {
+                if ((floorTo > floorPrices[i].from && floorTo >= floorPrices[i].to)) {
+                    floorToPrice += (floorPrices[i].to - floorPrices[i].from) * floorPrices[i].amount;
+                }
+
+                if ((floorTo > floorPrices[i].from && floorTo < floorPrices[i].to)) {
+                    floorToPrice += (floorTo - floorPrices[i].from) * floorPrices[i].amount;
+                }
+            }
+
+            totalPrice = totalPrice + distancePrice + floorFromPrice + floorToPrice;
+            let realPrice = totalPrice - bonusPrice;
+
+            $('#total_price').html(totalPrice);
+            $('#real_price').html(realPrice);
+        });
+
+        $('.current-location').on('click', function() {
+            window.location.href = "/safe_move/location";
+        });
+
+        $('.destination-location').on('click',function () {
+            window.location.href = "/safe_move/location";
         });
 
         $('#datepicker').datepicker('setDate', 'today');

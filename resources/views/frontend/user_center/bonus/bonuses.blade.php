@@ -44,9 +44,13 @@
                     <div id="collapse_{{ $bonus->id }}" class="panel-collapse collapse" aria-expanded="true">
                         <div class="container panel-body">
                             <span>Applicable models : All bus and truck</span><br>
-                            <span>Applicable cities : </span><br>
+                            @if ($bonus->area_id == 0)
+                                <span>Applicable cities : all cities</span><br>
+                            @else
+                                <span>Applicable cities : {{ $bonus->area->name }}</span><br>
+                            @endif
                             <span>Effective time : </span>{{ $bonus->start_date }} ~ {{ $bonus->end_date }}<br>
-                            <span>Applicable scenario : </span>
+                            <span>Applicable scenario : {{ $bonus->description }}</span>
                         </div>
                     </div>
                 </div>

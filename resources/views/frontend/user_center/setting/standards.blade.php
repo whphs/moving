@@ -19,17 +19,10 @@
 	    }
 	    .swiper-container {
 	      width: 300px;
-	      /*height: 120px;
-	      position: absolute;
-	      left: 50%;
-	      top: 30%;
-	      margin-left: -150px;*/
 	      margin-top: 20px;
 		  text-align: center;
 	    }
 	    .swiper-slide {
-	      /*background-position: center;
-	      background-size: cover;*/
 	      height: 150px;
 	    }
 		img {
@@ -129,44 +122,42 @@
                 @endfor
 			</div>
 		</div>
-
-	  	<!-- Swiper JS -->
-		{!! Html::script('frontend/assets/js/jquery.js') !!}
-		{!! Html::script('frontend/assets/js/swiper.min.js') !!}
-
-	  	<!-- Initialize Swiper -->
-	  	<script>
-		  	$(document).ready(function () {
-				$("#vehicle_info0").addClass("active");
-				$("#vehicle_name0").addClass("active");
-			});
-
-	    	var swiper = new Swiper('.swiper-container', {
-		      	effect: 'cube',
-		      	grabCursor: true,
-		      	cubeEffect: {
-			        shadow: false,
-			        slideShadows: false,
-			        shadowOffset: 20,
-			        shadowScale: 0.94,
-		      	},
-		      	pagination: {
-		        	el: '.swiper-pagination',
-		      	},
-		    });
-
-		    swiper.on('slideChange', function () {
-		    	var active_truck = swiper.activeIndex;
-
-				for (var i = 0; i <= 3; i ++) {
-					$("#vehicle_info" + i).removeClass("active");
-					$("#vehicle_name" + i).removeClass("active");
-				}
-
-		    	$("#vehicle_info" + active_truck).addClass("active");
-				$("#vehicle_name" + active_truck).addClass("active");
-			})
-
-	  	</script>
     </div>
+@endsection
+
+@section('scripts')
+    <!-- Initialize Swiper -->
+    <script>
+        $(document).ready(function () {
+            $("#vehicle_info0").addClass("active");
+            $("#vehicle_name0").addClass("active");
+        });
+
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'cube',
+            grabCursor: true,
+            cubeEffect: {
+                shadow: false,
+                slideShadows: false,
+                shadowOffset: 20,
+                shadowScale: 0.94,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+
+        swiper.on('slideChange', function () {
+            var active_truck = swiper.activeIndex;
+
+            for (var i = 0; i <= 3; i ++) {
+                $("#vehicle_info" + i).removeClass("active");
+                $("#vehicle_name" + i).removeClass("active");
+            }
+
+            $("#vehicle_info" + active_truck).addClass("active");
+            $("#vehicle_name" + active_truck).addClass("active");
+        })
+
+    </script>
 @endsection
