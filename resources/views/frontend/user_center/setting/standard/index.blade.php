@@ -13,7 +13,7 @@
 	      background: #fff;
 	      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	      font-size: 14px;
-	      color:#000;
+	      color: #000;
 	      margin: 0;
 	      padding: 0;
 	    }
@@ -67,8 +67,8 @@
 									<th style="width: 20%;">Volume</th>
 								</tr>
 								<tr>
-									<td>{{ $vehicle->load_weight }}kg</td>
-									<td>{{ $vehicle->size }}M</td>
+									<td>{{ $vehicle->load_weight }}</td>
+									<td>{{ $vehicle->size }}</td>
 									<td>{{ $vehicle->volume }}</td>
 								</tr>
 							</table>
@@ -86,13 +86,21 @@
                     <div class="tab-pane" id="vehicle_info{{ $i }}">
                         <span>Basic fare</span>
                         <table class="table table-striped table-hover">
+                            <tr>
+                                <td>
+                                    0~{{ $vehicles[$i]->init_distance }} km
+                                </td>
+                                <td>
+                                    {{ $vehicles[$i]->init_price }} $ / km
+                                </td>
+                            </tr>
                             @for ($j = 0; $j < count($vehicles[$i]->distancePrices); $j ++)
                                 <tr>
                                     <td>
-                                        {{ $vehicles[$i]->distancePrices[$j]->from }}~{{ $vehicles[$i]->distancePrices[$j]->to }}km
+                                        {{ $vehicles[$i]->distancePrices[$j]->from }}~{{ $vehicles[$i]->distancePrices[$j]->to }} km
                                     </td>
                                     <td>
-                                        {{ $vehicles[$i]->distancePrices[$j]->amount }} yuan
+                                        +{{ $vehicles[$i]->distancePrices[$j]->amount }} $ / km
                                     </td>
                                 </tr>
                             @endfor
@@ -105,7 +113,7 @@
                                     Preview
                                 </td>
                                 <td>
-                                    <a>Help me to calculate the price</a>
+                                    <a href="/standard/preview/{{ $vehicles[$i]->id }}">Help me to figure out the price</a>
                                 </td>
                             </tr>
                             <tr>

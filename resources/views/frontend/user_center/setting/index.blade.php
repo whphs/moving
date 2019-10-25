@@ -45,7 +45,7 @@
         }
 
         function goStandard() {
-            window.location.href = '/vehicle_standards';
+            window.location.href = '/standards';
         }
 
         function goAbout() {

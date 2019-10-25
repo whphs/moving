@@ -78,7 +78,7 @@
                         <span style="text-decoration: line-through;"><span id="total_price"></span>$</span>
                     </div>
                     <p style="display: inline-block;">aaaaaa$5</p>
-                    <a href="/safe_move/preview" style="float: right; position: relative; top: -10px; left: 10px; color: #947054 ">preview</a>
+{{--                    <a href="/safe_move/preview" style="float: right; position: relative; top: -10px; left: 10px; color: #947054 ">preview</a>--}}
                 </div>
                 <div class="col-4">
                     <button id="submitBtn" class="btn south-btn" style="margin-top: 10px; min-width: 100px; min-height: 35px;">Submit</button>

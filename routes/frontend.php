@@ -3,44 +3,34 @@
 Route::get('/', 'FrontEndController@index')->name('index');
 
 Route::get('easy_move/detail/{id}', 'FrontEndController@easyMoveDetail')->name('easy_move_detail');
-
 Route::get('easy_move/preview', function () { return view('frontend/request/easy_move/preview'); });
-
 Route::get('easy_move/location', function () { return view('frontend/request/common/current_location'); });
-
 Route::get('easy_move/location/floor', function () { return view('frontend/request/common/floor'); });
 
 Route::get('safe_move/more/{id}', 'FrontEndController@safeMoveMore')->name('safe_move.more');
-
 Route::get('safe_move/detail/{id}', 'FrontEndController@safeMoveDetail')->name('safe_move.detail');
-
 Route::get('safe_move/preview', 'FrontEndController@safeMovePreview')->name('safe_move.preview');
-
 Route::get('safe_move/location', function () { return view('frontend/request/common/current_location'); });
-
 Route::get('easy_move/location/floor', function () { return view('frontend/request/common/floor'); });
 
 Route::get('/user_center', function () { return view('frontend/user_center/index'); });
 
 Route::get('/sign_in', function () { return view('frontend/user_center/sign/index'); });
-
 Route::get('/sign/phone', function () {	return view('frontend/user_center/sign/phone'); });
-
 Route::get('/sign/other', function () { return view('frontend/user_center/sign/other'); });
 
 Route::get('/bookings', 'FrontEndController@bookings')->name('bookings');
-
 Route::get('/booking/show/{id}', 'FrontEndController@bookingShow')->name('booking.show');
 
 Route::get('/bonuses', 'FrontEndController@bonuses')->name('bonuses');
-
 Route::get('bonus_guide', 'FrontEndController@bonusGuide')->name('bonus_guide');
 
 Route::get('/setting', function () { return view('frontend/user_center/setting/index'); });
 
 Route::get('/agreement', 'FrontEndController@agreement')->name('agreement');
 
-Route::get('/vehicle_standards', 'FrontEndController@vehicleStandards')->name('vehicle_standards');
+Route::get('/standards', 'FrontEndController@standards')->name('vehicle_standards');
+Route::get('/standard/preview/{id}', 'FrontEndController@standardPreview')->name('standard.preview');
 
 Route::get('/about_us', 'FrontEndController@aboutUs')->name('about_us');
 

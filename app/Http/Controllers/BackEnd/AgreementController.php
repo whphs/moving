@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class AgreementController extends Controller
 {
+    /**
+     * Display Agreement.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index() {
         $agreement = Agreement::first();
         if (!$agreement) {
@@ -16,6 +21,12 @@ class AgreementController extends Controller
         return view('backend.agreement.index', compact('agreement'));
     }
 
+    /**
+     * Store Agreement.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request) {
         $agreement = Agreement::first();
         $agreement->content = $request->content;

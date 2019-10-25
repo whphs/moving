@@ -94,6 +94,13 @@ class ScaleController extends Controller
         return redirect('admin/scale')->with('status', __('string.deleted_success'));
     }
 
+    /**
+     * Save the data to database
+     *
+     * @param App\Models\Scale $scale
+     * @param \Illuminate\Http\Request  $request
+     * @return void
+     */
     public function saveScale($scale, $request) {
         $scale->name                    = $request->name;
         $scale->move_type_id            = 1;
