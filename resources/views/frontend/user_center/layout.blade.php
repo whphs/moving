@@ -16,9 +16,16 @@
 
     {!! Html::style('frontend/assets/css/swiper.min.css') !!}
 
+    {!! Html::style('frontend/assets/style.css') !!}
+    {!! Html::style('frontend/assets/css/custom-modal.css') !!}
+    {!! Html::style('frontend/assets/css/mystyle.css') !!}
+    {!! Html::style('frontend/assets/css/timeline.css') !!}
+
     {!! Html::script('frontend/assets/js/jquery.js') !!}
     {!! Html::script('frontend/assets/js/jquery/jquery-2.2.4.min.js') !!}
     {!! Html::script('frontend/assets/js/bootstrap.min.js') !!}
+
+    {!! Html::script('frontend/assets/js/swiper.min.js') !!}
 </head>
 
 <body style="font-family: Arial, Helvetica, sans-serif; background-color: #eee;">

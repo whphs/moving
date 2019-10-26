@@ -78,9 +78,20 @@ class FrontEndController extends Controller
         return view('frontend.user_center.booking.booking_show', compact('booking'));
     }
 
-    public function vehicleStandards() {
+    public function standards() {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
-        return view('frontend.user_center.setting.standards', compact('vehicles'));
+        return view('frontend.user_center.setting.standard.index', compact('vehicles'));
+    }
+
+    public function standardPreview($vehicleId) {
+        $vehicles = Vehicle::all();
+        $selectVehicle = Vehicle::find($vehicleId);
+        return view('frontend.user_center.setting.standard.preview', compact('vehicles', 'selectVehicle'));
+    }
+
+    public function standardDescription($vehicleId) {
+        $selectVehicle = Vehicle::find($vehicleId);
+        return view('frontend.user_center.setting.standard.description', compact('selectVehicle'));
     }
 
     /**

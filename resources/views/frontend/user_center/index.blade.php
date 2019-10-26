@@ -17,7 +17,7 @@
         }
     </style>
 
-    <div class="mb-30 p-b-20 txt-align-c" style="background-color: white;">
+    <div class="m-b-5 p-b-20 txt-align-c" style="background-color: white;">
         <div>
             <img class="w-20p m-t-30" src="frontend/assets/img/icons/profile_user.png" alt="">
         </div>
@@ -25,7 +25,7 @@
             <button type="button" class="btn btn-link" style="font-size: 20px; color: #212529;" onclick="goSign();">Sign In</button>
         </div>
     </div>
-    <div class="m-t-5">
+    <div>
         <table>
             <tr onclick="goBookingList();">
                 <td class="txt-align-c w-40"><i class="fa fa-file-text"></i></td>

@@ -10,24 +10,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Scale extends Model
 {
-    public function move_type()
+    // Get moveType of scale.
+    public function moveType()
     {
         return $this->belongsTo(MoveType::class);
     }
 
+    // Get area of scale.
     public function area()
     {
         return $this->belongsTo(Area::class);
     }
 
+    // Get distancePrice of scale.
     public function distancePrices() {
         return $this->hasMany(DistancePrice::class);
     }
 
+    // Get floorPrice of scale.
     public function floorPrices() {
         return $this->hasMany(FloorPrice::class);
     }
 
+    // Get string of distancePrice.
     public function distancePriceSToString() {
         $list = $this->distancePrices;
         $returnString = '';

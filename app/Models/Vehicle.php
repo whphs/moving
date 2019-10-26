@@ -9,20 +9,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {
-    public function move_type()
+    // Get moveType of vehicle.
+    public function moveType()
     {
         return $this->belongsTo(MoveType::class);
     }
 
+    // Get area of vehicle.
     public function area()
     {
         return $this->belongsTo(Area::class);
     }
 
-    public function distancePrices() {
+    // Get distancePrice of vehicle.
+    public function distancePrices()
+    {
         return $this->hasMany(DistancePrice::class);
     }
 
+    // Get string of distancePrice.
     public function distancePriceSToString() {
         $list = $this->distancePrices;
         $returnString = '';
@@ -32,6 +37,7 @@ class Vehicle extends Model
         return $returnString;
     }
 
+    // Get string of itemPrice.
     public function itemPricesToString() {
         $returnString = __('string.init_price') . ' = $' . $this->init_price_for_items . '<br/>';
         $returnString .= __('string.price_per_floor') . ' = $' . $this->price_per_floor . '<br/>';

@@ -19,13 +19,12 @@
         </div>
         <hr>
         <span>You have <span style="font-weight: bold;">{{ count($bonuses) }}</span> tickets that can use.</span>
-{{--        <a href="/bonus_guide" style="float: right;">Instructions</a>--}}
         <div class="m-t-10">
             @foreach ($bonuses as $bonus)
                 <table class="w-100p m-t-10">
                     <tr>
                         <td class="txt-align-c w-30p">
-                            <p style="font-size: 47px; font-weight: bold; color: grey;">{{ $bonus->price }}$</p>
+                            <p style="font-size: 40px; font-weight: bold; color: grey; padding-top: 5px;">{{ $bonus->price }}$</p>
                             <p>Reduction</p>
                         </td>
                         <td class="p-l-5">
@@ -44,9 +43,13 @@
                     <div id="collapse_{{ $bonus->id }}" class="panel-collapse collapse" aria-expanded="true">
                         <div class="container panel-body">
                             <span>Applicable models : All bus and truck</span><br>
-                            <span>Applicable cities : </span><br>
+                            @if ($bonus->area_id == 0)
+                                <span>Applicable cities : all cities</span><br>
+                            @else
+                                <span>Applicable cities : {{ $bonus->area->name }}</span><br>
+                            @endif
                             <span>Effective time : </span>{{ $bonus->start_date }} ~ {{ $bonus->end_date }}<br>
-                            <span>Applicable scenario : </span>
+                            <span>Applicable scenario : {{ $bonus->description }}</span>
                         </div>
                     </div>
                 </div>
