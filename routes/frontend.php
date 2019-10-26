@@ -5,16 +5,20 @@ Route::get('/', 'FrontEndController@index')->name('index');
 Route::get('easy_move/detail/{id}', 'FrontEndController@easyMoveDetail')->name('easy_move_detail');
 
 Route::post('easy_move/put_session', 'FrontEndController@putDetailInfoSession')->name('easy_move.put_session');
+
+Route::post('put_session', 'FrontEndController@putSession')->name('easy_move.putSession');
 Route::get('easy_move/preview/{id}', 'FrontEndController@easyMovePreview')->name('easy_move.preview');
 
-Route::get('easy_move/location', function () { return view('frontend/request/common/current_location'); });
-Route::get('easy_move/location/floor', function () { return view('frontend/request/common/floor'); });
+//Route::get('easy_move/location', function () { return view('frontend/request/common/current_location'); });
+Route::get('easy_move/current_location/{id}', 'FrontEndController@easyMoveLocation');
+Route::get('easy_move/location/current_floor', 'FrontEndController@easyMoveFloor');
+
 
 Route::get('safe_move/more/{id}', 'FrontEndController@safeMoveMore')->name('safe_move.more');
 Route::get('safe_move/detail/{id}', 'FrontEndController@safeMoveDetail')->name('safe_move.detail');
 Route::get('safe_move/preview', 'FrontEndController@safeMovePreview')->name('safe_move.preview');
+
 Route::get('safe_move/location', function () { return view('frontend/request/common/current_location'); });
-Route::get('easy_move/location/floor', function () { return view('frontend/request/common/floor'); });
 
 Route::get('/user_center', function () { return view('frontend/user_center/index'); });
 

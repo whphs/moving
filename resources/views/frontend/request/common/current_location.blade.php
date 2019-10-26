@@ -60,7 +60,7 @@
 
     <script>
         $('#selectArea').click(function () {
-           window.location.href = "/easymove/" ;
+           window.location.href = "/easy_move/location/current_floor" ;
         });
     </script>
 @endsection

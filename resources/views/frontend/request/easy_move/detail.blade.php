@@ -307,7 +307,7 @@
                         <textarea id = "itemDescription" rows = "4" cols ="10" placeholder="Please enter moving item description."></textarea>
                         <div class="clear-description">
                             <span>200character</span>
-                            <span style="float: right;">{{__('string.clear')}}</span>
+                            <span id = "" style="float: right;">{{__('string.clear')}}</span>
                         </div>
                     </div>
                     <div class="history-description">
@@ -317,11 +317,13 @@
                     </div>
                     <div class="upload-photo">
                         <p style="font-size: 15px;font-weight: bold">Upload Photo</p>
-                        <div class="upload-photo-image">
-                            {!! Html::image('frontend/assets/img/icons/camera.png','take photo')!!}
-                            <input type="file" id = "fileUpload" name = "fileUpload" style="display: none">
-                            <p>Upload</p>
-                        </div>
+{{--                        <div class="upload-photo-image">--}}
+{{--                            {!! Html::image('frontend/assets/img/icons/camera.png','take photo')!!}--}}
+{{--                            <input type="file" id = "fileUpload" name = "fileUpload" style="display: none">--}}
+
+{{--                            <p>Upload</p>--}}
+{{--                        </div>--}}
+                        <div class="photo-multi-thumb" data-name = "main_photo" data-required = "true"></div>
                     </div>
                 </div>
                 <!-- Modal footer -->
@@ -373,6 +375,7 @@
 @endsection
 @section('scripts')
     {!! Html::script('frontend/assets/js/custom-modal.js') !!}
+    {!! Html::script('frontend/assets/js/upload-photo.js') !!}
     <script type="text/javascript">
 
     let handlingService = 0;
@@ -401,8 +404,31 @@
         totalPrice += selectedVehicle.price_per_big_item * big_item;
         $("#displayPrice").text(totalPrice);
     }
-
+    function ajaxFunc(hrefUrl) {
+        $.ajax({
+            url: '/easy_move/put_session',
+            type: 'POST',
+            data: {
+                vehicle_id : selectedVehicle.id,
+                handlingService:handlingService,
+                distance:distance,
+                helper_count:helper_count,
+                big_item:big_item,
+                when:when,
+                description:description,
+                phone:phone,
+                where_from:where_from,
+                floor_from:floor_from,
+                where_to:where_to,
+                floor_to:floor_to
+            },
+            success:function(data){
+                window.location.href = hrefUrl + selectedVehicle.id;
+            }
+        });
+    }
     $(document).ready(function(){
+        photoMultiThumb.init();
         vehicles = {!! $vehicles !!};
         selectedVehicle = {!! $selectedVehicle !!};
 
@@ -420,42 +446,13 @@
                 }
             });
             $('#previewBtn').click(function () {
-                $.ajax({
-                    url: '/easy_move/put_session',
-                    type: 'POST',
-                    data: {
-                        vehicle_id : selectedVehicle.id,
-                        // init_price: selectedVehicle.init_price,
-                        // init_distance: selectedVehicle.init_distance,
-                        // distancePrices: selectedVehicle.distancePrices,
-                        // floorPrices: selectedVehicle.floorPrices,
-                        // init_price_for_items: selectedVehicle.init_price_for_items,
-                        // price_per_floor: selectedVehicle.price_per_floor,
-                        // price_per_big_item: selectedVehicle.price_per_big_item,
-                        // price_per_floor_for_big_item: selectedVehicle.price_per_floor_for_big_item,
-
-                        handlingService:handlingService,
-                        distance:distance,
-                        helper_count:helper_count,
-                        big_item:big_item,
-                        when:when,
-                        description:description,
-                        phone:phone,
-                        where_from:where_from,
-                        floor_from:floor_from,
-                        where_to:where_to,
-                        floor_to:floor_to
-                    },
-                    success:function(data){
-                        window.location.href = '/easy_move/preview/' + selectedVehicle.id;
-                    }
-                });
+                ajaxFunc('/easy_move/preview/');
             });
 
             // Click Location li tag
 
             $('.current-location').on('click', function() {
-
+                ajaxFunc('/easy_move/current_location/');
             });
             $('.destination-location').on('click',function () {
 

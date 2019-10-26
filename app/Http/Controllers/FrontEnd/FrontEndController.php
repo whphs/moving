@@ -42,6 +42,11 @@ class FrontEndController extends Controller
         return view('frontend.request.easy_move.detail',compact('vehicles','selectedVehicle'));
     }
 
+    public  function  putSession(Request $request)
+    {
+
+    }
+
     public function putDetailInfoSession(Request $request) {
         $request->session()->put('bookingData',$request->all());
         return response()->json('ok');
@@ -50,6 +55,13 @@ class FrontEndController extends Controller
     public function easyMovePreview($id){
         $vehicle = Vehicle::find($id);
         return view('frontend.request.easy_move.preview', compact('vehicle'));
+    }
+    public function easyMoveLocation(){
+        return view('frontend.request.common.current_location');
+    }
+
+    public function easyMoveFloor(){
+        return view('frontend.request.common.current_location_floor');
     }
 
     /**
