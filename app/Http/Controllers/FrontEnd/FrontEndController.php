@@ -77,6 +77,11 @@ class FrontEndController extends Controller
         return view('frontend.user_center.setting.standard.preview', compact('vehicles', 'selectVehicle'));
     }
 
+    public function standardDescription($vehicleId) {
+        $selectVehicle = Vehicle::find($vehicleId);
+        return view('frontend.user_center.setting.standard.description', compact('selectVehicle'));
+    }
+
     /**
      * Display About Us.
      *

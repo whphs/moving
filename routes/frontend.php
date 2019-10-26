@@ -31,6 +31,7 @@ Route::get('/agreement', 'FrontEndController@agreement')->name('agreement');
 
 Route::get('/standards', 'FrontEndController@standards')->name('vehicle_standards');
 Route::get('/standard/preview/{id}', 'FrontEndController@standardPreview')->name('standard.preview');
+Route::get('/standard/description/{id}', 'FrontEndController@standardDescription')->name('standard.description');
 
 Route::get('/about_us', 'FrontEndController@aboutUs')->name('about_us');
 

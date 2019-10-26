@@ -138,7 +138,7 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body m-t-30">
-                <button type="button" id="ToFloor10" class="btn btn-outline-dark btn-block" data-dismiss="modal" onclick="selectToFloor(10);">Full Elevator</button>
+                <button type="button" id="toFloor10" class="btn btn-outline-dark btn-block" data-dismiss="modal" onclick="selectToFloor(10);">Full Elevator</button>
                 <hr>
                 <div class="txt-align-c">
                     @for ($i = 1; $i < 10; $i ++)
@@ -191,7 +191,7 @@
                 $('#fromFloor' + floorId).addClass('btn-outline-dark');
 
                 $('#isSelectFromFloor').val(0);
-                $('#price').text('---');
+                calPrice($('#vehicleId').val());
                 return;
             }
 
@@ -235,7 +235,7 @@
                 $('#toFloor' + floorId).addClass('btn-outline-dark');
 
                 $('#isSelectToFloor').val(0);
-                $('#price').text('---');
+                calPrice($('#vehicleId').val());
                 return;
             }
 
@@ -287,6 +287,12 @@
             {
                 $(countItems).text(--count);
                 $('#countItemsInput').val(count);
+            }
+
+            if (count == 0 && ($('#isSelectFromFloor').val() == 0 || $('#isSelectToFloor').val() == 0))
+            {
+                $('#price').text('---');
+                return;
             }
 
             calPrice($('#vehicleId').val());
