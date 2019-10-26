@@ -338,8 +338,8 @@ header {
     line-height: 2;
 }
 .upload-photo img{
-    width: 30px;
-    height: 30px;
+    width: 60px;
+    height: 60px;
     margin-left: 6px;
 }
 .upload-photo p{
@@ -383,6 +383,8 @@ header {
 }
 .direct{
     margin-left: 6px;
+    padding-top: 4px;
+    float: right;
 }
 .nav{
     flex-wrap: inherit;
@@ -434,3 +436,54 @@ header {
     margin-bottom: 0px;
     font-size: 15px;
 }
+
+ .photo-view-thumb {
+    width: 60px;
+    height: 60px;
+}
+.photo-view-thumb .thumb-image {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+
+}
+.photo-multi-thumb .thumb-image {
+    border: 2px dashed #947155;
+    border-radius: 5px;
+}
+
+.photo-view-thumb .thumb-image {
+    border: 0;
+}
+
+.photo-view-thumb .thumb-remove {
+    font-size: 20px;
+    color: red !important;
+    position: relative;
+    top: -73px;
+    left: 52px;
+}
+.floor-title{
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 2px;
+    color:#343a40;
+    position: initial;
+    width: 100%;
+}
+.floor-btn{
+    border-radius: unset !important;
+    box-shadow: unset!important;
+    line-height: 0!important;
+    min-width: 93%!important;
+    border: 1px solid #7d7d7d54!important;
+}
+.elevator-btn{
+    border-radius: unset !important;
+    box-shadow: unset!important;
+    line-height: 0!important;
+    border: 1px solid #7d7d7d54!important;
+}
+
+
+

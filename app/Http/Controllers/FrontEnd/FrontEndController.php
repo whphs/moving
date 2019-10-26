@@ -4,13 +4,14 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Models\Area;
 use App\Models\Bonus;
+use App\Models\Scale;
 use App\Models\AboutUs;
 use App\Models\Booking;
-use App\Models\Scale;
 use App\Models\Vehicle;
-use Illuminate\Http\Request;
 use App\Models\Agreement;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 //use Illuminate\Support\Facades\Response;
 
 class FrontEndController extends Controller
@@ -29,27 +30,47 @@ class FrontEndController extends Controller
     }
 
     /**
+     * Put session variables
+     *
+     * @param \Illuminate\Support\Facades\Request
+     */
+    public function putSession(Request $request) {
+        $request->session()->put($request->key, $request->value);
+        $request->session()->save();
+    }
+
+    /**
      * Display detail of easy move with id
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function easyMoveDetail($id) {
+    public function easyMoveDetail() {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
-        $selectedVehicle = Vehicle::find($id);
-        $a = 1;
+        return view('frontend.request.easy_move.detail',compact('vehicles'));
+    }
 
-        return view('frontend.request.easy_move.detail',compact('vehicles','selectedVehicle'));
+    public  function  putSession(Request $request)
+    {
+
     }
 
     public function putDetailInfoSession(Request $request) {
-        $request->session()->put('bookingData',$request->all());
+        $request->session()->put('vehicleId',$request->vehicleId);
+        $request->session()->put('bookingData',$request->params);
         return response()->json('ok');
     }
 
     public function easyMovePreview($id){
         $vehicle = Vehicle::find($id);
         return view('frontend.request.easy_move.preview', compact('vehicle'));
+    }
+    public function easyMoveLocation(){
+        return view('frontend.request.common.current_location');
+    }
+
+    public function easyMoveFloor(){
+        return view('frontend.request.common.current_location_floor');
     }
 
     /**
