@@ -37,7 +37,7 @@
 ##### Index of Stylesheet ##### /*
 
 /* :: 1.0 Import Fonts */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+/*@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");*/
 /* :: 2.0 Import All CSS */
 /*@import url(css/bootstrap.min.css);*/
 @import url(css/animate.css);
@@ -1439,12 +1439,12 @@ img {
       height: 100px;
       padding: 15px; }
 
-.listings-maps {
-  position: relative;
-  z-index: 1; }
-  .listings-maps #googleMap {
-    width: 100%;
-    height: 540px; }
+/*.listings-maps {*/
+/*  position: relative;*/
+/*  z-index: 1; }*/
+/*  .listings-maps #googleMap {*/
+/*    width: 100%;*/
+/*    height: 540px; }*/
 
 /* :: 20.0 Blog Area CSS */
 .single-blog-area {

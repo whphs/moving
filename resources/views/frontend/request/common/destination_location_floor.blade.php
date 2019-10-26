@@ -19,14 +19,14 @@
                             <p style="line-height: 0">dkeikfdfdfkjdkflsd</p>
                             <div id = "selectFloor" style="margin-top: 15px; " data-toggle="modal" data-target="#selectFloorModal">
                                 <i class="fa fa-trello" style="margin-right: 3px;"></i>
-                                <span style="color:#7d7d7d">GG</span>
+                                <span style="color:#7d7d7d">HJ</span>
                                 <i class="fa fa-angle-right" style="float: right;position: relative;top: 15px;"></i>
                                 <span style="float: right;margin-right: 6px;margin-top: -1px;" id = "displayFloor"></span>
 
                             </div>
                             <div>
                                 <i class="fa fa-building" style="margin-right: 3px;"></i>
-                                <span style="color:#7d7d7d">GG</span><input placeholder="12 floor" style="margin-left: 15px;border:unset;color: #7d7d7d">
+                                <span style="color:#7d7d7d">HJ</span><input placeholder="12 floor" style="margin-left: 15px;border:unset;color: #7d7d7d">
                             </div>
                         </li>
 
@@ -63,15 +63,15 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                             <button class ="btn south-btn btn-3 m-1 elevator-btn" id = "floor0" onclick="selectedFloor(0)">Use elevator</button>
+                            <button class ="btn south-btn btn-3 m-1 elevator-btn" id = "floor0" onclick="selectedFloor(0)">Use elevator</button>
                         </div>
                     </div>
                     <div class="row">
-                    @for($i = 1; $i <= 9; $i++)
-                        <div class="col-4">
-                            <button class ="btn south-btn btn-3 m-1 floor-btn" id = "floor{{$i}}" onclick="selectedFloor({{$i}})">{{$i}}floor</button>
-                        </div>
-                    @endfor
+                        @for($i = 1; $i <= 9; $i++)
+                            <div class="col-4">
+                                <button class ="btn south-btn btn-3 m-1 floor-btn" id = "floor{{$i}}" onclick="selectedFloor({{$i}})">{{$i}}floor</button>
+                            </div>
+                        @endfor
                     </div>
                 </div>
                 <!-- Modal footer -->
@@ -116,8 +116,8 @@
 
         $(document).ready(function(){
             $('#specialItemBtn').click(function () {
-                put_session("where_from","31");
-                put_session("floor_from",selectFloorIndex);
+                put_session("where_to","31");
+                put_session("floor_to",selectFloorIndex);
                 windows.location.href = "/easy_move/detail";
             });
         });

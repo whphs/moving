@@ -198,7 +198,7 @@
 
     @component('components.safe-move',['scales' =>$scales ])
     @endcomponent
-    @component('components.normal-price')
+    @component('components.normal-price',['vehicles' =>$vehicles])
     @endcomponent
 @endsection
 @section('scripts')

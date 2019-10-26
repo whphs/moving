@@ -375,55 +375,6 @@
     {!! Html::script('frontend/assets/js/custom-modal.js') !!}
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
     <script type="text/javascript">
-
-<<<<<<< HEAD
-    let handlingService = 0;
-    let distancePrice = 0;
-    let distance = 0;
-    let big_item = 0;
-    let when = "";
-    let photo_0 = "";
-    let photo_1 = "";
-    let photo_2 = "";
-    let description = "";
-    let phone = "";
-    let where_from = "";
-    let floor_from ="";
-    let where_to = "";
-    let floor_to = "";
-    let helper_count = 0;
-
-    let vehicles = null;
-    let selectedVehicle = null;
-    let selectedIndex = 0;
-
-    function calcTotalPrice() {
-        let totalPrice = selectedVehicle.init_price;
-        totalPrice += handlingService * selectedVehicle.init_price_for_items;
-        totalPrice += selectedVehicle.price_per_big_item * big_item;
-        $("#displayPrice").text(totalPrice);
-    }
-    function ajaxFunc(hrefUrl) {
-        $.ajax({
-            url: '/easy_move/put_session',
-            type: 'POST',
-            data: {
-                vehicle_id : selectedVehicle.id,
-                handlingService:handlingService,
-                distance:distance,
-                helper_count:helper_count,
-                big_item:big_item,
-                when:when,
-                description:description,
-                phone:phone,
-                where_from:where_from,
-                floor_from:floor_from,
-                where_to:where_to,
-                floor_to:floor_to
-            },
-            success:function(data){
-                window.location.href = hrefUrl + selectedVehicle.id;
-=======
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -494,17 +445,12 @@
 
             $('#displayPrice').text(totalPrice);
         }
-
+        // Click Location
         $('.current-location').on('click', function() {
-            ajaxFunc('/easy_move/current_location/');
+            window.location.href = "/current_location/1";
         });
         $('.destination-location').on('click',function () {
-
-        });
-
-        // Click floor
-        $('#selectArea').click(function () {
-
+            window.location.href = "/destination_location/2";
         });
 
         //Click Select Truck Button
@@ -654,6 +600,7 @@
         }
 
         $(document).ready( function() {
+            photoMultiThumb.init();
             vehicles = {!! $vehicles !!};
 
             @foreach($vehicles as $vehicle)

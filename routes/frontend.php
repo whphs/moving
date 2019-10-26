@@ -11,9 +11,11 @@ Route::post('easy_move/put_session', 'FrontEndController@putDetailInfoSession')-
 Route::post('put_session', 'FrontEndController@putSession')->name('easy_move.putSession');
 Route::get('easy_move/preview/{id}', 'FrontEndController@easyMovePreview')->name('easy_move.preview');
 
-//Route::get('easy_move/location', function () { return view('frontend/request/common/current_location'); });
-Route::get('easy_move/current_location/{id}', 'FrontEndController@easyMoveLocation');
-Route::get('easy_move/location/current_floor', 'FrontEndController@easyMoveFloor');
+Route::get('current_location/{index}', 'FrontEndController@location');
+Route::get('current_location/floor/{index}', 'FrontEndController@floor');
+
+Route::get('destination_location/{index}', 'FrontEndController@location');
+Route::get('destination_location/floor/{index}', 'FrontEndController@floor');
 
 
 Route::get('safe_move/more/{id}', 'FrontEndController@safeMoveMore')->name('safe_move.more');

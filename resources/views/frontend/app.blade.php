@@ -40,8 +40,8 @@
     {!! Html::script('frontend/assets/js/bootstrap-datetimepicker.min.js') !!}
     <!-- Plugins js -->
     {!! Html::script('frontend/assets/js/plugins.js') !!}
-    {!! Html::script('frontend/assets/js/classy-nav.min.js') !!}
-    {!! Html::script('frontend/assets/js/jquery-ui.min.js') !!}
+{{--    {!! Html::script('frontend/assets/js/classy-nav.min.js') !!}--}}
+{{--    {!! Html::script('frontend/assets/js/jquery-ui.min.js') !!}--}}
     <!-- Custom js -->
     {!! Html::script('frontend/assets/js/mytabs.js') !!}
     {!! Html::script('frontend/assets/js/jquery-mobile.js') !!}

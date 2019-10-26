@@ -139,7 +139,7 @@
                 <button type="button" id="toFloor10" class="btn btn-outline-dark btn-block" data-dismiss="modal" onclick="selectToFloor(10);">Full Elevator</button>
                 <hr>
                 <div class="txt-align-c">
-                    @for ($i = 1; $i < 10; $i ++)
+                    @for ($i = 1; $i < 10; $i++)
                         <button type="button" id="toFloor{{ $i }}" class="btn btn-outline-dark btn-sm w-25p m-l-10 m-r-10 m-b-10"
                                 data-dismiss="modal" onclick="selectToFloor({{ $i }});">{{ $i }} floor</button>
                     @endfor
