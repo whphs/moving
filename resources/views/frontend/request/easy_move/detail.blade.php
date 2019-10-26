@@ -22,16 +22,13 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">
                                             {{__('string.select_model')}}
-                                            <p class ="detail" id="vehicleSelBtn" data-toggle = "modal" data-target = "#vehicleSelModal">
-                                                {{$selectedVehicle->name}}<i class="fa fa-angle-right direct"></i>
-                                            </p>
-                                            <!-- setting hidden vehicle id -->
-                                            {{--                                                <input type="hidden"  id = "vehicleId" value="{{$selectedVehicle->id}}">--}}
+                                            <i class="fa fa-angle-right direct"></i>
+                                            <span class ="detail" id="vehicleSelBtn" data-toggle = "modal" data-target = "#vehicleSelModal"></span>
                                         </li>
-                                        <li class="list-group-item" style="padding-top: 8px;padding-bottom: 0px;z-index: 0;">
+                                        <li class="list-group-item" style="padding-top: 8px;padding-bottom: 0;z-index: 0;">
                                             {{__('string.option_service')}}
                                             <label class="switch">
-                                                <input type="checkbox" class="primary">
+                                                <input type="checkbox" class="primary" id="handlingService">
                                                 <span class="slider round"></span>
                                             </label>
                                         </li>
@@ -75,7 +72,8 @@
                                 <div class="card" style="margin:10px 0">
                                     <div class="card-header">
                                         Big baggage<span style="color: #999;font-weight: 100;">(washer,refrigerator...)</span>
-                                        <span id = "itemCount" style="float: right"><i class="fa fa-angle-right direct" style="float: right;position: relative;top: 3px;"></i></span>
+                                        <i class="fa fa-angle-right direct"></i>
+                                        <span id = "itemCount" class="detail"></span>
                                     </div>
                                 </div>
                             </div>
@@ -93,17 +91,17 @@
                                 </div>
                                 <ul>
                                     <li style="z-index: 0;min-width: 287px;padding:10px;border-bottom: 1px solid rgba(0,0,0,.125);">
-                                        <input type="radio" id="hOne" name="hOne" style="display: none;">
-                                        <input type="radio" id="hTwo"  name = "hTwo" style="display: none;">
-                                        <input type="checkbox" id="hSmall" name = "hSmall" style="display: none;">
+{{--                                        <input type="radio" id="hOne" name="hOne" style="display: none;">--}}
+{{--                                        <input type="radio" id="hTwo"  name = "hTwo" style="display: none;">--}}
+{{--                                        <input type="checkbox" id="hSmall" name = "hSmall" style="display: none;">--}}
 
                                         <button type="button" id = "one" class="btn south-btn follow">{{__('string.one')}}</button>
                                         <button type="button" id = "two" class="btn south-btn follow">{{__('string.two')}}</button>
                                         <button type="button" id = "small" class="btn south-btn follow">{{__('string.small_cart')}}</button>
                                     </li>
                                     <li style="z-index: 0;padding-left: 10px;padding-top: 3px;padding-bottom: 3px;">
-                                        <p style="display: inline-block;margin-bottom: 0px;margin-top: 4px;">{{__('string.contact_number')}}</p>
-                                        <input type="input" class="form-control" name="phoneNum" id = "phoneNum" placeholder="13394260131" >
+                                        <p style="display: inline-block;margin-bottom: 0;margin-top: 4px;">{{__('string.contact_number')}}</p>
+                                        <input class="form-control" name="phoneNum" id = "phoneNum" placeholder="13394260131" >
                                     </li>
                                 </ul>
                             </div>
@@ -132,13 +130,13 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="easy-move-footer-price">
-                                <span>{{__('string.format_price')}}</span><p id = "displayPrice">{{$selectedVehicle->init_price}}</p>
+                                <span>{{__('string.format_price')}}</span><p id = "displayPrice"></p>
                             </div>
                         </div>
                         <div class="col-8">
                             <div class="easy-move-footer-price1">
                                 {{--                  <a href = "/easy_move_detail/preview">{{__('string.preview')}}</a>--}}
-                                {!! link_to('#', __('string.preview'), $attributes = ['id' => 'previewBtn'], $secure = null) !!}
+                                {!! link_to_route('easy_move.preview', __('string.preview'), session()->get('vehicle_id')) !!}
                                 <button type="button" class="btn south-btn resv-btn" data-toggle="modal" data-target="#reservationModal">{{__('string.reservation_btn')}}</button>
                             </div>
                         </div>
@@ -378,6 +376,7 @@
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
     <script type="text/javascript">
 
+<<<<<<< HEAD
     let handlingService = 0;
     let distancePrice = 0;
     let distance = 0;
@@ -424,185 +423,283 @@
             },
             success:function(data){
                 window.location.href = hrefUrl + selectedVehicle.id;
+=======
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-    }
-    $(document).ready(function(){
-        photoMultiThumb.init();
-        vehicles = {!! $vehicles !!};
-        selectedVehicle = {!! $selectedVehicle !!};
 
-            for (let i = 0 ; i < vehicles.length ; i ++) {
-                if (selectedVehicle.id === vehicles[i].id) {
-                    selectedIndex = i;
-                    break;
+        let handlingService = 0;
+        let distance = 0;
+        let big_item = 0;
+        let when = "";
+        let photo_0 = "";
+        let photo_1 = "";
+        let photo_2 = "";
+        let description = "";
+        let phone = "";
+        let where_from = "";
+        let floor_from = 1;
+        let where_to = "";
+        let floor_to = 1;
+        let helper_count = 0;
+
+        let vehicles = null;
+        let selectedVehicleId = 1;
+        let selectedVehicle = null;
+        let selectedIndex = 0;
+
+        let distancePrices = [];
+
+        $("#addBaggage").hide();
+
+        // Calculate total price for changed statement.
+        function calcTotalPrice() {
+            let totalPrice = selectedVehicle.init_price;
+            let plusPrice = 0;
+            if (distance > selectedVehicle.init_distance) {
+                for (let i = 0 ; i < distancePrices[selectedIndex].length ; i ++) {
+                    let min = distancePrices[selectedIndex][i].from;
+                    let max = distancePrices[selectedIndex][i].to;
+                    if (distance > min && distance < max) {
+                        let offset = distance - min;
+                        plusPrice = distancePrices[selectedIndex][i].amount * offset;
+                        break;
+                    }
                 }
             }
 
-            // Click Preview Button
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#previewBtn').click(function () {
-                ajaxFunc('/easy_move/preview/');
-            });
+            totalPrice += plusPrice;
 
-            // Click Location li tag
+            totalPrice += (handlingService ? 1 : 0) * selectedVehicle.init_price_for_items;
 
-            $('.current-location').on('click', function() {
-                ajaxFunc('/easy_move/current_location/');
-            });
-            $('.destination-location').on('click',function () {
+            let floorFrom = floor_from;
+            let floorTo = floor_to;
+            if (floorFrom === 100) {
+                floorFrom = 1;
+            } else {
+                floorFrom --;
+            }
 
-            });
-            // Click floor
-            $('#selectArea').click(function () {
+            if (floorTo === 100) {
+                floorTo = 1;
+            } else {
+                floorTo --;
+            }
 
-            });
-            //Click Select Truck Button
-            $("#selTruckBtn").click(function(){
-                $("#vehicleSelBtn").text(selectedVehicle.name);
-                calcTotalPrice();
-            });
-            //Click select model
-            $('#vehicleSelBtn').click(function(e){
-                $('.tab-pane').removeClass('show active');
-                $('#vehicle'+selectedIndex).addClass('show active');
-            });
+            totalPrice += (floorFrom + floorTo) * selectedVehicle.price_per_floor;
+            totalPrice += selectedVehicle.price_per_big_item * big_item;
+            totalPrice += (floorFrom + floorTo) * big_item * selectedVehicle.price_per_floor_for_big_item;
 
-            $('.modal-header').on('click', 'li', function() {
-                selectedIndex = $(this)[0].id.substring(2, 3);
-                selectedVehicle = vehicles[selectedIndex];
+            $('#displayPrice').text(totalPrice);
+        }
 
-                $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
-                $(this).parent().parent().parent().parent().find('#vehicle' + selectedIndex).addClass('show active');
-            });
+        $('.current-location').on('click', function() {
+            ajaxFunc('/easy_move/current_location/');
+        });
+        $('.destination-location').on('click',function () {
 
-            // Reservation
-            $("#reservationBtn").click(function () {
-                // e.preventDefault();
-                let big_item = 0;let when = "";let photo_0 = "";let photo_1 = "";let photo_2 = "";let description = "";let phone = "";
-                let where_from = ""; let floor_from =""; let where_to = "";let floor_to = "";
+        });
 
-                big_item = $('#qty').text();
-                when = $('#movingTime').val();
-                description = $('#itemDescription').val();
-                phone = $('#phoneNum').val();
-                price = $('#displayPrice').text();
-                // $.ajax({
-                //     type:'POST',
-                //     url:'/booking.submit',
-                //     data:{user_id:1, vehicle_id:vehicle_id, big_item:big_item, where_from:where_from, floor_from:floor_from, where_to:where_to, floor_to:floor_to,
-                //         when:when, description:description,phone:phone, photo_0:photo_0, price:price},
-                //     success:function(data){
-                //         alert(data.success);
-                //     }
-                // });
+        // Click floor
+        $('#selectArea').click(function () {
 
-            });
-            // Add Special Item start
-            let addInput = '#qty';
-            let n = 0;
-            $(addInput).text(n);
-            $('.plus-button').on('click', function(){
-                $(addInput).text(++n);
-            });
-            $('.min-button').on('click', function(){
-                if (n >= 0) {
-                    $(addInput).text(--n);
+        });
+
+        //Click Select Truck Button
+        $("#selTruckBtn").click(function(){
+            $("#vehicleSelBtn").text(selectedVehicle.name);
+
+            putSession('vehicle_id', selectedVehicle.id);
+
+            calcTotalPrice();
+        });
+
+        //Click select model
+        $('#vehicleSelBtn').click(function(e){
+            $('.tab-pane').removeClass('show active');
+            $('#vehicle'+selectedIndex).addClass('show active');
+        });
+
+        // When click a vehicle on popup modal
+        $('.modal-header').on('click', 'li', function() {
+            selectedIndex = $(this)[0].id.substring(2, 3);
+            selectedVehicle = vehicles[selectedIndex];
+            selectedVehicleId = selectedVehicle.id;
+
+            $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
+            $(this).parent().parent().parent().parent().find('#vehicle' + selectedIndex).addClass('show active');
+        });
+
+        // when change big item's count
+        $('.plus-button').on('click', function(){
+            let value = $('#qty').text();
+            $('#qty').text(parseInt(value) + 1);
+        });
+
+        $('.min-button').on('click', function(){
+            let value = $('#qty').text();
+            if (value > 0) {
+                $('#qty').text(value - 1);
+            }
+        });
+
+        // when select big item's count
+        $("#specialItemBtn").click(function () {
+            big_item = $('#qty').text();
+            $('#itemCount').text(big_item);
+
+            putSession('big_item', big_item);
+
+            calcTotalPrice();
+        });
+
+        // When click submit button.
+        $("#reservationBtn").click(function () {
+            // e.preventDefault();
+            let big_item = 0;let when = "";let photo_0 = "";let photo_1 = "";let photo_2 = "";let description = "";let phone = "";
+            let where_from = ""; let floor_from =""; let where_to = "";let floor_to = "";
+
+            big_item = $('#qty').text();
+            when = $('#movingTime').val();
+            description = $('#itemDescription').val();
+            phone = $('#phoneNum').val();
+            price = $('#displayPrice').text();
+            // $.ajax({
+            //     type:'POST',
+            //     url:'/booking.submit',
+            //     data:{user_id:1, vehicle_id:vehicle_id, big_item:big_item, where_from:where_from, floor_from:floor_from, where_to:where_to, floor_to:floor_to,
+            //         when:when, description:description,phone:phone, photo_0:photo_0, price:price},
+            //     success:function(data){
+            //         alert(data.success);
+            //     }
+            // });
+
+        });
+
+        // Add Baggage Scripts
+        $('#handlingService').click(function() {
+            if(this.checked) {
+                $("#addBaggage").show();
+            } else {
+                $("#addBaggage").hide();
+            }
+            handlingService = this.checked;
+
+            putSession('handlingService', handlingService);
+
+            calcTotalPrice();
+        });
+
+        // Helper Count
+        function helperCountChanged(option) {
+            if (option === 0) {
+                $('#two').removeClass('checked');
+                $('#one').addClass('checked');
+                if (helper_count > 2) {
+                    helper_count = 3;
                 } else {
+                    helper_count = 1;
                 }
-            });
-            $("#specialItemBtn").click(function () {
-                big_item = $('#qty').text();
-                $('#itemCount').text(big_item);
-                calcTotalPrice();
-            });
-            // Add Special Item end
-            // Add Baggage Scripts
-            $("#addBaggage").hide();
-            $(".primary").click(function() {
-                if(this.checked) {
-                    $("#addBaggage").show();
+            } else if (option === 1) {
+                $('#one').removeClass('checked');
+                $('#two').addClass('checked');
+                if (helper_count > 2) {
+                    helper_count = 4;
+                } else {
+                    helper_count = 2;
                 }
-                else {
-                    $("#addBaggage").hide();
+            } else {
+                if ($('#small').hasClass('checked')) {
+                    $('#small').removeClass('checked');
+                    helper_count -= 2;
+                } else {
+                    $('#small').addClass('checked');
+                    helper_count += 2;
                 }
-                handlingService = this.checked;
-                calcTotalPrice();
-            });
+            }
 
-            // Helper Count
-            $("#one").click(function(){
-                if($("#hOne").is(":checked") == false)
-                {
-                    if($("#hSmall").is(":checked") == true)
-                    {
-                        helper_count = 3;
-                    }
-                    else{
-                        helper_count = 1;
-                    }
-                    $("#hOne").prop("checked",true);
-                    $("#hTwo").prop("checked",false);
-                    $("#one").css("background-color", "#000000");
-                    $("#two").css({"background-color": "#947054"});
+            putSession('helper_count', helper_count);
+        }
 
+        $("#one").click(function(){
+            helperCountChanged(0);
+        });
 
+        $("#two").click(function(){
+            helperCountChanged(1);
+        });
+
+        $("#small").click(function(){
+            helperCountChanged(2);
+        });
+
+        function getSelectedVehicle(id) {
+            for (let i = 0 ; i < vehicles.length ; i ++) {
+                if (parseInt(id) === vehicles[i].id) {
+                    selectedIndex = i;
+                    return vehicles[i];
                 }
+            }
+            return null;
+        }
 
+        function putSession(key, value) {
+            $.ajax({
+                type: 'POST',
+                url: '/put_session',
+                data: {key: key, value: value}
             });
-            $("#two").click(function(){
-                if($("#hTwo").is(":checked") == false)
-                {
-                    if($("#hSmall").is(":checked") == true)
-                    {
-                        helper_count = 4;
-                    }
-                    else{
-                        helper_count = 2;
-                    }
-                    $("#hTwo").prop("checked",true);
-                    $("#hOne").prop("checked",false);
-                    $("#one").css({"background-color": "#947054"});
-                    $("#two").css({"background-color": "#000000"});
-                }
-            });
-            $("#small").click(function(){
-                if($("#hSmall").is(":checked") == false)
-                {
-                    if($("#hOne").is(":checked") == true){
-                        helper_count = 3;
-                    }
-                    else if($("#hTwo").is(":checked") == true)
-                    {
-                        helper_count = 4;
-                    }
-                    else{
-                        helper_count = 0;
-                    }
-                    $("#hSmall").prop("checked",true);
-                    $("#small").css({"background-color": "#000000"});
-                }
-                else
-                {
-                    if($("#hOne").is(":checked") == true){
-                        helper_count = 1;
-                    }
-                    else if($("#hTwo").is(":checked") == true)
-                    {
-                        helper_count = 2;
-                    }
-                    else{
-                        helper_count = 0;
-                    }
-                    $("#hSmall").prop("checked",false);
-                    $("#small").css({"background-color": "#947054"});
-                }
+        }
 
-            });
+        $(document).ready( function() {
+            vehicles = {!! $vehicles !!};
+
+            @foreach($vehicles as $vehicle)
+                distancePrices.push({!! $vehicle->distancePrices !!});
+            @endforeach
+
+            selectedVehicle = vehicles[0];
+
+            let sessionData = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
+            if (!sessionData) {
+                return;
+            }
+            let vId = {!! session()->get('vehicle_id') !!};
+            console.log(vId);
+            if (sessionData.vehicle_id) {
+                selectedVehicle = getSelectedVehicle(sessionData.vehicle_id);
+            }
+
+            $("#vehicleSelBtn").text(selectedVehicle.name);
+
+            $('#handlingService')[0].checked = handlingService = sessionData.handlingService ? sessionData.handlingService : 0;
+            $('#addBaggage').show(handlingService);
+
+            big_item = sessionData.big_item ? sessionData.big_item : 0;
+            $('#itemCount').text(big_item);
+            $('#qty').text(big_item);
+
+            when = sessionData.when ? sessionData.when : '';
+            if (when.length) {
+                $('#myTimeBtn').text(when);
+            }
+
+            helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
+            if (parseInt(helper_count) === 1) {
+                $('#one').addClass('checked');
+            } else if (parseInt(helper_count) === 2) {
+                $('#two').addClass('checked');
+            } else if (parseInt(helper_count) === 3) {
+                $('#one').addClass('checked');
+                $('#small').addClass('checked');
+            } else {
+                $('#two').addClass('checked');
+                $('#small').addClass('checked');
+            }
+
+            calcTotalPrice();
         });
 
     </script>
@@ -610,4 +707,13 @@
         $('#datepicker').datepicker('setDate', 'today');
     </script>
 
+    <style>
+        .south-btn.follow {
+            background-color: #947054;
+        }
+        .south-btn.follow.checked {
+            background-color: black;
+        }
+
+    </style>
 @endsection

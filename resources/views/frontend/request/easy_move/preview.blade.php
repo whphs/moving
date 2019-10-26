@@ -46,28 +46,30 @@
     <script>
         $(document).ready(function(){
             let _vehicle = {!! $vehicle !!};
+            let _param = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
+            console.log(_param);
             let _distancePrices = {!! $vehicle->distancePrices !!};
-            let _param = {!! json_encode(session()->get('bookingData'), JSON_FORCE_OBJECT) !!};
 
-            _param.distance = 31;
-            _param.handlingService = 1;
-            _param.big_item = 2;
-            _param.floor_from = 9;
+            let _totalDistance = _param.distance ? _param.distance : 31;
+            let _floor_from = _param.floor_from ? _param.floor_from : 9;
+            let _floor_to = _param.floor_to ? _param.floor_to : 7;
+            let _handlingService = _param.handlingService ? 1 : 0;
+            let _big_item = _param.big_item ? _param.big_item : 0;
 
-            _param.floor_to = 7;
             calcTotalPrice();
+
             function calcTotalPrice() {
                 let totalPrice = _vehicle.init_price;
                 let plusPrice = 0;
-                let plusDistance = _param.distance - _vehicle.init_distance;
+                let plusDistance = _totalDistance - _vehicle.init_distance;
                 if (plusDistance <= 0) {
                     plusDistance = 0;
                 } else {
                     for (let i = 0 ; i < _distancePrices.length ; i ++) {
                         let min = _distancePrices[i].from;
                         let max = _distancePrices[i].to;
-                        if (_param.distance > min && _param.distance < max) {
-                            let offset = _param.distance - min;
+                        if (_totalDistance > min && _totalDistance < max) {
+                            let offset = _totalDistance - min;
                             plusPrice = _distancePrices[i].amount * offset;
                             break;
                         }
@@ -76,10 +78,10 @@
 
                 totalPrice += plusPrice;
 
-                let priceForItems = _param.handlingService * _vehicle.init_price_for_items;
+                let priceForItems = _handlingService * _vehicle.init_price_for_items;
 
-                let floorFrom = _param.floor_from;
-                let floorTo = _param.floor_to;
+                let floorFrom = _floor_from;
+                let floorTo = _floor_to;
                 if (floorFrom === 100) {
                     floorFrom = 1;
                 } else {
@@ -93,18 +95,17 @@
                 }
 
                 priceForItems += (floorFrom + floorTo) * _vehicle.price_per_floor;
-                priceForItems += _vehicle.price_per_big_item * _param.big_item;
-                priceForItems += (floorFrom + floorTo) * _param.big_item * _vehicle.price_per_floor_for_big_item;
+                priceForItems += _vehicle.price_per_big_item * _big_item;
+                priceForItems += (floorFrom + floorTo) * _big_item * _vehicle.price_per_floor_for_big_item;
 
                 totalPrice += priceForItems;
 
                 $('#totalPrice').text(totalPrice);
-                $('#totalDistance').text(_param.distance);
+                $('#totalDistance').text(_totalDistance);
                 $('#initPrice').text(_vehicle.init_price);
                 $('#plusDistance').text(plusDistance);
                 $('#plusPrice').text(plusPrice);
                 $('#priceForItems').text(priceForItems);
-
             }
 
         });

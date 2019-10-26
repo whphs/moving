@@ -383,6 +383,8 @@ header {
 }
 .direct{
     margin-left: 6px;
+    padding-top: 4px;
+    float: right;
 }
 .nav{
     flex-wrap: inherit;
