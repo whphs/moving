@@ -6,12 +6,12 @@
     <div class="container m-t-10">
         <div class="row">
             <div class="col-12">
-                <div class="content-sidebar">
+                <div class="content-sidebar" data-toggle="modal" data-target="#selectTruckModal">
                     <div class="card">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 Selected Truck
-                                <span data-toggle="modal" data-target="#selectTruckModal" style="float: right;">
+                                <span style="float: right;">
                                     <span id="vehicleName">{{ $selectVehicle->name }}</span><i class="fa fa-angle-right direct"></i>
                                 </span>
                             </li>
@@ -27,15 +27,15 @@
                     <div class="card" style="margin:10px 0">
                         <div class="card-header">Please select the handling floor</div>
                         <ul class="timeline">
-                            <li class="current-location">
+                            <li class="current-location" data-toggle="modal" data-target="#selectFromFloorModal">
                                 <span>Your shipping floor</span>
-                                <span data-toggle="modal" data-target="#selectFromFloorModal" style="float: right; margin-right: 20px;">
+                                <span style="float: right; margin-right: 20px;">
                                     <span id="fromFloorName">Select floor</span><i class="fa fa-angle-right direct"></i>
                                 </span>
                             </li>
-                            <li class="destination-location">
+                            <li class="destination-location" data-toggle="modal" data-target="#selectToFloorModal">
                                 <span>Your Receiving floor</span>
-                                <span data-toggle="modal" data-target="#selectToFloorModal" style="float: right; margin-right: 20px;">
+                                <span style="float: right; margin-right: 20px;">
                                     <span id="toFloorName">Select floor</span><i class="fa fa-angle-right direct"></i>
                                 </span>
                             </li>
@@ -84,10 +84,8 @@
     <div class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <div class="easy-move-footer-price">
-                        <p>Price : <span id="price">---</span>$</p>
-                    </div>
+                <div class="col-12 h-30">
+                        <p class="p-t-5" style="font-size: 20px; color: #ef6774;">Price : <span id="price">---</span>$</p>
                 </div>
             </div>
         </div>
@@ -151,10 +149,10 @@
     </div>
     <input type="hidden" id="selectedToFloor" value="">
 
-    <input type="hidden" id="vehicleId" value="{{ $selectVehicle->id }}"><br>
-    <input type="hidden" id="fromFloorCount" value="0"><br>
-    <input type="hidden" id="toFloorCount" value="0"><br>
-    <input type="hidden" id="countItemsInput" value="0"><br>
+    <input type="hidden" id="vehicleId" value="{{ $selectVehicle->id }}">
+    <input type="hidden" id="fromFloorCount" value="0">
+    <input type="hidden" id="toFloorCount" value="0">
+    <input type="hidden" id="countItemsInput" value="0">
     <input type="hidden" id="isSelectFromFloor" value="0">
     <input type="hidden" id="isSelectToFloor" value="0">
 @endsection
@@ -176,6 +174,9 @@
             }
 
             $('#truck' + vehicles[vehicleId - 1].id).removeClass('btn-outline-dark');
+
+            if ($('#countItemsInput').val() == 0 && $('#isSelectFromFloor').val() == 0 && $('#isSelectToFloor').val() == 0)
+                return;
 
             calPrice($('#vehicleId').val());
         }

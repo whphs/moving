@@ -378,7 +378,7 @@
 
         $(document).ready(function(){
 
-            let price = selectedVehicle.init_price;
+            // let price = selectedVehicle.init_price;
             let handlingService = 0;
             let distancePrice = 0;
             let distance = 0;

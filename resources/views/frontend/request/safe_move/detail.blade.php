@@ -50,7 +50,7 @@
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
                             <div class="card-header">Bonus
-                                <a href="/bonuses" class="btn btn-link btn-sm watch">Bonus list ></a>
+                                <a href="/bonuses" class="btn btn-link btn-sm watch"><span id="usedBonusPrice1">Bonus list</span> ></a>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         </p>
                         <span style="text-decoration: line-through;"><span id="total_price"></span>$</span>
                     </div>
-                    <p style="display: inline-block;">aaaaaa$5</p>
+                    <p style="display: inline-block;">Used bonus price <span id="usedBonusPrice2">--</span>$</p>
 {{--                    <a href="/safe_move/preview" style="float: right; position: relative; top: -10px; left: 10px; color: #947054 ">preview</a>--}}
                 </div>
                 <div class="col-4">
@@ -120,10 +120,10 @@
         $(document).ready(function () {
             let totalPrice = {!! $scale->init_price !!};
 
-            let floorFrom = 6;
-            let floorTo = 6;
-            let distance = 250;
-            let bonusPrice = 10;
+            let floorFrom = 0;
+            let floorTo = 0;
+            let distance = 0;
+            let bonusPrice = 80;
 
             let distancePrices = {!! $scale->distancePrices !!};
             let distancePrice = 0;
@@ -166,8 +166,14 @@
             totalPrice = totalPrice + distancePrice + floorFromPrice + floorToPrice;
             let realPrice = totalPrice - bonusPrice;
 
-            $('#total_price').html(totalPrice);
-            $('#real_price').html(realPrice);
+            $('#total_price').text(totalPrice);
+            $('#real_price').text(realPrice);
+
+            if (bonusPrice != 0)
+            {
+                $('#usedBonusPrice1').text(bonusPrice + ' $');
+                $('#usedBonusPrice2').text(bonusPrice);
+            }
         });
 
         $('.current-location').on('click', function() {
