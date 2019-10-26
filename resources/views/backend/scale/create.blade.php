@@ -50,13 +50,16 @@
 
             <div class="mv-row">
                 <div class="mv-col">
-                    {!! Form::inputGroup('main_photo', __('string.main_photo'), null, 'file') !!}
+                    {!! Form::label('main_photo', __('string.main_photo')) !!}
+                    <div class="photo-single-thumb" data-name = "main_photo" data-required = "true"></div>
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('vehicle_photo', __('string.vehicle_photo'), null, 'file') !!}
+                    {!! Form::label('vehicle_photo', __('string.vehicle_photo')) !!}
+                    <div class="photo-single-thumb" data-name = "vehicle_photo" data-required = "true"></div>
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('helper_photo', __('string.helper_photo'), null, 'file') !!}
+                    {!! Form::label('helper_photo', __('string.helper_photo')) !!}
+                    <div class="photo-single-thumb" data-name = "helper_photo" data-required = "true"></div>
                 </div>
             </div>
 
@@ -72,6 +75,10 @@
 
 @section('scripts')
     <script>
+        $(document).ready(function() {
+            photoSingleThumb.init();
+        });
+
         $('.add-distance').on('click', function() {
             let distanceGroup =
                 '<div class="form-group">' +

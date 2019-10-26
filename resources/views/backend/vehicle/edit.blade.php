@@ -29,10 +29,10 @@
                     {!! Form::inputGroup('size', __('string.size'), $vehicle->size) !!}
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('load_weight', __('string.load_weight'), $vehicle->load_weight, 'number') !!}
+                    {!! Form::inputGroup('load_weight', __('string.load_weight'), $vehicle->load_weight) !!}
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('volume', __('string.volume'), $vehicle->volume, 'number') !!}
+                    {!! Form::inputGroup('volume', __('string.volume'), $vehicle->volume) !!}
                 </div>
             </div>
             <div class="mv-row">
@@ -97,21 +97,26 @@
 
             <div class="mv-row">
                 <div class="mv-col">
-                    {!! Form::inputGroup('vehicle_thumb', __('string.vehicle_thumbnail'), null, 'file') !!}
+                    {!! Form::label('vehicle_thumb', __('string.vehicle_thumbnail')) !!}
+                    <div class="photo-single-thumb" data-name = "vehicle_thumb" data-value ="{{ $vehicle->vehicle_thumb }}"></div>
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('baggage_thumb', __('string.baggage_thumbnail'), null, 'file') !!}
+                    {!! Form::label('baggage_thumb', __('string.baggage_thumbnail')) !!}
+                    <div class="photo-single-thumb" data-name = "baggage_thumb" data-value ="{{ $vehicle->baggage_thumb }}"></div>
                 </div>
             </div>
-            <div class="mv-row">
+            <div class="mv-row my-2">
                 <div class="mv-col">
-                    {!! Form::inputGroup('photo_0', __('string.photo_side'), null, 'file') !!}
+                    {!! Form::label('photo_0', __('string.photo_side')) !!}
+                    <div class="photo-single-thumb" data-name = "photo_0" data-value ="{{ $vehicle->photo_0 }}"></div>
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('photo_1', __('string.photo_back'), null, 'file') !!}
+                    {!! Form::label('photo_1', __('string.photo_back')) !!}
+                    <div class="photo-single-thumb" data-name = "photo_1" data-value ="{{ $vehicle->photo_1 }}"></div>
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('photo_2', __('string.photo_half_side'), null, 'file') !!}
+                    {!! Form::label('photo_2', __('string.photo_half_side')) !!}
+                    <div class="photo-single-thumb" data-name = "photo_2" data-value ="{{ $vehicle->photo_2 }}"></div>
                 </div>
             </div>
 
@@ -125,6 +130,10 @@
 
 @section('scripts')
     <script>
+        $(document).ready(function() {
+            photoSingleThumb.init();
+        });
+
         $('.add-price').on('click', function() {
             let priceGroup =
             '<div class="form-group">' +

@@ -100,7 +100,6 @@ class VehicleController extends Controller
      * @return void
      */
     public function saveVehicle($vehicle, $request) {
-        // $this->validate($request, ['vehicle_thumb' => 'dimensions:width=150,height=100']);
 
         $vehicle->name                          = $request->name;
         $vehicle->move_type_id                  = 0;
@@ -121,11 +120,21 @@ class VehicleController extends Controller
         $vehicle->available_items               = $request->available_items;
         $vehicle->unavailable_items             = $request->unavailable_items;
 
-        $vehicle->vehicle_thumb                 = $request->vehicle_thumb->store('uploads', 'public');
-        $vehicle->baggage_thumb                 = $request->baggage_thumb->store('uploads', 'public');
-        $vehicle->photo_0                       = $request->photo_0->store('uploads', 'public');
-        $vehicle->photo_1                       = $request->photo_1->store('uploads', 'public');
-        $vehicle->photo_2                       = $request->photo_2->store('uploads', 'public');
+        if ($request->vehicle_thumb) {
+            $vehicle->vehicle_thumb     = $request->vehicle_thumb->store('uploads', 'public');
+        }
+        if ($request->baggage_thumb) {
+            $vehicle->baggage_thumb     = $request->baggage_thumb->store('uploads', 'public');
+        }
+        if ($request->photo_0) {
+            $vehicle->photo_0           = $request->photo_0->store('uploads', 'public');
+        }
+        if ($request->photo_1) {
+            $vehicle->photo_1           = $request->photo_1->store('uploads', 'public');
+        }
+        if ($request->photo_2) {
+            $vehicle->photo_2           = $request->photo_2->store('uploads', 'public');
+        }
 
         $vehicle->save();
 

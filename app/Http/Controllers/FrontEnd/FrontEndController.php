@@ -28,6 +28,12 @@ class FrontEndController extends Controller
         return view('frontend.request.index', compact('areas', 'vehicles', 'scales'));
     }
 
+    /**
+     * Display detail of easy move with id
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function easyMoveDetail($id) {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
         $selectedVehicle = Vehicle::find($id);
@@ -46,33 +52,74 @@ class FrontEndController extends Controller
         return view('frontend.request.easy_move.preview', compact('vehicle'));
     }
 
+    /**
+     * Display more guide of safe move with id
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function safeMoveMore($id) {
         $scale = Scale::find($id);
         return view('frontend.request.safe_move.more', compact('scale'));
     }
 
+    /**
+     * Display detail of safe move with id
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function safeMoveDetail($id) {
         $scale = Scale::find($id);
         return view('frontend.request.safe_move.detail', compact('scale'));
     }
 
+    /**
+     * Display confirmation of safe move
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function safeMovePreview() {
         return view('frontend.request.safe_move.preview');
     }
 
+    /**
+     * return array of vehicles with areaId
+     *
+     * @param int $areaId
+     * @return Arr
+     */
     public function vehiclesWithParams($areaId) {
         return Vehicle::where('area_id', $areaId)->get();
     }
 
+    /**
+     * return array of scales with areaId
+     *
+     * @param int $areaId
+     * @return Arr
+     */
     public function scalesWithParams($areaId) {
         return Scale::where('area_id', $areaId)->get();
     }
 
+    /**
+     * Display list of booking
+     *
+     * @param int $bookingId
+     * @return \Illuminate\Http\Response
+     */
     public function bookings() {
         $bookings = Booking::all();
         return view('frontend.user_center.booking.bookings', compact('bookings'));
     }
 
+    /**
+     * Display detail of booking for bookingId.
+     *
+     * @param int $bookingId
+     * @return \Illuminate\Http\Response
+     */
     public function bookingShow($bookingId) {
         $booking = Booking::find($bookingId);
         return view('frontend.user_center.booking.booking_show', compact('booking'));
@@ -124,10 +171,21 @@ class FrontEndController extends Controller
         return view('frontend.user_center.bonus.bonuses', compact('bonuses'));
     }
 
+    /**
+     * Display the bonus Guide.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function bonusGuide() {
         return view('frontend.user_center.bonus.bonus_guide');
     }
 
+    /**
+     * Store a booking requested
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function submitBooking(Request $request) {
         $booking = new Booking;
         $booking->user_id       = $request->user_id;

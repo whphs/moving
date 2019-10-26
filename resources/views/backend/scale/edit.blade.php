@@ -87,20 +87,23 @@
                 @endforeach
             </div>
 
-            <div class="mv-row">
+            <div class="mv-row my-2">
                 <div class="mv-col">
-                    {!! Form::inputGroup('main_photo', __('string.main_photo'), null, 'file') !!}
+                    {!! Form::label('main_photo', __('string.main_photo')) !!}
+                    <div class="photo-single-thumb" data-name = "main_photo" data-value ="{{ $scale->main_photo }}"></div>
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('vehicle_photo', __('string.vehicle_photo'), null, 'file') !!}
+                    {!! Form::label('vehicle_photo', __('string.vehicle_photo')) !!}
+                    <div class="photo-single-thumb" data-name = "vehicle_photo" data-value ="{{ $scale->vehicle_photo }}"></div>
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('helper_photo', __('string.helper_photo'), null, 'file') !!}
+                    {!! Form::label('helper_photo', __('string.helper_photo')) !!}
+                    <div class="photo-single-thumb" data-name = "helper_photo" data-value ="{{ $scale->helper_photo }}"></div>
                 </div>
             </div>
 
             {!! Form::submit(__('string.save'), ['class' => 'btn btn-primary w-80']) !!}
-            {!! link_to('admin/vehicle', __('string.cancel'), ['class' => 'btn btn-cancel w-80']) !!}
+            {!! link_to('admin/scale', __('string.cancel'), ['class' => 'btn btn-cancel w-80']) !!}
         {!! Form:: close() !!}
 
     @endcomponent
@@ -109,6 +112,9 @@
 
 @section('scripts')
     <script>
+        $(document).ready(function() {
+            photoSingleThumb.init();
+        });
         $('.add-distance').on('click', function() {
             let distanceGroup =
                 '<div class="form-group">' +
