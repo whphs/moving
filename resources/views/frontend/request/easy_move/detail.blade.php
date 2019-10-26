@@ -375,45 +375,43 @@
     {!! Html::script('frontend/assets/js/custom-modal.js') !!}
     <script type="text/javascript">
 
+    let handlingService = 0;
+    let distancePrice = 0;
+    let distance = 0;
+    let big_item = 0;
+    let when = "";
+    let photo_0 = "";
+    let photo_1 = "";
+    let photo_2 = "";
+    let description = "";
+    let phone = "";
+    let where_from = "";
+    let floor_from ="";
+    let where_to = "";
+    let floor_to = "";
+    let helper_count = 0;
 
-        $(document).ready(function(){
+    let vehicles = null;
+    let selectedVehicle = null;
+    let selectedIndex = 0;
 
-            // let price = selectedVehicle.init_price;
-            let handlingService = 0;
-            let distancePrice = 0;
-            let distance = 0;
-            let big_item = 0;
-            let when = "";
-            let photo_0 = "";
-            let photo_1 = "";
-            let photo_2 = "";
-            let description = "";
-            let phone = "";
-            let where_from = "";
-            let floor_from ="";
-            let where_to = "";
-            let floor_to = "";
-            let helper_count = 0;
+    function calcTotalPrice() {
+        let totalPrice = selectedVehicle.init_price;
+        totalPrice += handlingService * selectedVehicle.init_price_for_items;
+        totalPrice += selectedVehicle.price_per_big_item * big_item;
+        $("#displayPrice").text(totalPrice);
+    }
 
-            function calcTotalPrice() {
-                let totalPrice = selectedVehicle.init_price;
-                totalPrice += handlingService * selectedVehicle.init_price_for_items;
-                totalPrice += selectedVehicle.price_per_big_item * big_item;
-                $("#displayPrice").text(totalPrice);
-            }
+    $(document).ready(function(){
+        vehicles = {!! $vehicles !!};
+        selectedVehicle = {!! $selectedVehicle !!};
 
-
-
-            let vehicles = {!! $vehicles !!};
-            let selectedVehicle = {!! $selectedVehicle !!};
-            let selectedIndex = 0;
             for (let i = 0 ; i < vehicles.length ; i ++) {
                 if (selectedVehicle.id === vehicles[i].id) {
                     selectedIndex = i;
                     break;
                 }
             }
-
 
             // Click Preview Button
             $.ajaxSetup({
