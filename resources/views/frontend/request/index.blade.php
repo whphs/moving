@@ -203,7 +203,13 @@
 @endsection
 @section('scripts')
 <script type="text/javascript">
-  $(document).ready(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(document).ready(function(){
     let selectedId = 0;
     $('#userCenter').click(function () {
         window.location.href = "user_center";
@@ -231,8 +237,14 @@
 
    function easyMoveDetails(id)
    {
-      let vehicleIds = $('#detailsBtn'+id).val();
-      window.location.href = "easy_move/detail/" + vehicleIds;
+       let vehicleId = $('#detailsBtn'+id).val();
+       $.ajax({
+           type: 'POST',
+           url: '/put_session',
+           data: {key: 'vehicle_id', value: vehicleId}
+       });
+
+       window.location.href = "easy_move/detail";
    }
 </script>
 @endsection
