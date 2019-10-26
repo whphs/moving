@@ -19,9 +19,10 @@
         </div>
         <hr>
         <span>You have <span style="font-weight: bold;">{{ count($bonuses) }}</span> tickets that can use.</span>
+        <a href="" style="float: right;">Instruction</a>
         <div class="m-t-10">
             @foreach ($bonuses as $bonus)
-                <table class="w-100p m-t-10">
+                <table class="w-100p m-t-10" onclick="immediatelyUse();">
                     <tr>
                         <td class="txt-align-c w-30p">
                             <p style="font-size: 40px; font-weight: bold; color: grey; padding-top: 5px;">{{ $bonus->price }}$</p>
@@ -56,4 +57,12 @@
             @endforeach
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        function immediatelyUse() {
+            window.location.href = '/';
+        }
+    </script>
 @endsection

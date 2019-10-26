@@ -67,7 +67,7 @@
                             </div>
                             <div class="road">
                                 <p class="f-size-16">Start : {{ $booking->when }}</p>
-                                <table>
+                                <table class="m-t-10">
                                     <tr>
                                         <td class="w-30"><div class="circle from"></div></td>
                                         <td>{{ $booking->where_from }} - {{ $booking->floor_from }}</td>

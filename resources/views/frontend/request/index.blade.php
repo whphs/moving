@@ -5,10 +5,10 @@
     <header>
       <div class="phone-number d-flex">
           <div class = "icon">
-              {!! Html::image('frontend/assets/img/icons/user.png',null,['id'=>'userCenter']) !!}
+              {!! Html::image('frontend/assets/img/icons/user.png', null, ['id'=>'userCenter']) !!}
           </div>
           <div class="icon">
-              {!! Html::image('frontend/assets/img/icons/history.png') !!}
+              {!! Html::image('frontend/assets/img/icons/history.png', null, ['id'=>'bonusList']) !!}
           </div>
           <div class="number">
               {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
@@ -71,6 +71,7 @@
         <p>{{__('string.easy_moving_notes')}}</p>
     </div>
 @endsection('header')
+
 @section('content')
     <main id = "easyMove">
     <!-- Move type start -->
@@ -94,7 +95,7 @@
                                         <button id = "vBtn{{$indexKey}}" class = "btn btn-link btn-sm" data-toggle = "modal" data-target = "#vehiclesModal">{{__('string.more_button')}}</button>
                                     </div>
                                     <div class="col-3" style="padding: unset;margin-left: auto;margin-right: auto;">
-                                       {!! Html::image('storage/'.$value->baggage_thumb,null, ['style'=>'width:78px;height:78px;']) !!}
+                                       {!! Html::image('storage/'.$value->baggage_thumb,null, ['style'=>'width:100%;height:78px;']) !!}
                                        <button type="button" class="btn south-btn easy-move-detail" onclick = easyMoveDetails({{$value->id}})>
                                          {{__('string.detail_button')}}
                                        </button>
@@ -207,6 +208,9 @@
     let selectedId = 0;
     $('#userCenter').click(function () {
         window.location.href = "user_center";
+    });
+    $('#bonusList').click(function () {
+        window.location.href = "bookings";
     });
     $("#orderBtn").click(function(){
         let vehicleId = $('#vehicleId'+selectedId).val();

@@ -25,10 +25,10 @@
             <!-- Define Photo -->
             <div class="row">
                 <div class="col-6">
-                    <img src="/storage/{{ $scale->vehicle_photo }}" style="height: 150px; width: 100%;"/>
+                    <img src="/storage/{{ $scale->vehicle_photo }}" style="height: 100%; width: 100%;"/>
                 </div>
                 <div class="col-6">
-                    <img src="/storage/{{ $scale->helper_photo }}" style="height: 150px; width: 100%;"/>
+                    <img src="/storage/{{ $scale->helper_photo }}" style="height: 100%; width: 100%;"/>
                 </div>
             </div>
 

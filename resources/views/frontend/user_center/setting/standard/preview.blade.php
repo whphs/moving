@@ -10,7 +10,7 @@
                     <div class="card">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                Selected Truck
+                                Selected Vehicle
                                 <span style="float: right;">
                                     <span id="vehicleName">{{ $selectVehicle->name }}</span><i class="fa fa-angle-right direct"></i>
                                 </span>

@@ -50,7 +50,7 @@
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
                             <div class="card-header">Bonus
-                                <a href="/bonuses" class="btn btn-link btn-sm watch"><span id="usedBonusPrice1">Bonus list</span> ></a>
+                                <span onclick="goBonus();" class="btn btn-link btn-sm watch"><span id="usedBonusPrice1">Bonus list</span> ></span>
                             </div>
                         </div>
                     </div>
@@ -183,6 +183,44 @@
         $('.destination-location').on('click',function () {
             window.location.href = "/safe_move/location";
         });
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        function goBonus() {
+            // $.ajax({
+            //     url: '/safe_move/put_session',
+            //     type: 'POST',
+            //     data: {
+            //         vehicle_id : selectedVehicle.id,
+            //         // init_price: selectedVehicle.init_price,
+            //         // init_distance: selectedVehicle.init_distance,
+            //         // distancePrices: selectedVehicle.distancePrices,
+            //         // floorPrices: selectedVehicle.floorPrices,
+            //         // init_price_for_items: selectedVehicle.init_price_for_items,
+            //         // price_per_floor: selectedVehicle.price_per_floor,
+            //         // price_per_big_item: selectedVehicle.price_per_big_item,
+            //         // price_per_floor_for_big_item: selectedVehicle.price_per_floor_for_big_item,
+            //
+            //         handlingService:handlingService,
+            //         distance:distance,
+            //         helper_count:helper_count,
+            //         big_item:big_item,
+            //         when:when,
+            //         description:description,
+            //         phone:phone,
+            //         where_from:where_from,
+            //         floor_from:floor_from,
+            //         where_to:where_to,
+            //         floor_to:floor_to
+            //     },
+            //     success:function(data){
+            //         window.location.href = '/easy_move/preview/' + selectedVehicle.id;
+            //     }
+            // });
+        }
 
         $('#datepicker').datepicker('setDate', 'today');
     </script>

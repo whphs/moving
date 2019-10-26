@@ -34,7 +34,7 @@
         </table>
     </div>
     <div class="txt-align-c m-t-10">
-        <a href="/" class="btn blue btn-sm" style="position: center;">Sign Out&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a>
+        <a href="/" class="btn btn-primary btn-sm" style="position: center;">Sign Out&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a>
     </div>
 @endsection
 
