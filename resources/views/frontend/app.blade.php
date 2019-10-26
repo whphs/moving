@@ -5,12 +5,12 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Title  -->
     <title>{{__('string.app_title')}}</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="frontend/assets/south/img/core-img/favicon.ico">
+    <link rel="icon" href="/frontend/assets/south/img/core-img/favicon.ico">
 
     <!-- Style CSS -->
     {!! Html::style('css/app.css') !!}

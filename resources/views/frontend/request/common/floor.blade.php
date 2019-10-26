@@ -1,5 +1,5 @@
-@extends('frontend.app')
-@section('content')
+
+@section('floor')
     <section>
         {!! Html::image('frontend/assets/img/bg-img/feature5.jpg','map',['style'=>'height: 385px;']) !!}
         <div class="container" style="font-size: 15px;font-weight: bold;">
@@ -45,9 +45,5 @@
 
         </div>
     </section>
-@endsection
-@section('scripts')
-    <script>
+@show
 
-    </script>
-@endsection

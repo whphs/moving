@@ -216,8 +216,18 @@ header {
     color: #ef6774;
     line-height: normal;
     position: relative;
-    top: 13px;
+    top: 11px;
     left: 8px;
+    display: inline-flex;
+}
+.easy-move-footer-price span{
+    display: inline-flex;
+    position: relative;
+    top: 10px;
+    left: 7px;
+    font-size: 19px;
+    color: #ef6774;
+    font-weight: bold;
 }
 
 .easy-move-footer-price1 a{

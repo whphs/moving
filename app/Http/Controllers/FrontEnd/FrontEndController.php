@@ -11,6 +11,7 @@ use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use App\Models\Agreement;
 use App\Http\Controllers\Controller;
+//use Illuminate\Support\Facades\Response;
 
 class FrontEndController extends Controller
 {
@@ -30,8 +31,19 @@ class FrontEndController extends Controller
     public function easyMoveDetail($id) {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
         $selectedVehicle = Vehicle::find($id);
+        $a = 1;
 
-        return view('frontend.request.easy_move.easy_move_detail',compact('vehicles','selectedVehicle'));
+        return view('frontend.request.easy_move.detail',compact('vehicles','selectedVehicle'));
+    }
+
+    public function putDetailInfoSession(Request $request) {
+        $request->session()->put('bookingData',$request->all());
+        return response()->json('ok');
+    }
+
+    public function easyMovePreview($id){
+        $vehicle = Vehicle::find($id);
+        return view('frontend.request.easy_move.preview', compact('vehicle'));
     }
 
     public function safeMoveMore($id) {

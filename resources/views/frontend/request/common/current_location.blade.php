@@ -1,7 +1,7 @@
 @extends('frontend.app')
 @section('content')
     <section>
-        <div class="container" style="font-size: 16px;font-weight: bold;">
+        <div class="container" style="font-size: 15px;font-weight: bold;">
 {{--            Search area --}}
             <div class="row search-area">
                 <div class="col-3 d-flex select-area">
@@ -57,9 +57,10 @@
     </section>
 @endsection
 @section('scripts')
+
     <script>
         $('#selectArea').click(function () {
-           window.location.href = "/easy_move/location/floor" ;
+           window.location.href = "/easymove/" ;
         });
     </script>
 @endsection

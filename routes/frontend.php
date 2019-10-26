@@ -4,7 +4,8 @@ Route::get('/', 'FrontEndController@index')->name('index');
 
 Route::get('easy_move/detail/{id}', 'FrontEndController@easyMoveDetail')->name('easy_move_detail');
 
-Route::get('easy_move/preview', function () { return view('frontend/request/easy_move/preview'); });
+Route::post('easy_move/put_session', 'FrontEndController@putDetailInfoSession')->name('easy_move.put_session');
+Route::get('easy_move/preview/{id}', 'FrontEndController@easyMovePreview')->name('easy_move.preview');
 
 Route::get('easy_move/location', function () { return view('frontend/request/common/current_location'); });
 
