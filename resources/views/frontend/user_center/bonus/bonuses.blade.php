@@ -35,7 +35,7 @@
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-outline-light text-dark" style="color: #5b9bd1; font-weight: bold;"> Use </a>
+                            <a class="btn btn-outline-light text-dark" onclick="immediatelyUse();" style="color: #5b9bd1; font-weight: bold;"> Use </a>
                         </td>
                     </tr>
                 </table>
@@ -56,4 +56,12 @@
             @endforeach
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        function immediatelyUse() {
+            window.location.href = '/';
+        }
+    </script>
 @endsection

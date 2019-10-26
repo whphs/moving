@@ -6,8 +6,9 @@
     <style type="text/css">
         label {
             width: 20%;
+            color: #ff6600;
         }
-        span {
+        a {
             margin-left: 5%;
         }
     </style>
@@ -19,9 +20,9 @@
         <p>{{ $aboutUs->introduction }}</p>
         <hr>
         <div class="mt-30">
-            <label>Phone</label>:<span>{{ $aboutUs->phone }}</span><br>
-            <label>Email</label>:<span>{{ $aboutUs->email }}</span><br>
-            <label>Website</label>:<span>{{ $aboutUs->website }}</span><br>
+            <label>Phone</label>:<a href="">{{ $aboutUs->phone }}</a><br>
+            <label>Email</label>:<a href="">{{ $aboutUs->email }}</a><br>
+            <label>Website</label>:<a href="">{{ $aboutUs->website }}</a><br>
         </div>
     </div>
 @endsection

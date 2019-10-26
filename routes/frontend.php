@@ -17,7 +17,6 @@ Route::get('current_location/floor/{index}', 'FrontEndController@floor');
 Route::get('destination_location/{index}', 'FrontEndController@location');
 Route::get('destination_location/floor/{index}', 'FrontEndController@floor');
 
-
 Route::get('safe_move/more/{id}', 'FrontEndController@safeMoveMore')->name('safe_move.more');
 Route::get('safe_move/detail/{id}', 'FrontEndController@safeMoveDetail')->name('safe_move.detail');
 Route::get('safe_move/preview', 'FrontEndController@safeMovePreview')->name('safe_move.preview');
@@ -34,7 +33,6 @@ Route::get('/bookings', 'FrontEndController@bookings')->name('bookings');
 Route::get('/booking/show/{id}', 'FrontEndController@bookingShow')->name('booking.show');
 
 Route::get('/bonuses', 'FrontEndController@bonuses')->name('bonuses');
-Route::get('bonus_guide', 'FrontEndController@bonusGuide')->name('bonus_guide');
 
 Route::get('/setting', function () { return view('frontend/user_center/setting/index'); });
 

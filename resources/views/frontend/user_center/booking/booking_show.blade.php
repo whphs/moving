@@ -62,12 +62,12 @@
                                 <div class="f-size-22">{{ $booking->vehicle_id ? $booking->vehicle->name : $booking->scale->name }}</div>
                                 <div class="txt-align-r">
                                     <p class="f-size-18">Total : ${{ $booking->price }}</p>
-                                    <p>{{ $booking->created_at }}</p>
+                                    <p>{{ substr($booking->when, 0, 10) }}</p>
                                 </div>
                             </div>
                             <div class="road">
-                                <p class="f-size-16">Start : {{ $booking->when }}</p>
-                                <table>
+                                <p class="f-size-16">Start : {{ substr($booking->when, 0, 10) }}</p>
+                                <table class="m-t-10">
                                     <tr>
                                         <td class="w-30"><div class="circle from"></div></td>
                                         <td>{{ $booking->where_from }} - {{ $booking->floor_from }}</td>
