@@ -214,7 +214,7 @@ class DatabaseSeeder extends Seeder
             'area_id'               => 1,
             'vehicle_description'   => '3m * 3m * 3m',
             'helper_description'    => '2 peoples follow',
-            'init_price'            => 400,
+            'init_price'            => 458,
             'main_photo'            => 'uploads/scale_main0.png',
             'vehicle_photo'         => 'uploads/scale_vehicle0.png',
             'helper_photo'          => 'uploads/scale_helper0.png',
@@ -225,7 +225,7 @@ class DatabaseSeeder extends Seeder
             'area_id'               => 1,
             'vehicle_description'   => '5m * 5m * 5m',
             'helper_description'    => '3 peoples follow',
-            'init_price'            => 600,
+            'init_price'            => 618,
             'main_photo'            => 'uploads/scale_main1.png',
             'vehicle_photo'         => 'uploads/scale_vehicle1.png',
             'helper_photo'          => 'uploads/scale_helper1.png',
@@ -234,51 +234,51 @@ class DatabaseSeeder extends Seeder
         // Distance Price for Small Bus
         DistancePrice::create([
             'vehicle_id'    => 1,
-            'from'          => 15,
+            'from'          => 5,
             'to'            => 9999,
-            'amount'        => 5,
+            'amount'        => 3,
         ]);
 
         // Distance Price for Medium Bus
         DistancePrice::create([
             'vehicle_id'    => 2,
-            'from'          => 15,
+            'from'          => 5,
             'to'            => 9999,
-            'amount'        => 5,
+            'amount'        => 4,
         ]);
 
         // Distance Price for Small Truck
         DistancePrice::create([
             'vehicle_id'    => 3,
-            'from'          => 15,
+            'from'          => 5,
             'to'            => 9999,
-            'amount'        => 5,
+            'amount'        => 4,
         ]);
 
         // Distance Price for Medium Truck
         DistancePrice::create([
             'vehicle_id'    => 4,
-            'from'          => 15,
-            'to'            => 100,
+            'from'          => 5,
+            'to'            => 50,
             'amount'        => 5,
         ]);
         DistancePrice::create([
             'vehicle_id'    => 4,
-            'from'          => 100,
-            'to'            => 500,
-            'amount'        => 6,
+            'from'          => 50,
+            'to'            => 80,
+            'amount'        => 4.8,
         ]);
         DistancePrice::create([
             'vehicle_id'    => 4,
-            'from'          => 500,
-            'to'            => 1000,
-            'amount'        => 7,
+            'from'          => 80,
+            'to'            => 150,
+            'amount'        => 4.5,
         ]);
         DistancePrice::create([
             'vehicle_id'    => 4,
-            'from'          => 1000,
+            'from'          => 150,
             'to'            => 9999,
-            'amount'        => 8,
+            'amount'        => 5,
         ]);
 
         // Distance Price for Small Move
@@ -291,14 +291,20 @@ class DatabaseSeeder extends Seeder
         DistancePrice::create([
             'scale_id'      => 1,
             'from'          => 15,
-            'to'            => 100,
-            'amount'        => 10,
+            'to'            => 30,
+            'amount'        => 7,
         ]);
         DistancePrice::create([
             'scale_id'      => 1,
-            'from'          => 100,
+            'from'          => 31,
+            'to'            => 50,
+            'amount'        => 8,
+        ]);
+        DistancePrice::create([
+            'scale_id'      => 1,
+            'from'          => 51,
             'to'            => 9999,
-            'amount'        => 20,
+            'amount'        => 9,
         ]);
 
         // Distance Price for Big Move
@@ -311,14 +317,20 @@ class DatabaseSeeder extends Seeder
         DistancePrice::create([
             'scale_id'      => 2,
             'from'          => 15,
-            'to'            => 100,
-            'amount'        => 20,
+            'to'            => 30,
+            'amount'        => 9,
         ]);
         DistancePrice::create([
             'scale_id'      => 2,
-            'from'          => 100,
+            'from'          => 31,
+            'to'            => 50,
+            'amount'        => 11,
+        ]);
+        DistancePrice::create([
+            'scale_id'      => 2,
+            'from'          => 51,
             'to'            => 9999,
-            'amount'        => 40,
+            'amount'        => 12,
         ]);
 
         // Floor Price for Small Move
@@ -330,9 +342,15 @@ class DatabaseSeeder extends Seeder
         ]);
         FloorPrice::create([
             'scale_id'      => 1,
-            'from'          => 1,
-            'to'            => 100,
-            'amount'        => 2,
+            'from'          => 2,
+            'to'            => 6,
+            'amount'        => 20,
+        ]);
+        FloorPrice::create([
+            'scale_id'      => 1,
+            'from'          => 7,
+            'to'            => 99,
+            'amount'        => 30,
         ]);
 
         // Floor Price for Big Move
@@ -344,9 +362,15 @@ class DatabaseSeeder extends Seeder
         ]);
         FloorPrice::create([
             'scale_id'      => 2,
-            'from'          => 1,
-            'to'            => 100,
-            'amount'        => 5,
+            'from'          => 2,
+            'to'            => 6,
+            'amount'        => 20,
+        ]);
+        FloorPrice::create([
+            'scale_id'      => 2,
+            'from'          => 7,
+            'to'            => 99,
+            'amount'        => 30,
         ]);
     }
 }

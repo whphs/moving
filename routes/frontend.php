@@ -3,7 +3,6 @@
 Route::get('/', 'FrontEndController@index')->name('index');
 
 Route::get('easy_move/detail/{id}', 'FrontEndController@easyMoveDetail')->name('easy_move_detail');
-
 Route::post('easy_move/put_session', 'FrontEndController@putDetailInfoSession')->name('easy_move.put_session');
 
 Route::post('put_session', 'FrontEndController@putSession')->name('easy_move.putSession');
