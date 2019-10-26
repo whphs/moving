@@ -11,6 +11,7 @@ use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use App\Models\Agreement;
 use App\Http\Controllers\Controller;
+//use Illuminate\Support\Facades\Response;
 
 class FrontEndController extends Controller
 {
@@ -36,8 +37,19 @@ class FrontEndController extends Controller
     public function easyMoveDetail($id) {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
         $selectedVehicle = Vehicle::find($id);
+        $a = 1;
 
-        return view('frontend.request.easy_move.easy_move_detail',compact('vehicles','selectedVehicle'));
+        return view('frontend.request.easy_move.detail',compact('vehicles','selectedVehicle'));
+    }
+
+    public function putDetailInfoSession(Request $request) {
+        $request->session()->put('bookingData',$request->all());
+        return response()->json('ok');
+    }
+
+    public function easyMovePreview($id){
+        $vehicle = Vehicle::find($id);
+        return view('frontend.request.easy_move.preview', compact('vehicle'));
     }
 
     /**
@@ -113,14 +125,20 @@ class FrontEndController extends Controller
         return view('frontend.user_center.booking.booking_show', compact('booking'));
     }
 
-    /**
-     * Display standards for vehicle prices.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function vehicleStandards() {
+    public function standards() {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
-        return view('frontend.user_center.setting.standards', compact('vehicles'));
+        return view('frontend.user_center.setting.standard.index', compact('vehicles'));
+    }
+
+    public function standardPreview($vehicleId) {
+        $vehicles = Vehicle::all();
+        $selectVehicle = Vehicle::find($vehicleId);
+        return view('frontend.user_center.setting.standard.preview', compact('vehicles', 'selectVehicle'));
+    }
+
+    public function standardDescription($vehicleId) {
+        $selectVehicle = Vehicle::find($vehicleId);
+        return view('frontend.user_center.setting.standard.description', compact('selectVehicle'));
     }
 
     /**

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        // User
         User::create([
             'name'      => 'Admin',
             'phone'     => '13394260131',
@@ -31,22 +31,24 @@ class DatabaseSeeder extends Seeder
             'role_id'   => 0,
         ]);
 
+        // Area
         Area::create([
             'name'      => 'Dandong',
             'country'   => 'China',
             'zip_code'  => '118000'
         ]);
 
+        // MoveType
         MoveType::create([
             'name'      => 'Easy Move',
             'area_id'   => 1,
         ]);
-
         MoveType::create([
             'name'      => 'Safe Move',
             'area_id'   => 1,
         ]);
 
+        // Booking
         Booking::create([
             'user_id'       => 1,
             'vehicle_id'    => 1,
@@ -65,7 +67,6 @@ class DatabaseSeeder extends Seeder
             'photo_2'       => 'uploads/bus02.png',
             'phone'         => '13394260131',
         ]);
-
         Booking::create([
             'user_id'       => 1,
             'scale_id'      => 1,
@@ -85,6 +86,7 @@ class DatabaseSeeder extends Seeder
             'phone'         => '13394260131',
         ]);
 
+        // AboutUs
         AboutUs::create([
             'title'         => 'About This App',
             'introduction'  => 'This App is to move your baggage',
@@ -94,10 +96,12 @@ class DatabaseSeeder extends Seeder
             'website'       => 'http://www.baidu.com'
         ]);
 
+        // Agreement
         Agreement::create([
             'content'   => '<h4>About This App</h4><p>After screwing up my first booking in Dubai they rebooked me into another hotel and confirmed by email to me Upon arrival though the second hotel never received any confirmation and so no booking</p>',
         ]);
 
+        // Bonus
         Bonus::create([
             'title'         => 'Test Bonus 1',
             'price'         => 10,
@@ -105,7 +109,6 @@ class DatabaseSeeder extends Seeder
             'end_date'      => date('d/m/Y'),
             'description'   => 'This is test Bonus',
         ]);
-
         Bonus::create([
             'title'         => 'Test Bonus 2',
             'price'         => 10,
@@ -114,6 +117,7 @@ class DatabaseSeeder extends Seeder
             'description'   => 'This is test Bonus',
         ]);
 
+        // Vehicle
         Vehicle::create([
             'name'                          => 'Small Bus',
             'move_type_id'                  => 1,
@@ -121,7 +125,7 @@ class DatabaseSeeder extends Seeder
             'size'                          => '2m * 2m * 2m',
             'load_weight'                   => '500kg',
             'volume'                        => '2',
-            'init_distance'                 => 15,
+            'init_distance'                 => 5,
             'init_price'                    => 30,
             'init_price_for_items'          => 30,
             'price_per_floor'               => 15,
@@ -136,7 +140,6 @@ class DatabaseSeeder extends Seeder
             'photo_1'                       => 'uploads/bus01.png',
             'photo_2'                       => 'uploads/bus02.png',
         ]);
-
         Vehicle::create([
             'name'                          => 'Menium Bus',
             'move_type_id'                  => 1,
@@ -144,10 +147,10 @@ class DatabaseSeeder extends Seeder
             'size'                          => '3m * 3m * 3m',
             'load_weight'                   => '1,000kg',
             'volume'                        => '3',
-            'init_distance'                 => 15,
-            'init_price'                    => 50,
+            'init_distance'                 => 5,
+            'init_price'                    => 55,
             'init_price_for_items'          => 50,
-            'price_per_floor'               => 25,
+            'price_per_floor'               => 22,
             'price_per_big_item'            => 25,
             'price_per_floor_for_big_item'  => 3,
             'description'                   => 'This is test bus',
@@ -159,7 +162,6 @@ class DatabaseSeeder extends Seeder
             'photo_1'                       => 'uploads/bus11.png',
             'photo_2'                       => 'uploads/bus12.png',
         ]);
-
         Vehicle::create([
             'name'                          => 'Small Truck',
             'move_type_id'                  => 1,
@@ -167,10 +169,10 @@ class DatabaseSeeder extends Seeder
             'size'                          => '4m * 4m * 4m',
             'load_weight'                   => '1,500kg',
             'volume'                        => '4',
-            'init_distance'                 => 15,
-            'init_price'                    => 80,
-            'init_price_for_items'          => 80,
-            'price_per_floor'               => 35,
+            'init_distance'                 => 5,
+            'init_price'                    => 65,
+            'init_price_for_items'          => 120,
+            'price_per_floor'               => 40,
             'price_per_big_item'            => 25,
             'price_per_floor_for_big_item'  => 3,
             'description'                   => 'This is test bus',
@@ -182,7 +184,6 @@ class DatabaseSeeder extends Seeder
             'photo_1'                       => 'uploads/bus21.png',
             'photo_2'                       => 'uploads/bus22.png',
         ]);
-
         Vehicle::create([
             'name'                          => 'Medium Truck',
             'move_type_id'                  => 1,
@@ -190,10 +191,10 @@ class DatabaseSeeder extends Seeder
             'size'                          => '5m * 5m * 5m',
             'load_weight'                   => '2,000kg',
             'volume'                        => '5',
-            'init_distance'                 => 15,
-            'init_price'                    => 150,
-            'init_price_for_items'          => 150,
-            'price_per_floor'               => 70,
+            'init_distance'                 => 5,
+            'init_price'                    => 100,
+            'init_price_for_items'          => 200,
+            'price_per_floor'               => 60,
             'price_per_big_item'            => 25,
             'price_per_floor_for_big_item'  => 3,
             'description'                   => 'This is test bus',
@@ -206,6 +207,7 @@ class DatabaseSeeder extends Seeder
             'photo_2'                       => 'uploads/bus32.png',
         ]);
 
+        // Scale
         Scale::create([
             'name'                  => 'Small Move',
             'move_type_id'          => 2,
@@ -217,7 +219,6 @@ class DatabaseSeeder extends Seeder
             'vehicle_photo'         => 'uploads/scale_vehicle0.png',
             'helper_photo'          => 'uploads/scale_helper0.png',
         ]);
-
         Scale::create([
             'name'                  => 'Big Move',
             'move_type_id'          => 2,
@@ -230,7 +231,7 @@ class DatabaseSeeder extends Seeder
             'helper_photo'          => 'uploads/scale_helper1.png',
         ]);
 
-        // Small Bus
+        // Distance Price for Small Bus
         DistancePrice::create([
             'vehicle_id'    => 1,
             'from'          => 15,
@@ -238,7 +239,7 @@ class DatabaseSeeder extends Seeder
             'amount'        => 5,
         ]);
 
-        // Medium Bus
+        // Distance Price for Medium Bus
         DistancePrice::create([
             'vehicle_id'    => 2,
             'from'          => 15,
@@ -246,7 +247,7 @@ class DatabaseSeeder extends Seeder
             'amount'        => 5,
         ]);
 
-        // Small Truck
+        // Distance Price for Small Truck
         DistancePrice::create([
             'vehicle_id'    => 3,
             'from'          => 15,
@@ -254,7 +255,7 @@ class DatabaseSeeder extends Seeder
             'amount'        => 5,
         ]);
 
-        // Medium Truck
+        // Distance Price for Medium Truck
         DistancePrice::create([
             'vehicle_id'    => 4,
             'from'          => 15,
@@ -280,7 +281,7 @@ class DatabaseSeeder extends Seeder
             'amount'        => 8,
         ]);
 
-        // Small Move
+        // Distance Price for Small Move
         DistancePrice::create([
             'scale_id'      => 1,
             'from'          => 0,
@@ -300,7 +301,7 @@ class DatabaseSeeder extends Seeder
             'amount'        => 20,
         ]);
 
-        // Big Move
+        // Distance Price for Big Move
         DistancePrice::create([
             'scale_id'      => 2,
             'from'          => 0,
@@ -327,7 +328,6 @@ class DatabaseSeeder extends Seeder
             'to'            => 1,
             'amount'        => 0,
         ]);
-
         FloorPrice::create([
             'scale_id'      => 1,
             'from'          => 1,
@@ -342,7 +342,6 @@ class DatabaseSeeder extends Seeder
             'to'            => 1,
             'amount'        => 0,
         ]);
-
         FloorPrice::create([
             'scale_id'      => 2,
             'from'          => 1,

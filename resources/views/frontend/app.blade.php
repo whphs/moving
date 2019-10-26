@@ -10,7 +10,7 @@
     <title>{{__('string.app_title')}}</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="frontend/assets/south/img/core-img/favicon.ico">
+    <link rel="icon" href="/frontend/assets/south/img/core-img/favicon.ico">
 
     <!-- Style CSS -->
     {!! Html::style('css/app.css') !!}
