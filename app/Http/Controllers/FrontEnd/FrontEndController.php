@@ -50,28 +50,32 @@ class FrontEndController extends Controller
         return view('frontend.request.easy_move.detail',compact('vehicles'));
     }
 
-    public  function  putSession(Request $request)
-    {
-
-    }
-
-    public function putDetailInfoSession(Request $request) {
-        $request->session()->put('vehicleId',$request->vehicleId);
-        $request->session()->put('bookingData',$request->params);
-        return response()->json('ok');
-    }
 
     public function easyMovePreview($id){
         $vehicle = Vehicle::find($id);
         return view('frontend.request.easy_move.preview', compact('vehicle'));
     }
-    public function easyMoveLocation(){
-        return view('frontend.request.common.current_location');
+    public function location($index){
+        if($index == 1)
+        {
+            return view('frontend.request.common.current_location');
+        }
+        else{
+            return view('frontend.request.common.destination_location');
+        }
     }
 
-    public function easyMoveFloor(){
-        return view('frontend.request.common.current_location_floor');
+    public function floor($index){
+        if($index == 1)
+        {
+            return view('frontend.request.common.current_location_floor');
+        }
+        else{
+            return view('frontend.request.common.destination_location_floor');
+        }
+
     }
+
 
     /**
      * Display more guide of safe move with id
