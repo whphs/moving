@@ -30,13 +30,34 @@ class FrontEndController extends Controller
     }
 
     /**
-     * Put session variables
+     * Put session variable
      *
      * @param \Illuminate\Support\Facades\Request
      */
     public function putSession(Request $request) {
-        $request->session()->put($request->key, $request->value);
-        $request->session()->save();
+        session()->put($request->key, $request->value);
+        session()->save();
+    }
+
+    /**
+     * Get session variable
+     *
+     * @param \Illuminate\Support\Facades\Request
+     * @return json
+     */
+    public function getSession(Request $request) {
+        $value = session()->get($request->key);
+        return response()->json($value);
+    }
+
+    /**
+     * Get session variable
+     *
+     * @param \Illuminate\Support\Facades\Request
+     * @return json
+     */
+    public function getSessionAll() {
+        return response()->json(session()->all());
     }
 
     /**
@@ -50,13 +71,8 @@ class FrontEndController extends Controller
         return view('frontend.request.easy_move.detail',compact('vehicles'));
     }
 
-    public function putDetailInfoSession(Request $request) {
-        $request->session()->put('vehicleId',$request->vehicleId);
-        $request->session()->put('bookingData',$request->params);
-        return response()->json('ok');
-    }
-
-    public function easyMovePreview($id){
+    public function easyMovePreview(){
+        $id = session()->get('vehicle_id');
         $vehicle = Vehicle::find($id);
         return view('frontend.request.easy_move.preview', compact('vehicle'));
     }
