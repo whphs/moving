@@ -1,28 +1,37 @@
 let photoSingleThumb = {
     init: function() {
-        let root = $('.photo-single-thumb');
-        root.append(
-            '<input class="thumb-file-input" type="file" style="display: none" />' +
-            '<img class="thumb-image" src="../../backend/assets/img/camera.png"/>'
-        );
-
-        let defaultSrc = root.find('.thumb-image').attr('src');
-        root.on('click', '.thumb-image', function () {
-            $(this).parent().find('.thumb-file-input').click();
-        });
-
-        $('.thumb-file-input').on('change', function() {
-            let img = $(this).parent().find('.thumb-image');
-            if (this.files && this.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    img.attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL(this.files[0]);
-            } else {
-                img.attr('src', defaultSrc);
+        $('.photo-single-thumb').each(function() {
+            let root = $(this);
+            let fileInput = $('<input class="thumb-file-input" type="file" style="opacity: 0; width: 200px; position: relative; top: -80px" />');
+            let img = $('<img class="thumb-image" src="/backend/assets/img/camera.png"/> ');
+            if (root.data('name')) {
+                fileInput.attr('name', root.data('name'));
             }
+            if (root.data('required')) {
+                fileInput.attr('required', root.data('required'));
+            }
+            if (root.data('value')) {
+                img.attr('src', '/storage/' + root.data('value'));
+            }
+            root.append(img, fileInput);
+
+            let defaultSrc = img.attr('src');
+            img.click(function () {
+                fileInput.click();
+            });
+
+            fileInput.change(function () {
+                if (this.files && this.files[0]) {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        img.attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    img.attr('src', defaultSrc);
+                }
+            });
         });
     }
 };

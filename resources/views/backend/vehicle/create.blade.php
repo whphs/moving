@@ -30,10 +30,10 @@
                     {!! Form::inputGroup('size', __('string.size')) !!}
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('load_weight', __('string.load_weight'), null, 'number') !!}
+                    {!! Form::inputGroup('load_weight', __('string.load_weight')) !!}
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('volume', __('string.volume'), null, 'number') !!}
+                    {!! Form::inputGroup('volume', __('string.volume')) !!}
                 </div>
             </div>
             <div class="mv-row">
@@ -77,26 +77,26 @@
 
             <div class="mv-row">
                 <div class="mv-col">
-                    {!! Form::inputGroup('vehicle_thumb', __('string.vehicle_thumbnail'), null, 'file') !!}
+                    {!! Form::label('vehicle_thumb', __('string.vehicle_thumbnail')) !!}
+                    <div class="photo-single-thumb" data-name = "vehicle_thumb" data-required = "true"></div>
                 </div>
                 <div class="mv-col">
-                    {!! Form::inputGroup('baggage_thumb', __('string.baggage_thumbnail'), null, 'file') !!}
+                    {!! Form::label('baggage_thumb', __('string.baggage_thumbnail')) !!}
+                    <div class="photo-single-thumb" data-name = "baggage_thumb" data-required = "true"></div>
                 </div>
             </div>
             <div class="mv-row">
                 <div class="mv-col">
-                    <div>
-                        {!! Form::label('photo_0', __('string.photo_side')) !!}
-                    </div>
-                    <div class="photo-multi-thumb"></div>
+                    {!! Form::label('photo_0', __('string.photo_side')) !!}
+                    <div class="photo-single-thumb" data-name = "photo_0" data-required = "true"></div>
                 </div>
                 <div class="mv-col">
                     {!! Form::label('photo_1', __('string.photo_back')) !!}
-                    <div class="photo-single-thumb"></div>
+                    <div class="photo-single-thumb" data-name = "photo_1" data-required = "true"></div>
                 </div>
                 <div class="mv-col">
                     {!! Form::label('photo_2', __('string.photo_half_side')) !!}
-                    <div class="photo-single-thumb"></div>
+                    <div class="photo-single-thumb" data-name = "photo_2" data-required = "true"></div>
                 </div>
             </div>
 
@@ -114,7 +114,6 @@
     <script>
         $(document).ready(function() {
             photoSingleThumb.init();
-            photoMultiThumb.init();
         });
 
         $('.add-price').on('click', function() {

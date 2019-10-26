@@ -101,8 +101,16 @@ class ScaleController extends Controller
         $scale->vehicle_description     = $request->vehicle_description;
         $scale->helper_description      = $request->helper_description;
         $scale->init_price              = $request->init_price;
-        $scale->vehicle_photo           = $request->vehicle_photo->store('uploads', 'public');
-        $scale->helper_photo            = $request->helper_photo->store('uploads', 'public');
+
+        if ($request->main_photo) {
+            $scale->main_photo       = $request->main_photo->store('uploads', 'public');
+        }
+        if ($request->vehicle_photo) {
+            $scale->vehicle_photo       = $request->vehicle_photo->store('uploads', 'public');
+        }
+        if ($request->helper_photo) {
+            $scale->helper_photo        = $request->helper_photo->store('uploads', 'public');
+        }
 
         $scale->save();
 
