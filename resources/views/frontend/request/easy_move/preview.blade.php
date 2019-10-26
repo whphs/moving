@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-
+            <a href="/easy_move/detail">aaa</a>
         </div>
     </section>
 
@@ -45,6 +45,7 @@
 @section('scripts')
     <script>
         $(document).ready(function(){
+
             let _vehicle = {!! $vehicle !!};
             let _param = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
             console.log(_param);

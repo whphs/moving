@@ -583,46 +583,75 @@
                 data: {key: key, value: value}
             });
         }
-        $(document).ready( function() {
-            photoMultiThumb.init();
+
+        function getSession(key) {
+            $.ajax({
+                url: '/get_session',
+                data: {key: key},
+                success: function(data) {
+                    console.log(data);
+                    return data;
+                }
+            })
+        }
+
+        // $(document).ready( function() {
             vehicles = {!! $vehicles !!};
             @foreach($vehicles as $vehicle)
             distancePrices.push({!! $vehicle->distancePrices !!});
             @endforeach
-                selectedVehicle = vehicles[0];
-            let sessionData = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
-            if (!sessionData) {
-                return;
-            }
-            let vId = {!! session()->get('vehicle_id') !!};
-            console.log(vId);
-            if (sessionData.vehicle_id) {
-                selectedVehicle = getSelectedVehicle(sessionData.vehicle_id);
-            }
-            $("#vehicleSelBtn").text(selectedVehicle.name);
-            $('#handlingService')[0].checked = handlingService = sessionData.handlingService ? sessionData.handlingService : 0;
-            $('#addBaggage').show(handlingService);
-            big_item = sessionData.big_item ? sessionData.big_item : 0;
-            $('#itemCount').text(big_item);
-            $('#qty').text(big_item);
-            when = sessionData.when ? sessionData.when : '';
-            if (when.length) {
-                $('#myTimeBtn').text(when);
-            }
-            helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
-            if (parseInt(helper_count) === 1) {
-                $('#one').addClass('checked');
-            } else if (parseInt(helper_count) === 2) {
-                $('#two').addClass('checked');
-            } else if (parseInt(helper_count) === 3) {
-                $('#one').addClass('checked');
-                $('#small').addClass('checked');
-            } else {
-                $('#two').addClass('checked');
-                $('#small').addClass('checked');
-            }
-            calcTotalPrice();
-        });
+
+            selectedVehicle = vehicles[0];
+            let sessionData = null;
+            $.ajax({
+                url: '/get_session/all',
+                success: function(data) {
+                    sessionData = data;
+                    if (!sessionData) {
+                        return;
+                    }
+
+                    console.log(sessionData);
+
+                    if (sessionData.vehicle_id) {
+                        selectedVehicle = getSelectedVehicle(sessionData.vehicle_id);
+                    }
+
+                    $("#vehicleSelBtn").text(selectedVehicle.name);
+                    $('#handlingService')[0].checked = handlingService = sessionData.handlingService ? sessionData.handlingService : 0;
+                    if (handlingService) {
+                        $('#addBaggage').show();
+                    } else {
+                        $('#addBaggage').hide();
+                    }
+
+                    big_item = sessionData.big_item ? sessionData.big_item : 0;
+                    $('#itemCount').text(big_item);
+                    $('#qty').text(big_item);
+
+                    when = sessionData.when ? sessionData.when : '';
+                    if (when.length) {
+                        $('#myTimeBtn').text(when);
+                    }
+
+                    helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
+                    if (parseInt(helper_count) === 1) {
+                        $('#one').addClass('checked');
+                    } else if (parseInt(helper_count) === 2) {
+                        $('#two').addClass('checked');
+                    } else if (parseInt(helper_count) === 3) {
+                        $('#one').addClass('checked');
+                        $('#small').addClass('checked');
+                    } else if (parseInt(helper_count) === 4) {
+                        $('#two').addClass('checked');
+                        $('#small').addClass('checked');
+                    }
+
+                    calcTotalPrice();
+                }
+            });
+        // });
+
     </script>
     <script type="text/javascript">
         $('#datepicker').datepicker('setDate', 'today');
