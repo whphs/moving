@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="m-t-10 m-l-5">
                                     <p>Price : {{ $booking->price }}$</p>
-                                    <p>Date : {{ $booking->when }}</p>
+                                    <p>Date : {{ substr($booking->when, 0, 10) }}</p>
                                     <p>Distance : {{ $booking->distance }}</p>
                                 </div>
                             </div>

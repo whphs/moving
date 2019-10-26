@@ -7,7 +7,10 @@
                 {!! Html::image('frontend/assets/img/icons/user.png', null, ['id'=>'userCenter']) !!}
             </div>
             <div class="icon">
-                {!! Html::image('frontend/assets/img/icons/history.png', null, ['id'=>'bonusList']) !!}
+                {!! Html::image('frontend/assets/img/icons/history.png', null, ['id'=>'bookingList']) !!}
+            </div>
+            <div class="icon">
+                {!! Html::image('frontend/assets/img/icons/bonus.png', null, ['id'=>'bonusList']) !!}
             </div>
             <div class="number">
                 {!! link_to('tel:+86 13394260131', $title = '+86 13394260131', $attributes = [], $secure = null) !!}
@@ -386,70 +389,18 @@
         $('#userCenter').click(function () {
             window.location.href = "/user_center";
         });
-        $('#bonusList').click(function () {
+        $('#bookingList').click(function () {
             window.location.href = "/bookings";
         });
-
-<<<<<<< HEAD
-        let handlingService = 0;
-        let distancePrice = 0;
-=======
-<<<<<<< HEAD
-    let handlingService = 0;
-    let distancePrice = 0;
-    let distance = 0;
-    let big_item = 0;
-    let when = "";
-    let photo_0 = "";
-    let photo_1 = "";
-    let photo_2 = "";
-    let description = "";
-    let phone = "";
-    let where_from = "";
-    let floor_from ="";
-    let where_to = "";
-    let floor_to = "";
-    let helper_count = 0;
-
-    let vehicles = null;
-    let selectedVehicle = null;
-    let selectedIndex = 0;
-
-    function calcTotalPrice() {
-        let totalPrice = selectedVehicle.init_price;
-        totalPrice += handlingService * selectedVehicle.init_price_for_items;
-        totalPrice += selectedVehicle.price_per_big_item * big_item;
-        $("#displayPrice").text(totalPrice);
-    }
-    function ajaxFunc(hrefUrl) {
-        $.ajax({
-            url: '/easy_move/put_session',
-            type: 'POST',
-            data: {
-                vehicle_id : selectedVehicle.id,
-                handlingService:handlingService,
-                distance:distance,
-                helper_count:helper_count,
-                big_item:big_item,
-                when:when,
-                description:description,
-                phone:phone,
-                where_from:where_from,
-                floor_from:floor_from,
-                where_to:where_to,
-                floor_to:floor_to
-            },
-            success:function(data){
-                window.location.href = hrefUrl + selectedVehicle.id;
-=======
+        $('#bonusList').click(function () {
+            window.location.href = "/bonuses";
+        });
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
         let handlingService = 0;
->>>>>>> 9d55a91b57c90c50d0a711fccd4756596f16fd62
         let distance = 0;
         let big_item = 0;
         let when = "";
@@ -459,46 +410,16 @@
         let description = "";
         let phone = "";
         let where_from = "";
-<<<<<<< HEAD
-        let floor_from ="";
-        let where_to = "";
-        let floor_to = "";
-        let helper_count = 0;
-
-        let vehicles = null;
-        let selectedVehicle = null;
-        let selectedIndex = 0;
-
-        function calcTotalPrice() {
-            let totalPrice = selectedVehicle.init_price;
-            totalPrice += handlingService * selectedVehicle.init_price_for_items;
-            totalPrice += selectedVehicle.price_per_big_item * big_item;
-            $("#displayPrice").text(totalPrice);
-        }
-
-        $(document).ready(function(){
-            vehicles = {!! $vehicles !!};
-            selectedVehicle = {!! $selectedVehicle !!};
-
-            for (let i = 0 ; i < vehicles.length ; i ++) {
-                if (selectedVehicle.id === vehicles[i].id) {
-                    selectedIndex = i;
-                    break;
-=======
         let floor_from = 1;
         let where_to = "";
         let floor_to = 1;
         let helper_count = 0;
-
         let vehicles = null;
         let selectedVehicleId = 1;
         let selectedVehicle = null;
         let selectedIndex = 0;
-
         let distancePrices = [];
-
         $("#addBaggage").hide();
-
         // Calculate total price for changed statement.
         function calcTotalPrice() {
             let totalPrice = selectedVehicle.init_price;
@@ -512,14 +433,10 @@
                         plusPrice = distancePrices[selectedIndex][i].amount * offset;
                         break;
                     }
->>>>>>> 9d55a91b57c90c50d0a711fccd4756596f16fd62
                 }
             }
-
             totalPrice += plusPrice;
-
             totalPrice += (handlingService ? 1 : 0) * selectedVehicle.init_price_for_items;
-
             let floorFrom = floor_from;
             let floorTo = floor_to;
             if (floorFrom === 100) {
@@ -527,86 +444,66 @@
             } else {
                 floorFrom --;
             }
-
             if (floorTo === 100) {
                 floorTo = 1;
             } else {
                 floorTo --;
             }
-
             totalPrice += (floorFrom + floorTo) * selectedVehicle.price_per_floor;
             totalPrice += selectedVehicle.price_per_big_item * big_item;
             totalPrice += (floorFrom + floorTo) * big_item * selectedVehicle.price_per_floor_for_big_item;
-
             $('#displayPrice').text(totalPrice);
         }
-
+        // location selection
         $('.current-location').on('click', function() {
-            ajaxFunc('/easy_move/current_location/');
         });
         $('.destination-location').on('click',function () {
-
         });
-
         // Click floor
         $('#selectArea').click(function () {
-
         });
-
         //Click Select Truck Button
         $("#selTruckBtn").click(function(){
             $("#vehicleSelBtn").text(selectedVehicle.name);
-
             putSession('vehicle_id', selectedVehicle.id);
-
             calcTotalPrice();
         });
-
         //Click select model
         $('#vehicleSelBtn').click(function(e){
             $('.tab-pane').removeClass('show active');
             $('#vehicle'+selectedIndex).addClass('show active');
         });
-
         // When click a vehicle on popup modal
         $('.modal-header').on('click', 'li', function() {
             selectedIndex = $(this)[0].id.substring(2, 3);
             selectedVehicle = vehicles[selectedIndex];
             selectedVehicleId = selectedVehicle.id;
-
             $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
             $(this).parent().parent().parent().parent().find('#vehicle' + selectedIndex).addClass('show active');
         });
-
         // when change big item's count
         $('.plus-button').on('click', function(){
             let value = $('#qty').text();
             $('#qty').text(parseInt(value) + 1);
         });
-
         $('.min-button').on('click', function(){
             let value = $('#qty').text();
             if (value > 0) {
                 $('#qty').text(value - 1);
             }
         });
-
         // when select big item's count
         $("#specialItemBtn").click(function () {
             big_item = $('#qty').text();
             $('#itemCount').text(big_item);
-
             putSession('big_item', big_item);
-
             calcTotalPrice();
         });
-
         // When click submit button.
         $("#reservationBtn").click(function () {
             // e.preventDefault();
             let big_item = 0;let when = "";let photo_0 = "";let photo_1 = "";let photo_2 = "";let description = "";let phone = "";
             let where_from = ""; let floor_from =""; let where_to = "";let floor_to = "";
-
             big_item = $('#qty').text();
             when = $('#movingTime').val();
             description = $('#itemDescription').val();
@@ -621,9 +518,7 @@
             //         alert(data.success);
             //     }
             // });
-
         });
-
         // Add Baggage Scripts
         $('#handlingService').click(function() {
             if(this.checked) {
@@ -632,12 +527,9 @@
                 $("#addBaggage").hide();
             }
             handlingService = this.checked;
-
             putSession('handlingService', handlingService);
-
             calcTotalPrice();
         });
-
         // Helper Count
         function helperCountChanged(option) {
             if (option === 0) {
@@ -665,22 +557,17 @@
                     helper_count += 2;
                 }
             }
-
             putSession('helper_count', helper_count);
         }
-
         $("#one").click(function(){
             helperCountChanged(0);
         });
-
         $("#two").click(function(){
             helperCountChanged(1);
         });
-
         $("#small").click(function(){
             helperCountChanged(2);
         });
-
         function getSelectedVehicle(id) {
             for (let i = 0 ; i < vehicles.length ; i ++) {
                 if (parseInt(id) === vehicles[i].id) {
@@ -690,7 +577,6 @@
             }
             return null;
         }
-
         function putSession(key, value) {
             $.ajax({
                 type: 'POST',
@@ -698,16 +584,12 @@
                 data: {key: key, value: value}
             });
         }
-
         $(document).ready( function() {
             vehicles = {!! $vehicles !!};
-
             @foreach($vehicles as $vehicle)
-                distancePrices.push({!! $vehicle->distancePrices !!});
+            distancePrices.push({!! $vehicle->distancePrices !!});
             @endforeach
-
-            selectedVehicle = vehicles[0];
-
+                selectedVehicle = vehicles[0];
             let sessionData = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
             if (!sessionData) {
                 return;
@@ -717,21 +599,16 @@
             if (sessionData.vehicle_id) {
                 selectedVehicle = getSelectedVehicle(sessionData.vehicle_id);
             }
-
             $("#vehicleSelBtn").text(selectedVehicle.name);
-
             $('#handlingService')[0].checked = handlingService = sessionData.handlingService ? sessionData.handlingService : 0;
             $('#addBaggage').show(handlingService);
-
             big_item = sessionData.big_item ? sessionData.big_item : 0;
             $('#itemCount').text(big_item);
             $('#qty').text(big_item);
-
             when = sessionData.when ? sessionData.when : '';
             if (when.length) {
                 $('#myTimeBtn').text(when);
             }
-
             helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
             if (parseInt(helper_count) === 1) {
                 $('#one').addClass('checked');
@@ -744,10 +621,8 @@
                 $('#two').addClass('checked');
                 $('#small').addClass('checked');
             }
-
             calcTotalPrice();
         });
-
     </script>
     <script type="text/javascript">
         $('#datepicker').datepicker('setDate', 'today');
@@ -760,6 +635,5 @@
         .south-btn.follow.checked {
             background-color: black;
         }
-
     </style>
 @endsection
