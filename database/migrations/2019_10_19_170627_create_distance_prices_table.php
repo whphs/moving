@@ -19,7 +19,7 @@ class CreateDistancePricesTable extends Migration
             $table->integer('scale_id')->default(0);
             $table->integer('from')->nullable();
             $table->integer('to')->nullable();
-            $table->integer('amount')->nullable();
+            $table->float('amount')->nullable();
             $table->timestamps();
         });
     }
