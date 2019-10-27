@@ -23,6 +23,8 @@
     {!! Html::style('frontend/assets/css/timeline.css') !!}
     {!! Html::style('frontend/assets/css/custom-checkbox.css') !!}
 
+    {!! Html::style('frontend/assets/css/swiper.min.css') !!}
+
 </head>
 
 <body style ="font-family: Arial, Helvetica, sans-serif;background-color: #ffffff;">

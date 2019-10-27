@@ -24,7 +24,7 @@
                 <table class="w-100p m-t-10">
                     <tr>
                         <td class="txt-align-c w-30p">
-                            <p style="font-size: 40px; font-weight: bold; color: grey; padding-top: 5px;">{{ $bonus->price }}$</p>
+                            <p style="font-size: 42px; font-weight: bold; color: grey; padding-top: 10px;">{{ $bonus->price }}$</p>
                             <p>Reduction</p>
                         </td>
                         <td class="p-l-5">
