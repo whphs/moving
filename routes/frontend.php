@@ -3,8 +3,6 @@
 Route::get('/', 'FrontEndController@index')->name('index');
 
 Route::post('put_session', 'FrontEndController@putSession')->name('put_session');
-Route::get('get_session', 'FrontEndController@getSession')->name('get_session');
-Route::get('get_session/all', 'FrontEndController@getSessionAll')->name('get_session_all');
 
 Route::get('easy_move/detail', 'FrontEndController@easyMoveDetail')->name('easy_move.detail');
 Route::get('easy_move/preview', 'FrontEndController@easyMovePreview')->name('easy_move.preview');
@@ -25,7 +23,7 @@ Route::get('/sign/other', function () { return view('frontend/user_center/sign/o
 Route::get('/bookings', 'FrontEndController@bookings')->name('bookings');
 Route::get('/booking/show/{id}', 'FrontEndController@bookingShow')->name('booking.show');
 
-Route::get('/bonuses', 'FrontEndController@bonuses')->name('bonuses');
+Route::get('/bonuses/{where}', 'FrontEndController@bonuses')->name('bonuses');
 
 Route::get('/setting', function () { return view('frontend/user_center/setting/index'); });
 

@@ -35,7 +35,7 @@ class FrontEndController extends Controller
      * @param \Illuminate\Support\Facades\Request
      */
     public function putSession(Request $request) {
-        session()->put($request->key, $request->value);
+        session()->put($request->all());
         session()->save();
     }
 
@@ -47,18 +47,7 @@ class FrontEndController extends Controller
      */
     public function getSession(Request $request) {
         $value = session()->get($request->key);
-
         return response()->json($value);
-    }
-
-    /**
-     * Get session variable
-     *
-     * @param \Illuminate\Support\Facades\Request
-     * @return json
-     */
-    public function getSessionAll() {
-        return response()->json(session()->all());
     }
 
     /**
@@ -106,15 +95,6 @@ class FrontEndController extends Controller
     public function safeMoveDetail() {
         $scale = Scale::find(session()->get('scale_id'));
         return view('frontend.request.safe_move.detail', compact('scale'));
-    }
-
-    /**
-     * Display confirmation of safe move
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function safeMovePreview() {
-        return view('frontend.request.safe_move.preview');
     }
 
     /**
@@ -200,9 +180,9 @@ class FrontEndController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function bonuses() {
+    public function bonuses($where) {
         $bonuses = Bonus::all();
-        return view('frontend.user_center.bonus.bonuses', compact('bonuses'));
+        return view('frontend.user_center.bonus.bonuses', compact('bonuses'))->with(['where' => $where]);
     }
 
     /**
@@ -238,5 +218,4 @@ class FrontEndController extends Controller
 
         $booking->save();
     }
-
 }

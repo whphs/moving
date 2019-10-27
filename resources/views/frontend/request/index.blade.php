@@ -222,7 +222,7 @@
                 window.location.href = "bookings";
             });
             $('#bonusList').click(function () {
-                window.location.href = "bonuses";
+                window.location.href = "bonuses/fromAny";
             });
             $("#orderBtn").click(function(){
                 let vehicleId = $('#vehicleId'+selectedId).val();

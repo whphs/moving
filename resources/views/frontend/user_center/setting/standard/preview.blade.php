@@ -115,7 +115,7 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body m-t-30">
-                <button type="button" id="fromFloor10" class="btn btn-outline-dark btn-block" data-dismiss="modal" onclick="selectFromFloor(10);">Full Elevator</button>
+                <button type="button" id="fromFloor100" class="btn btn-outline-dark btn-block" data-dismiss="modal" onclick="selectFromFloor(100);">Full Elevator</button>
                 <hr>
                 <div class="txt-align-c">
                     @for ($i = 1; $i < 10; $i ++)
@@ -136,7 +136,7 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body m-t-30">
-                <button type="button" id="toFloor10" class="btn btn-outline-dark btn-block" data-dismiss="modal" onclick="selectToFloor(10);">Full Elevator</button>
+                <button type="button" id="toFloor100" class="btn btn-outline-dark btn-block" data-dismiss="modal" onclick="selectToFloor(100);">Full Elevator</button>
                 <hr>
                 <div class="txt-align-c">
                     @for ($i = 1; $i < 10; $i++)
@@ -196,7 +196,7 @@
                 return;
             }
 
-            if (floorId == 10) {
+            if (floorId == 100) {
                 $('#fromFloorName').text('Full elevator');
                 $('#fromFloorCount').val(1);
             }
@@ -214,7 +214,7 @@
 
             $('#isSelectFromFloor').val(1);
 
-            for (let i = 1; i <= 10; i ++)
+            for (let i = 1; i <= 100; i ++)
             {
                 $('#fromFloor' + i).addClass('btn-outline-dark');
             }
@@ -240,7 +240,7 @@
                 return;
             }
 
-            if (floorId == 10) {
+            if (floorId == 100) {
                 $('#toFloorName').text('Full elevator');
                 $('#toFloorCount').val(1);
             }
@@ -258,7 +258,7 @@
 
             $('#isSelectToFloor').val(1);
 
-            for (let i = 1; i <= 10; i ++)
+            for (let i = 1; i <= 100; i ++)
             {
                 $('#toFloor' + i).addClass('btn-outline-dark');
             }

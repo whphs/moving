@@ -57,7 +57,7 @@
         }
 
         function goBonusList() {
-            window.location.href = "bonuses";
+            window.location.href = "bonuses/fromAny";
         }
 
         function goSetting() {

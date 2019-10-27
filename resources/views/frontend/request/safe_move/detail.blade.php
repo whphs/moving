@@ -50,7 +50,7 @@
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
                             <div class="card-header">Bonus
-                                <span onclick="goBonus();" class="btn btn-link btn-sm watch"><span id="usedBonusPrice1">Bonus list</span> ></span>
+                                <span onclick="goBonus();" class="btn btn-link btn-sm watch"><span id="usedBonusPrice">Bonus list</span> ></span>
                             </div>
                         </div>
                     </div>
@@ -73,11 +73,11 @@
                 <div class="col-8" style="padding-right: 15px; padding-left: 15px;">
                     <div>
                         <p style="display: inline-block; font-size: 20px; margin-bottom: 0px; color:#ef6774; line-height: normal">
-                            <span id="realPrice"></span>$
+                            <span id="realPrice">{{ $scale->init_price }}</span>$
                         </p>
-                        <span style="text-decoration: line-through;"><span id="totalPrice"></span>$</span>
+                        <span style="text-decoration: line-through;"><span id="totalPrice"></span></span>
                     </div>
-                    <p style="display: inline-block;">Used bonus price <span id="usedBonusPrice2">--</span>$</p>
+                    <p style="display: inline-block;">Used bonus price <span id="bonusPrice">--</span>$</p>
 {{--                    <a href="/safe_move/preview" style="float: right; position: relative; top: -10px; left: 10px; color: #947054 ">preview</a>--}}
                 </div>
                 <div class="col-4">
@@ -141,11 +141,13 @@
         let selectedVehicle = null;
         let distancePrices = [];
         let floorPrices = [];
+        let bonusPrice = 0;
 
         let scale;
 
         function calcTotalPrice() {
             let totalPrice = scale.init_price;
+            let realPrice = 0;
             let distancePrice = 0;
             let offset = 0;
             let floorFromPrice = 0;
@@ -202,7 +204,18 @@
             }
             totalPrice += floorToPrice;
 
-            $('#totalPrice').text(totalPrice);
+            realPrice = totalPrice;
+
+            $('#realPrice').text(realPrice);
+
+            if (bonusPrice != null)
+            {
+                realPrice = totalPrice - bonusPrice;
+                $('#realPrice').text(realPrice);
+                $('#totalPrice').text(totalPrice + '$');
+                $('#bonusPrice').text(bonusPrice);
+                $('#usedBonusPrice').text(bonusPrice + ' $');
+            }
         }
 
         $(document).ready(function () {
@@ -210,10 +223,15 @@
             distancePrices = {!! $scale->distancePrices !!};
             floorPrices = {!! $scale->floorPrices !!};
 
-            let sessionData = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
+            sessionData = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
             if (!sessionData) {
                 return;
             }
+
+            floor_from = sessionData.floor_from;
+            floor_to = sessionData.floor_to;
+            distance = 40;
+            bonusPrice = sessionData.bonus_price;
 
             console.log(sessionData);
 
@@ -229,7 +247,7 @@
         });
 
         function goBonus() {
-
+            window.location.href = '/bonuses/fromDetail';
         }
 
         $('#datepicker').datepicker('setDate', 'today');
