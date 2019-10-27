@@ -69,7 +69,7 @@
                                             {{__('string.moving_time')}}
                                             <p class="detail"  id = "selectTimeBtn" data-toggle = "modal" data-target = "#timeModal">
                                                 {{__('string.set_time')}}<i class="fa fa-angle-right direct"></i></p>
-{{--                                            <input type="hidden" id = "movingTime" value = "">--}}
+                                            {{--                                            <input type="hidden" id = "movingTime" value = "">--}}
                                         </li>
                                     </ul>
                                 </div>
@@ -102,9 +102,9 @@
                                 </div>
                                 <ul>
                                     <li style="z-index: 0;min-width: 287px;padding:10px;border-bottom: 1px solid rgba(0,0,0,.125);">
-{{--                                        <input type="radio" id="hOne" name="hOne" style="display: none;">--}}
-{{--                                        <input type="radio" id="hTwo"  name = "hTwo" style="display: none;">--}}
-{{--                                        <input type="checkbox" id="hSmall" name = "hSmall" style="display: none;">--}}
+                                        {{--                                        <input type="radio" id="hOne" name="hOne" style="display: none;">--}}
+                                        {{--                                        <input type="radio" id="hTwo"  name = "hTwo" style="display: none;">--}}
+                                        {{--                                        <input type="checkbox" id="hSmall" name = "hSmall" style="display: none;">--}}
 
                                         <button type="button" id = "one" class="btn south-btn follow">{{__('string.one')}}</button>
                                         <button type="button" id = "two" class="btn south-btn follow">{{__('string.two')}}</button>
@@ -155,7 +155,7 @@
                 </div>
             </div>
         </main>
-{{--        Select time modal--}}
+        {{--        Select time modal--}}
         <div class="modal" id="timeModal" tabindex="-1" role="dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -226,7 +226,7 @@
                     <ul id="vehiclesTab" class="nav">
                         @foreach($vehicles as $index => $vehicle)
                             <li id="li{{$index}}" class="nav-item active">
-{{--                                <a href="#vehicle{{$index}}"  class="nav-link active">{{$vehicle->name}}</a>--}}
+                                {{--                                <a href="#vehicle{{$index}}"  class="nav-link active">{{$vehicle->name}}</a>--}}
                                 <p class="nav-link active" style="margin-bottom: unset;line-height: unset">{{$vehicle->name}}</p>
                             </li>
                         @endforeach
@@ -316,14 +316,14 @@
                             <span id = "clearBtn" style="float: right;">{{__('string.clear')}}</span>
                         </div>
                     </div>
-{{--                    <div class="history-description">--}}
-{{--                        <div style="padding:7px;">--}}
-{{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes1">This is test</span>--}}
-{{--                        </div>--}}
-{{--                        <div style="padding: 7px;">--}}
-{{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes2">This is test</span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="history-description">--}}
+                    {{--                        <div style="padding:7px;">--}}
+                    {{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes1">This is test</span>--}}
+                    {{--                        </div>--}}
+                    {{--                        <div style="padding: 7px;">--}}
+                    {{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes2">This is test</span>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                     <div class="upload-photo">
                         <p style="font-size: 15px;font-weight: bold">Upload Photo</p>
                         <div class="photo-multi-thumb" data-name = "main_photo" data-required = "true"></div>
@@ -377,7 +377,7 @@
     </div>
 @endsection
 @section('scripts')
-{{--    {!! Html::script('frontend/assets/js/custom-modal.js') !!}--}}
+    {{--    {!! Html::script('frontend/assets/js/custom-modal.js') !!}--}}
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
     <script type="text/javascript">
         photoMultiThumb.init();
@@ -602,10 +602,10 @@
         $(document).ready( function() {
             vehicles = {!! $vehicles !!};
             @foreach($vehicles as $vehicle)
-                distancePrices.push({!! $vehicle->distancePrices !!});
+            distancePrices.push({!! $vehicle->distancePrices !!});
             @endforeach
 
-            selectedVehicle = vehicles[0];
+                selectedVehicle = vehicles[0];
             let sessionData = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
             if (!sessionData) {
                 return;
@@ -617,13 +617,13 @@
                 selectedVehicle = getSelectedVehicle(sessionData.vehicle_id);
             }
 
-                    $("#vehicleSelBtn").text(selectedVehicle.name);
-                    $('#handlingService')[0].checked = handlingService = sessionData.handlingService === 'true' ? sessionData.handlingService : 0;
-                    if (handlingService) {
-                        $('#addBaggage').show();
-                    } else {
-                        $('#addBaggage').hide();
-                    }
+            $("#vehicleSelBtn").text(selectedVehicle.name);
+            $('#handlingService')[0].checked = handlingService = sessionData.handlingService === 'true' ? sessionData.handlingService : 0;
+            if (handlingService) {
+                $('#addBaggage').show();
+            } else {
+                $('#addBaggage').hide();
+            }
 
             big_item = sessionData.big_item ? sessionData.big_item : 0;
             $('#itemCount').text(big_item);
@@ -634,20 +634,20 @@
                 $('#myTimeBtn').text(when);
             }
 
-                    helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
-                    if (parseInt(helper_count) === 1) {
-                        $('#one').addClass('checked');
-                    } else if (parseInt(helper_count) === 2) {
-                        $('#two').addClass('checked');
-                    } else if (parseInt(helper_count) === 3) {
-                        $('#one').addClass('checked');
-                        $('#small').addClass('checked');
-                    } else if (parseInt(helper_count) === 4) {
-                        $('#two').addClass('checked');
-                        $('#small').addClass('checked');
-                    }
-                    description = sessionData.description ? sessionData.description : "";
-                    $('#itemDescription').val(description);
+            helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
+            if (parseInt(helper_count) === 1) {
+                $('#one').addClass('checked');
+            } else if (parseInt(helper_count) === 2) {
+                $('#two').addClass('checked');
+            } else if (parseInt(helper_count) === 3) {
+                $('#one').addClass('checked');
+                $('#small').addClass('checked');
+            } else if (parseInt(helper_count) === 4) {
+                $('#two').addClass('checked');
+                $('#small').addClass('checked');
+            }
+            description = sessionData.description ? sessionData.description : "";
+            $('#itemDescription').val(description);
 
             calcTotalPrice();
         });
