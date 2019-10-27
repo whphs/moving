@@ -599,27 +599,23 @@
             })
         }
 
-        // $(document).ready( function() {
+        $(document).ready( function() {
             vehicles = {!! $vehicles !!};
             @foreach($vehicles as $vehicle)
                 distancePrices.push({!! $vehicle->distancePrices !!});
             @endforeach
 
             selectedVehicle = vehicles[0];
-            let sessionData = null;
+            let sessionData = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
+            if (!sessionData) {
+                return;
+            }
 
-            $.ajax({
-                url: '/get_session/all',
-                success: function(data) {
-                    sessionData = data;
-                    if (!sessionData) {
-                        return;
-                    }
-                    console.log(sessionData);
+            console.log(sessionData);
 
-                    if (sessionData.vehicle_id) {
-                        selectedVehicle = getSelectedVehicle(sessionData.vehicle_id);
-                    }
+            if (sessionData.vehicle_id) {
+                selectedVehicle = getSelectedVehicle(sessionData.vehicle_id);
+            }
 
                     $("#vehicleSelBtn").text(selectedVehicle.name);
                     $('#handlingService')[0].checked = handlingService = sessionData.handlingService === 'true' ? sessionData.handlingService : 0;
@@ -629,14 +625,14 @@
                         $('#addBaggage').hide();
                     }
 
-                    big_item = sessionData.big_item ? sessionData.big_item : 0;
-                    $('#itemCount').text(big_item);
-                    $('#qty').text(big_item);
+            big_item = sessionData.big_item ? sessionData.big_item : 0;
+            $('#itemCount').text(big_item);
+            $('#qty').text(big_item);
 
-                    when = sessionData.when ? sessionData.when : '';
-                    if (when.length) {
-                        $('#myTimeBtn').text(when);
-                    }
+            when = sessionData.when ? sessionData.when : '';
+            if (when.length) {
+                $('#myTimeBtn').text(when);
+            }
 
                     helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
                     if (parseInt(helper_count) === 1) {
@@ -653,10 +649,8 @@
                     description = sessionData.description ? sessionData.description : "";
                     $('#itemDescription').val(description);
 
-                    calcTotalPrice();
-                }
-            });
-        // });
+            calcTotalPrice();
+        });
 
     </script>
     <script type="text/javascript">
