@@ -461,12 +461,13 @@
             totalPrice += (floorFrom + floorTo) * big_item * selectedVehicle.price_per_floor_for_big_item;
             $('#displayPrice').text(totalPrice);
         }
-        // Click Location
+
         $('.current-location').on('click', function() {
-            window.location.href = "/current_location/1";
+            window.location.href = "/select_location/easy_move/from";
         });
+
         $('.destination-location').on('click',function () {
-            window.location.href = "/destination_location/2";
+            window.location.href = "/select_location/easy_move/to";
         });
         //Click Select Truck Button
         $("#selTruckBtn").click(function(){

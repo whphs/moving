@@ -7,16 +7,16 @@ Route::get('get_session', 'FrontEndController@getSession')->name('get_session');
 Route::get('get_session/all', 'FrontEndController@getSessionAll')->name('get_session_all');
 
 Route::get('easy_move/detail', 'FrontEndController@easyMoveDetail')->name('easy_move_detail');
-
 Route::get('easy_move/preview', 'FrontEndController@easyMovePreview')->name('easy_move.preview');
 
 Route::get('select_location/{move_type}/{location}/{floor}', 'FrontEndController@selectLocation')->name('select_location');
 
 Route::get('safe_move/more/{id}', 'FrontEndController@safeMoveMore')->name('safe_move.more');
-Route::get('safe_move/detail/{id}', 'FrontEndController@safeMoveDetail')->name('safe_move.detail');
+Route::get('safe_move/detail', 'FrontEndController@safeMoveDetail')->name('safe_move.detail');
 Route::get('safe_move/preview', 'FrontEndController@safeMovePreview')->name('safe_move.preview');
 
-Route::get('safe_move/location', function () { return view('frontend/request/common/current_location'); });
+Route::get('select_location/{move_type}/{location}', 'FrontEndController@selectLocation')->name('select_location');
+Route::get('select_floor/{move_type}/{location}', 'FrontEndController@selectFloor')->name('select_floor');
 
 Route::get('/user_center', function () { return view('frontend/user_center/index'); });
 
