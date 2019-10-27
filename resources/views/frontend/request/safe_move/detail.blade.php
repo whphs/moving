@@ -228,6 +228,9 @@
                 return;
             }
 
+            floor_from = sessionData.floor_from;
+            floor_to = sessionData.floor_to;
+            distance = 40;
             bonusPrice = sessionData.bonus_price;
 
             console.log(sessionData);

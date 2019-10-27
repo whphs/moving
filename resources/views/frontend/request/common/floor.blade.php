@@ -118,14 +118,14 @@
         $('#specialItemBtn').click(function () {
             if ('{{ $location }}' == 'from')
             {
-                put_session("where_from", "31");
-                put_session("floor_from", selectFloorIndex);
+                putSession("where_from", "31");
+                putSession("floor_from", selectFloorIndex);
             }
             else
                 if ('{{ $location }}' == 'to')
                 {
-                    put_session("where_to", "31");
-                    put_session("floor_to", selectFloorIndex);
+                    putSession("where_to", "31");
+                    putSession("floor_to", selectFloorIndex);
                 }
 
             window.location.href = "/{{ $move_type }}/detail";

@@ -35,7 +35,7 @@ class FrontEndController extends Controller
      * @param \Illuminate\Support\Facades\Request
      */
     public function putSession(Request $request) {
-        session()->put($request->key, $request->value);
+        session()->put($request->all());
         session()->save();
     }
 
@@ -47,18 +47,7 @@ class FrontEndController extends Controller
      */
     public function getSession(Request $request) {
         $value = session()->get($request->key);
-
         return response()->json($value);
-    }
-
-    /**
-     * Get session variable
-     *
-     * @param \Illuminate\Support\Facades\Request
-     * @return json
-     */
-    public function getSessionAll() {
-        return response()->json(session()->all());
     }
 
     /**
@@ -228,12 +217,5 @@ class FrontEndController extends Controller
         $booking->phone         = $request->phone;
 
         $booking->save();
-    }
-
-    public function selectLocation($move_type, $location, $floor) {
-        if (isset($floor)) {
-            return view('frontend.request.common.current_location_floor')->with(['move_type' => $move_type, 'location' => $location, 'floor' => $floor]);
-        }
-        return view('frontend.request.common.current_location')->with(['move_type' => $move_type, 'location' => $location]);
     }
 }

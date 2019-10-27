@@ -472,7 +472,7 @@
         //Click Select Truck Button
         $("#selTruckBtn").click(function(){
             $("#vehicleSelBtn").text(selectedVehicle.name);
-            putSession('vehicle_id', selectedVehicle.id);
+            putSession({vehicle_id: selectedVehicle.id});
             calcTotalPrice();
         });
         //Click select model
@@ -503,7 +503,7 @@
         $("#specialItemBtn").click(function () {
             big_item = $('#qty').text();
             $('#itemCount').text(big_item);
-            putSession('big_item', big_item);
+            putSession({big_item: big_item});
             calcTotalPrice();
         });
         // When click submit button.
@@ -534,7 +534,7 @@
                 $("#addBaggage").hide();
             }
             handlingService = this.checked;
-            putSession('handlingService', handlingService);
+            putSession({handlingService: handlingService});
             calcTotalPrice();
         });
         // Helper Count
@@ -564,7 +564,7 @@
                     helper_count += 2;
                 }
             }
-            putSession('helper_count', helper_count);
+            putSession({helper_count: helper_count});
         }
         $("#one").click(function(){
             helperCountChanged(0);
@@ -583,13 +583,13 @@
         $('#photoSettingBtn').click(function () {
             description = $('#itemDescription').val();
             $('#orderNote').text(description);
-            putSession("description",$('#itemDescription').val());
+            putSession({description: description});
         });
         //When set time
         $('#timeSetting').click(function () {
             when = $('#datepicker').val();
-            $('#selectTimeCon').text($('#datepicker').val());
-            putSession("when",$('#datepicker').val());
+            $('#selectTimeCon').text(when);
+            putSession({when: when});
         });
         function getSelectedVehicle(id) {
             for (let i = 0 ; i < vehicles.length ; i ++) {
@@ -600,23 +600,12 @@
             }
             return null;
         }
-        function putSession(key, value) {
+        function putSession(data) {
             $.ajax({
                 type: 'POST',
                 url: '/put_session',
-                data: {key: key, value: value}
+                data: data
             });
-        }
-
-        function getSession(key) {
-            $.ajax({
-                url: '/get_session',
-                data: {key: key},
-                success: function(data) {
-                    console.log(data);
-                    return data;
-                }
-            })
         }
 
         $(document).ready( function() {

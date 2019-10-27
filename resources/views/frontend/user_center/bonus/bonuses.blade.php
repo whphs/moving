@@ -66,25 +66,25 @@
             }
         });
 
-        function put_session(key, value)
-        {
-            $.ajax({
-                type: 'POST',
-                url: '/put_session',
-                data: {key: key, value: value}
-            });
-        }
-
         function use(id, price) {
+
             if ('{{ $where }}' === 'fromAny')
                 window.location.href = '/';
             else
-                if ('{{ $where }}' === 'fromDetail')
-                {
-                    window.location.href = '/safe_move/detail';
-                    put_session("bonus_id", id);
-                    put_session("bonus_price", price);
-                }
+            if ('{{ $where }}' === 'fromDetail')
+            {
+                $.ajax({
+                    type: 'POST',
+                    url: '/put_session',
+                    data: {
+                        bonus_id: id,
+                        bonus_price: price
+                    },
+                    success: function(data) {
+                        window.history.back();
+                    }
+                });
+            }
         }
     </script>
 @endsection
