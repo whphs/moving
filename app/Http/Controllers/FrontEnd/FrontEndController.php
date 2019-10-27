@@ -231,7 +231,6 @@ class FrontEndController extends Controller
      * Store a booking requested
      *
      * @param \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function submitBooking(Request $request) {
         $booking = new Booking;
@@ -251,5 +250,12 @@ class FrontEndController extends Controller
         $booking->phone         = $request->phone;
 
         $booking->save();
+    }
+
+    public function selectLocation($move_type, $location, $floor) {
+        if (isset($floor)) {
+            return view('frontend.request.common.current_location_floor')->with(['move_type' => $move_type, 'location' => $location, 'floor' => $floor]);
+        }
+        return view('frontend.request.common.current_location')->with(['move_type' => $move_type, 'location' => $location]);
     }
 }

@@ -1,4 +1,4 @@
-<main id="normalPrice">
+<main id="normalPrice" style="opacity: 0">
     <section class="featured-properties-area section-padding-10-50">
         <style>
             .swiper-container {
