@@ -86,6 +86,7 @@
 @section('scripts')
     <script>
         let selectFloorIndex = null;
+        let floor = "{{__('string.floor')}}";
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -101,11 +102,11 @@
             if (selectFloorIndex === 0) {
                 $('#displayFloor').text("elevator");
             } else {
-                $('#displayFloor').text(selectFloorIndex);
+                if(selectFloorIndex != null)
+                    $('#displayFloor').text(selectFloorIndex + floor);
             }
         });
-
-        function put_session(key,value)
+        function putSession(key,value)
         {
             $.ajax({
                 type: 'POST',

@@ -132,6 +132,7 @@ return [
     'select_car' => 'Select Truck',
     'format_price' => '$',
     'clear'        => 'Clear',
+    'floor'        => 'floor',
 
 
     'from'              => 'From',

@@ -1,9 +1,9 @@
-<main id="safeMove">
+<main id="safeMove" style="display: none;">
     <!-- Move type start -->
     <section class="featured-properties-area section-padding-10-50">
         <div class="container">
             <div class="row">
-                @foreach($scales as $indexKey => $scale)
+                @foreach($scales as $scale)
                     <!-- Getting vehicles info -->
                     <div class="col-12 col-lg-6" style="margin-bottom: -30px">
                         <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="200ms">
