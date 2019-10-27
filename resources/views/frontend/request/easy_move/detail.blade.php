@@ -62,10 +62,10 @@
                                             <div class="row">
                                                 <div class="col-9" style="display: inline-block">
                                                     <span id = "currentArea">{{__('string.moving_location')}}</span>
-                                                    <p style="font-weight: 100;font-color:#999999b8">dfdfd dfasjdf askdfjasd</p>
+{{--                                                    <p id = "currentAreaName" >dfdfd dfasjdf askdfjasd</p>--}}
                                                 </div>
                                                 <div class="col-3" style="display: inline-block">
-                                                    <span id="currentFloor" class="show-floor" >11111</span>
+                                                    <span id="currentFloor" class="show-floor" ></span>
                                                 </div>
                                             </div>
                                         </li>
@@ -73,10 +73,10 @@
                                             <div class="row">
                                                 <div class="col-9" style="display: inline-block">
                                                     <span id = "destinationArea">{{__('string.moving_destination')}}</span>
-                                                    <p style="font-weight: 100;font-color:#999999b8">dfdfd dfasjdf askdfjasd</p>
+{{--                                                    <p id = "destinationAreaName">dfdfd dfasjdf askdfjasd</p>--}}
                                                 </div>
                                                 <div class="col-3" style="display: inline-block">
-                                                    <span id="destinationFloor" class="show-floor">11111</span>
+                                                    <span id="destinationFloor" class="show-floor"></span>
                                                 </div>
                                             </div>
                                         </li>
@@ -456,12 +456,17 @@
             } else {
                 floorTo --;
             }
-            totalPrice += (floorFrom + floorTo) * selectedVehicle.price_per_floor;
+
+            totalPrice += ((floorFrom + floorTo) * selectedVehicle.price_per_floor);
+
             totalPrice += selectedVehicle.price_per_big_item * big_item;
+
             totalPrice += (floorFrom + floorTo) * big_item * selectedVehicle.price_per_floor_for_big_item;
+
             $('#displayPrice').text(totalPrice);
         }
 
+        // Click location buttons
         $('.current-location').on('click', function() {
             window.location.href = "/select_location/easy_move/from";
         });
@@ -619,7 +624,6 @@
             if (!sessionData) {
                 return;
             }
-
             console.log(sessionData);
 
             if (sessionData.vehicle_id) {
@@ -633,29 +637,40 @@
             } else {
                 $('#addBaggage').hide();
             }
-
+            // when click big item
             big_item = sessionData.big_item ? sessionData.big_item : 0;
-            if(big_item === 0)
-            {
+            if(big_item === 0) {
                 $('#itemCount').text("");
-            }
-            else{
+            } else {
                 $('#itemCount').text(big_item);
             }
             $('#qty').text(big_item);
 
-            floor_from = sessionData.floor_from ? sessionData.floor_from : "";
-            floor_to = sessionData.floor_to ? sessionData.floor_to : "";
+            // when click location
+            floor_from = sessionData.floor_from ? sessionData.floor_from : 100;
+            floor_to = sessionData.floor_to ? sessionData.floor_to : 100;
+            where_from = sessionData.where_from ? sessionData.where_from : "";
+            where_to = sessionData.where_to ? sessionData.where_to : "";
             let floor = "{{__('string.floor')}}";
-            if(floor_from !== "")
-            {
+            let areaName = "{{__('string.moving_location')}}";
+            if(where_from !== "") {
+                $('#currentArea').text(where_from);
+            } else {
+                $('#currentArea').text(areaName);
+            }
+            if(floor_from === 100) {
+                $('#currentFloor').text("{{__('string.elevator')}}");
+            } else {
                 $('#currentFloor').text(floor_from + floor);
             }
-            if(floor_to !== "")
-            {
+            if(floor_to === 100){
+                $('#destinationFloor').text("{{__('string.elevator')}}");
+            }else{
                 $('#destinationFloor').text(floor_to + floor);
             }
 
+
+            // when set time
             when = sessionData.when ? sessionData.when : '';
             if (when.length) {
                 $('#selectTimeCon').text(when);

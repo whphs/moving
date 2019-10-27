@@ -12,7 +12,7 @@ Route::get('safe_move/detail', 'FrontEndController@safeMoveDetail')->name('safe_
 Route::get('safe_move/preview', 'FrontEndController@safeMovePreview')->name('safe_move.preview');
 
 Route::get('select_location/{move_type}/{location}', 'FrontEndController@selectLocation')->name('select_location');
-Route::get('select_floor/{move_type}/{location}', 'FrontEndController@selectFloor')->name('select_floor');
+Route::get('select_floor/{move_type}/{location}/{address}', 'FrontEndController@selectFloor')->name('select_floor');
 
 Route::get('/user_center', function () { return view('frontend/user_center/index'); });
 

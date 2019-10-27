@@ -71,8 +71,8 @@ class FrontEndController extends Controller
         return view('frontend.request.common.location')->with(['move_type' => $move_type, 'location' => $location]);
     }
 
-    public function selectFloor($move_type, $location) {
-        return view('frontend.request.common.floor')->with(['move_type' => $move_type, 'location' => $location]);
+    public function selectFloor($move_type, $location,$address) {
+        return view('frontend.request.common.floor')->with(['move_type' => $move_type, 'location' => $location, 'address' => $address]);
     }
 
     /**
