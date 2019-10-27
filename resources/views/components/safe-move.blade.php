@@ -40,7 +40,7 @@
         $.ajax({
             type: 'POST',
             url: '/put_session',
-            data: {key: 'scale_id', value: scaleId}
+            data: {scale_id: scaleId}
         });
 
         window.location.href = "safe_move/detail";
