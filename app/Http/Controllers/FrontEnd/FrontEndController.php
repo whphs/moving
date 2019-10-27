@@ -77,27 +77,14 @@ class FrontEndController extends Controller
         $vehicle = Vehicle::find($id);
         return view('frontend.request.easy_move.preview', compact('vehicle'));
     }
-    public function location($index){
-        if($index == 1)
-        {
-            return view('frontend.request.common.current_location');
-        }
-        else{
-            return view('frontend.request.common.destination_location');
-        }
+
+    public function selectLocation($move_type, $location) {
+        return view('frontend.request.common.location')->with(['move_type' => $move_type, 'location' => $location]);
     }
 
-    public function floor($index){
-        if($index == 1)
-        {
-            return view('frontend.request.common.current_location_floor');
-        }
-        else{
-            return view('frontend.request.common.destination_location_floor');
-        }
-
+    public function selectFloor($move_type, $location) {
+        return view('frontend.request.common.floor')->with(['move_type' => $move_type, 'location' => $location]);
     }
-
 
     /**
      * Display more guide of safe move with id
@@ -116,8 +103,8 @@ class FrontEndController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function safeMoveDetail($id) {
-        $scale = Scale::find($id);
+    public function safeMoveDetail() {
+        $scale = Scale::find(session()->get('scale_id'));
         return view('frontend.request.safe_move.detail', compact('scale'));
     }
 

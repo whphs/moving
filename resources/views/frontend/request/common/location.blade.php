@@ -1,4 +1,5 @@
 @extends('frontend.app')
+
 @section('content')
     <section>
         <div class="container" style="font-size: 15px;font-weight: bold;">
@@ -56,11 +57,11 @@
         </div>
     </section>
 @endsection
-@section('scripts')
 
+@section('scripts')
     <script>
         $('#selectArea').click(function () {
-           window.location.href = "/current_location/floor/1" ;
+           window.location.href = "/select_floor/{{ $move_type }}/{{ $location }}";
         });
     </script>
 @endsection

@@ -4,14 +4,14 @@ var selector = $('.tabs').find('a').length;
 var activeItem = tabs.find('.active');
 var activeWidth = activeItem.innerWidth();
 $(".selector").css({
-  "left": activeItem.position.left + "px", 
+  "left": activeItem.position.left + "px",
   "width": activeWidth + "px"
 });
 
 
 $('#easyMove').show();
-$('#safeMove').hide();
-$('#normalPrice').hide();
+$('#safeMove').hide("fast");
+$('#normalPrice').hide("fast");
 
 $(".tabs").on("click","a",function(e){
   e.preventDefault();
@@ -20,10 +20,10 @@ $(".tabs").on("click","a",function(e){
   var activeWidth = $(this).innerWidth();
   var itemPos = $(this).position();
   $(".selector").css({
-    "left":itemPos.left + "px", 
+    "left":itemPos.left + "px",
     "width": activeWidth + "px"
   });
-  
+
   var selTab = e.target.pathname.substring(1);
   if(selTab == "easy-move")
   {

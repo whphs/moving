@@ -377,7 +377,7 @@
     </div>
 @endsection
 @section('scripts')
-{{--    {!! Html::script('frontend/assets/js/custom-modal.js') !!}--}}
+{{--{!! Html::script('frontend/assets/js/custom-modal.js') !!}--}}
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
     <script type="text/javascript">
         photoMultiThumb.init();
@@ -449,12 +449,13 @@
             totalPrice += (floorFrom + floorTo) * big_item * selectedVehicle.price_per_floor_for_big_item;
             $('#displayPrice').text(totalPrice);
         }
-        // Click Location
+
         $('.current-location').on('click', function() {
-            window.location.href = "/current_location/1";
+            window.location.href = "/select_location/easy_move/from";
         });
+
         $('.destination-location').on('click',function () {
-            window.location.href = "/destination_location/2";
+            window.location.href = "/select_location/easy_move/to";
         });
         //Click Select Truck Button
         $("#selTruckBtn").click(function(){
@@ -617,13 +618,13 @@
                 selectedVehicle = getSelectedVehicle(sessionData.vehicle_id);
             }
 
-                    $("#vehicleSelBtn").text(selectedVehicle.name);
-                    $('#handlingService')[0].checked = handlingService = sessionData.handlingService === 'true' ? sessionData.handlingService : 0;
-                    if (handlingService) {
-                        $('#addBaggage').show();
-                    } else {
-                        $('#addBaggage').hide();
-                    }
+            $("#vehicleSelBtn").text(selectedVehicle.name);
+            $('#handlingService')[0].checked = handlingService = sessionData.handlingService === 'true' ? sessionData.handlingService : 0;
+            if (handlingService) {
+                $('#addBaggage').show();
+            } else {
+                $('#addBaggage').hide();
+            }
 
             big_item = sessionData.big_item ? sessionData.big_item : 0;
             $('#itemCount').text(big_item);
@@ -634,20 +635,20 @@
                 $('#myTimeBtn').text(when);
             }
 
-                    helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
-                    if (parseInt(helper_count) === 1) {
-                        $('#one').addClass('checked');
-                    } else if (parseInt(helper_count) === 2) {
-                        $('#two').addClass('checked');
-                    } else if (parseInt(helper_count) === 3) {
-                        $('#one').addClass('checked');
-                        $('#small').addClass('checked');
-                    } else if (parseInt(helper_count) === 4) {
-                        $('#two').addClass('checked');
-                        $('#small').addClass('checked');
-                    }
-                    description = sessionData.description ? sessionData.description : "";
-                    $('#itemDescription').val(description);
+            helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
+            if (parseInt(helper_count) === 1) {
+                $('#one').addClass('checked');
+            } else if (parseInt(helper_count) === 2) {
+                $('#two').addClass('checked');
+            } else if (parseInt(helper_count) === 3) {
+                $('#one').addClass('checked');
+                $('#small').addClass('checked');
+            } else if (parseInt(helper_count) === 4) {
+                $('#two').addClass('checked');
+                $('#small').addClass('checked');
+            }
+            description = sessionData.description ? sessionData.description : "";
+            $('#itemDescription').val(description);
 
             calcTotalPrice();
         });
