@@ -35,7 +35,7 @@ class FrontEndController extends Controller
      * @param \Illuminate\Support\Facades\Request
      */
     public function putSession(Request $request) {
-        session()->put($request->key, $request->value);
+        session()->put($request->all());
         session()->save();
     }
 
@@ -47,18 +47,7 @@ class FrontEndController extends Controller
      */
     public function getSession(Request $request) {
         $value = session()->get($request->key);
-
         return response()->json($value);
-    }
-
-    /**
-     * Get session variable
-     *
-     * @param \Illuminate\Support\Facades\Request
-     * @return json
-     */
-    public function getSessionAll() {
-        return response()->json(session()->all());
     }
 
     /**
@@ -77,27 +66,14 @@ class FrontEndController extends Controller
         $vehicle = Vehicle::find($id);
         return view('frontend.request.easy_move.preview', compact('vehicle'));
     }
-    public function location($index){
-        if($index == 1)
-        {
-            return view('frontend.request.common.current_location');
-        }
-        else{
-            return view('frontend.request.common.destination_location');
-        }
+
+    public function selectLocation($move_type, $location) {
+        return view('frontend.request.common.location')->with(['move_type' => $move_type, 'location' => $location]);
     }
 
-    public function floor($index){
-        if($index == 1)
-        {
-            return view('frontend.request.common.current_location_floor');
-        }
-        else{
-            return view('frontend.request.common.destination_location_floor');
-        }
-
+    public function selectFloor($move_type, $location,$address) {
+        return view('frontend.request.common.floor')->with(['move_type' => $move_type, 'location' => $location, 'address' => $address]);
     }
-
 
     /**
      * Display more guide of safe move with id
@@ -116,18 +92,9 @@ class FrontEndController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function safeMoveDetail($id) {
-        $scale = Scale::find($id);
+    public function safeMoveDetail() {
+        $scale = Scale::find(session()->get('scale_id'));
         return view('frontend.request.safe_move.detail', compact('scale'));
-    }
-
-    /**
-     * Display confirmation of safe move
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function safeMovePreview() {
-        return view('frontend.request.safe_move.preview');
     }
 
     /**
@@ -213,9 +180,9 @@ class FrontEndController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function bonuses() {
+    public function bonuses($where) {
         $bonuses = Bonus::all();
-        return view('frontend.user_center.bonus.bonuses', compact('bonuses'));
+        return view('frontend.user_center.bonus.bonuses', compact('bonuses'))->with(['where' => $where]);
     }
 
     /**
@@ -250,12 +217,5 @@ class FrontEndController extends Controller
         $booking->phone         = $request->phone;
 
         $booking->save();
-    }
-
-    public function selectLocation($move_type, $location, $floor) {
-        if (isset($floor)) {
-            return view('frontend.request.common.current_location_floor')->with(['move_type' => $move_type, 'location' => $location, 'floor' => $floor]);
-        }
-        return view('frontend.request.common.current_location')->with(['move_type' => $move_type, 'location' => $location]);
     }
 }

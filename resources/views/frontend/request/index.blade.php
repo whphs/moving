@@ -222,11 +222,11 @@
                 window.location.href = "bookings";
             });
             $('#bonusList').click(function () {
-                window.location.href = "bonuses";
+                window.location.href = "bonuses/fromAny";
             });
             $("#orderBtn").click(function(){
                 let vehicleId = $('#vehicleId'+selectedId).val();
-                window.location.href = "easy_move/detail/" + vehicleId;
+                easyMoveDetails(vehicleId);
             });
             $('.more-btn').on('click', 'button', function() {
                 let moreBtnIndex = $(this)[0].id.substring(4, 5);//get id

@@ -50,7 +50,7 @@
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
                             <div class="card-header">Bonus
-                                <span onclick="goBonus();" class="btn btn-link btn-sm watch"><span id="usedBonusPrice1">Bonus list</span> ></span>
+                                <span onclick="goBonus();" class="btn btn-link btn-sm watch"><span id="usedBonusPrice">Bonus list</span> ></span>
                             </div>
                         </div>
                     </div>
@@ -73,11 +73,11 @@
                 <div class="col-8" style="padding-right: 15px; padding-left: 15px;">
                     <div>
                         <p style="display: inline-block; font-size: 20px; margin-bottom: 0px; color:#ef6774; line-height: normal">
-                            <span id="real_price"></span>$
+                            <span id="realPrice">{{ $scale->init_price }}</span>$
                         </p>
-                        <span style="text-decoration: line-through;"><span id="total_price"></span>$</span>
+                        <span style="text-decoration: line-through;"><span id="totalPrice"></span></span>
                     </div>
-                    <p style="display: inline-block;">Used bonus price <span id="usedBonusPrice2">--</span>$</p>
+                    <p style="display: inline-block;">Used bonus price <span id="bonusPrice">--</span>$</p>
 {{--                    <a href="/safe_move/preview" style="float: right; position: relative; top: -10px; left: 10px; color: #947054 ">preview</a>--}}
                 </div>
                 <div class="col-4">
@@ -113,116 +113,143 @@
 @endsection
 
 @section('scripts')
-
     {!! Html::script('frontend/assets/js/custom-modal.js') !!}
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            let totalPrice = {!! $scale->init_price !!};
-
-            let floorFrom = 0;
-            let floorTo = 0;
-            let distance = 0;
-            let bonusPrice = 80;
-
-            let distancePrices = {!! $scale->distancePrices !!};
-            let distancePrice = 0;
-
-            for (let i = 0; i < distancePrices.length; i++) {
-                if ((distance > distancePrices[i].from && distance >= distancePrices[i].to)) {
-                    distancePrice += (distancePrices[i].to - distancePrices[i].from) * distancePrices[i].amount;
-                }
-
-                if ((distance > distancePrices[i].from && distance < distancePrices[i].to)) {
-                    distancePrice += (distance - distancePrices[i].from) * distancePrices[i].amount;
-                }
-            }
-
-            let floorPrices = {!! $scale->floorPrices !!};
-            let floorFromPrice = 0;
-
-            for (let i = 0; i < floorPrices.length; i++) {
-                if ((floorFrom > floorPrices[i].from && floorFrom >= floorPrices[i].to)) {
-                    floorFromPrice += (floorPrices[i].to - floorPrices[i].from) * floorPrices[i].amount;
-                }
-
-                if ((floorFrom > floorPrices[i].from && floorFrom < floorPrices[i].to)) {
-                    floorFromPrice += (floorFrom - floorPrices[i].from) * floorPrices[i].amount;
-                }
-            }
-
-            let floorToPrice = 0;
-
-            for (let i = 0; i < floorPrices.length; i++) {
-                if ((floorTo > floorPrices[i].from && floorTo >= floorPrices[i].to)) {
-                    floorToPrice += (floorPrices[i].to - floorPrices[i].from) * floorPrices[i].amount;
-                }
-
-                if ((floorTo > floorPrices[i].from && floorTo < floorPrices[i].to)) {
-                    floorToPrice += (floorTo - floorPrices[i].from) * floorPrices[i].amount;
-                }
-            }
-
-            totalPrice = totalPrice + distancePrice + floorFromPrice + floorToPrice;
-            let realPrice = totalPrice - bonusPrice;
-
-            $('#total_price').text(totalPrice);
-            $('#real_price').text(realPrice);
-
-            if (bonusPrice != 0)
-            {
-                $('#usedBonusPrice1').text(bonusPrice + ' $');
-                $('#usedBonusPrice2').text(bonusPrice);
-            }
-        });
-
-        $('.current-location').on('click', function() {
-            window.location.href = "/safe_move/location";
-        });
-
-        $('.destination-location').on('click',function () {
-            window.location.href = "/safe_move/location";
-        });
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        let handlingService = 0;
+        let distance = 0;
+        let big_item = 0;
+        let when = "";
+        let photo_0 = "";
+        let photo_1 = "";
+        let photo_2 = "";
+        let description = "";
+        let phone = "";
+        let where_from = "";
+        let floor_from = 1;
+        let where_to = "";
+        let floor_to = 1;
+        let helper_count = 0;
+        let vehicles = null;
+        let selectedVehicleId = 1;
+        let selectedVehicle = null;
+        let distancePrices = [];
+        let floorPrices = [];
+        let bonusPrice = 0;
+
+        let scale;
+
+        function calcTotalPrice() {
+            let totalPrice = scale.init_price;
+            let realPrice = 0;
+            let distancePrice = 0;
+            let offset = 0;
+            let floorFromPrice = 0;
+            let floorToPrice = 0;
+
+            for (let i = 0 ; i < distancePrices.length ; i ++) {
+                let min = distancePrices[i].from;
+                let max = distancePrices[i].to;
+                if (distance > min && distance < max)
+                    offset = distance - min;
+                else
+                    if (distance > max)
+                        offset = max - min;
+
+                distancePrice += distancePrices[i].amount * offset;
+            }
+            totalPrice += distancePrice;
+
+            let floorFrom = floor_from;
+            let floorTo = floor_to;
+            if (floorFrom === 100) {
+                floorFrom = 1;
+            } else {
+                floorFrom --;
+            }
+            for (let i = 0 ; i < floorPrices.length ; i ++) {
+                let min = floorPrices[i].from;
+                let max = floorPrices[i].to;
+                if (floorFrom > min && floorFrom < max)
+                    offset = floorFrom - min;
+                else
+                    if (floorFrom > max)
+                        offset = max - min;
+
+                floorFromPrice += floorPrices[i].amount * offset;
+            }
+            totalPrice += floorFromPrice;
+
+            if (floorTo === 100) {
+                floorTo = 1;
+            } else {
+                floorTo --;
+            }
+            for (let i = 0 ; i < floorPrices.length ; i ++) {
+                let min = floorPrices[i].from;
+                let max = floorPrices[i].to;
+                if (floorTo > min && floorTo < max)
+                    offset = floorTo - min;
+                else
+                    if (floorTo > max)
+                        offset = max - min;
+
+                floorToPrice += floorPrices[i].amount * offset;
+            }
+            totalPrice += floorToPrice;
+
+            realPrice = totalPrice;
+
+            $('#realPrice').text(realPrice);
+
+            if (bonusPrice != null)
+            {
+                realPrice = totalPrice - bonusPrice;
+                $('#realPrice').text(realPrice);
+                $('#totalPrice').text(totalPrice + '$');
+                $('#bonusPrice').text(bonusPrice);
+                $('#usedBonusPrice').text(bonusPrice + ' $');
+            }
+        }
+
+        $(document).ready(function () {
+            scale = {!! $scale !!};
+            distancePrices = {!! $scale->distancePrices !!};
+            floorPrices = {!! $scale->floorPrices !!};
+
+            sessionData = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
+            if (!sessionData) {
+                return;
+            }
+
+            floor_from = sessionData.floor_from;
+            floor_to = sessionData.floor_to;
+            distance = 40;
+            bonusPrice = sessionData.bonus_price;
+
+            console.log(sessionData);
+
+            calcTotalPrice();
+        });
+
+        $('.current-location').on('click', function() {
+            window.location.href = "/select_location/safe_move/from";
+        });
+
+        $('.destination-location').on('click',function () {
+            window.location.href = "/select_location/safe_move/to";
+        });
+
         function goBonus() {
-            // $.ajax({
-            //     url: '/safe_move/put_session',
-            //     type: 'POST',
-            //     data: {
-            //         vehicle_id : selectedVehicle.id,
-            //         // init_price: selectedVehicle.init_price,
-            //         // init_distance: selectedVehicle.init_distance,
-            //         // distancePrices: selectedVehicle.distancePrices,
-            //         // floorPrices: selectedVehicle.floorPrices,
-            //         // init_price_for_items: selectedVehicle.init_price_for_items,
-            //         // price_per_floor: selectedVehicle.price_per_floor,
-            //         // price_per_big_item: selectedVehicle.price_per_big_item,
-            //         // price_per_floor_for_big_item: selectedVehicle.price_per_floor_for_big_item,
-            //
-            //         handlingService:handlingService,
-            //         distance:distance,
-            //         helper_count:helper_count,
-            //         big_item:big_item,
-            //         when:when,
-            //         description:description,
-            //         phone:phone,
-            //         where_from:where_from,
-            //         floor_from:floor_from,
-            //         where_to:where_to,
-            //         floor_to:floor_to
-            //     },
-            //     success:function(data){
-            //         window.location.href = '/easy_move/preview/' + selectedVehicle.id;
-            //     }
-            // });
+            window.location.href = '/bonuses/fromDetail';
         }
 
         $('#datepicker').datepicker('setDate', 'today');
     </script>
-
 @endsection

@@ -54,22 +54,39 @@
                         <div class="col-12">
                             <div class="content-sidebar">
                                 <div class="card" style="margin:10px 0">
-                                    <div class="card-header">{{__('string.moving_info')}}</div>
+                                    <div class="card-header">
+                                        {{__('string.moving_info')}}
+                                    </div>
                                     <ul class="timeline">
                                         <li class="current-location">
-                                            <span>{{__('string.moving_location')}}</span>
+                                            <div class="row">
+                                                <div class="col-9" style="display: inline-block">
+                                                    <span id = "currentArea">{{__('string.moving_location')}}</span>
+{{--                                                    <p id = "currentAreaName" >dfdfd dfasjdf askdfjasd</p>--}}
+                                                </div>
+                                                <div class="col-3" style="display: inline-block">
+                                                    <span id="currentFloor" class="show-floor" ></span>
+                                                </div>
+                                            </div>
                                         </li>
                                         <li class="destination-location">
-                                            <span>{{__('string.moving_destination')}}</span>
+                                            <div class="row">
+                                                <div class="col-9" style="display: inline-block">
+                                                    <span id = "destinationArea">{{__('string.moving_destination')}}</span>
+{{--                                                    <p id = "destinationAreaName">dfdfd dfasjdf askdfjasd</p>--}}
+                                                </div>
+                                                <div class="col-3" style="display: inline-block">
+                                                    <span id="destinationFloor" class="show-floor"></span>
+                                                </div>
+                                            </div>
                                         </li>
                                     </ul>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">
                                             {!! Html::image("frontend/assets/img/icons/calendar.png",'calendar',['style' => 'width: 30px;height: 22px;']) !!}
                                             {{__('string.moving_time')}}
-                                            <p class="detail"  id = "selectTimeBtn" data-toggle = "modal" data-target = "#timeModal">
+                                            <p class="detail"  id = "selectTimeCon" data-toggle = "modal" data-target = "#timeModal">
                                                 {{__('string.set_time')}}<i class="fa fa-angle-right direct"></i></p>
-                                            {{--                                            <input type="hidden" id = "movingTime" value = "">--}}
                                         </li>
                                     </ul>
                                 </div>
@@ -97,15 +114,11 @@
                             <div class="card" style="margin:10px 0">
                                 <div class="card-header">{{__('string.order_note')}}
                                     <p class="detail" id="photoSelBtn" data-toggle = "modal" data-target = "#movingPhotoModal" style="font-weight: 100">
-                                        {{__('string.upload_photo')}}<i class="fa fa-angle-right direct"></i>
+                                        <span id = "orderNote">{{__('string.upload_photo')}}</span><i class="fa fa-angle-right direct"></i>
                                     </p>
                                 </div>
                                 <ul>
                                     <li style="z-index: 0;min-width: 287px;padding:10px;border-bottom: 1px solid rgba(0,0,0,.125);">
-                                        {{--                                        <input type="radio" id="hOne" name="hOne" style="display: none;">--}}
-                                        {{--                                        <input type="radio" id="hTwo"  name = "hTwo" style="display: none;">--}}
-                                        {{--                                        <input type="checkbox" id="hSmall" name = "hSmall" style="display: none;">--}}
-
                                         <button type="button" id = "one" class="btn south-btn follow">{{__('string.one')}}</button>
                                         <button type="button" id = "two" class="btn south-btn follow">{{__('string.two')}}</button>
                                         <button type="button" id = "small" class="btn south-btn follow">{{__('string.small_cart')}}</button>
@@ -161,8 +174,8 @@
                 <div class="modal-header">
                     <div class="classynav">
                         <ul style="padding: 3px;">
-                            <li><span class = "time-setting" id = "timeSetting">Setting</span></li>
-                            <li style="float: right;"><span id = "close" class = "time-setting" data-dismiss = 'modal'>Exit</span></li>
+                            <li><span class = "time-setting" id = "timeSetting" data-dismiss = 'modal' >Setting</span></li>
+                            <li style="float: right;"><span class = "time-setting" data-dismiss = 'modal'>Exit</span></li>
                         </ul>
 
                     </div>
@@ -377,7 +390,6 @@
     </div>
 @endsection
 @section('scripts')
-    {{--    {!! Html::script('frontend/assets/js/custom-modal.js') !!}--}}
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
     <script type="text/javascript">
         photoMultiThumb.init();
@@ -388,7 +400,7 @@
             window.location.href = "/bookings";
         });
         $('#bonusList').click(function () {
-            window.location.href = "/bonuses";
+            window.location.href = "/bonuses/fromAny";
         });
         $.ajaxSetup({
             headers: {
@@ -410,7 +422,7 @@
         let floor_to = 1;
         let helper_count = 0;
         let vehicles = null;
-        let selectedVehicleId = 1;
+        // let selectedVehicleId = 1;
         let selectedVehicle = null;
         let selectedIndex = 0;
         let distancePrices = [];
@@ -444,22 +456,28 @@
             } else {
                 floorTo --;
             }
-            totalPrice += (floorFrom + floorTo) * selectedVehicle.price_per_floor;
+
+            totalPrice += ((floorFrom + floorTo) * selectedVehicle.price_per_floor);
+
             totalPrice += selectedVehicle.price_per_big_item * big_item;
+
             totalPrice += (floorFrom + floorTo) * big_item * selectedVehicle.price_per_floor_for_big_item;
+
             $('#displayPrice').text(totalPrice);
         }
-        // Click Location
+
+        // Click location buttons
         $('.current-location').on('click', function() {
-            window.location.href = "/current_location/1";
+            window.location.href = "/select_location/easy_move/from";
         });
+
         $('.destination-location').on('click',function () {
-            window.location.href = "/destination_location/2";
+            window.location.href = "/select_location/easy_move/to";
         });
         //Click Select Truck Button
         $("#selTruckBtn").click(function(){
             $("#vehicleSelBtn").text(selectedVehicle.name);
-            putSession('vehicle_id', selectedVehicle.id);
+            putSession({vehicle_id: selectedVehicle.id});
             calcTotalPrice();
         });
         //Click select model
@@ -471,7 +489,7 @@
         $('.modal-header').on('click', 'li', function() {
             selectedIndex = $(this)[0].id.substring(2, 3);
             selectedVehicle = vehicles[selectedIndex];
-            selectedVehicleId = selectedVehicle.id;
+            // selectedVehicleId = selectedVehicle.id;
             $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
             $(this).parent().parent().parent().parent().find('#vehicle' + selectedIndex).addClass('show active');
         });
@@ -490,7 +508,7 @@
         $("#specialItemBtn").click(function () {
             big_item = $('#qty').text();
             $('#itemCount').text(big_item);
-            putSession('big_item', big_item);
+            putSession({big_item: big_item});
             calcTotalPrice();
         });
         // When click submit button.
@@ -521,7 +539,7 @@
                 $("#addBaggage").hide();
             }
             handlingService = this.checked;
-            putSession('handlingService', handlingService);
+            putSession({handlingService: handlingService});
             calcTotalPrice();
         });
         // Helper Count
@@ -551,7 +569,7 @@
                     helper_count += 2;
                 }
             }
-            putSession('helper_count', helper_count);
+            putSession({helper_count: helper_count});
         }
         $("#one").click(function(){
             helperCountChanged(0);
@@ -568,9 +586,16 @@
         });
         //When set photo setting
         $('#photoSettingBtn').click(function () {
-            putSession("description",$('#itemDescription').val());
+            description = $('#itemDescription').val();
+            $('#orderNote').text(description);
+            putSession({description: description});
         });
-
+        //When set time
+        $('#timeSetting').click(function () {
+            when = $('#datepicker').val();
+            $('#selectTimeCon').text(when);
+            putSession({when: when});
+        });
         function getSelectedVehicle(id) {
             for (let i = 0 ; i < vehicles.length ; i ++) {
                 if (parseInt(id) === vehicles[i].id) {
@@ -580,23 +605,12 @@
             }
             return null;
         }
-        function putSession(key, value) {
+        function putSession(data) {
             $.ajax({
                 type: 'POST',
                 url: '/put_session',
-                data: {key: key, value: value}
+                data: data
             });
-        }
-
-        function getSession(key) {
-            $.ajax({
-                url: '/get_session',
-                data: {key: key},
-                success: function(data) {
-                    console.log(data);
-                    return data;
-                }
-            })
         }
 
         $(document).ready( function() {
@@ -610,7 +624,6 @@
             if (!sessionData) {
                 return;
             }
-
             console.log(sessionData);
 
             if (sessionData.vehicle_id) {
@@ -624,14 +637,43 @@
             } else {
                 $('#addBaggage').hide();
             }
-
+            // when click big item
             big_item = sessionData.big_item ? sessionData.big_item : 0;
-            $('#itemCount').text(big_item);
+            if(big_item === 0) {
+                $('#itemCount').text("");
+            } else {
+                $('#itemCount').text(big_item);
+            }
             $('#qty').text(big_item);
 
+            // when click location
+            floor_from = sessionData.floor_from ? sessionData.floor_from : 100;
+            floor_to = sessionData.floor_to ? sessionData.floor_to : 100;
+            where_from = sessionData.where_from ? sessionData.where_from : "";
+            where_to = sessionData.where_to ? sessionData.where_to : "";
+            let floor = "{{__('string.floor')}}";
+            let areaName = "{{__('string.moving_location')}}";
+            if(where_from !== "") {
+                $('#currentArea').text(where_from);
+            } else {
+                $('#currentArea').text(areaName);
+            }
+            if(floor_from === 100) {
+                $('#currentFloor').text("{{__('string.elevator')}}");
+            } else {
+                $('#currentFloor').text(floor_from + floor);
+            }
+            if(floor_to === 100){
+                $('#destinationFloor').text("{{__('string.elevator')}}");
+            }else{
+                $('#destinationFloor').text(floor_to + floor);
+            }
+
+
+            // when set time
             when = sessionData.when ? sessionData.when : '';
             if (when.length) {
-                $('#myTimeBtn').text(when);
+                $('#selectTimeCon').text(when);
             }
 
             helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
@@ -647,7 +689,17 @@
                 $('#small').addClass('checked');
             }
             description = sessionData.description ? sessionData.description : "";
+            if(description === "")
+            {
+                let descriptionStr = "{{__('string.upload_photo')}}";
+                $('#orderNote').text(descriptionStr);
+
+            }
+            else{
+                $('#orderNote').text(description);
+            }
             $('#itemDescription').val(description);
+
 
             calcTotalPrice();
         });

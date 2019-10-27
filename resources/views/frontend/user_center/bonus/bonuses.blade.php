@@ -35,7 +35,7 @@
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-outline-light text-dark" onclick="immediatelyUse();" style="color: #5b9bd1; font-weight: bold;"> Use </a>
+                            <a class="btn btn-outline-light text-dark" onclick="use({{ $bonus->id }}, {{ $bonus->price }});" style="color: #5b9bd1; font-weight: bold;"> Use </a>
                         </td>
                     </tr>
                 </table>
@@ -60,8 +60,31 @@
 
 @section('scripts')
     <script>
-        function immediatelyUse() {
-            window.location.href = '/';
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function use(id, price) {
+
+            if ('{{ $where }}' === 'fromAny')
+                window.location.href = '/';
+            else
+            if ('{{ $where }}' === 'fromDetail')
+            {
+                $.ajax({
+                    type: 'POST',
+                    url: '/put_session',
+                    data: {
+                        bonus_id: id,
+                        bonus_price: price
+                    },
+                    success: function(data) {
+                        window.history.back();
+                    }
+                });
+            }
         }
     </script>
 @endsection

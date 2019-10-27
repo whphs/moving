@@ -56,7 +56,6 @@
                     </div>
                 </div>
             </div>
-            <a href="/easy_move/detail">aaa</a>
         </div>
     </section>
 
