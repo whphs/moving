@@ -28,13 +28,13 @@
                         <div class="card-header">Please select the handling floor</div>
                         <ul class="timeline">
                             <li class="current-location" data-toggle="modal" data-target="#selectFromFloorModal">
-                                <span>Your shipping floor</span>
+                                <span style="margin-left: -40px;">Your shipping floor</span>
                                 <span style="float: right; margin-right: 20px;">
                                     <span id="fromFloorName">Select floor</span><i class="fa fa-angle-right direct"></i>
                                 </span>
                             </li>
                             <li class="destination-location" data-toggle="modal" data-target="#selectToFloorModal">
-                                <span>Your Receiving floor</span>
+                                <span style="margin-left: -40px;">Your Receiving floor</span>
                                 <span style="float: right; margin-right: 20px;">
                                     <span id="toFloorName">Select floor</span><i class="fa fa-angle-right direct"></i>
                                 </span>

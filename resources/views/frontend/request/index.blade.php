@@ -249,10 +249,10 @@
         {
             let vehicleId = $('#detailsBtn'+id).val();
             $.ajax({
-                type: 'POST',
-                url: '/put_session',
-                data: {key: 'vehicle_id', value: vehicleId}
-            });
+            type: 'POST',
+            url: '/put_session',
+            data: {key: 'vehicle_id', value: vehicleId}
+        });
 
             window.location.href = "easy_move/detail";
         }

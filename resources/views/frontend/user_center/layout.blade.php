@@ -16,7 +16,6 @@
 
     {!! Html::style('frontend/assets/css/swiper.min.css') !!}
 
-    {!! Html::style('frontend/assets/style.css') !!}
     {!! Html::style('frontend/assets/css/custom-modal.css') !!}
     {!! Html::style('frontend/assets/css/mystyle.css') !!}
     {!! Html::style('frontend/assets/css/timeline.css') !!}
