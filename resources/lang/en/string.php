@@ -133,6 +133,7 @@ return [
     'format_price' => '$',
     'clear'        => 'Clear',
     'floor'        => 'floor',
+    'elevator'     => 'Elevator',
 
 
     'from'              => 'From',

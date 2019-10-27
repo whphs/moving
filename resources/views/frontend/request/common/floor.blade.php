@@ -16,9 +16,11 @@
                 <div class="col-12">
                     <ul class="list-group list-group-flush" style="line-height: 3;font-size: 17px;">
                         <li class="list-group-item select-item" id = "selectArea" style="padding: 5px;">
-                            <i class="fa fa-map-marker" style="margin-right: 3px;position: relative;top:15px;"></i>
-                            <span>GG</span>
-                            <p style="line-height: 0">dkeikfdfdfkjdkflsd</p>
+                            <div id = "selAddr">
+                                <i class="fa fa-map-marker" style="margin-right: 3px;position: relative;top:15px;"></i>
+                                <span>{{$address}}</span>
+                                <p style="line-height: 0">Yinhe Dajie 16-2</p>
+                            </div>
                             <div id = "selectFloor" style="margin-top: 15px; " data-toggle="modal" data-target="#selectFloorModal">
                                 <i class="fa fa-trello" style="margin-right: 3px;"></i>
                                 <span style="color:#7d7d7d">GG</span>
@@ -26,8 +28,12 @@
                                 <span style="float: right;margin-right: 6px;margin-top: -1px;" id = "displayFloor"></span>
                             </div>
                             <div>
-                                <i class="fa fa-building" style="margin-right: 3px;"></i>
-                                <span style="color:#7d7d7d">GG</span><input placeholder="12 floor" style="margin-left: 15px;border:unset;color: #7d7d7d">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <i class="fa fa-building"></i>
+                                        <input placeholder="Yinhe Dajie" style="border:unset;color: #7d7d7d">
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -62,7 +68,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button class ="btn south-btn btn-3 m-1 elevator-btn" id = "floor0" onclick="selectedFloor(0)">Use elevator</button>
+                            <button class ="btn south-btn btn-3 m-1 elevator-btn" id = "floor0" onclick="selectedFloor(100)">Use elevator</button>
                         </div>
                     </div>
                     <div class="row">
@@ -99,8 +105,8 @@
         }
 
         $('#selectFloorBtn').click(function () {
-            if (selectFloorIndex === 0) {
-                $('#displayFloor').text("elevator");
+            if (selectFloorIndex === 100) {
+                $('#displayFloor').text("{!! __('string.elevator') !!}");
             } else {
                 if(selectFloorIndex != null)
                     $('#displayFloor').text(selectFloorIndex + floor);
@@ -116,19 +122,28 @@
         }
 
         $('#specialItemBtn').click(function () {
-            if ('{{ $location }}' == 'from')
+            if ('{{ $location }}' === 'from')
             {
-                put_session("where_from", "31");
-                put_session("floor_from", selectFloorIndex);
+                putSession("where_from", "{{$address}}");
+                putSession("floor_from", selectFloorIndex);
             }
-            else
-                if ('{{ $location }}' == 'to')
-                {
-                    put_session("where_to", "31");
-                    put_session("floor_to", selectFloorIndex);
-                }
+            else if ('{{ $location }}' === 'to')
+            {
+                putSession("where_to", "{{$address}}");
+                putSession("floor_to", selectFloorIndex);
+            }
 
             window.location.href = "/{{ $move_type }}/detail";
+        });
+        $("#selAddr").click(function () {
+            if ('{{ $location }}' === 'from')
+            {
+                window.location.href = "/select_location/{{ $move_type }}/from";
+            }
+            else if ('{{ $location }}' === 'to')
+            {
+                window.location.href = "/select_location/{{ $move_type }}/to";
+            }
         });
 
 
