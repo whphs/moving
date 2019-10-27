@@ -18,7 +18,7 @@
                                         <button class="btn btn-link btn-sm" style="bottom: -5px;" onclick="safeMoveMore({{ $scale->id }});">{{ __('string.more_button') }}</button>
                                     </div>
                                     <div class="col-3" style="padding: unset; margin-left: auto; margin-right: auto;">
-                                        {!! Html::image('frontend/assets/img/icons/about.png', null, ['style'=>'width: 100%; height: 78px;']) !!}
+                                        <img src="/storage/{{ $scale->vehicle_photo }}" style="width: 100%; height: 78px;">
                                         <button type="button" class="btn south-btn safe-move-detail" onclick="safeMoveDetail({{ $scale->id }});">{{ __('string.detail_button') }}</button>
                                     </div>
                                 </div>

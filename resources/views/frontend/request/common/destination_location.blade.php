@@ -5,7 +5,7 @@
             {{--            Search area --}}
             <div class="row search-area">
                 <div class="col-3 d-flex select-area">
-                    <span>Dondong</span>
+                    <span>Dandong</span>
                 </div>
                 <div class="col-9 search-address" >
                     <input type="text" class="form-control"  id="search-addr" placeholder="Enter moving area" style="border:unset">
