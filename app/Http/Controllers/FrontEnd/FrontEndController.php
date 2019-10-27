@@ -47,6 +47,7 @@ class FrontEndController extends Controller
      */
     public function getSession(Request $request) {
         $value = session()->get($request->key);
+
         return response()->json($value);
     }
 

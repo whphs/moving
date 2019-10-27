@@ -147,7 +147,7 @@
                         <div class="col-8">
                             <div class="easy-move-footer-price1">
                                 {{--                  <a href = "/easy_move_detail/preview">{{__('string.preview')}}</a>--}}
-                                {!! link_to_route('easy_move.preview', __('string.preview'), session()->get('vehicle_id')) !!}
+                                {!! link_to_route('easy_move.preview', __('string.preview')) !!}
                                 <button type="button" class="btn south-btn resv-btn" data-toggle="modal" data-target="#reservationModal">{{__('string.reservation_btn')}}</button>
                             </div>
                         </div>
@@ -230,7 +230,8 @@
                     <ul id="vehiclesTab" class="nav">
                         @foreach($vehicles as $index => $vehicle)
                             <li id="li{{$index}}" class="nav-item active">
-                                <a href="#vehicle{{$index}}"  class="nav-link active">{{$vehicle->name}}</a>
+{{--                                <a href="#vehicle{{$index}}"  class="nav-link active">{{$vehicle->name}}</a>--}}
+                                <p class="nav-link active" style="margin-bottom: unset;line-height: unset">{{$vehicle->name}}</p>
                             </li>
                         @endforeach
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -311,27 +312,24 @@
                     <button type="button" class="close" data-dismiss="modal" style="font-size: 29px;margin-right: -3px;">&times;</button>
                 </div>
                 <!-- Modal body -->
-                <div class="modal-body" style="padding: 1rem;">
+                <div class="modal-body" style="padding-bottom: 1rem;">
                     <div class="item-description">
-                        <textarea id = "itemDescription" rows = "4" cols ="10" placeholder="Please enter moving item description."></textarea>
+                        <textarea id = "itemDescription" rows = "3" cols ="10" placeholder="Please enter moving item description."></textarea>
                         <div class="clear-description">
                             <span>200character</span>
-                            <span id = "" style="float: right;">{{__('string.clear')}}</span>
+                            <span id = "clearBtn" style="float: right;">{{__('string.clear')}}</span>
                         </div>
                     </div>
-                    <div class="history-description">
-                        <p>This is test</p>
-                        <p>This is test</p>
-                        <p>This is test</p>
-                    </div>
+{{--                    <div class="history-description">--}}
+{{--                        <div style="padding:7px;">--}}
+{{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes1">This is test</span>--}}
+{{--                        </div>--}}
+{{--                        <div style="padding: 7px;">--}}
+{{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes2">This is test</span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="upload-photo">
                         <p style="font-size: 15px;font-weight: bold">Upload Photo</p>
-{{--                        <div class="upload-photo-image">--}}
-{{--                            {!! Html::image('frontend/assets/img/icons/camera.png','take photo')!!}--}}
-{{--                            <input type="file" id = "fileUpload" name = "fileUpload" style="display: none">--}}
-
-{{--                            <p>Upload</p>--}}
-{{--                        </div>--}}
                         <div class="photo-multi-thumb" data-name = "main_photo" data-required = "true"></div>
                     </div>
                 </div>
@@ -386,6 +384,7 @@
     {!! Html::script('frontend/assets/js/custom-modal.js') !!}
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
     <script type="text/javascript">
+        photoMultiThumb.init();
         $('#userCenter').click(function () {
             window.location.href = "/user_center";
         });
@@ -567,6 +566,15 @@
         $("#small").click(function(){
             helperCountChanged(2);
         });
+        // When clear description
+        $('#clearBtn').click(function () {
+            $('#itemDescription').val('');
+        });
+        //When set photo setting
+        $('#photoSettingBtn').click(function () {
+            putSession("description",$('#itemDescription').val());
+        });
+
         function getSelectedVehicle(id) {
             for (let i = 0 ; i < vehicles.length ; i ++) {
                 if (parseInt(id) === vehicles[i].id) {
@@ -603,6 +611,7 @@
 
             selectedVehicle = vehicles[0];
             let sessionData = null;
+
             $.ajax({
                 url: '/get_session/all',
                 success: function(data) {
@@ -610,7 +619,6 @@
                     if (!sessionData) {
                         return;
                     }
-
                     console.log(sessionData);
 
                     if (sessionData.vehicle_id) {
@@ -618,7 +626,7 @@
                     }
 
                     $("#vehicleSelBtn").text(selectedVehicle.name);
-                    $('#handlingService')[0].checked = handlingService = sessionData.handlingService ? sessionData.handlingService : 0;
+                    $('#handlingService')[0].checked = handlingService = sessionData.handlingService === 'true' ? sessionData.handlingService : 0;
                     if (handlingService) {
                         $('#addBaggage').show();
                     } else {
@@ -646,6 +654,8 @@
                         $('#two').addClass('checked');
                         $('#small').addClass('checked');
                     }
+                    description = sessionData.description ? sessionData.description : "";
+                    $('#itemDescription').val(description);
 
                     calcTotalPrice();
                 }

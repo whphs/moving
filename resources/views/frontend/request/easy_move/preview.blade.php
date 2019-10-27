@@ -1,36 +1,56 @@
 @extends('frontend.app')
 @section('content')
-    <section class="south-contact-area" style="background-color: #003eff">
+    <section class="south-contact-area">
         <div class="container">
             <!-- Defined Price  -->
             <div class="row">
                 <div class="col-12 " style="text-align: center;">
                     <div class="d-inline-flex preview-heading">
                         <span>{{__('string.format_price')}}</span>
-                        <h1 id="totalPrice"> 0 </h1>
-                        (<span id="totalDistance">886</span>km in Total)
+                        <h1 id="totalPrice"> 0 </h1><span>(</span>
+                        <span id="totalDistance">886</span><span>km in Total)</span>
                     </div>
                 </div>
             </div>
 {{--            Preview Note--}}
             <div class="row" >
                 <div class="col-12 " style="text-align: center;">
-                    <p>baggage weight is 30kg and size is 49m3.</p>
+                    <p style="font-size: 15px;">baggage weight is 30kg and size is 49m3.</p>
                 </div>
             </div>
 {{--            Preview Prices--}}
             <div class="row" style="margin-right: 5px; margin-left: 5px;">
                 <div class="col-12" >
-                    <p>To be paid</p>
+                    <p style="color:#323232">To be paid</p>
                     <div class="content-sidebar">
                         <div class="weekly-office-hours">
                             <ul>
-                                <li class="d-flex align-items-center justify-content-between"><span>Starting Price(small van)</span>
-                                    {{__('string.format_price')}}<span id="initPrice">30</span></li>
-                                <li class="d-flex align-items-center justify-content-between">Super Mileage<span id="plusDistance"></span>
-                                    {{__('string.format_price')}}<span id="plusPrice">60</span></li>
-                                <li class="d-flex align-items-center justify-content-between"><span>Handing Charging</span>
-                                    {{__('string.format_price')}}<span id="priceForItems">321</span></li>
+                                <li>
+                                    <span style="display: inline-block">Starting Price(small van)</span>
+                                    <div class="preview-start-price">
+                                        <span>{{__('string.format_price')}}</span>
+                                        <span id="initPrice">30</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div style="display: inline-block">
+                                        <span>Super Mileage</span>
+                                        <span id="plusDistance"></span>
+                                    </div>
+                                    <div class="preview-start-price">
+                                        <span>{{__('string.format_price')}}</span>
+                                        <span id="plusPrice">60</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <span>Handing Charging</span>
+                                    <div class="preview-start-price">
+                                        <span>{{__('string.format_price')}}</span>
+                                        <span id="priceForItems">321</span></li>
+                                    </div>
+
                             </ul>
                         </div>
                     </div>
@@ -44,7 +64,9 @@
 
 @section('scripts')
     <script>
+
         $(document).ready(function(){
+
 
             let _vehicle = {!! $vehicle !!};
             let _param = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
