@@ -602,7 +602,7 @@
         // $(document).ready( function() {
             vehicles = {!! $vehicles !!};
             @foreach($vehicles as $vehicle)
-            distancePrices.push({!! $vehicle->distancePrices !!});
+                distancePrices.push({!! $vehicle->distancePrices !!});
             @endforeach
 
             selectedVehicle = vehicles[0];
