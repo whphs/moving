@@ -1,6 +1,5 @@
 @extends('frontend.app')
 @section('content')
-
     <div id = "easyMoveContent">
         <header>
             <div class="header-img">
