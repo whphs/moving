@@ -388,7 +388,7 @@
             window.location.href = "/bookings";
         });
         $('#bonusList').click(function () {
-            window.location.href = "/bonuses";
+            window.location.href = "/bonuses/fromAny";
         });
         $.ajaxSetup({
             headers: {

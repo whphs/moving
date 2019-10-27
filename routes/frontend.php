@@ -25,7 +25,7 @@ Route::get('/sign/other', function () { return view('frontend/user_center/sign/o
 Route::get('/bookings', 'FrontEndController@bookings')->name('bookings');
 Route::get('/booking/show/{id}', 'FrontEndController@bookingShow')->name('booking.show');
 
-Route::get('/bonuses', 'FrontEndController@bonuses')->name('bonuses');
+Route::get('/bonuses/{where}', 'FrontEndController@bonuses')->name('bonuses');
 
 Route::get('/setting', function () { return view('frontend/user_center/setting/index'); });
 

@@ -109,15 +109,6 @@ class FrontEndController extends Controller
     }
 
     /**
-     * Display confirmation of safe move
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function safeMovePreview() {
-        return view('frontend.request.safe_move.preview');
-    }
-
-    /**
      * return array of vehicles with areaId
      *
      * @param int $areaId
@@ -200,9 +191,9 @@ class FrontEndController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function bonuses() {
+    public function bonuses($where) {
         $bonuses = Bonus::all();
-        return view('frontend.user_center.bonus.bonuses', compact('bonuses'));
+        return view('frontend.user_center.bonus.bonuses', compact('bonuses'))->with(['where' => $where]);
     }
 
     /**
