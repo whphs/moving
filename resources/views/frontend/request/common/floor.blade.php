@@ -127,13 +127,11 @@
         $('#specialItemBtn').click(function () {
             if ('{{ $location }}' === 'from')
             {
-                putSession({where_from : "{{ $address }}"});
-                putSession({floor_from : selectFloorIndex});
+                putSession({floor_from: selectFloorIndex,where_from:"{{$address}}"});
             }
             else if ('{{ $location }}' === 'to')
             {
-                putSession({where_to : "{{ $address }}"});
-                putSession({floor_to : selectFloorIndex});
+                putSession({where_to: "{{$address}}",floor_to:selectFloorIndex});
             }
 
             window.location.href = "/{{ $move_type }}/detail";
