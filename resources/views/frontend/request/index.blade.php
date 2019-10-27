@@ -243,6 +243,8 @@
                 $(this).parent().parent().parent().parent().find('#vehicle' + index).addClass('show active');
             });
 
+            $('#normalPrice').hide();
+            $('#normalPrice').css('opacity', 1);
         });
 
         function easyMoveDetails(id)
