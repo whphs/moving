@@ -67,9 +67,9 @@
                                         <li class="list-group-item">
                                             {!! Html::image("frontend/assets/img/icons/calendar.png",'calendar',['style' => 'width: 30px;height: 22px;']) !!}
                                             {{__('string.moving_time')}}
-                                            <p class="detail" id="myTimeBtn">
+                                            <p class="detail"  id = "selectTimeBtn" data-toggle = "modal" data-target = "#timeModal">
                                                 {{__('string.set_time')}}<i class="fa fa-angle-right direct"></i></p>
-                                            <input type="hidden" id = "movingTime" value = "">
+{{--                                            <input type="hidden" id = "movingTime" value = "">--}}
                                         </li>
                                     </ul>
                                 </div>
@@ -155,7 +155,28 @@
                 </div>
             </div>
         </main>
+{{--        Select time modal--}}
+        <div class="modal" id="timeModal" tabindex="-1" role="dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="classynav">
+                        <ul style="padding: 3px;">
+                            <li><span class = "time-setting" id = "timeSetting">Setting</span></li>
+                            <li style="float: right;"><span id = "close" class = "time-setting" data-dismiss = 'modal'>Exit</span></li>
+                        </ul>
 
+                    </div>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body" style="min-height: 140px;">
+                    <div class="container">
+                        <div class="input-group date">
+                            <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY" style="margin-top: 15%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {{--Reservation Modal Start--}}
         <div class="modal" id="reservationModal" tabindex="-1" role="dialog">
             <div class="modal-content">
@@ -197,31 +218,6 @@
             </div>
         </div>
         {{--Reservation Modal End--}}
-    <!-- Time Modal -->
-        <div id="timeModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- Nav Start -->
-                    <div class="classynav">
-                        <ul style="padding: 3px;">
-                            <li><span class = "time-setting" id = "setting">Setting</span></li>
-                            <li style="float: right;"><span id = "close" class = "time-setting" >Exit</span></li>
-                        </ul>
-
-                    </div>
-                    <!-- Nav End -->
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="input-group date">
-                            <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY" style="margin-top: 15%;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{--Time Modal End--}}
     <!-- The EasyMove Detail Modal -->
         <div class="modal" id="vehicleSelModal" tabindex="-1" role="dialog">
             <div class="modal-content">
@@ -381,7 +377,7 @@
     </div>
 @endsection
 @section('scripts')
-    {!! Html::script('frontend/assets/js/custom-modal.js') !!}
+{{--    {!! Html::script('frontend/assets/js/custom-modal.js') !!}--}}
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
     <script type="text/javascript">
         photoMultiThumb.init();
