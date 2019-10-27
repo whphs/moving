@@ -72,9 +72,9 @@
             console.log(_param);
             let _distancePrices = {!! $vehicle->distancePrices !!};
 
-            let _totalDistance = _param.distance ? _param.distance : 31;
-            let _floor_from = _param.floor_from ? _param.floor_from : 9;
-            let _floor_to = _param.floor_to ? _param.floor_to : 7;
+            let _totalDistance = _param.distance ? _param.distance : 0;
+            let _floor_from = _param.floor_from ? _param.floor_from : 100;
+            let _floor_to = _param.floor_to ? _param.floor_to : 100;
             let _handlingService = _param.handlingService ? 1 : 0;
             let _big_item = _param.big_item ? _param.big_item : 0;
 

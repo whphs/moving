@@ -112,25 +112,22 @@
                     $('#displayFloor').text(selectFloorIndex + floor);
             }
         });
-        function putSession(key,value)
-        {
+        function putSession(data) {
             $.ajax({
                 type: 'POST',
                 url: '/put_session',
-                data: {key: key, value: value}
+                data: data
             });
         }
 
         $('#specialItemBtn').click(function () {
             if ('{{ $location }}' === 'from')
             {
-                putSession("where_from", "{{$address}}");
-                putSession("floor_from", selectFloorIndex);
+                putSession({floor_from: selectFloorIndex,where_from:"{{$address}}"});
             }
             else if ('{{ $location }}' === 'to')
             {
-                putSession("where_to", "{{$address}}");
-                putSession("floor_to", selectFloorIndex);
+                putSession({where_to: "{{$address}}",floor_to:selectFloorIndex});
             }
 
             window.location.href = "/{{ $move_type }}/detail";

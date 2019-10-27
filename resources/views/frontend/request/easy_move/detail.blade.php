@@ -62,7 +62,7 @@
                                             <div class="row">
                                                 <div class="col-9" style="display: inline-block">
                                                     <span id = "currentArea">{{__('string.moving_location')}}</span>
-{{--                                                    <p id = "currentAreaName" >dfdfd dfasjdf askdfjasd</p>--}}
+                                                    {{--                                                    <p id = "currentAreaName" >dfdfd dfasjdf askdfjasd</p>--}}
                                                 </div>
                                                 <div class="col-3" style="display: inline-block">
                                                     <span id="currentFloor" class="show-floor" ></span>
@@ -73,7 +73,7 @@
                                             <div class="row">
                                                 <div class="col-9" style="display: inline-block">
                                                     <span id = "destinationArea">{{__('string.moving_destination')}}</span>
-{{--                                                    <p id = "destinationAreaName">dfdfd dfasjdf askdfjasd</p>--}}
+                                                    {{--                                                    <p id = "destinationAreaName">dfdfd dfasjdf askdfjasd</p>--}}
                                                 </div>
                                                 <div class="col-3" style="display: inline-block">
                                                     <span id="destinationFloor" class="show-floor"></span>
@@ -204,16 +204,16 @@
                                 <li class="list-group-item" >
                                     {!! Html::image("frontend/assets/img/icons/wechat.png",'calendar',['class' => 'reservation-img']) !!}
                                     Wechat
-                                    <div class="custom-control custom-radio custom-control-inline" style="float: right">
-                                        <input type="radio" class="custom-control-input" id="wechatRadio" name="wechat" value="wechat">
+                                    <div class="custom-control custom-radio custom-control-inline wechatRadio" style="float: right">
+                                        <input type="radio" class="custom-control-input" id="wechat" name="wechat" value="wechat" checked>
                                         <label class="custom-control-label" for="wechatRadio">&nbsp</label>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     {!! Html::image("frontend/assets/img/icons/zhubao.png",'calendar',['class' => 'reservation-img']) !!}
                                     Zhubao
-                                    <div class="custom-control custom-radio custom-control-inline" style="float: right">
-                                        <input type="radio" class="custom-control-input" id="zhubaoRadio" name="zhubao" value="zhubao">
+                                    <div class="custom-control custom-radio custom-control-inline zhubaoRadio" style="float: right">
+                                        <input type="radio" class="custom-control-input" id = "zhubao" name="zhubao" value="zhubao">
                                         <label class="custom-control-label" for="zubaoRadio">&nbsp</label>
                                     </div>
                                 </li>
@@ -393,6 +393,7 @@
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
     <script type="text/javascript">
         photoMultiThumb.init();
+
         $('#userCenter').click(function () {
             window.location.href = "/user_center";
         });
@@ -426,10 +427,11 @@
         let selectedVehicle = null;
         let selectedIndex = 0;
         let distancePrices = [];
+        let totalPrice = 0;
         $("#addBaggage").hide();
         // Calculate total price for changed statement.
         function calcTotalPrice() {
-            let totalPrice = selectedVehicle.init_price;
+            totalPrice = selectedVehicle.init_price;
             let plusPrice = 0;
             if (distance > selectedVehicle.init_distance) {
                 for (let i = 0 ; i < distancePrices[selectedIndex].length ; i ++) {
@@ -511,26 +513,7 @@
             putSession({big_item: big_item});
             calcTotalPrice();
         });
-        // When click submit button.
-        $("#reservationBtn").click(function () {
-            // e.preventDefault();
-            let big_item = 0;let when = "";let photo_0 = "";let photo_1 = "";let photo_2 = "";let description = "";let phone = "";
-            let where_from = ""; let floor_from =""; let where_to = "";let floor_to = "";
-            big_item = $('#qty').text();
-            when = $('#movingTime').val();
-            description = $('#itemDescription').val();
-            phone = $('#phoneNum').val();
-            price = $('#displayPrice').text();
-            // $.ajax({
-            //     type:'POST',
-            //     url:'/booking.submit',
-            //     data:{user_id:1, vehicle_id:vehicle_id, big_item:big_item, where_from:where_from, floor_from:floor_from, where_to:where_to, floor_to:floor_to,
-            //         when:when, description:description,phone:phone, photo_0:photo_0, price:price},
-            //     success:function(data){
-            //         alert(data.success);
-            //     }
-            // });
-        });
+
         // Add Baggage Scripts
         $('#handlingService').click(function() {
             if(this.checked) {
@@ -613,7 +596,46 @@
             });
         }
 
+        $(".wechatRadio").on("click", function () {
+            $("#wechat").prop("checked",true);
+            $("#zhubao").prop("checked",false);
+        });
+        $(".zhubaoRadio").on("click", function () {
+            $("#zhubao").prop("checked",true);
+            $("#wechat").prop("checked",false);
+        });
+        // When click submit button.
+        $("#reservationBtn").click(function () {
+            let data = {
+                user_id: 1,
+                vehicle_id: selectedVehicle.id,
+                big_item: parseInt(big_item),
+                where_from: where_from,
+                floor_from: parseInt(floor_from),
+                where_to: where_to,
+                floor_to: parseInt(floor_to),
+                when: when,
+                description: description,
+                phone: phone,
+                distance: distance,
+                helper_count: parseInt(helper_count),
+                price: totalPrice
+            };
+            console.log(data);
+            $.ajax({
+                type:'POST',
+                url:'/booking/submit',
+                data: data,
+                success:function(data){
+                    alert(data.success);
+                }
+            });
+        });
+
+
         $(document).ready( function() {
+
+
             vehicles = {!! $vehicles !!};
             @foreach($vehicles as $vehicle)
             distancePrices.push({!! $vehicle->distancePrices !!});
@@ -657,6 +679,11 @@
                 $('#currentArea').text(where_from);
             } else {
                 $('#currentArea').text(areaName);
+            }
+            if(where_to !== "") {
+                $('#destinationArea').text(where_to);
+            } else {
+                $('#destinationArea').text("{{__('string.moving_destination')}}");
             }
             if(floor_from === 100) {
                 $('#currentFloor').text("{{__('string.elevator')}}");
