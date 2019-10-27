@@ -119,7 +119,7 @@
         $("#vehicle_name0").addClass("active");
     });
 
-    var swiper = new Swiper('.swiper-container', {
+    let swiper = new Swiper('.swiper-container', {
         effect: 'cube',
         grabCursor: true,
         cubeEffect: {
@@ -134,15 +134,10 @@
     });
 
     swiper.on('slideChange', function () {
-        var active_truck = swiper.activeIndex;
+        $('.tab-pane').removeClass('active');
 
-        for (var i = 0; i <= 3; i ++) {
-            $("#vehicle_info" + i).removeClass("active");
-            $("#vehicle_name" + i).removeClass("active");
-        }
-
-        $("#vehicle_info" + active_truck).addClass("active");
-        $("#vehicle_name" + active_truck).addClass("active");
+        $("#vehicle_info" + swiper.activeIndex).addClass("active");
+        $("#vehicle_name" + swiper.activeIndex).addClass("active");
     })
 
 </script>
