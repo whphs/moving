@@ -118,7 +118,7 @@
             $('#specialItemBtn').click(function () {
                 put_session("where_from","31");
                 put_session("floor_from",selectFloorIndex);
-                windows.location.href = "/easy_move/detail";
+                window.location.href = "/easy_move/detail";
             });
         });
 

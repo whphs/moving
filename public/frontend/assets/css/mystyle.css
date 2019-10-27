@@ -305,7 +305,8 @@ header {
 }
 .preview-heading span{
     position: relative;
-    top:17px;
+    top:10px;
+    font-size: 20px;
 }
 #itemDescription{
     border:unset;
@@ -494,6 +495,12 @@ header {
 .elevator-btn:focus{
     color: #ffffff!important;
     background-color: #947054!important;
+}
+.preview-start-price{
+    display: inline-block;float: right;
+}
+.content-sidebar .weekly-office-hours ul li {
+    border-bottom: 1px solid #e1dddd;
 }
 
 
