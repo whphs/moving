@@ -88,6 +88,7 @@
 @section('scripts')
     <script>
         let selectFloorIndex = null;
+        let floor = "{{__('string.floor')}}";
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -102,10 +103,11 @@
             if (selectFloorIndex === 0) {
                 $('#displayFloor').text("elevator");
             } else {
-                $('#displayFloor').text(selectFloorIndex);
+                if(selectFloorIndex != null)
+                    $('#displayFloor').text(selectFloorIndex + floor);
             }
         });
-        function put_session(key,value)
+        function putSession(key,value)
         {
             $.ajax({
                 type: 'POST',
@@ -116,8 +118,8 @@
 
         $(document).ready(function(){
             $('#specialItemBtn').click(function () {
-                put_session("where_to","31");
-                put_session("floor_to",selectFloorIndex);
+                putSession("where_to","31");
+                putSession("floor_to",selectFloorIndex);
                 window.location.href = "/easy_move/detail";
             });
         });

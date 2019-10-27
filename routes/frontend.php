@@ -10,11 +10,7 @@ Route::get('easy_move/detail', 'FrontEndController@easyMoveDetail')->name('easy_
 
 Route::get('easy_move/preview', 'FrontEndController@easyMovePreview')->name('easy_move.preview');
 
-Route::get('current_location/{index}', 'FrontEndController@location');
-Route::get('current_location/floor/{index}', 'FrontEndController@floor');
-
-Route::get('destination_location/{index}', 'FrontEndController@location');
-Route::get('destination_location/floor/{index}', 'FrontEndController@floor');
+Route::get('select_location/{move_type}/{location}/{floor}', 'FrontEndController@selectLocation')->name('select_location');
 
 Route::get('safe_move/more/{id}', 'FrontEndController@safeMoveMore')->name('safe_move.more');
 Route::get('safe_move/detail/{id}', 'FrontEndController@safeMoveDetail')->name('safe_move.detail');

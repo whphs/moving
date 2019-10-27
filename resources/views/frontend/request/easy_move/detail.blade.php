@@ -54,22 +54,39 @@
                         <div class="col-12">
                             <div class="content-sidebar">
                                 <div class="card" style="margin:10px 0">
-                                    <div class="card-header">{{__('string.moving_info')}}</div>
+                                    <div class="card-header">
+                                        {{__('string.moving_info')}}
+                                    </div>
                                     <ul class="timeline">
                                         <li class="current-location">
-                                            <span>{{__('string.moving_location')}}</span>
+                                            <div class="row">
+                                                <div class="col-9" style="display: inline-block">
+                                                    <span id = "currentArea">{{__('string.moving_location')}}</span>
+                                                    <p style="font-weight: 100;font-color:#999999b8">dfdfd dfasjdf askdfjasd</p>
+                                                </div>
+                                                <div class="col-3" style="display: inline-block">
+                                                    <span id="currentFloor" class="show-floor" >11111</span>
+                                                </div>
+                                            </div>
                                         </li>
                                         <li class="destination-location">
-                                            <span>{{__('string.moving_destination')}}</span>
+                                            <div class="row">
+                                                <div class="col-9" style="display: inline-block">
+                                                    <span id = "destinationArea">{{__('string.moving_destination')}}</span>
+                                                    <p style="font-weight: 100;font-color:#999999b8">dfdfd dfasjdf askdfjasd</p>
+                                                </div>
+                                                <div class="col-3" style="display: inline-block">
+                                                    <span id="destinationFloor" class="show-floor">11111</span>
+                                                </div>
+                                            </div>
                                         </li>
                                     </ul>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">
                                             {!! Html::image("frontend/assets/img/icons/calendar.png",'calendar',['style' => 'width: 30px;height: 22px;']) !!}
                                             {{__('string.moving_time')}}
-                                            <p class="detail"  id = "selectTimeBtn" data-toggle = "modal" data-target = "#timeModal">
+                                            <p class="detail"  id = "selectTimeCon" data-toggle = "modal" data-target = "#timeModal">
                                                 {{__('string.set_time')}}<i class="fa fa-angle-right direct"></i></p>
-{{--                                            <input type="hidden" id = "movingTime" value = "">--}}
                                         </li>
                                     </ul>
                                 </div>
@@ -97,15 +114,11 @@
                             <div class="card" style="margin:10px 0">
                                 <div class="card-header">{{__('string.order_note')}}
                                     <p class="detail" id="photoSelBtn" data-toggle = "modal" data-target = "#movingPhotoModal" style="font-weight: 100">
-                                        {{__('string.upload_photo')}}<i class="fa fa-angle-right direct"></i>
+                                        <span id = "orderNote">{{__('string.upload_photo')}}</span><i class="fa fa-angle-right direct"></i>
                                     </p>
                                 </div>
                                 <ul>
                                     <li style="z-index: 0;min-width: 287px;padding:10px;border-bottom: 1px solid rgba(0,0,0,.125);">
-{{--                                        <input type="radio" id="hOne" name="hOne" style="display: none;">--}}
-{{--                                        <input type="radio" id="hTwo"  name = "hTwo" style="display: none;">--}}
-{{--                                        <input type="checkbox" id="hSmall" name = "hSmall" style="display: none;">--}}
-
                                         <button type="button" id = "one" class="btn south-btn follow">{{__('string.one')}}</button>
                                         <button type="button" id = "two" class="btn south-btn follow">{{__('string.two')}}</button>
                                         <button type="button" id = "small" class="btn south-btn follow">{{__('string.small_cart')}}</button>
@@ -155,14 +168,14 @@
                 </div>
             </div>
         </main>
-{{--        Select time modal--}}
+        {{--        Select time modal--}}
         <div class="modal" id="timeModal" tabindex="-1" role="dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="classynav">
                         <ul style="padding: 3px;">
-                            <li><span class = "time-setting" id = "timeSetting">Setting</span></li>
-                            <li style="float: right;"><span id = "close" class = "time-setting" data-dismiss = 'modal'>Exit</span></li>
+                            <li><span class = "time-setting" id = "timeSetting" data-dismiss = 'modal' >Setting</span></li>
+                            <li style="float: right;"><span class = "time-setting" data-dismiss = 'modal'>Exit</span></li>
                         </ul>
 
                     </div>
@@ -226,7 +239,7 @@
                     <ul id="vehiclesTab" class="nav">
                         @foreach($vehicles as $index => $vehicle)
                             <li id="li{{$index}}" class="nav-item active">
-{{--                                <a href="#vehicle{{$index}}"  class="nav-link active">{{$vehicle->name}}</a>--}}
+                                {{--                                <a href="#vehicle{{$index}}"  class="nav-link active">{{$vehicle->name}}</a>--}}
                                 <p class="nav-link active" style="margin-bottom: unset;line-height: unset">{{$vehicle->name}}</p>
                             </li>
                         @endforeach
@@ -316,14 +329,14 @@
                             <span id = "clearBtn" style="float: right;">{{__('string.clear')}}</span>
                         </div>
                     </div>
-{{--                    <div class="history-description">--}}
-{{--                        <div style="padding:7px;">--}}
-{{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes1">This is test</span>--}}
-{{--                        </div>--}}
-{{--                        <div style="padding: 7px;">--}}
-{{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes2">This is test</span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="history-description">--}}
+                    {{--                        <div style="padding:7px;">--}}
+                    {{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes1">This is test</span>--}}
+                    {{--                        </div>--}}
+                    {{--                        <div style="padding: 7px;">--}}
+                    {{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes2">This is test</span>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                     <div class="upload-photo">
                         <p style="font-size: 15px;font-weight: bold">Upload Photo</p>
                         <div class="photo-multi-thumb" data-name = "main_photo" data-required = "true"></div>
@@ -377,7 +390,6 @@
     </div>
 @endsection
 @section('scripts')
-{{--    {!! Html::script('frontend/assets/js/custom-modal.js') !!}--}}
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
     <script type="text/javascript">
         photoMultiThumb.init();
@@ -410,7 +422,7 @@
         let floor_to = 1;
         let helper_count = 0;
         let vehicles = null;
-        let selectedVehicleId = 1;
+        // let selectedVehicleId = 1;
         let selectedVehicle = null;
         let selectedIndex = 0;
         let distancePrices = [];
@@ -471,7 +483,7 @@
         $('.modal-header').on('click', 'li', function() {
             selectedIndex = $(this)[0].id.substring(2, 3);
             selectedVehicle = vehicles[selectedIndex];
-            selectedVehicleId = selectedVehicle.id;
+            // selectedVehicleId = selectedVehicle.id;
             $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
             $(this).parent().parent().parent().parent().find('#vehicle' + selectedIndex).addClass('show active');
         });
@@ -568,9 +580,16 @@
         });
         //When set photo setting
         $('#photoSettingBtn').click(function () {
+            description = $('#itemDescription').val();
+            $('#orderNote').text(description);
             putSession("description",$('#itemDescription').val());
         });
-
+        //When set time
+        $('#timeSetting').click(function () {
+            when = $('#datepicker').val();
+            $('#selectTimeCon').text($('#datepicker').val());
+            putSession("when",$('#datepicker').val());
+        });
         function getSelectedVehicle(id) {
             for (let i = 0 ; i < vehicles.length ; i ++) {
                 if (parseInt(id) === vehicles[i].id) {
@@ -602,10 +621,10 @@
         $(document).ready( function() {
             vehicles = {!! $vehicles !!};
             @foreach($vehicles as $vehicle)
-                distancePrices.push({!! $vehicle->distancePrices !!});
+            distancePrices.push({!! $vehicle->distancePrices !!});
             @endforeach
 
-            selectedVehicle = vehicles[0];
+                selectedVehicle = vehicles[0];
             let sessionData = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
             if (!sessionData) {
                 return;
@@ -617,37 +636,65 @@
                 selectedVehicle = getSelectedVehicle(sessionData.vehicle_id);
             }
 
-                    $("#vehicleSelBtn").text(selectedVehicle.name);
-                    $('#handlingService')[0].checked = handlingService = sessionData.handlingService === 'true' ? sessionData.handlingService : 0;
-                    if (handlingService) {
-                        $('#addBaggage').show();
-                    } else {
-                        $('#addBaggage').hide();
-                    }
+            $("#vehicleSelBtn").text(selectedVehicle.name);
+            $('#handlingService')[0].checked = handlingService = sessionData.handlingService === 'true' ? sessionData.handlingService : 0;
+            if (handlingService) {
+                $('#addBaggage').show();
+            } else {
+                $('#addBaggage').hide();
+            }
 
             big_item = sessionData.big_item ? sessionData.big_item : 0;
-            $('#itemCount').text(big_item);
+            if(big_item === 0)
+            {
+                $('#itemCount').text("");
+            }
+            else{
+                $('#itemCount').text(big_item);
+            }
             $('#qty').text(big_item);
+
+            floor_from = sessionData.floor_from ? sessionData.floor_from : "";
+            floor_to = sessionData.floor_to ? sessionData.floor_to : "";
+            let floor = "{{__('string.floor')}}";
+            if(floor_from !== "")
+            {
+                $('#currentFloor').text(floor_from + floor);
+            }
+            if(floor_to !== "")
+            {
+                $('#destinationFloor').text(floor_to + floor);
+            }
 
             when = sessionData.when ? sessionData.when : '';
             if (when.length) {
-                $('#myTimeBtn').text(when);
+                $('#selectTimeCon').text(when);
             }
 
-                    helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
-                    if (parseInt(helper_count) === 1) {
-                        $('#one').addClass('checked');
-                    } else if (parseInt(helper_count) === 2) {
-                        $('#two').addClass('checked');
-                    } else if (parseInt(helper_count) === 3) {
-                        $('#one').addClass('checked');
-                        $('#small').addClass('checked');
-                    } else if (parseInt(helper_count) === 4) {
-                        $('#two').addClass('checked');
-                        $('#small').addClass('checked');
-                    }
-                    description = sessionData.description ? sessionData.description : "";
-                    $('#itemDescription').val(description);
+            helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
+            if (parseInt(helper_count) === 1) {
+                $('#one').addClass('checked');
+            } else if (parseInt(helper_count) === 2) {
+                $('#two').addClass('checked');
+            } else if (parseInt(helper_count) === 3) {
+                $('#one').addClass('checked');
+                $('#small').addClass('checked');
+            } else if (parseInt(helper_count) === 4) {
+                $('#two').addClass('checked');
+                $('#small').addClass('checked');
+            }
+            description = sessionData.description ? sessionData.description : "";
+            if(description === "")
+            {
+                let descriptionStr = "{{__('string.upload_photo')}}";
+                $('#orderNote').text(descriptionStr);
+
+            }
+            else{
+                $('#orderNote').text(description);
+            }
+            $('#itemDescription').val(description);
+
 
             calcTotalPrice();
         });

@@ -502,6 +502,15 @@ header {
 .content-sidebar .weekly-office-hours ul li {
     border-bottom: 1px solid #e1dddd;
 }
+.show-floor{
+    position: relative;
+    float: right;
+    left: -15px;
+    display: inline-block;
+}
+.timeline p{
+    margin-bottom: unset;
+}
 
 
 
