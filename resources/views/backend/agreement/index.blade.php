@@ -1,7 +1,11 @@
-@extends('backend.master')
+@extends('backend.layout')
 
 @section('title')
     {{ __('string.terms_conditions') }}
+@endsection
+
+@section('header')
+    <div class="panel-header panel-header-sm"></div>
 @endsection
 
 @section('content')
@@ -12,7 +16,7 @@
         'showStatus' => true,
     ])
         {!! Form::model($agreement, ['method' => 'PUT', 'route' => 'admin.agreement.update']) !!}
-            {!! Form::inputGroup('content', __('string.content'), $agreement->content, 'textarea') !!}
+            {!! Form::inputGroup('content', __('string.content'), $agreement->content, 'textarea', ['style' => 'height: 500px;']) !!}
             {!! Form::submit(__('string.update'), ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}
 

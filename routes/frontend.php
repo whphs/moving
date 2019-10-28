@@ -1,42 +1,38 @@
 <?php
-// Route::get('/home', 'HomeController@index')->name('home');
-
-
-
-
-// Route::get('/bonuses/{id}', 'FrontEndController@showBonus')->name('bonuses.show');
-
 
 Route::get('/', 'FrontEndController@index')->name('index');
 
-Route::get('/user_center', function () {
-    return view('frontend/user_center/user_center');
-});
+Route::post('put_session', 'FrontEndController@putSession')->name('put_session');
 
-Route::get('/sign_in', function () {
-    return view('frontend/user_center/sign_in/sign_in');
-});
+Route::get('easy_move/detail', 'FrontEndController@easyMoveDetail')->name('easy_move.detail');
+Route::get('easy_move/preview', 'FrontEndController@easyMovePreview')->name('easy_move.preview');
 
-Route::get('/sign_othermobile', function () {
-	return view('frontend/user_center/sign_in/sign_othermobile');
-});
+Route::get('safe_move/more/{id}', 'FrontEndController@safeMoveMore')->name('safe_move.more');
+Route::get('safe_move/detail', 'FrontEndController@safeMoveDetail')->name('safe_move.detail');
+Route::get('safe_move/preview', 'FrontEndController@safeMovePreview')->name('safe_move.preview');
 
-Route::get('/sign_phone', function () {
-	return view('frontend/user_center/sign_in/sign_phone');
-});
+Route::get('select_location/{move_type}/{location}', 'FrontEndController@selectLocation')->name('select_location');
+Route::get('select_floor/{move_type}/{location}/{address}', 'FrontEndController@selectFloor')->name('select_floor');
 
-Route::get('/order_record', function () {
-	return view('frontend/user_center/order_record');
-});
+Route::get('/user_center', function () { return view('frontend/user_center/index'); });
 
-Route::get('/bonuses', 'FrontEndController@bonuses')->name('bonuses');
+Route::get('/sign_in', function () { return view('frontend/user_center/sign/index'); });
+Route::get('/sign/phone', function () {	return view('frontend/user_center/sign/phone'); });
+Route::get('/sign/other', function () { return view('frontend/user_center/sign/other'); });
 
-Route::get('/set_up', function () {
-	return view('frontend/user_center/set_up/set_up');
-});
+Route::get('/bookings', 'FrontEndController@bookings')->name('bookings');
+Route::get('/booking/show/{id}', 'FrontEndController@bookingShow')->name('booking.show');
 
-Route::get('/terms', 'FrontEndController@termCondition')->name('terms');
+Route::get('/bonuses/{where}', 'FrontEndController@bonuses')->name('bonuses');
 
-Route::get('/vehicles', 'FrontEndController@vehicles')->name('vehicles');
+Route::get('/setting', function () { return view('frontend/user_center/setting/index'); });
 
-Route::get('/about_us', 'FrontEndController@aboutUs')->name('aboutus');
+Route::get('/agreement', 'FrontEndController@agreement')->name('agreement');
+
+Route::get('/standards', 'FrontEndController@standards')->name('vehicle_standards');
+Route::get('/standard/preview/{id}', 'FrontEndController@standardPreview')->name('standard.preview');
+Route::get('/standard/description/{id}', 'FrontEndController@standardDescription')->name('standard.description');
+
+Route::get('/about_us', 'FrontEndController@aboutUs')->name('about_us');
+
+Route::post('booking/submit', 'FrontEndController@submitBooking')->name('booking.submit');

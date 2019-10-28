@@ -15,6 +15,7 @@ class CreateStandardsTable extends Migration
     {
         Schema::create('standards', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('vehicle_id');
             $table->timestamps();
         });
     }

@@ -1,7 +1,11 @@
-@extends('backend.master')
+@extends('backend.layout')
 
 @section('title')
     {{ __('string.bonuses') }}
+@endsection
+
+@section('header')
+    <div class="panel-header panel-header-sm"></div>
 @endsection
 
 @section('content')

@@ -50,17 +50,6 @@ class BonusController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -85,7 +74,7 @@ class BonusController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->saveBonus(Bonus::find($id));
+        $this->saveBonus(Bonus::find($id), $request);
 
         return redirect('admin/bonus')->with('status', __('string.updated_success'));
 }
@@ -106,17 +95,19 @@ class BonusController extends Controller
 
     /**
      * Save the data to database
-     * 
+     *
      * @param App\Models\Bonus $bonus
      * @param \Illuminate\Http\Request  $request
      * @return void
      */
     public function saveBonus($bonus, $request) {
-        $bonus->title           = $request->title;
-        $bonus->area_id         = $request->area_id;
-        $bonus->price           = $request->price;
-        $bonus->start_date      = $request->start_date;
-        $bonus->end_date        = $request->end_date;
+        $bonus->title       = $request->title;
+        $bonus->area_id     = $request->area_id;
+        $bonus->price       = $request->price;
+        $bonus->start_date  = $request->start_date;
+        $bonus->end_date    = $request->end_date;
+        $bonus->description = $request->description;
+
         $bonus->save();
     }
 }

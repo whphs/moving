@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class AboutUsController extends Controller
 {
+    /**
+     * Display About us management page of backend
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index() {
         $aboutUs = AboutUs::first();
         if (!$aboutUs) {
@@ -16,6 +21,12 @@ class AboutUsController extends Controller
         return view('backend.about_us.index', compact('aboutUs'));
     }
 
+    /**
+     * Save the data to database
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return void
+     */
     public function update(Request $request) {
         $aboutUs = AboutUs::first();
         $aboutUs->title         = $request->title;

@@ -2,20 +2,17 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">
-                    {{ $title }}
-                    @if ($rightButton)
-                        {!! link_to_route($rightButton['route'], $rightButton['title'], $rightButton['params'], ['class' => 'btn btn-success float-right']) !!}
-                    @endif
-                </h3>
+                <span class="title">{{ $title }}</span>
+                @if ($rightButton)
+                    {!! link_to_route($rightButton['route'], $rightButton['title'], $rightButton['params'], ['class' => 'btn btn-success small action w-60']) !!}
+                @endif
+
                 @if ($showStatus)
                     {!! Form::statusAlert('success') !!}                    
                 @endif
             </div>
             <div class="card-body">
-                <div class="col-md-12">
-                    {{ $slot }}
-                </div>
+                {{ $slot }}
             </div>
         </div>
     </div>
