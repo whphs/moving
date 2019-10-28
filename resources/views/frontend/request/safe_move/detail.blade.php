@@ -11,10 +11,26 @@
                             <div class="card-header">{{__('string.moving_info')}}</div>
                             <ul class="timeline">
                                 <li class="current-location">
-                                    <span>{{__('string.moving_location')}}</span>
+                                    <div class="row">
+                                        <div class="col-9" style="display: inline-block">
+                                            <span id = "currentArea">{{__('string.moving_location')}}</span>
+                                            {{--                                                    <p id = "currentAreaName" >dfdfd dfasjdf askdfjasd</p>--}}
+                                        </div>
+                                        <div class="col-3" style="display: inline-block">
+                                            <span id="currentFloor" class="show-floor" ></span>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li class="destination-location">
-                                    <span>{{__('string.moving_destination')}}</span>
+                                    <div class="row">
+                                        <div class="col-9" style="display: inline-block">
+                                            <span id = "destinationArea">{{__('string.moving_destination')}}</span>
+                                            {{--                                                    <p id = "destinationAreaName">dfdfd dfasjdf askdfjasd</p>--}}
+                                        </div>
+                                        <div class="col-3" style="display: inline-block">
+                                            <span id="destinationFloor" class="show-floor"></span>
+                                        </div>
+                                    </div>
                                 </li>
                             </ul>
                             <ul class="list-group list-group-flush">
@@ -228,9 +244,44 @@
                 return;
             }
 
+            // when click location
+            floor_from = sessionData.floor_from ? sessionData.floor_from : 100;
+            floor_to = sessionData.floor_to ? sessionData.floor_to : 100;
+            where_from = sessionData.where_from ? sessionData.where_from : "";
+            where_to = sessionData.where_to ? sessionData.where_to : "";
+            let floor = "{{__('string.floor')}}";
+            let areaName = "{{__('string.moving_location')}}";
+            if(where_from !== "") {
+                $('#currentArea').text(where_from);
+            } else {
+                $('#currentArea').text(areaName);
+            }
+            if(floor_from === 100) {
+                $('#currentFloor').text("{{__('string.elevator')}}");
+            } else {
+                $('#currentFloor').text(floor_from + floor);
+            }
+            if(where_to !== "") {
+                $('#destinationArea').text(where_to);
+            } else {
+                $('#destinationArea').text(areaName);
+            }
+            if(floor_to === 100){
+                $('#destinationFloor').text("{{__('string.elevator')}}");
+            }else{
+                $('#destinationFloor').text(floor_to + floor);
+            }
+
+
+            // when set time
+            when = sessionData.when ? sessionData.when : '';
+            if (when.length) {
+                $('#selectTimeCon').text(when);
+            }
+
             floor_from = sessionData.floor_from;
             floor_to = sessionData.floor_to;
-            distance = 40;
+            distance = 0;
             bonusPrice = sessionData.bonus_price;
 
             console.log(sessionData);

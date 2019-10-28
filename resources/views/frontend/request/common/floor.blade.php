@@ -93,11 +93,13 @@
     <script>
         let selectFloorIndex = null;
         let floor = "{{__('string.floor')}}";
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         function selectedFloor(selBtnIndex){
             $('#floor'+selectFloorIndex).css("background-color","#fff");
             $('#floor'+selBtnIndex).css("background-color","#947054");
@@ -112,7 +114,9 @@
                     $('#displayFloor').text(selectFloorIndex + floor);
             }
         });
-        function putSession(data) {
+
+        function putSession(data)
+        {
             $.ajax({
                 type: 'POST',
                 url: '/put_session',
@@ -132,6 +136,7 @@
 
             window.location.href = "/{{ $move_type }}/detail";
         });
+
         $("#selAddr").click(function () {
             if ('{{ $location }}' === 'from')
             {
@@ -142,7 +147,5 @@
                 window.location.href = "/select_location/{{ $move_type }}/to";
             }
         });
-
-
     </script>
 @endsection
