@@ -76,7 +76,7 @@
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
                             <div class="card-header">Bonus
-                                <span onclick="goBonus();" class="btn btn-link btn-sm watch"><span id="usedBonusPrice">Bonus list</span> ></span>
+                                <span onclick="goBonus();" class="btn btn-link btn-sm watch"><span style="margin-right: 10px;" id="usedBonusPrice">Bonus list</span><i class="fa fa-angle-right"></i></span>
                             </div>
                         </div>
                     </div>
