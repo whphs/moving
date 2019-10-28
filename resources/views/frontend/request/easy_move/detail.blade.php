@@ -240,7 +240,7 @@
                         @foreach($vehicles as $index => $vehicle)
                             <li id="li{{$index}}" class="nav-item">
                                 {{--                                <a href="#vehicle{{$index}}"  class="nav-link active">{{$vehicle->name}}</a>--}}
-                                <p class="nav-link" style="margin-bottom: unset;line-height: unset">{{$vehicle->name}}</p>
+                                <p id = "truckTitle{{$index}}" class="nav-link" style="margin-bottom: unset;line-height: unset">{{$vehicle->name}}</p>
                             </li>
                         @endforeach
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -486,6 +486,11 @@
         $('#vehicleSelBtn').click(function(e){
             $('.tab-pane').removeClass('show active');
             $('#vehicle'+selectedIndex).addClass('show active');
+            console.log($('li'+selectedIndex).children("p"));
+            console.log($('li'+selectedIndex).find(".nav-link"));
+            // $('li'+selectedIndex).children("p").addClass('truck-active');
+            // $('li'+selectedIndex).find(".nav-link").addClass('truck-active');
+            $("#truckTitle"+selectedIndex).addClass('truck-active');
         });
         // When click a vehicle on popup modal
         $('.modal-header').on('click', 'li', function() {
