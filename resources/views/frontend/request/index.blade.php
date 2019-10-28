@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="col-7 more-btn">
                                         <p class="vehicle-name">{{$value->name}}</p>
-                                        <span>{{__('string.format_price')}}{{$value->init_price_for_items}}</span>
+                                        <span>{{__('string.format_price')}}{{$value->init_price}}</span>
                                         <p class="vehicle-description">{{$value->description}}</p>
                                         <!-- easy to move modal details button -->
                                         <button id = "vBtn{{$indexKey}}" class = "btn btn-link btn-sm" data-toggle = "modal" data-target = "#vehiclesModal">{{__('string.more_button')}}</button>
@@ -123,8 +123,8 @@
                     <ul id="vehiclesTab" class="nav">
                         @foreach($vehicles as $index => $vehicle)
                             <li id="li{{$index}}" class="nav-item">
-{{--                                <a href="#vehicle{{$index}}"  class="nav-link">{{$vehicle->name}}</a>--}}
-                                <p class="nav-link" style="margin-bottom: unset;line-height: unset">{{$vehicle->name}}</p>
+                                {{--                                <a href="#vehicle{{$index}}"  class="nav-link">{{$vehicle->name}}</a>--}}
+                                <p id = "truckTitle{{$index}}" class="nav-link" style="margin-bottom: unset;line-height: unset">{{$vehicle->name}}</p>
                                 <input type="hidden"  id = "vehicleId{{$index}}" value="{{$vehicle->id}}">
                             </li>
                         @endforeach
@@ -234,6 +234,10 @@
                 selectedId = moreBtnIndex;
                 $('.tab-pane').removeClass('show active');
                 $('#vehicle'+moreBtnIndex).addClass('show active');
+
+                $('p').removeClass('truck-active');
+                $('#truckTitle' + moreBtnIndex).addClass('truck-active');
+
             });
 
             $('.modal-header').on('click', 'li', function() {
@@ -259,7 +263,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/put_session',
-                data: {key: 'vehicle_id', value: vehicleId}
+                data: {vehicle_id : vehicleId}
             });
 
             window.location.href = "easy_move/detail";

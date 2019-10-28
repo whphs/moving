@@ -48,7 +48,7 @@
                                     <span>Handing Charging</span>
                                     <div class="preview-start-price">
                                         <span>{{__('string.format_price')}}</span>
-                                        <span id="priceForItems">321</span></li>
+                                        <span id="priceForItems">0</span></li>
                                     </div>
 
                             </ul>
@@ -73,7 +73,7 @@
             let _totalDistance = _param.distance ? _param.distance : 0;
             let _floor_from = _param.floor_from ? _param.floor_from : 100;
             let _floor_to = _param.floor_to ? _param.floor_to : 100;
-            let _handlingService = _param.handlingService ? 1 : 0;
+            let _handlingService = _param.handlingService ? parseInt(_param.handlingService) : 0;
             let _big_item = _param.big_item ? _param.big_item : 0;
 
             calcTotalPrice();
@@ -97,35 +97,35 @@
                 }
 
                 totalPrice += plusPrice;
+                if (_handlingService) {
+                    let priceForItems = _vehicle.init_price_for_items;
 
-                let priceForItems = _handlingService * _vehicle.init_price_for_items;
+                    let floorFrom = _floor_from;
+                    let floorTo = _floor_to;
+                    if (floorFrom === 100) {
+                        floorFrom = 1;
+                    } else {
+                        floorFrom --;
+                    }
 
-                let floorFrom = _floor_from;
-                let floorTo = _floor_to;
-                if (floorFrom === 100) {
-                    floorFrom = 1;
-                } else {
-                    floorFrom --;
+                    if (floorTo === 100) {
+                        floorTo = 1;
+                    } else {
+                        floorTo --;
+                    }
+
+                    priceForItems += (floorFrom + floorTo) * _vehicle.price_per_floor;
+                    priceForItems += _vehicle.price_per_big_item * _big_item;
+                    priceForItems += (floorFrom + floorTo) * _big_item * _vehicle.price_per_floor_for_big_item;
+                    totalPrice += priceForItems;
+                    $('#priceForItems').text(priceForItems);
                 }
-
-                if (floorTo === 100) {
-                    floorTo = 1;
-                } else {
-                    floorTo --;
-                }
-
-                priceForItems += (floorFrom + floorTo) * _vehicle.price_per_floor;
-                priceForItems += _vehicle.price_per_big_item * _big_item;
-                priceForItems += (floorFrom + floorTo) * _big_item * _vehicle.price_per_floor_for_big_item;
-
-                totalPrice += priceForItems;
 
                 $('#totalPrice').text(totalPrice);
                 $('#totalDistance').text(_totalDistance);
                 $('#initPrice').text(_vehicle.init_price);
                 $('#plusDistance').text(plusDistance);
                 $('#plusPrice').text(plusPrice);
-                $('#priceForItems').text(priceForItems);
             }
 
         });
