@@ -445,25 +445,28 @@
                 }
             }
             totalPrice += plusPrice;
-            totalPrice += (handlingService ? 1 : 0) * selectedVehicle.init_price_for_items;
-            let floorFrom = floor_from;
-            let floorTo = floor_to;
-            if (floorFrom === 100) {
-                floorFrom = 1;
-            } else {
-                floorFrom --;
+            console.log(typeof handlingService + handlingService);
+            if (handlingService) {
+                totalPrice += selectedVehicle.init_price_for_items;
+                let floorFrom = floor_from;
+                let floorTo = floor_to;
+                if (floorFrom === 100) {
+                    floorFrom = 1;
+                } else {
+                    floorFrom --;
+                }
+                if (floorTo === 100) {
+                    floorTo = 1;
+                } else {
+                    floorTo --;
+                }
+
+                totalPrice += ((floorFrom + floorTo) * selectedVehicle.price_per_floor);
+
+                totalPrice += selectedVehicle.price_per_big_item * big_item;
+
+                totalPrice += (floorFrom + floorTo) * big_item * selectedVehicle.price_per_floor_for_big_item;
             }
-            if (floorTo === 100) {
-                floorTo = 1;
-            } else {
-                floorTo --;
-            }
-
-            totalPrice += ((floorFrom + floorTo) * selectedVehicle.price_per_floor);
-
-            totalPrice += selectedVehicle.price_per_big_item * big_item;
-
-            totalPrice += (floorFrom + floorTo) * big_item * selectedVehicle.price_per_floor_for_big_item;
 
             $('#displayPrice').text(totalPrice);
         }
@@ -533,7 +536,7 @@
             } else {
                 $("#addBaggage").hide();
             }
-            handlingService = this.checked;
+            handlingService = this.checked ? 1 : 0;
             putSession({handlingService: handlingService});
             calcTotalPrice();
         });
@@ -665,7 +668,9 @@
             }
 
             $("#vehicleSelBtn").text(selectedVehicle.name);
-            $('#handlingService')[0].checked = handlingService = sessionData.handlingService === 'true' ? sessionData.handlingService : 0;
+            handlingService = sessionData.handlingService ? parseInt(sessionData.handlingService) : 0;
+            console.log('-------' + typeof handlingService + handlingService);
+            $('#handlingService')[0].checked = handlingService;
             if (handlingService) {
                 $('#addBaggage').show();
             } else {

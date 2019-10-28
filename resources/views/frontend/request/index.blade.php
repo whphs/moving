@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="col-7 more-btn">
                                         <p class="vehicle-name">{{$value->name}}</p>
-                                        <span>{{__('string.format_price')}}{{$value->init_price_for_items}}</span>
+                                        <span>{{__('string.format_price')}}{{$value->init_price}}</span>
                                         <p class="vehicle-description">{{$value->description}}</p>
                                         <!-- easy to move modal details button -->
                                         <button id = "vBtn{{$indexKey}}" class = "btn btn-link btn-sm" data-toggle = "modal" data-target = "#vehiclesModal">{{__('string.more_button')}}</button>
