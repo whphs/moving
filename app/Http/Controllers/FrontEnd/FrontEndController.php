@@ -202,8 +202,12 @@ class FrontEndController extends Controller
     public function submitBooking(Request $request) {
         $booking = new Booking;
         $booking->user_id       = $request->user_id;
-        $booking->vehicle_id    = $request->vehicle_id;
-        $booking->scale_id      = $request->scale_id;
+        if ($request->vehicle_id) {
+            $booking->vehicle_id = $request->vehicle_id;
+        }
+        if ($request->scale_id) {
+            $booking->scale_id = $request->scale_id;
+        }
         $booking->where_from    = $request->where_from;
         $booking->floor_from    = $request->floor_from;
         $booking->where_to      = $request->where_to;
@@ -213,9 +217,11 @@ class FrontEndController extends Controller
         $booking->price         = $request->price;
         $booking->description   = $request->description;
         $booking->big_item      = $request->big_item;
-        $booking->helper_count  = $request->helper_count;
+//        $booking->helper_count  = $request->helper_count;
         $booking->phone         = $request->phone;
+        $booking->bonus_id      = $request->bonus_id;
 
         $booking->save();
+//        return response()->json(['success'=>'Got Simple Ajax Request.']);
     }
 }

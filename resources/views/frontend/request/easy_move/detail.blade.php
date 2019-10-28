@@ -62,7 +62,7 @@
                                             <div class="row">
                                                 <div class="col-9" style="display: inline-block">
                                                     <span id = "currentArea">{{__('string.moving_location')}}</span>
-{{--                                                    <p id = "currentAreaName" >dfdfd dfasjdf askdfjasd</p>--}}
+                                                    {{--                                                    <p id = "currentAreaName" >dfdfd dfasjdf askdfjasd</p>--}}
                                                 </div>
                                                 <div class="col-3" style="display: inline-block">
                                                     <span id="currentFloor" class="show-floor" ></span>
@@ -73,7 +73,7 @@
                                             <div class="row">
                                                 <div class="col-9" style="display: inline-block">
                                                     <span id = "destinationArea">{{__('string.moving_destination')}}</span>
-{{--                                                    <p id = "destinationAreaName">dfdfd dfasjdf askdfjasd</p>--}}
+                                                    {{--                                                    <p id = "destinationAreaName">dfdfd dfasjdf askdfjasd</p>--}}
                                                 </div>
                                                 <div class="col-3" style="display: inline-block">
                                                     <span id="destinationFloor" class="show-floor"></span>
@@ -204,16 +204,16 @@
                                 <li class="list-group-item" >
                                     {!! Html::image("frontend/assets/img/icons/wechat.png",'calendar',['class' => 'reservation-img']) !!}
                                     Wechat
-                                    <div class="custom-control custom-radio custom-control-inline" style="float: right">
-                                        <input type="radio" class="custom-control-input" id="wechatRadio" name="wechat" value="wechat">
+                                    <div class="custom-control custom-radio custom-control-inline wechatRadio" style="float: right">
+                                        <input type="radio" class="custom-control-input" id="wechat" name="wechat" value="wechat" checked>
                                         <label class="custom-control-label" for="wechatRadio">&nbsp</label>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     {!! Html::image("frontend/assets/img/icons/zhubao.png",'calendar',['class' => 'reservation-img']) !!}
                                     Zhubao
-                                    <div class="custom-control custom-radio custom-control-inline" style="float: right">
-                                        <input type="radio" class="custom-control-input" id="zhubaoRadio" name="zhubao" value="zhubao">
+                                    <div class="custom-control custom-radio custom-control-inline zhubaoRadio" style="float: right">
+                                        <input type="radio" class="custom-control-input" id = "zhubao" name="zhubao" value="zhubao">
                                         <label class="custom-control-label" for="zubaoRadio">&nbsp</label>
                                     </div>
                                 </li>
@@ -238,9 +238,9 @@
 
                     <ul id="vehiclesTab" class="nav">
                         @foreach($vehicles as $index => $vehicle)
-                            <li id="li{{$index}}" class="nav-item active">
+                            <li id="li{{$index}}" class="nav-item">
                                 {{--                                <a href="#vehicle{{$index}}"  class="nav-link active">{{$vehicle->name}}</a>--}}
-                                <p class="nav-link active" style="margin-bottom: unset;line-height: unset">{{$vehicle->name}}</p>
+                                <p id = "truckTitle{{$index}}" class="nav-link" style="margin-bottom: unset;line-height: unset">{{$vehicle->name}}</p>
                             </li>
                         @endforeach
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -393,6 +393,7 @@
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
     <script type="text/javascript">
         photoMultiThumb.init();
+
         $('#userCenter').click(function () {
             window.location.href = "/user_center";
         });
@@ -426,10 +427,11 @@
         let selectedVehicle = null;
         let selectedIndex = 0;
         let distancePrices = [];
+        let totalPrice = 0;
         $("#addBaggage").hide();
         // Calculate total price for changed statement.
         function calcTotalPrice() {
-            let totalPrice = selectedVehicle.init_price;
+            totalPrice = selectedVehicle.init_price;
             let plusPrice = 0;
             if (distance > selectedVehicle.init_distance) {
                 for (let i = 0 ; i < distancePrices[selectedIndex].length ; i ++) {
@@ -443,25 +445,28 @@
                 }
             }
             totalPrice += plusPrice;
-            totalPrice += (handlingService ? 1 : 0) * selectedVehicle.init_price_for_items;
-            let floorFrom = floor_from;
-            let floorTo = floor_to;
-            if (floorFrom === 100) {
-                floorFrom = 1;
-            } else {
-                floorFrom --;
+            console.log(typeof handlingService + handlingService);
+            if (handlingService) {
+                totalPrice += selectedVehicle.init_price_for_items;
+                let floorFrom = floor_from;
+                let floorTo = floor_to;
+                if (floorFrom === 100) {
+                    floorFrom = 1;
+                } else {
+                    floorFrom --;
+                }
+                if (floorTo === 100) {
+                    floorTo = 1;
+                } else {
+                    floorTo --;
+                }
+
+                totalPrice += ((floorFrom + floorTo) * selectedVehicle.price_per_floor);
+
+                totalPrice += selectedVehicle.price_per_big_item * big_item;
+
+                totalPrice += (floorFrom + floorTo) * big_item * selectedVehicle.price_per_floor_for_big_item;
             }
-            if (floorTo === 100) {
-                floorTo = 1;
-            } else {
-                floorTo --;
-            }
-
-            totalPrice += ((floorFrom + floorTo) * selectedVehicle.price_per_floor);
-
-            totalPrice += selectedVehicle.price_per_big_item * big_item;
-
-            totalPrice += (floorFrom + floorTo) * big_item * selectedVehicle.price_per_floor_for_big_item;
 
             $('#displayPrice').text(totalPrice);
         }
@@ -484,12 +489,24 @@
         $('#vehicleSelBtn').click(function(e){
             $('.tab-pane').removeClass('show active');
             $('#vehicle'+selectedIndex).addClass('show active');
+            console.log($('li'+selectedIndex).children("p"));
+            console.log($('li'+selectedIndex).find(".nav-link"));
+            // $('li'+selectedIndex).children("p").addClass('truck-active');
+            // $('li'+selectedIndex).find(".nav-link").addClass('truck-active');
+            $("#truckTitle"+selectedIndex).addClass('truck-active');
         });
         // When click a vehicle on popup modal
         $('.modal-header').on('click', 'li', function() {
             selectedIndex = $(this)[0].id.substring(2, 3);
             selectedVehicle = vehicles[selectedIndex];
             // selectedVehicleId = selectedVehicle.id;
+            console.log($(this).children('p'));
+            if($('p').hasClass("truck-active") === true){
+                $('p').removeClass('truck-active');
+                $(this).children('p').addClass('truck-active');
+            }else{
+                $(this).children('p').addClass('truck-active');
+            }
             $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
             $(this).parent().parent().parent().parent().find('#vehicle' + selectedIndex).addClass('show active');
         });
@@ -511,26 +528,7 @@
             putSession({big_item: big_item});
             calcTotalPrice();
         });
-        // When click submit button.
-        $("#reservationBtn").click(function () {
-            // e.preventDefault();
-            let big_item = 0;let when = "";let photo_0 = "";let photo_1 = "";let photo_2 = "";let description = "";let phone = "";
-            let where_from = ""; let floor_from =""; let where_to = "";let floor_to = "";
-            big_item = $('#qty').text();
-            when = $('#movingTime').val();
-            description = $('#itemDescription').val();
-            phone = $('#phoneNum').val();
-            price = $('#displayPrice').text();
-            // $.ajax({
-            //     type:'POST',
-            //     url:'/booking.submit',
-            //     data:{user_id:1, vehicle_id:vehicle_id, big_item:big_item, where_from:where_from, floor_from:floor_from, where_to:where_to, floor_to:floor_to,
-            //         when:when, description:description,phone:phone, photo_0:photo_0, price:price},
-            //     success:function(data){
-            //         alert(data.success);
-            //     }
-            // });
-        });
+
         // Add Baggage Scripts
         $('#handlingService').click(function() {
             if(this.checked) {
@@ -538,7 +536,7 @@
             } else {
                 $("#addBaggage").hide();
             }
-            handlingService = this.checked;
+            handlingService = this.checked ? 1 : 0;
             putSession({handlingService: handlingService});
             calcTotalPrice();
         });
@@ -613,7 +611,46 @@
             });
         }
 
+        $(".wechatRadio").on("click", function () {
+            $("#wechat").prop("checked",true);
+            $("#zhubao").prop("checked",false);
+        });
+        $(".zhubaoRadio").on("click", function () {
+            $("#zhubao").prop("checked",true);
+            $("#wechat").prop("checked",false);
+        });
+        // When click submit button.
+        $("#reservationBtn").click(function () {
+            let data = {
+                user_id: 1,
+                vehicle_id: selectedVehicle.id,
+                big_item: parseInt(big_item),
+                where_from: where_from,
+                floor_from: parseInt(floor_from),
+                where_to: where_to,
+                floor_to: parseInt(floor_to),
+                when: when,
+                description: description,
+                phone: phone,
+                distance: distance,
+                helper_count: parseInt(helper_count),
+                price: totalPrice
+        };
+            console.log(data);
+            $.ajax({
+                type:'POST',
+                url:'/booking/submit',
+                data: data,
+                success:function(data){
+                    alert(data.success);
+                }
+            });
+        });
+
+
         $(document).ready( function() {
+
+
             vehicles = {!! $vehicles !!};
             @foreach($vehicles as $vehicle)
             distancePrices.push({!! $vehicle->distancePrices !!});
@@ -631,7 +668,9 @@
             }
 
             $("#vehicleSelBtn").text(selectedVehicle.name);
-            $('#handlingService')[0].checked = handlingService = sessionData.handlingService === 'true' ? sessionData.handlingService : 0;
+            handlingService = sessionData.handlingService ? parseInt(sessionData.handlingService) : 0;
+            console.log('-------' + typeof handlingService + handlingService);
+            $('#handlingService')[0].checked = handlingService;
             if (handlingService) {
                 $('#addBaggage').show();
             } else {
@@ -657,6 +696,11 @@
                 $('#currentArea').text(where_from);
             } else {
                 $('#currentArea').text(areaName);
+            }
+            if(where_to !== "") {
+                $('#destinationArea').text(where_to);
+            } else {
+                $('#destinationArea').text("{{__('string.moving_destination')}}");
             }
             if(floor_from === 100) {
                 $('#currentFloor').text("{{__('string.elevator')}}");

@@ -15,16 +15,16 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
             $table->integer('vehicle_id')->default(0);
             $table->integer('scale_id')->default(0);
-            $table->string('where_from');
-            $table->integer('floor_from');
-            $table->string('where_to');
-            $table->integer('floor_to');
-            $table->dateTime('when');
-            $table->double('distance');
-            $table->double('price');
+            $table->string('where_from')->nullable();
+            $table->integer('floor_from')->nullable();
+            $table->string('where_to')->nullable();
+            $table->integer('floor_to')->nullable();
+            $table->string('when')->nullable();
+            $table->double('distance')->nullable();
+            $table->double('price')->nullable();
             $table->longText('description')->nullable();
             $table->string('photo_0')->nullable();
             $table->string('photo_1')->nullable();
