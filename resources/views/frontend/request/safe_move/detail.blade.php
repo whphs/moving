@@ -49,7 +49,17 @@
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
                             <div class="card-header">Order remark</div>
-                            <input type="input" class="form-control" name="orderNote" id="orderNote" placeholder="Enter notes(e.g moving item type)" >
+                            <div class="item-description">
+                                <textarea id = "itemDescription" rows = "3" cols ="10" placeholder="Please enter moving item description."></textarea>
+                                <div class="clear-description">
+                                    <span>200character</span>
+                                    <span id = "clearBtn" style="float: right;">{{__('string.clear')}}</span>
+                                </div>
+                            </div>
+                            <div class="upload-photo" style="margin-bottom: 10px;">
+                                <p style="font-size: 15px;font-weight: bold">Upload Photo</p>
+                                <div class="photo-multi-thumb" data-name = "main_photo" data-required = "true"></div>
+                            </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item" style="font-size: 14px;">Contact Number
                                     <input type="input" class="form-control" name="phoneNum" id="phoneNum" placeholder="phone-number" >
@@ -82,6 +92,10 @@
         </div>
     </section>
 
+    <div class="container" style="position: relative; top:20px;">
+        <p>&nbsp</p>
+    </div>
+
     <!-- footer start -->
     <div class="footer">
         <div class="container">
@@ -97,7 +111,7 @@
 {{--                    <a href="/safe_move/preview" style="float: right; position: relative; top: -10px; left: 10px; color: #947054 ">preview</a>--}}
                 </div>
                 <div class="col-4">
-                    <button id="submitBtn" class="btn south-btn" style="margin-top: 10px; min-width: 100px; min-height: 35px;">Submit</button>
+                    <button type="button" class="btn south-btn resv-btn" data-toggle="modal" data-target="#reservationModal" style="margin-top: 2px;">{{__('string.reservation_btn')}}</button>
                 </div>
             </div>
         </div>
@@ -126,12 +140,56 @@
             </div>
         </div>
     </div>
+
+    {{--Reservation Modal Start--}}
+    <div class="modal" id="reservationModal" tabindex="-1" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="border:unset;">
+                <p class="reservation-price" id="reservationPrice">$230</p>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" style="min-height: 140px;">
+                <div class="col-12">
+                    <div class="content-sidebar">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" >
+                                {!! Html::image("frontend/assets/img/icons/wechat.png",'calendar',['class' => 'reservation-img']) !!}
+                                Wechat
+                                <div class="custom-control custom-radio custom-control-inline wechatRadio" style="float: right">
+                                    <input type="radio" class="custom-control-input" id="wechat" name="wechat" value="wechat" checked>
+                                    <label class="custom-control-label" for="wechatRadio">&nbsp</label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                {!! Html::image("frontend/assets/img/icons/zhubao.png",'calendar',['class' => 'reservation-img']) !!}
+                                Zhubao
+                                <div class="custom-control custom-radio custom-control-inline zhubaoRadio" style="float: right">
+                                    <input type="radio" class="custom-control-input" id = "zhubao" name="zhubao" value="zhubao">
+                                    <label class="custom-control-label" for="zubaoRadio">&nbsp</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                {{--                <button type="button" id = "reservationBtn" class ="btn south-btn m-1" data-dismiss="modal">Submit</button>--}}
+                {!! Form::submit('Submit',['id' => 'reservationBtn','class'=>'btn south-btn m-1','data-dismiss' => 'modal'])!!}
+            </div>
+        </div>
+    </div>
+    {{--Reservation Modal End--}}
 @endsection
 
 @section('scripts')
     {!! Html::script('frontend/assets/js/custom-modal.js') !!}
+    {!! Html::script('frontend/assets/js/upload-photo.js') !!}
+
 
     <script type="text/javascript">
+        photoMultiThumb.init();
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -157,13 +215,14 @@
         let selectedVehicle = null;
         let distancePrices = [];
         let floorPrices = [];
+        let realPrice = 0;
         let bonusPrice = 0;
+        let bonusId = 0;
 
         let scale;
 
         function calcTotalPrice() {
             let totalPrice = scale.init_price;
-            let realPrice = 0;
             let distancePrice = 0;
             let offset = 0;
             let floorFromPrice = 0;
@@ -231,8 +290,57 @@
                 $('#totalPrice').text(totalPrice + '$');
                 $('#bonusPrice').text(bonusPrice);
                 $('#usedBonusPrice').text(bonusPrice + ' $');
+                $('#reservationPrice').text(realPrice + '$');
             }
         }
+
+        // When clear description
+        $('#clearBtn').click(function () {
+            $('#itemDescription').val('');
+        });
+
+        $('#timeSetting').click(function () {
+            when = $('#datepicker').val();
+            $('#selectTimeCon').text(when);
+            putSession({when: when});
+        });
+
+        $(".wechatRadio").on("click", function () {
+            $("#wechat").prop("checked",true);
+            $("#zhubao").prop("checked",false);
+        });
+
+        $(".zhubaoRadio").on("click", function () {
+            $("#zhubao").prop("checked",true);
+            $("#wechat").prop("checked",false);
+        });
+
+        $("#reservationBtn").click(function () {
+            let data = {
+                user_id: 1,
+                scale_id: scale.id,
+                big_item: parseInt(big_item),
+                where_from: where_from,
+                floor_from: parseInt(floor_from),
+                where_to: where_to,
+                floor_to: parseInt(floor_to),
+                when: when,
+                description: $('#itemDescription').val(),
+                phone: $('#phoneNum').val(),
+                distance: distance,
+                price:  parseInt(realPrice),
+                bonus_id: bonusId,
+            };
+            console.log(data);
+            $.ajax({
+                type:'POST',
+                url:'/booking/submit',
+                data: data,
+                success:function(data){
+                    alert(data.success);
+                }
+            });
+        });
 
         $(document).ready(function () {
             scale = {!! $scale !!};
@@ -272,16 +380,14 @@
                 $('#destinationFloor').text(floor_to + floor);
             }
 
-
             // when set time
             when = sessionData.when ? sessionData.when : '';
             if (when.length) {
                 $('#selectTimeCon').text(when);
             }
 
-            floor_from = sessionData.floor_from;
-            floor_to = sessionData.floor_to;
             distance = 0;
+            bonusId = sessionData.bonus_id;
             bonusPrice = sessionData.bonus_price;
 
             console.log(sessionData);
@@ -302,5 +408,9 @@
         }
 
         $('#datepicker').datepicker('setDate', 'today');
+
+        $("#setting").click(function () {
+
+        });
     </script>
 @endsection

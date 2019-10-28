@@ -217,8 +217,9 @@ class FrontEndController extends Controller
         $booking->price         = $request->price;
         $booking->description   = $request->description;
         $booking->big_item      = $request->big_item;
-        $booking->helper_count  = $request->helper_count;
+//        $booking->helper_count  = $request->helper_count;
         $booking->phone         = $request->phone;
+        $booking->bonus_id      = $request->bonus_id;
 
         $booking->save();
 //        return response()->json(['success'=>'Got Simple Ajax Request.']);
