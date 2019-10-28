@@ -35,7 +35,7 @@
                             </ul>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
-                                    {!! Html::image("frontend/assets/img/icons/garage.png") !!}
+                                    {!! Html::image("frontend/assets/img/icons/calendar.png",'calendar',['style' => 'width: 30px;height: 22px;']) !!}
                                     {{__('string.moving_time')}}
                                     <p class="detail" id="myTimeBtn">{{__('string.set_time')}}</p>
                                 </li>
@@ -49,20 +49,20 @@
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
                             <div class="card-header">Order remark</div>
-                            <div class="item-description">
+                            <div class="item-description" style="margin: 7px;">
                                 <textarea id = "itemDescription" rows = "3" cols ="10" placeholder="Please enter moving item description."></textarea>
                                 <div class="clear-description">
                                     <span>200character</span>
                                     <span id = "clearBtn" style="float: right;">{{__('string.clear')}}</span>
                                 </div>
                             </div>
-                            <div class="upload-photo" style="margin-bottom: 10px;">
+                            <div class="upload-photo" style="margin-bottom: 10px;padding-left: 8px;margin-top: 0px;">
                                 <p style="font-size: 15px;font-weight: bold">Upload Photo</p>
                                 <div class="photo-multi-thumb" data-name = "main_photo" data-required = "true"></div>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item" style="font-size: 14px;">Contact Number
-                                    <input type="input" class="form-control" name="phoneNum" id="phoneNum" placeholder="phone-number" >
+                                    <input type="input" class="form-control" name="phoneNum" id="phoneNum" placeholder="13394260131" >
                                 </li>
                             </ul>
                         </div>
@@ -76,7 +76,10 @@
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
                             <div class="card-header">Bonus
-                                <span onclick="goBonus();" class="btn btn-link btn-sm watch"><span id="usedBonusPrice">Bonus list</span> ></span>
+                                <span onclick="goBonus();" class="btn btn-link btn-sm watch">
+                                <span id="usedBonusPrice">Bonus list</span>
+                                <i class="fa fa-angle-right" style="padding-left: 3px;"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -101,9 +104,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-8" style="padding-right: 15px; padding-left: 15px;">
-                    <div>
+                    <div style="position: relative;top: 5px;">
                         <p style="display: inline-block; font-size: 20px; margin-bottom: 0px; color:#ef6774; line-height: normal">
-                            <span id="realPrice">{{ $scale->init_price }}</span>$
+                            {{__('string.format_price')}}<span id="realPrice">{{ $scale->init_price }}</span>
                         </p>
                         <span style="text-decoration: line-through;"><span id="totalPrice"></span></span>
                     </div>
