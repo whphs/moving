@@ -93,8 +93,8 @@ class FrontEndController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function safeMoveDetail() {
-        $scale = Scale::find(session()->get('scale_id'));
-        return view('frontend.request.safe_move.detail', compact('scale'));
+        $scales = $this->scalesWithParams(Area::first()->id);
+        return view('frontend.request.safe_move.detail', compact('scales'));
     }
 
     /**

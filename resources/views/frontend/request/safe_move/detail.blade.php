@@ -106,7 +106,7 @@
                 <div class="col-8" style="padding-right: 15px; padding-left: 15px;">
                     <div style="position: relative;top: 5px;">
                         <p style="display: inline-block; font-size: 20px; margin-bottom: 0px; color:#ef6774; line-height: normal">
-                            {{__('string.format_price')}}<span id="realPrice">{{ $scale->init_price }}</span>
+                            {{__('string.format_price')}}<span id="realPrice"></span>
                         </p>
                         <span style="text-decoration: line-through;"><span id="totalPrice"></span></span>
                     </div>
@@ -199,7 +199,6 @@
             }
         });
 
-        let handlingService = 0;
         let distance = 0;
         let big_item = 0;
         let when = "";
@@ -211,36 +210,34 @@
         let where_from = "";
         let floor_from = 1;
         let where_to = "";
-        let floor_to = 1;
-        let helper_count = 0;
-        let vehicles = null;
-        let selectedVehicleId = 1;
-        let selectedVehicle = null;
+        let floor_to = 1
         let distancePrices = [];
         let floorPrices = [];
         let realPrice = 0;
         let bonusPrice = 0;
         let bonusId = 0;
 
-        let scale;
+        let scales = null;
+        let selectedScale = null;
+        let selectedIndex = 0;
 
         function calcTotalPrice() {
-            let totalPrice = scale.init_price;
+            let totalPrice = selectedScale.init_price;
             let distancePrice = 0;
             let offset = 0;
             let floorFromPrice = 0;
             let floorToPrice = 0;
 
-            for (let i = 0 ; i < distancePrices.length ; i ++) {
-                let min = distancePrices[i].from;
-                let max = distancePrices[i].to;
+            for (let i = 0 ; i < distancePrices[selectedIndex].length ; i ++) {
+                let min = distancePrices[selectedIndex][i].from;
+                let max = distancePrices[selectedIndex][i].to;
                 if (distance > min && distance < max)
                     offset = distance - min;
                 else
                     if (distance > max)
                         offset = max - min;
 
-                distancePrice += distancePrices[i].amount * offset;
+                distancePrice += distancePrices[selectedIndex][i].amount * offset;
             }
             totalPrice += distancePrice;
 
@@ -251,16 +248,16 @@
             } else {
                 floorFrom --;
             }
-            for (let i = 0 ; i < floorPrices.length ; i ++) {
-                let min = floorPrices[i].from;
-                let max = floorPrices[i].to;
+            for (let i = 0 ; i < floorPrices[selectedIndex].length ; i ++) {
+                let min = floorPrices[selectedIndex][i].from;
+                let max = floorPrices[selectedIndex][i].to;
                 if (floorFrom > min && floorFrom < max)
                     offset = floorFrom - min;
                 else
                     if (floorFrom > max)
                         offset = max - min;
 
-                floorFromPrice += floorPrices[i].amount * offset;
+                floorFromPrice += floorPrices[selectedIndex][i].amount * offset;
             }
             totalPrice += floorFromPrice;
 
@@ -269,16 +266,16 @@
             } else {
                 floorTo --;
             }
-            for (let i = 0 ; i < floorPrices.length ; i ++) {
-                let min = floorPrices[i].from;
-                let max = floorPrices[i].to;
+            for (let i = 0 ; i < floorPrices[selectedIndex].length ; i ++) {
+                let min = floorPrices[selectedIndex][i].from;
+                let max = floorPrices[selectedIndex][i].to;
                 if (floorTo > min && floorTo < max)
                     offset = floorTo - min;
                 else
                     if (floorTo > max)
                         offset = max - min;
 
-                floorToPrice += floorPrices[i].amount * offset;
+                floorToPrice += floorPrices[selectedIndex][i].amount * offset;
             }
             totalPrice += floorToPrice;
 
@@ -302,11 +299,19 @@
             $('#itemDescription').val('');
         });
 
-        $('#timeSetting').click(function () {
+        $('#setting').click(function () {
             when = $('#datepicker').val();
-            $('#selectTimeCon').text(when);
+            $('#myTimeBtn').text(when);
             putSession({when: when});
         });
+
+        function putSession(data) {
+            $.ajax({
+                type: 'POST',
+                url: '/put_session',
+                data: data
+            });
+        }
 
         $(".wechatRadio").on("click", function () {
             $("#wechat").prop("checked",true);
@@ -321,7 +326,7 @@
         $("#reservationBtn").click(function () {
             let data = {
                 user_id: 1,
-                scale_id: scale.id,
+                scale_id: selectedScale.id,
                 big_item: parseInt(big_item),
                 where_from: where_from,
                 floor_from: parseInt(floor_from),
@@ -343,16 +348,43 @@
                     alert(data.success);
                 }
             });
+
+            description = $('#itemDescription').val();
+            putSession({description: description});
+            phone = $('#phoneNum').val();
+            putSession({phone: phone});
         });
 
-        $(document).ready(function () {
-            scale = {!! $scale !!};
-            distancePrices = {!! $scale->distancePrices !!};
-            floorPrices = {!! $scale->floorPrices !!};
+        function getSelectedScale(id) {
+            for (let i = 0 ; i < scales.length ; i ++) {
+                if (parseInt(id) === scales[i].id) {
+                    selectedIndex = i;
+                    return scales[i];
+                }
+            }
+            return null;
+        }
 
-            sessionData = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
+        $(document).ready(function () {
+            scales = {!! $scales !!};
+
+            @foreach($scales as $scale)
+            distancePrices.push({!! $scale->distancePrices !!});
+            @endforeach
+
+            @foreach($scales as $scale)
+            floorPrices.push({!! $scale->floorPrices !!});
+            @endforeach
+
+            selectedScale = scales[0];
+
+            let sessionData = {!! json_encode(session()->all(), JSON_FORCE_OBJECT) !!};
             if (!sessionData) {
                 return;
+            }
+
+            if (sessionData.scale_id) {
+                selectedScale = getSelectedScale(sessionData.scale_id);
             }
 
             // when click location
@@ -386,7 +418,17 @@
             // when set time
             when = sessionData.when ? sessionData.when : '';
             if (when.length) {
-                $('#selectTimeCon').text(when);
+                $('#myTimeBtn').text(when);
+            }
+
+            description = sessionData.description ? sessionData.description : '';
+            if (description.length) {
+                $('#itemDescription').text(description);
+            }
+
+            phone = sessionData.phone ? sessionData.phone : '';
+            if (phone.length) {
+                $('#phoneNum').val(phone);
             }
 
             distance = 0;
