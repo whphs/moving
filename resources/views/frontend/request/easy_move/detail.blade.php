@@ -489,8 +489,6 @@
         $('#vehicleSelBtn').click(function(e){
             $('.tab-pane').removeClass('show active');
             $('#vehicle'+selectedIndex).addClass('show active');
-            console.log($('li'+selectedIndex).children("p"));
-            console.log($('li'+selectedIndex).find(".nav-link"));
             // $('li'+selectedIndex).children("p").addClass('truck-active');
             // $('li'+selectedIndex).find(".nav-link").addClass('truck-active');
             $("#truckTitle"+selectedIndex).addClass('truck-active');
@@ -500,13 +498,9 @@
             selectedIndex = $(this)[0].id.substring(2, 3);
             selectedVehicle = vehicles[selectedIndex];
             // selectedVehicleId = selectedVehicle.id;
-            console.log($(this).children('p'));
-            if($('p').hasClass("truck-active") === true){
-                $('p').removeClass('truck-active');
-                $(this).children('p').addClass('truck-active');
-            }else{
-                $(this).children('p').addClass('truck-active');
-            }
+            $('p').removeClass('truck-active');
+            $(this).children('p').addClass('truck-active');
+
             $(this).parent().parent().parent().parent().find('.tab-pane').removeClass('show active');
             $(this).parent().parent().parent().parent().find('#vehicle' + selectedIndex).addClass('show active');
         });
@@ -635,7 +629,7 @@
                 distance: distance,
                 helper_count: parseInt(helper_count),
                 price: totalPrice
-        };
+            };
             console.log(data);
             $.ajax({
                 type:'POST',
@@ -669,7 +663,7 @@
 
             $("#vehicleSelBtn").text(selectedVehicle.name);
             handlingService = sessionData.handlingService ? parseInt(sessionData.handlingService) : 0;
-            console.log('-------' + typeof handlingService + handlingService);
+
             $('#handlingService')[0].checked = handlingService;
             if (handlingService) {
                 $('#addBaggage').show();
