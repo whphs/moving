@@ -345,6 +345,29 @@
             phone = $('#phoneNum').val();
             putSession({phone: phone});
 
+            let imgArray = [];
+            let images = $('.photo-multi-thumb').find('.thumb-image.added');
+            if(images.length !== 0){
+                for (let i = 0 ; i < images.length ; i ++) {
+                    let data = $(images[i]).attr('src');
+                    imgArray.push(data);
+                }
+
+                $.ajax( {
+                    type: 'POST',
+                    url: '/upload_photo',
+                    data: {imgData: imgArray},
+                    success:function(data){
+                        for (let i = 0 ; i < data.length ; i ++) {
+                            let elem = $('.photo-multi-thumb').find('.photo-view-thumb')[i];
+                            if (elem) {
+                                $(elem).data('temp_photo_id', data[i]);
+                            }
+                        }
+                    }
+                });
+            }
+
             console.log(data);
             $.ajax({
                 type:'POST',
@@ -354,6 +377,18 @@
                     alert(data.success);
                 }
             });
+        });
+
+        $('.photo-multi-thumb').on('click', '.thumb-remove',  function() {
+            let photoId = $(this).parent().data('temp_photo_id');
+            $.ajax( {
+                type: 'GET',
+                url: '/delete_photo/' + photoId,
+                success:function(data){
+                    console.log(data);
+                }
+            });
+            $(this).parent().remove();
         });
 
         function getSelectedScale(id) {
@@ -368,6 +403,14 @@
 
         $(document).ready(function () {
             scales = {!! $scales !!};
+
+            tempPhotos = {!! $tempPhotos !!};
+            if(tempPhotos)
+            {
+                for(let i = 0; i < tempPhotos.length; i++){
+                    photoMultiThumb.photoAdded(tempPhotos[i].id,tempPhotos[i].path);
+                }
+            }
 
             @foreach($scales as $scale)
             distancePrices.push({!! $scale->distancePrices !!});

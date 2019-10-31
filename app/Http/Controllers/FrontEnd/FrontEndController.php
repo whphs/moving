@@ -103,7 +103,7 @@ class FrontEndController extends Controller
 
     public function deletePhoto($id) {
         $tempPhoto = TempPhoto::find($id);
-        File::delete(public_path().'/storage/temp_photo/' . $tempPhoto->path);
+        File::delete(public_path().'/storage/uploads/temp_photo/' . $tempPhoto->path);
         $tempPhoto->delete();
     }
     /**
@@ -125,7 +125,8 @@ class FrontEndController extends Controller
      */
     public function safeMoveDetail() {
         $scales = $this->scalesWithParams(Area::first()->id);
-        return view('frontend.request.safe_move.detail', compact('scales'));
+        $tempPhotos = TempPhoto::where('user_id', session()->get('user_id'))->get();
+        return view('frontend.request.safe_move.detail', compact('scales', 'tempPhotos'));
     }
 
     /**
