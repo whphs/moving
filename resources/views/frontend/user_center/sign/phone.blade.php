@@ -78,11 +78,11 @@
             <img style="margin-top: 60px;" src="/frontend/assets/img/icons/logo.png" alt="">
         </div>
         <div class="container m-t-5 p-t-30" style="background-color: white;">
-            <input type="text" class="form-control" placeholder="Please enter your cell phone number">
-            <button class="btn green btn-circle btn-block m-t-20">SignIn</button>
-            <p class="m-t-20 p-b-30" style="color: #f16622" onclick="goAgreement();">Go to User Agreement</p>
+            <input type="text" class="form-control" placeholder="{{__('string.please_enter_your_cell_phone_number')}}">
+            <button class="btn green btn-circle btn-block m-t-20">{{__('string.sign_in')}}</button>
+            <p class="m-t-20 p-b-30" style="color: #f16622" onclick="goAgreement();">{{__('string.go_to_user_agreement')}}</p>
             <div class="p-b-30">
-                <p class="text-success">---------------One-click Signin---------------</p>
+                <p class="text-success">---------------{{__('string.one_click_SignIn')}}---------------</p>
                 <img class="rounded-circle" id="myBtn" src="/frontend/assets/img/icons/wechat.png">
             </div>
         </div>
@@ -94,21 +94,21 @@
         <div class="modal-content">
             <div class="container">
                 <span class="close">&times;</span>
-                <h5 class="m-t-10">requests to use</h5>
-                <h3 style="font-weight: bold;">Your mobile number</h3>
+                <h5 class="m-t-10">{{__('string.requests_to_use')}}</h5>
+                <h3 style="font-weight: bold;">{{__('string.your_mobile_number')}}</h3>
                 <hr>
                 <table style="width: 100%;">
                     <tr>
                         <td><span style="font-weight: bold;">13394260131</span></td>
-                        <td>Linked to Wechat</td>
+                        <td>{{__('string.linked_to_WeChat')}}</td>
                         <td><input type="checkbox" checked="" style="float: right;"></td>
                     </tr>
                 </table>
                 <hr>
-                <a href="/sign/other">Use Other Mobile Number</a>
+                <a href="/sign/other">{{__('string.use_other_mobile_number')}}</a>
                 <div class="m-t-30 m-b-30" style="text-align: center;">
-                    <button type="button" class="btn btn-default" style="width: 30%; color: green;">Reject</button>
-                    <button type="button" class="btn btn-success" style="width: 30%; margin-left: 10%;">Allow</button>
+                    <button type="button" class="btn btn-default" style="width: 30%; color: green;">{{__('string.reject')}}</button>
+                    <button type="button" class="btn btn-success" style="width: 30%; margin-left: 10%;">{{__('string.allow')}}</button>
                 </div>
             </div>
         </div>

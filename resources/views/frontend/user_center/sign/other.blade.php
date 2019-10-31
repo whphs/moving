@@ -6,11 +6,11 @@
     <div class="container">
         <div class="m-t-30">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Mobile phone number">
-                <button class="btn default-haze" type="button">Get Code</button>
+                <input type="text" class="form-control" placeholder="{{__('string.mobile_phone_number')}}">
+                <button class="btn default-haze" type="button">{{__('string.get_code')}}</button>
             </div>
         </div>
-        <input type="text" class="form-control m-t-10" placeholder="Verif.Code">
-        <button type="button" class="btn btn-success m-t-10" style="float: right;">Done</button>
+        <input type="text" class="form-control m-t-10" placeholder="{{__('string.verification.code')}}">
+        <button type="button" class="btn btn-success m-t-10" style="float: right;">{{__('string.done')}}</button>
     </div>
 @endsection

@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-12" style="text-align: center;">
                     <div class="contact-heading" style="margin-bottom: 0px;">
-                    <h6>{{ $scale->name }}</h6>
+                        <h6>{{ $scale->name }}</h6>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <!-- Pakage normal description -->
                 <div class="col-12 col-lg-6" style="text-align: center;">
                     <div class="contact-heading" style="margin-bottom: 10px; margin-top:30px;">
-                        <h6>Description</h6>
+                        <h6>{{__('string.description')}}</h6>
                     </div>
                     <div class="content-sidebar">
                         <div class="weekly-office-hours">
@@ -44,16 +44,16 @@
                                 @foreach ($scale->distancePrices as $distanceprice)
                                     @if ($distanceprice->from == 0)
                                         <li class="d-flex align-items-center justify-content-between">
-                                            <span>Within {{ $distanceprice->to }}km of transportation</span>
-                                            <span>free</span>
+                                            <span>{{__('string.within')}} {{ $distanceprice->to }}km {{__('string.of_transportation')}}</span>
+                                            <span>{{__('string.free')}}</span>
                                         </li>
                                     @endif
                                 @endforeach
                                 @foreach ($scale->floorPrices as $floorprice)
                                     @if ($floorprice->from == 0)
                                         <li class="d-flex align-items-center justify-content-between">
-                                            <span>Full elevator or no elevator {{ $floorprice->to }}st floor</span>
-                                            <span>free</span>
+                                            <span>{{__('string.full_elevator_or_no_elevator')}} {{ $floorprice->to }}{{__('string.floor')}}</span>
+                                            <span>{{__('string.free')}}</span>
                                         </li>
                                     @endif
                                 @endforeach
@@ -64,7 +64,7 @@
                 <!-- Package beyond description -->
                 <div class="col-12 col-lg-6" style="text-align: center;">
                     <div class="contact-heading" style="margin-bottom: 10px; margin-top:30px;">
-                        <h6>Distance Description</h6>
+                        <h6>{{__('string.distance_description')}}</h6>
                     </div>
                     <div class="content-sidebar">
                         <div class="weekly-office-hours">
@@ -72,8 +72,8 @@
                                 @foreach ($scale->distancePrices as $distanceprice)
                                     @if ($distanceprice->from != 0)
                                         <li class="d-flex align-items-center justify-content-between">
-                                            <span>Transportation {{ $distanceprice->from }}~{{ $distanceprice->to }} km</span>
-                                            <span>{{ $distanceprice->amount }} yuan/km</span>
+                                            <span>{{__('string.transportation')}} {{ $distanceprice->from }}~{{ $distanceprice->to }} {{__('string.km')}}</span>
+                                            <span>{{ $distanceprice->amount }} {{__('string.unit_km')}}</span>
                                         </li>
                                     @endif
                                 @endforeach
@@ -84,7 +84,7 @@
                 <!-- Package beyond description -->
                 <div class="col-12 col-lg-6" style="text-align: center;">
                     <div class="contact-heading" style="margin-bottom: 10px; margin-top:30px;">
-                        <h6>Floor Description</h6>
+                        <h6>{{__('string.floor_description')}}</h6>
                     </div>
                     <div class="content-sidebar">
                         <div class="weekly-office-hours">
@@ -92,8 +92,8 @@
                                 @foreach ($scale->floorPrices as $floorprice)
                                     @if ($floorprice->from != 0)
                                         <li class="d-flex align-items-center justify-content-between">
-                                            <span>Transportation {{ $floorprice->from }}~{{ $floorprice->to }} floor</span>
-                                            <span>{{ $floorprice->amount }} yuan/floor</span>
+                                            <span>{{__('string.transportation')}} {{ $floorprice->from }}~{{ $floorprice->to }} {{__('string.floor')}}</span>
+                                            <span>{{ $floorprice->amount }} {{__('string.unit_floor')}}</span>
                                         </li>
                                     @endif
                                 @endforeach
@@ -107,7 +107,7 @@
             <div class="row" style="margin-top: 20px; margin-bottom: 50px;">
                 <div class="col-12">
                     <p style="font-size: 12px;">Note:surcharges for exceeding the package or dismanting will be settled according to the
-                        <a href="#" style="color: #ff7000">expense standard</a>
+                        <a href="#" style="color: #ff7000">{{__('string.expense_standard')}}</a>
                     </p>
                 </div>
             </div>
@@ -116,7 +116,7 @@
 
     <!-- footer start -->
     <div class="footer" style="background-color: #947054; color: white; text-align: center; padding-top:10px;" onclick="safeMoveDetail({{ $scale->id }});">
-        Reservation Now
+        {{__('string.reservation_now')}}
     </div>
 
     <script>

@@ -44,7 +44,7 @@
                 <div class="col-12">
                     <div class="select-area">
                         <button type="button" id = "specialItemBtn" class ="btn south-btn m-1"  style="bottom: -5px;width: 100%;height: 33px;">
-                            Submit
+                            {{__('string.reservation_btn')}}
                         </button>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="border:unset;" >
                     <div class="d-flex">
-                        <p class="floor-title">Select Floor</p>
+                        <p class="floor-title">{{__('string.select_floor')}}</p>
                         <button type="button" class="close" data-dismiss="modal" style="font-size: 29px;">&times;</button>
                     </div>
                 </div>
@@ -68,20 +68,20 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button class ="btn south-btn btn-3 m-1 elevator-btn" id = "floor0" onclick="selectedFloor(100)">Use elevator</button>
+                            <button class ="btn south-btn btn-3 m-1 elevator-btn" id = "floor0" onclick="selectedFloor(100)">{{__('string.full_elevator')}}</button>
                         </div>
                     </div>
                     <div class="row">
                         @for($i = 1; $i <= 9; $i++)
                             <div class="col-4">
-                                <button class ="btn south-btn btn-3 m-1 floor-btn" id = "floor{{$i}}" onclick="selectedFloor({{$i}})">{{$i}}floor</button>
+                                <button class ="btn south-btn btn-3 m-1 floor-btn" id = "floor{{$i}}" onclick="selectedFloor({{$i}})">{{$i}} {{__('string.floor')}}</button>
                             </div>
                         @endfor
                     </div>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" id = "selectFloorBtn" class ="btn south-btn m-1" data-dismiss="modal">Submit</button>
+                    <button type="button" id = "selectFloorBtn" class ="btn south-btn m-1" data-dismiss="modal">{{__('string.submit')}}</button>
                 </div>
             </div>
         </div>

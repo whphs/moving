@@ -10,7 +10,7 @@
                     <div class="card">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                Selected Vehicle
+                                {{__('string.selected_vehicle')}}
                                 <span style="float: right;">
                                     <span id="vehicleName">{{ $selectVehicle->name }}</span><i class="fa fa-angle-right direct"></i>
                                 </span>
@@ -25,18 +25,18 @@
             <div class="col-12">
                 <div class="content-sidebar">
                     <div class="card" style="margin:10px 0">
-                        <div class="card-header">Please select the handling floor</div>
+                        <div class="card-header">{{__('string.please_select_the_handling_floor')}}</div>
                         <ul class="timeline">
                             <li class="current-location" data-toggle="modal" data-target="#selectFromFloorModal">
-                                <span style="margin-left: -40px;">Your shipping floor</span>
+                                <span style="margin-left: -40px;">{{__('string.your_shipping_floor')}}</span>
                                 <span style="float: right; margin-right: 20px;">
-                                    <span id="fromFloorName">Select floor</span><i class="fa fa-angle-right direct"></i>
+                                    <span id="fromFloorName">{{__('string.select_floor')}}</span><i class="fa fa-angle-right direct"></i>
                                 </span>
                             </li>
                             <li class="destination-location" data-toggle="modal" data-target="#selectToFloorModal">
-                                <span style="margin-left: -40px;">Your Receiving floor</span>
+                                <span style="margin-left: -40px;">{{__('string.your_receiving_floor')}}</span>
                                 <span style="float: right; margin-right: 20px;">
-                                    <span id="toFloorName">Select floor</span><i class="fa fa-angle-right direct"></i>
+                                    <span id="toFloorName">{{__('string.select_floor')}}</span><i class="fa fa-angle-right direct"></i>
                                 </span>
                             </li>
                         </ul>
@@ -49,9 +49,9 @@
             <div class="col-12">
                 <div class="content-sidebar">
                     <div class="card" style="margin:10px 0">
-                        <div class="card-header">Large items</div>
+                        <div class="card-header">{{__('string.large_items')}}</div>
                         <div class="card-body">
-                            <span>Selection quantity</span>
+                            <span>{{__('string.selection_quantity')}}</span>
                             <span style="float: right;">
                                 <img src="/frontend/assets/img/icons/minus.png" class="min-button" alt="minus button" onclick="minItem();">
                                 <span id="countItems" style="padding: 15px;"></span>
@@ -69,7 +69,7 @@
                     <div class="card">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                Description of pricing rules.
+                                {{__('string.description_of_pricing_rules')}}
                                 <span style="float: right;">
                                     <i class="fa fa-angle-right direct"></i>
                                 </span>
@@ -85,7 +85,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 h-30">
-                        <p class="p-t-5" style="font-size: 20px; color: #ef6774;">Price : <span id="price">---</span>$</p>
+                        <p class="p-t-5" style="font-size: 20px; color: #ef6774;">{{__('string.price')}} : <span id="price">---</span>$</p>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
     <div class="modal" id="selectTruckModal" tabindex="-1" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="big-item-title">Select truck</span>
+                <span class="big-item-title">{{__('string.selected_vehicle')}}</span>
                 <button type="button" class="close" data-dismiss="modal" style="font-size: 35px; margin-right: -18px;">&times;</button>
             </div>
             <!-- Modal body -->
@@ -110,17 +110,17 @@
     <div class="modal" id="selectFromFloorModal" tabindex="-1" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="big-item-title">Select Shipping floor</span>
+                <span class="big-item-title">{{__('string.select_shipping_floor')}}</span>
                 <button type="button" class="close" data-dismiss="modal" style="font-size: 35px; margin-right: -18px;">&times;</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body m-t-30">
-                <button type="button" id="fromFloor100" class="btn btn-outline-dark btn-block" data-dismiss="modal" onclick="selectFromFloor(100);">Full Elevator</button>
+                <button type="button" id="fromFloor100" class="btn btn-outline-dark btn-block" data-dismiss="modal" onclick="selectFromFloor(100);">{{__('string.full_elevator')}}</button>
                 <hr>
                 <div class="txt-align-c">
                     @for ($i = 1; $i < 10; $i ++)
                         <button type="button" id="fromFloor{{ $i }}" class="btn btn-outline-dark btn-sm w-25p m-l-10 m-r-10 m-b-10"
-                                data-dismiss="modal" onclick="selectFromFloor({{ $i }});">{{ $i }} floor</button>
+                                data-dismiss="modal" onclick="selectFromFloor({{ $i }});">{{ $i }} {{__('string.floor')}}</button>
                     @endfor
                 </div>
             </div>
@@ -131,17 +131,17 @@
     <div class="modal" id="selectToFloorModal" tabindex="-1" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="big-item-title">Select Receving floor</span>
+                <span class="big-item-title">{{__('string.select_receiving_floor')}}</span>
                 <button type="button" class="close" data-dismiss="modal" style="font-size: 35px; margin-right: -18px;">&times;</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body m-t-30">
-                <button type="button" id="toFloor100" class="btn btn-outline-dark btn-block" data-dismiss="modal" onclick="selectToFloor(100);">Full Elevator</button>
+                <button type="button" id="toFloor100" class="btn btn-outline-dark btn-block" data-dismiss="modal" onclick="selectToFloor(100);">{{__('string.full_elevator')}}</button>
                 <hr>
                 <div class="txt-align-c">
                     @for ($i = 1; $i < 10; $i++)
                         <button type="button" id="toFloor{{ $i }}" class="btn btn-outline-dark btn-sm w-25p m-l-10 m-r-10 m-b-10"
-                                data-dismiss="modal" onclick="selectToFloor({{ $i }});">{{ $i }} floor</button>
+                                data-dismiss="modal" onclick="selectToFloor({{ $i }});">{{ $i }} {{__('string.floor')}}</button>
                     @endfor
                 </div>
             </div>

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class FrontEndController extends Controller
 {
@@ -123,8 +124,8 @@ class FrontEndController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function safeMoveDetail() {
-        $scale = Scale::find(session()->get('scale_id'));
-        return view('frontend.request.safe_move.detail', compact('scale'));
+        $scales = $this->scalesWithParams(Area::first()->id);
+        return view('frontend.request.safe_move.detail', compact('scales'));
     }
 
     /**
@@ -277,4 +278,34 @@ class FrontEndController extends Controller
 
         return response()->json($booking);
     }
+
+    public function  imgUpload(Request $request)
+    {
+        //$img64Date = $request->imgData;
+        // $data = str_replace('data:image/jpeg;base64,/9j/', '', $img64Date);
+        // $image = base64_decode($img64Date);
+//        $image = file_get_contents($request->file('imgData'));
+        // $current_timestamp = Carbon::now()->timestamp;
+        //$filepath = storage_path()."\uploads\8"."2019".".png";
+//        \File:ut(storage_path(). '/' . $imageName, base64_decode($image));
+        // return response()->json($image);
+//        file_put_contents($filepath,$data);
+
+/////////////////TEST
+        $data = $request->imgData;
+
+        //get the base-64 from data
+        $base64_str = substr($data, strpos($data, ",") + 1);
+
+        //decode base64 string
+        $image = base64_decode($base64_str);
+        // $filepath = storage_path()."\uploads\8"."2019".".png";
+        // file_put_contents($filepath,$image);
+//        Storage::disk('uploads')->put('imgage.png', $image);
+//        $storagePath = Storage::disk('uploads')->getDriver()->getAdapter()->getPathPrefix();
+//        echo $storagePath.'imgage.png';
+
+        return Response::json($image);
+    }
+
 }
