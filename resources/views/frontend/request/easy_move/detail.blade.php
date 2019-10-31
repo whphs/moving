@@ -22,8 +22,13 @@
 @section('content')
     <div id = "easyMoveContent">
         <main>
+
             <section class="south-contact-area" style ="padding-top:3em;" >
+
                 <div class="container">
+                    <div class="alert alert-danger"  style="display: none;">
+                        <strong>Fail!</strong> You need to fill in all field!
+                    </div>
                     <!-- select truck start -->
                     <div class="row">
                         <div class="col-12">
@@ -90,6 +95,7 @@
                                         </li>
                                     </ul>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -416,6 +422,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         let handlingService = 0;
         let distance = 0;
         let big_item = 0;
@@ -666,31 +673,45 @@
             $("#wechat").prop("checked",false);
         });
         // When click submit button.
+
         $("#reservationBtn").click(function () {
-            let data = {
-                user_id: 1,
-                vehicle_id: selectedVehicle.id,
-                big_item: parseInt(big_item),
-                where_from: where_from,
-                floor_from: parseInt(floor_from),
-                where_to: where_to,
-                floor_to: parseInt(floor_to),
-                when: when,
-                description: description,
-                phone: phone,
-                distance: distance,
-                helper_count: parseInt(helper_count),
-                price: totalPrice
-            };
-            console.log(data);
-            $.ajax({
-                type:'POST',
-                url:'/booking/submit',
-                data: data,
-                success:function(data){
-                    console.log(data);
-                }
-            });
+
+            if(when === "" || where_from === "" || where_to === ""){
+                $('.alert.alert-danger').show();
+                $('.alert.alert-danger').css("opacity","100");
+                window.setTimeout(function() {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                        $('.alert.alert-success').hide();
+                    });
+                }, 2000);
+
+            }else{
+                let data = {
+                    user_id: 1,
+                    vehicle_id: selectedVehicle.id,
+                    big_item: parseInt(big_item),
+                    where_from: where_from,
+                    floor_from: parseInt(floor_from),
+                    where_to: where_to,
+                    floor_to: parseInt(floor_to),
+                    when: when,
+                    description: description,
+                    phone: phone,
+                    distance: distance,
+                    helper_count: parseInt(helper_count),
+                    price: totalPrice
+                };
+                console.log(data);
+                $.ajax({
+                    type:'POST',
+                    url:'/booking/submit',
+                    data: data,
+                    success:function(data){
+                        console.log(data);
+                    }
+                });
+            }
+
         });
 
 
