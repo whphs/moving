@@ -28,10 +28,10 @@
             </div>
             <div class="row search-area">
                 <div class="col-6 select-area">
-                    <span><i class="fa fa-map-pin" style="margin-right: 3px;"></i>Current Position</span>
+                    <span><i class="fa fa-map-pin" style="margin-right: 3px;"></i>{{__('string.current_position')}}</span>
                 </div>
                 <div class="col-6">
-                    <span><i class="fa fa-map-marker" style="margin-right: 3px;"></i>Select Map</span>
+                    <span><i class="fa fa-map-marker" style="margin-right: 3px;"></i>{{__('string.select_map')}}</span>
                 </div>
             </div>
 {{--            Select Item--}}
