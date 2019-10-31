@@ -85,6 +85,13 @@ class FrontEndController extends Controller
     {
         $img64Date = $request->imgData;
         $responseData = [];
+        $userId = session()->get('user_id');
+        $tempOldPhoto = TempPhoto::where('user_id', $userId);
+        foreach ($tempOldPhoto->get() as $index => $oldPhoto)
+        {
+            File::delete(public_path().'/storage/uploads/temp_photo/' . $oldPhoto->path);
+        }
+        $tempOldPhoto->delete();
         for($i = 0; $i < count($img64Date); $i++)
         {
             $base64_str = substr($img64Date[$i], strpos($img64Date[$i], ",")+1);
@@ -92,7 +99,7 @@ class FrontEndController extends Controller
             File::put(public_path().'/storage/uploads/temp_photo/' . $path, base64_decode($base64_str));
 
             $tempPhoto = new TempPhoto;
-            $tempPhoto->user_id = session()->get('user_id');
+            $tempPhoto->user_id = $userId;
             $tempPhoto->path = $path;
             $tempPhoto->save();
 
@@ -103,7 +110,7 @@ class FrontEndController extends Controller
 
     public function deletePhoto($id) {
         $tempPhoto = TempPhoto::find($id);
-        File::delete(public_path().'/storage/temp_photo/' . $tempPhoto->path);
+        File::delete(public_path().'/storage/uploads/temp_photo/' . $tempPhoto->path);
         $tempPhoto->delete();
     }
     /**
@@ -277,35 +284,6 @@ class FrontEndController extends Controller
 
 
         return response()->json($booking);
-    }
-
-    public function  imgUpload(Request $request)
-    {
-        //$img64Date = $request->imgData;
-        // $data = str_replace('data:image/jpeg;base64,/9j/', '', $img64Date);
-        // $image = base64_decode($img64Date);
-//        $image = file_get_contents($request->file('imgData'));
-        // $current_timestamp = Carbon::now()->timestamp;
-        //$filepath = storage_path()."\uploads\8"."2019".".png";
-//        \File:ut(storage_path(). '/' . $imageName, base64_decode($image));
-        // return response()->json($image);
-//        file_put_contents($filepath,$data);
-
-/////////////////TEST
-        $data = $request->imgData;
-
-        //get the base-64 from data
-        $base64_str = substr($data, strpos($data, ",") + 1);
-
-        //decode base64 string
-        $image = base64_decode($base64_str);
-        // $filepath = storage_path()."\uploads\8"."2019".".png";
-        // file_put_contents($filepath,$image);
-//        Storage::disk('uploads')->put('imgage.png', $image);
-//        $storagePath = Storage::disk('uploads')->getDriver()->getAdapter()->getPathPrefix();
-//        echo $storagePath.'imgage.png';
-
-        return Response::json($image);
     }
 
 }
