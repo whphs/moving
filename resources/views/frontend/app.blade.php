@@ -23,6 +23,9 @@
     {!! Html::style('frontend/assets/css/timeline.css') !!}
     {!! Html::style('frontend/assets/css/custom-checkbox.css') !!}
 
+{{--    {!! Html::style('frontend/assets/css/mobile-datetimepicker.css') !!}--}}
+{{--    {!! Html::style('frontend/assets/css/mobile-datetimepiker-reset.min.css') !!}--}}
+
     {!! Html::style('frontend/assets/css/swiper.min.css') !!}
 
 </head>

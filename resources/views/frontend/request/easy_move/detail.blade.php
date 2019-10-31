@@ -136,6 +136,7 @@
                 </div>
             </section>
 
+
             <!-- terms and policy -->
             <div class="container">
                 <p style="font-size: 12px;margin-bottom: initial;">{{__('string.note_detail')}}</p>
@@ -186,6 +187,11 @@
                         <div class="input-group date">
                             <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY" style="margin-top: 15%;">
                         </div>
+                        {{--                        <div class="date-selector">--}}
+                        {{--                            <div class="year" id="year1"></div>--}}
+                        {{--                            <div class="month" id="month1"></div>--}}
+                        {{--                            <div class="day" id="day1"></div>--}}
+                        {{--                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -224,8 +230,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    {{--                <button type="button" id = "reservationBtn" class ="btn south-btn m-1" data-dismiss="modal">Submit</button>--}}
-                    {!! Form::submit('Submit',['id' => 'reservationBtn','class'=>'btn south-btn m-1','data-dismiss' => 'modal'])!!}
+                    <button type="button" id = "reservationBtn" class ="btn south-btn m-1" data-dismiss = "modal">Submit</button>
                 </div>
 
             </div>
@@ -321,6 +326,7 @@
                     <button type="button" class="close" data-dismiss="modal" style="font-size: 29px;margin-right: -3px;">&times;</button>
                 </div>
                 <!-- Modal body -->
+
                 <div class="modal-body" style="padding-bottom: 1rem;">
                     <div class="item-description">
                         <textarea id = "itemDescription" rows = "3" cols ="10" placeholder="Please enter moving item description."></textarea>
@@ -337,10 +343,12 @@
                     {{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes2">This is test</span>--}}
                     {{--                        </div>--}}
                     {{--                    </div>--}}
+
                     <div class="upload-photo">
                         <p style="font-size: 15px;font-weight: bold">Upload Photo</p>
                         <div class="photo-multi-thumb" data-name = "main_photo" data-required = "true"></div>
                     </div>
+
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
@@ -391,6 +399,7 @@
 @endsection
 @section('scripts')
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
+    {{--    loc--}}
     <script type="text/javascript">
         photoMultiThumb.init();
 
@@ -422,12 +431,15 @@
         let where_to = "";
         let floor_to = 1;
         let helper_count = 0;
+
         let vehicles = null;
-        // let selectedVehicleId = 1;
+        let tempPhotos = null;
         let selectedVehicle = null;
         let selectedIndex = 0;
         let distancePrices = [];
+
         let totalPrice = 0;
+
         $("#addBaggage").hide();
         // Calculate total price for changed statement.
         function calcTotalPrice() {
@@ -578,11 +590,51 @@
         });
         //When set photo setting
         $('#photoSettingBtn').click(function () {
+
             description = $('#itemDescription').val();
             $('#orderNote').text(description);
             putSession({description: description});
+            // Photo Upload
+            let imgArray = [];
+            let images = $('.photo-multi-thumb').find('.thumb-image.added');
+            if(images.length !== 0){
+                for (let i = 0 ; i < images.length ; i ++) {
+                    let data = $(images[i]).attr('src');
+                    imgArray.push(data);
+                }
+
+                $.ajax( {
+                    type: 'POST',
+                    url: '/upload_photo',
+                    data: {imgData: imgArray},
+                    success:function(data){
+                        for (let i = 0 ; i < data.length ; i ++) {
+                            let elem = $('.photo-multi-thumb').find('.photo-view-thumb')[i];
+                            if (elem) {
+                                $(elem).data('temp_photo_id', data[i]);
+                            }
+                        }
+                    }
+                });
+            }
+
+
+
+        });
+
+        $('.photo-multi-thumb').on('click', '.thumb-remove',  function() {
+            let photoId = $(this).parent().data('temp_photo_id');
+            $.ajax( {
+                type: 'GET',
+                url: '/delete_photo/' + photoId,
+                success:function(data){
+                    console.log(data);
+                }
+            });
+            $(this).parent().remove();
         });
         //When set time
+
         $('#timeSetting').click(function () {
             when = $('#datepicker').val();
             $('#selectTimeCon').text(when);
@@ -636,7 +688,7 @@
                 url:'/booking/submit',
                 data: data,
                 success:function(data){
-                    alert(data.success);
+                    console.log(data);
                 }
             });
         });
@@ -644,8 +696,16 @@
 
         $(document).ready( function() {
 
-
             vehicles = {!! $vehicles !!};
+            tempPhotos = {!! $tempPhotos !!};
+            if(tempPhotos)
+            {
+                for(let i = 0; i < tempPhotos.length; i++){
+                    photoMultiThumb.photoAdded(tempPhotos[i].id,tempPhotos[i].path);
+                }
+            }
+
+
             @foreach($vehicles as $vehicle)
             distancePrices.push({!! $vehicle->distancePrices !!});
             @endforeach
