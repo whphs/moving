@@ -36,3 +36,5 @@ Route::get('/standard/description/{id}', 'FrontEndController@standardDescription
 Route::get('/about_us', 'FrontEndController@aboutUs')->name('about_us');
 
 Route::post('booking/submit', 'FrontEndController@submitBooking')->name('booking.submit');
+
+Route::post('detail/imgUpload', 'FrontEndController@imgUpload')->name('detail.imgUpload');

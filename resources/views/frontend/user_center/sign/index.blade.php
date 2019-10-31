@@ -80,10 +80,10 @@
         <div class="container m-t-5 p-t-30" style="background-color: white;">
             <button class="btn btn-circle btn-block" id="myBtn" style="background-color: #1aad19;">
                 <img src="frontend/assets/img/icons/wechat.png">
-                <span style="color: white;">Wechat Authorized SignIn</span>
+                <span style="color: white;">{{__('string.WeChat_Authorized_SignIn')}}</span>
             </button>
-            <button class="btn btn-outline-secondary btn-block" style="margin-top: 20px; height: 50px;" onclick="goPhone();">Mobile phone number SignIn</button>
-            <p class="m-t-20 p-b-30" style="color: #f16622" onclick="goAgreement();">Go to User Agreement</p>
+            <button class="btn btn-outline-secondary btn-block" style="margin-top: 20px; height: 50px;" onclick="goPhone();">{{__('string.mobile_phone_number_SignIn')}}</button>
+            <p class="m-t-20 p-b-30" style="color: #f16622" onclick="goAgreement();">{{__('string.go_to_user_agreement')}}</p>
         </div>
     </div>
 
@@ -93,21 +93,21 @@
         <div class="modal-content">
             <div class="container">
                 <span class="close">&times;</span>
-                <h5 class="m-t-10">requests to use</h5>
-                <h3 style="font-weight: bold;">Your mobile number</h3>
+                <h5 class="m-t-10">{{__('string.requests_to_use')}}</h5>
+                <h3 style="font-weight: bold;">{{__('string.your_mobile_number')}}</h3>
                 <hr>
                 <table style="width: 100%;">
                     <tr>
                         <td><span style="font-weight: bold;">13394260131</span></td>
-                        <td>Linked to Wechat</td>
+                        <td>{{__('string.linked_to_WeChat')}}</td>
                         <td><input type="checkbox" checked="" style="float: right;"></td>
                     </tr>
                 </table>
                 <hr>
-                <a href="/sign/other">Use Other Mobile Number</a>
+                <a href="/sign/other">{{__('string.use_other_mobile_number')}}</a>
                 <div class="m-t-30 m-b-30" style="text-align: center;">
-                    <button type="button" class="btn btn-default" style="width: 30%; color: green;">Reject</button>
-                    <button type="button" class="btn btn-success" style="width: 30%; margin-left: 10%;">Allow</button>
+                    <button type="button" class="btn btn-default" style="width: 30%; color: green;">{{__('string.reject')}}</button>
+                    <button type="button" class="btn btn-success" style="width: 30%; margin-left: 10%;">{{__('string.allow')}}</button>
                 </div>
             </div>
         </div>
@@ -122,13 +122,13 @@
             window.location.href = "agreement";
         }
         // Get the modal
-        var modal = document.getElementById("myModal");
+        let modal = document.getElementById("myModal");
 
         // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
+        let btn = document.getElementById("myBtn");
 
         // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+        let span = document.getElementsByClassName("close")[0];
 
         // When the user clicks the button, open the modal
         btn.onclick = function() {
@@ -142,7 +142,7 @@
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-            if (event.target == modal) {
+            if (event.target === modal) {
                 modal.style.display = "none";
             }
         }

@@ -21,21 +21,20 @@
 {{--            Preview Prices--}}
             <div class="row" style="margin-right: 5px; margin-left: 5px;">
                 <div class="col-12" >
-                    <p style="color:#323232">To be paid</p>
+                    <p style="color:#323232">{{__('string.to_be_paid')}}</p>
                     <div class="content-sidebar">
                         <div class="weekly-office-hours">
                             <ul>
                                 <li>
-                                    <span style="display: inline-block">Starting Price(small van)</span>
+                                    <span style="display: inline-block">{{__('string.starting_price')}}(small van)</span>
                                     <div class="preview-start-price">
                                         <span>{{__('string.format_price')}}</span>
                                         <span id="initPrice">30</span>
                                     </div>
-
                                 </li>
                                 <li>
                                     <div style="display: inline-block">
-                                        <span>Super Mileage</span>
+                                        <span>{{__('string.super_mileage')}}</span>
                                         <span id="plusDistance"></span>
                                     </div>
                                     <div class="preview-start-price">
@@ -45,12 +44,12 @@
 
                                 </li>
                                 <li>
-                                    <span>Handing Charging</span>
+                                    <span>{{__('string.handling_charging')}}</span>
                                     <div class="preview-start-price">
                                         <span>{{__('string.format_price')}}</span>
-                                        <span id="priceForItems">0</span></li>
+                                        <span id="priceForItems">0</span>
                                     </div>
-
+                                </li>
                             </ul>
                         </div>
                     </div>

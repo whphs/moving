@@ -48,20 +48,20 @@
                 <div class="col-12 col-lg-6">
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
-                            <div class="card-header">Order remark</div>
+                            <div class="card-header">{{__('string.order_remark')}}</div>
                             <div class="item-description" style="margin: 7px;">
-                                <textarea id = "itemDescription" rows = "3" cols ="10" placeholder="Please enter moving item description."></textarea>
+                                <textarea id = "itemDescription" rows = "3" cols ="10" placeholder="{{__('string.big_item_description')}}"></textarea>
                                 <div class="clear-description">
-                                    <span>200character</span>
+                                    <span>{{__('string.200character')}}</span>
                                     <span id = "clearBtn" style="float: right;">{{__('string.clear')}}</span>
                                 </div>
                             </div>
                             <div class="upload-photo" style="margin-bottom: 10px;padding-left: 8px;margin-top: 0px;">
-                                <p style="font-size: 15px;font-weight: bold">Upload Photo</p>
+                                <p style="font-size: 15px;font-weight: bold">{{__('string.upload_photo')}}</p>
                                 <div class="photo-multi-thumb" data-name = "main_photo" data-required = "true"></div>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item" style="font-size: 14px;">Contact Number
+                                <li class="list-group-item" style="font-size: 14px;">{{__('string.contact_number')}}
                                     <input type="input" class="form-control" name="phoneNum" id="phoneNum" placeholder="13394260131" >
                                 </li>
                             </ul>
@@ -75,9 +75,9 @@
                 <div class="col-12">
                     <div class="content-sidebar">
                         <div class="card" style="margin: 10px 0">
-                            <div class="card-header">Bonus
+                            <div class="card-header">{{__('string.bonus')}}
                                 <span onclick="goBonus();" class="btn btn-link btn-sm watch">
-                                <span id="usedBonusPrice">Bonus list</span>
+                                <span id="usedBonusPrice">{{__('string.bonus_list')}}</span>
                                 <i class="fa fa-angle-right" style="padding-left: 3px;"></i>
                                 </span>
                             </div>
@@ -110,7 +110,7 @@
                         </p>
                         <span style="text-decoration: line-through;"><span id="totalPrice"></span></span>
                     </div>
-                    <p style="display: inline-block;">Used bonus price <span id="bonusPrice">--</span>$</p>
+                    <p style="display: inline-block;">{{__('string.used_bonus_price')}} <span id="bonusPrice">--</span>{{__('string.money_unit')}}</p>
 {{--                    <a href="/safe_move/preview" style="float: right; position: relative; top: -10px; left: 10px; color: #947054 ">preview</a>--}}
                 </div>
                 <div class="col-4">
@@ -128,8 +128,8 @@
                 <!-- Nav Start -->
                 <div class="classynav">
                     <ul style="padding: 3px;">
-                        <li><span class="time-setting" id="setting">Setting</span></li>
-                        <li style="float: right;"><span id="close" class="time-setting" >Exit</span></li>
+                        <li><span class="time-setting" id="setting">{{__('string.setting')}}</span></li>
+                        <li style="float: right;"><span id="close" class="time-setting">{{__('string.exit')}}</span></li>
                     </ul>
                 </div>
                 <!-- Nav End -->
@@ -148,7 +148,7 @@
     <div class="modal" id="reservationModal" tabindex="-1" role="dialog">
         <div class="modal-content">
             <div class="modal-header" style="border:unset;">
-                <p class="reservation-price" id="reservationPrice">$230</p>
+                <p class="reservation-price" id="reservationPrice"></p>
             </div>
             <!-- Modal body -->
             <div class="modal-body" style="min-height: 140px;">
@@ -157,7 +157,7 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item" >
                                 {!! Html::image("frontend/assets/img/icons/wechat.png",'calendar',['class' => 'reservation-img']) !!}
-                                Wechat
+                                {{__('string.WeChat')}}
                                 <div class="custom-control custom-radio custom-control-inline wechatRadio" style="float: right">
                                     <input type="radio" class="custom-control-input" id="wechat" name="wechat" value="wechat" checked>
                                     <label class="custom-control-label" for="wechatRadio">&nbsp</label>
@@ -165,7 +165,7 @@
                             </li>
                             <li class="list-group-item">
                                 {!! Html::image("frontend/assets/img/icons/zhubao.png",'calendar',['class' => 'reservation-img']) !!}
-                                Zhubao
+                                {{__('string.ZhuBao')}}
                                 <div class="custom-control custom-radio custom-control-inline zhubaoRadio" style="float: right">
                                     <input type="radio" class="custom-control-input" id = "zhubao" name="zhubao" value="zhubao">
                                     <label class="custom-control-label" for="zubaoRadio">&nbsp</label>
@@ -210,7 +210,7 @@
         let where_from = "";
         let floor_from = 1;
         let where_to = "";
-        let floor_to = 1
+        let floor_to = 1;
         let distancePrices = [];
         let floorPrices = [];
         let realPrice = 0;
@@ -282,15 +282,15 @@
             realPrice = totalPrice;
 
             $('#realPrice').text(realPrice);
+            $('#reservationPrice').text(realPrice + '$');
 
-            if (bonusPrice != null)
+            if (bonusPrice != 0)
             {
                 realPrice = totalPrice - bonusPrice;
                 $('#realPrice').text(realPrice);
                 $('#totalPrice').text(totalPrice + '$');
                 $('#bonusPrice').text(bonusPrice);
-                $('#usedBonusPrice').text(bonusPrice + ' $');
-                $('#reservationPrice').text(realPrice + '$');
+                $('#usedBonusPrice').text(bonusPrice + '{{__('string.money_unit')}}');
             }
         }
 
@@ -337,8 +337,14 @@
                 phone: $('#phoneNum').val(),
                 distance: distance,
                 price:  parseInt(realPrice),
-                bonus_id: bonusId,
+                bonus_id: parseInt(bonusId),
             };
+
+            description = $('#itemDescription').val();
+            putSession({description: description});
+            phone = $('#phoneNum').val();
+            putSession({phone: phone});
+
             console.log(data);
             $.ajax({
                 type:'POST',
@@ -348,11 +354,6 @@
                     alert(data.success);
                 }
             });
-
-            description = $('#itemDescription').val();
-            putSession({description: description});
-            phone = $('#phoneNum').val();
-            putSession({phone: phone});
         });
 
         function getSelectedScale(id) {
@@ -432,8 +433,11 @@
             }
 
             distance = 0;
-            bonusId = sessionData.bonus_id;
-            bonusPrice = sessionData.bonus_price;
+            if (sessionData.bonus_id)
+            {
+                bonusId = sessionData.bonus_id;
+                bonusPrice = sessionData.bonus_price;
+            }
 
             console.log(sessionData);
 
@@ -453,9 +457,5 @@
         }
 
         $('#datepicker').datepicker('setDate', 'today');
-
-        $("#setting").click(function () {
-
-        });
     </script>
 @endsection

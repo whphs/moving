@@ -61,12 +61,12 @@
                             <div class="price">
                                 <div class="f-size-22">{{ $booking->vehicle_id ? $booking->vehicle->name : $booking->scale->name }}</div>
                                 <div class="txt-align-r">
-                                    <p class="f-size-18">Total : ${{ $booking->price }}</p>
+                                    <p class="f-size-18">{{__('string.total')}} : ${{ $booking->price }}</p>
                                     <p>{{ substr($booking->when, 0, 10) }}</p>
                                 </div>
                             </div>
                             <div class="road">
-                                <p class="f-size-16">Start : {{ substr($booking->when, 0, 10) }}</p>
+                                <p class="f-size-16">{{__('string.start')}} : {{ substr($booking->when, 0, 10) }}</p>
                                 <table class="m-t-10">
                                     <tr>
                                         <td class="w-30"><div class="circle from"></div></td>
@@ -81,11 +81,11 @@
                                         <td>{{ $booking->where_to }} - {{ $booking->floor_to }}</td>
                                     </tr>
                                 </table>
-                                <p class="p-t-10 m-0 f-size-16">Distance : {{ $booking->distance }} km</p>
+                                <p class="p-t-10 m-0 f-size-16">{{__('string.distance')}} : {{ $booking->distance }} km</p>
                             </div>
                             <div class="m-t-5">
-                                <p>Number of big items : {{ $booking->big_item }}</p>
-                                <p>Number of Helpers : {{ $booking->helper_count }}</p>
+                                <p>{{__('string.number_of_big_items')}} : {{ $booking->big_item }}</p>
+                                <p>{{__('string.number_of_helpers')}} : {{ $booking->helper_count }}</p>
                                 <p>{{ $booking->description }}</p>
                             </div>
                             @if($booking->photo_0)
@@ -98,8 +98,8 @@
                                 {!! Html::image('storage/' . $booking->photo_2, null, ['width' => 80, 'height' => 80]) !!}
                             @endif
                             <div class="f-size-15 m-t-b-10">
-                                <span>Customer : {{ $booking->user->name }}</span>
-                                <span class="float-right">Phone : {{ $booking->phone }}</span>
+                                <span>{{__('string.customer')}} : {{ $booking->user->name }}</span>
+                                <span class="float-right">{{__('string.phone')}} : {{ $booking->phone }}</span>
                             </div>
                         </div>
                     </div>

@@ -99,7 +99,7 @@
                             <div class="content-sidebar">
                                 <div class="card" style="margin:10px 0">
                                     <div class="card-header">
-                                        Big baggage<span style="color: #999;font-weight: 100;">(washer,refrigerator...)</span>
+                                        {{__('string.big_baggage')}}<span style="color: #999;font-weight: 100;">{{__('string.big_baggage_example')}}</span>
                                         <i class="fa fa-angle-right direct"></i>
                                         <span id = "itemCount" class="detail"></span>
                                     </div>
@@ -131,8 +131,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </section>
 
@@ -141,8 +139,9 @@
                 <p style="font-size: 12px;margin-bottom: initial;">{{__('string.note_detail')}}</p>
                 <div id="holder">
                     <input type="checkbox" id="checkboxTerm" class="regular-checkbox" /><label for="checkboxTerm"></label>
-                    <span style="font-size: 12px;position: relative;bottom: 13px;">
-           This is test example<a href="#" style="color: #947054;font-size: 12px;">{{__('string.note_link')}}</a></span>
+                    <span style="font-size: 12px; position: relative; bottom: 13px;">
+                        This is test example <a href="#" style="color: #947054;font-size: 12px;"> {{__('string.note_link')}}</a>
+                    </span>
                 </div>
             </div>
             <div class="container" style="position: relative;top:20px;">
@@ -174,8 +173,8 @@
                 <div class="modal-header">
                     <div class="classynav">
                         <ul style="padding: 3px;">
-                            <li><span class = "time-setting" id = "timeSetting" data-dismiss = 'modal' >Setting</span></li>
-                            <li style="float: right;"><span class = "time-setting" data-dismiss = 'modal'>Exit</span></li>
+                            <li><span class = "time-setting" id = "timeSetting" data-dismiss = 'modal' >{{__('string.setting')}}</span></li>
+                            <li style="float: right;"><span class = "time-setting" data-dismiss = 'modal'>{{__('string.exit')}}</span></li>
                         </ul>
 
                     </div>
@@ -194,7 +193,7 @@
         <div class="modal" id="reservationModal" tabindex="-1" role="dialog">
             <div class="modal-content">
                 <div class="modal-header" style="border:unset;">
-                    <p class="reservation-price">$230</p>
+                    <p class="reservation-price" id="reservationPrice"></p>
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body" style="min-height: 140px;">
@@ -203,7 +202,7 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item" >
                                     {!! Html::image("frontend/assets/img/icons/wechat.png",'calendar',['class' => 'reservation-img']) !!}
-                                    Wechat
+                                    {{__('string.WeChat')}}
                                     <div class="custom-control custom-radio custom-control-inline wechatRadio" style="float: right">
                                         <input type="radio" class="custom-control-input" id="wechat" name="wechat" value="wechat" checked>
                                         <label class="custom-control-label" for="wechatRadio">&nbsp</label>
@@ -211,7 +210,7 @@
                                 </li>
                                 <li class="list-group-item">
                                     {!! Html::image("frontend/assets/img/icons/zhubao.png",'calendar',['class' => 'reservation-img']) !!}
-                                    Zhubao
+                                    {{__('string.ZhuBao')}}
                                     <div class="custom-control custom-radio custom-control-inline zhubaoRadio" style="float: right">
                                         <input type="radio" class="custom-control-input" id = "zhubao" name="zhubao" value="zhubao">
                                         <label class="custom-control-label" for="zubaoRadio">&nbsp</label>
@@ -323,9 +322,9 @@
                 <!-- Modal body -->
                 <div class="modal-body" style="padding-bottom: 1rem;">
                     <div class="item-description">
-                        <textarea id = "itemDescription" rows = "3" cols ="10" placeholder="Please enter moving item description."></textarea>
+                        <textarea id = "itemDescription" rows = "3" cols ="10" placeholder="{{__('string.big_item_description')}}"></textarea>
                         <div class="clear-description">
-                            <span>200character</span>
+                            <span>{{__('string.200charater')}}</span>
                             <span id = "clearBtn" style="float: right;">{{__('string.clear')}}</span>
                         </div>
                     </div>
@@ -338,13 +337,13 @@
                     {{--                        </div>--}}
                     {{--                    </div>--}}
                     <div class="upload-photo">
-                        <p style="font-size: 15px;font-weight: bold">Upload Photo</p>
+                        <p style="font-size: 15px;font-weight: bold">{{__('string.upload_photo')}}</p>
                         <div class="photo-multi-thumb" data-name = "main_photo" data-required = "true"></div>
                     </div>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" id = "photoSettingBtn" class ="btn south-btn m-1" data-dismiss="modal">Submit</button>
+                    <button type="button" id = "photoSettingBtn" class ="btn south-btn m-1" data-dismiss="modal">{{__('string.submit')}}</button>
                 </div>
 
             </div>
@@ -354,7 +353,7 @@
         <div class="modal" id="specialItemModal" tabindex="-1" role="dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="big-item-title">Big Item</span>
+                    <span class="big-item-title">{{__('string.big_item')}}</span>
                     <button type="button" class="close" data-dismiss="modal" style="font-size: 29px;margin-right: -18px;">&times;</button>
                 </div>
                 <!-- Modal body -->
@@ -370,7 +369,7 @@
                         </div>
                     </div>
                     <div class="add-special-item">
-                        <p>Add Item</p>
+                        <p>{{__('string.add_item')}}</p>
                         <div style="text-align: center;">
                             {!! Html::image('frontend/assets/img/icons/minus.png','minus button',['class' => 'min-button']) !!}
                             <span id="qty" name="qty" style="padding: 15px;">1</span>
@@ -380,7 +379,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" id = "specialItemBtn" class ="btn south-btn m-1" data-dismiss="modal">Submit</button>
+                    <button type="button" id = "specialItemBtn" class ="btn south-btn m-1" data-dismiss="modal">{{__('string.submit')}}</button>
                 </div>
 
             </div>
@@ -469,6 +468,7 @@
             }
 
             $('#displayPrice').text(totalPrice);
+            $('#reservationPrice').text(totalPrice + '{{__('string.money_unit')}}');
         }
 
         // Click location buttons
@@ -578,9 +578,24 @@
         });
         //When set photo setting
         $('#photoSettingBtn').click(function () {
-            description = $('#itemDescription').val();
-            $('#orderNote').text(description);
-            putSession({description: description});
+            // Photo Upload
+            let imgData = $('.thumb-image').attr('src');
+            console.log(imgData);
+            $.ajax( {
+                type: 'POST',
+                url: '/detail/imgUpload',
+                data: {imgData:imgData},
+                success:function(data){
+                    alert(data);
+                }
+            })
+
+            // description = $('#itemDescription').val();
+            // $('#orderNote').text(description);
+            // putSession({description: description});
+            // description = $('#itemDescription').val();
+            // $('#orderNote').text(description);
+            // putSession({description: description});
         });
         //When set time
         $('#timeSetting').click(function () {
