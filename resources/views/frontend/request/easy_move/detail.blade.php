@@ -433,9 +433,9 @@
         let description = "";
         let phone = "";
         let where_from = "";
-        let floor_from = 1;
+        let floor_from = 100;
         let where_to = "";
-        let floor_to = 1;
+        let floor_to = 100;
         let helper_count = 0;
 
         let vehicles = null;
@@ -463,6 +463,7 @@
                 }
             }
             totalPrice += plusPrice;
+
             console.log(typeof handlingService + handlingService);
             if (handlingService) {
                 totalPrice += selectedVehicle.init_price_for_items;
