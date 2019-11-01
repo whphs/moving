@@ -105,7 +105,7 @@
             <div class="row">
                 <div class="col-8" style="padding-right: 15px; padding-left: 15px;">
                     <div style="position: relative;top: 5px;">
-                        <p style="display: inline-block; font-size: 20px; margin-bottom: 0px; color:#ef6774; line-height: normal">
+                        <p style="display: inline-block; font-size: 20px; margin-bottom: 0px; color:#ff6600; line-height: normal">
                             {{__('string.format_price')}}<span id="realPrice"></span>
                         </p>
                         <span style="text-decoration: line-through;"><span id="totalPrice"></span></span>
@@ -463,6 +463,9 @@
             when = sessionData.when ? sessionData.when : '';
             if (when.length) {
                 $('#myTimeBtn').text(when);
+                $('#datepicker').datepicker('setDate', when);
+            }else{
+                $('#datepicker').datepicker('setDate', 'today');
             }
 
             description = sessionData.description ? sessionData.description : '';
@@ -499,6 +502,5 @@
             window.location.href = '/bonuses/fromDetail';
         }
 
-        $('#datepicker').datepicker('setDate', 'today');
     </script>
 @endsection

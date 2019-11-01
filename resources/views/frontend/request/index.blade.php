@@ -88,7 +88,7 @@
                                 <div class="row">
                                     <div class="col-1" style="padding: unset;margin-right: 10px;">
                                         <p class="location" id = "moveType">
-                                            {!! Html::image('storage/' . $value->vehicle_thumb, null, ['style'=>'width:30px;height:30px;']) !!} </p>
+                                            {!! Html::image('storage/' . $value->vehicle_thumb, null, ['style'=>'height:20px;']) !!} </p>
                                     </div>
                                     <div class="col-7 more-btn">
                                         <p class="vehicle-name">{{$value->name}}</p>

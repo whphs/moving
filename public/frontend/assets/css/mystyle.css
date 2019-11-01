@@ -213,7 +213,8 @@ header {
   }
 .easy-move-footer-price p{
     font-size: 20px;
-    color: #ef6774;
+    /*color: #ef6774;*/
+    color: #ff6600;
     line-height: normal;
     position: relative;
     top: 11px;
@@ -226,7 +227,8 @@ header {
     top: 10px;
     left: 7px;
     font-size: 19px;
-    color: #ef6774;
+    /*color: #ef6774;*/
+    color: #ff6600;
     font-weight: bold;
 }
 
@@ -280,7 +282,7 @@ header {
     color:#0b0b0b;
 }
 .property-content span{
-    color: red;
+    color: #ff6600;
     font-weight: bold;
     font-size: 18px;
 }
@@ -291,6 +293,7 @@ header {
     padding-left: 0px;
     position: absolute;
     bottom: -10px;
+    color:#947054;
 }
 .vehicle-description{
     margin-bottom: 0px;
@@ -538,7 +541,6 @@ header {
 
 #myInput {
     box-sizing: border-box;
-    background-image: url('searchicon.png');
     background-position: 14px 12px;
     background-repeat: no-repeat;
     font-size: 16px;
@@ -589,4 +591,15 @@ header {
 }
 .contact-heading h6{
     font-size:16px;
+}
+.time-close{
+    font-size: 15px;
+    position: relative;
+    top: 11px;
+}
+.south-btn.follow {
+    background-color: #947054;
+}
+.south-btn.follow.checked {
+    background-color: black;
 }

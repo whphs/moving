@@ -180,8 +180,8 @@
                 <div class="modal-header">
                     <div class="classynav">
                         <ul style="padding: 3px;">
-                            <li><span class = "time-setting" id = "timeSetting" data-dismiss = 'modal' >{{__('string.setting')}}</span></li>
-                            <li style="float: right;"><span class = "time-setting" data-dismiss = 'modal'>{{__('string.exit')}}</span></li>
+                            <button type="button" class="time-setting btn btn-link" id = "timeSetting" data-dismiss="modal">{{__('string.setting')}}</button>
+                            <button type="button" class="close time-close" data-dismiss="modal">{{__('string.cancel')}}</button>
                         </ul>
 
                     </div>
@@ -189,14 +189,9 @@
                 <!-- Modal body -->
                 <div class="modal-body" style="min-height: 140px;">
                     <div class="container">
-                        <div class="input-group date">
-                            <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY" style="margin-top: 15%;">
+                        <div class="input-group date" style="padding-right: 20%;padding-left: 20%;">
+                            <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY" style="margin-top: 11%;">
                         </div>
-                        {{--                        <div class="date-selector">--}}
-                        {{--                            <div class="year" id="year1"></div>--}}
-                        {{--                            <div class="month" id="month1"></div>--}}
-                        {{--                            <div class="day" id="day1"></div>--}}
-                        {{--                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -375,11 +370,11 @@
                     <div class="special-item-group">
                         <div class="special-item">
                             <span>furniture:</span>
-                            <span>45kg dkdkdkf fkdf fdfdfdk</span>
+                            <span>45kg This is Test</span>
                         </div>
                         <div class="special-item">
                             <span>furniture:</span>
-                            <span>45kg dkdkdkf fkdf fdfdfdk</span>
+                            <span>45kg This is Test</span>
                         </div>
                     </div>
                     <div class="add-special-item">
@@ -463,7 +458,6 @@
                 }
             }
             totalPrice += plusPrice;
-            console.log(typeof handlingService + handlingService);
             if (handlingService) {
                 totalPrice += selectedVehicle.init_price_for_items;
                 let floorFrom = floor_from;
@@ -701,7 +695,7 @@
                     helper_count: parseInt(helper_count),
                     price: totalPrice
                 };
-                console.log(data);
+
                 $.ajax({
                     type:'POST',
                     url:'/booking/submit',
@@ -719,6 +713,7 @@
 
             vehicles = {!! $vehicles !!};
             tempPhotos = {!! $tempPhotos !!};
+
             if(tempPhotos)
             {
                 for(let i = 0; i < tempPhotos.length; i++){
@@ -791,8 +786,12 @@
 
             // when set time
             when = sessionData.when ? sessionData.when : '';
+            // console.log("when:",when);
             if (when.length) {
                 $('#selectTimeCon').text(when);
+                $('#datepicker').datepicker('setDate', when);
+            }else{
+                $('#datepicker').datepicker('setDate', 'today');
             }
 
             helper_count = sessionData.helper_count ? sessionData.helper_count : 0;
@@ -825,15 +824,7 @@
 
     </script>
     <script type="text/javascript">
-        $('#datepicker').datepicker('setDate', 'today');
+
     </script>
 
-    <style>
-        .south-btn.follow {
-            background-color: #947054;
-        }
-        .south-btn.follow.checked {
-            background-color: black;
-        }
-    </style>
 @endsection

@@ -172,7 +172,7 @@ return [
 
     // user_center definition
     'sign_in'                               => 'Sign In',
-    'setting'                               => 'Setting',
+    'setting'                               => 'OK',
     'WeChat_Authorized_SignIn'              => 'WeChat Authorized SignIn',
     'mobile_phone_number_SignIn'            => 'Mobile phone number SignIn',
     'go_to_user_agreement'                  => 'Go to User Agreement',
@@ -246,7 +246,7 @@ return [
     'upload_photo'                  => 'Upload Photo',
     'bonus'                         => 'Bonus',
     'used_bonus_list'               => 'Used bonus price',
-    'exit'                          => 'Exit',
+    'exit'                          => 'Cancel',
     'WeChat'                        => 'WeChat',
     'ZhuBao'                        => 'ZhuBao',
     'used_bonus_price'              => 'Used bonus price',

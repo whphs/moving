@@ -15,7 +15,8 @@
             span {
                 font-size: 16px;
                 font-weight: 600;
-                color: #ff6600;
+                /*color: #ff6600;*/
+                color: #947054;
             }
         </style>
 
@@ -90,7 +91,7 @@
                                         {{__('string.preview')}}
                                     </td>
                                     <td>
-                                        <a href="/standard/preview/{{ $vehicles[$i]->id }}">{{__('string.help_me_to_figure_out_the_price')}}</a>
+                                        <a style="color: #ff6600" href="/standard/preview/{{ $vehicles[$i]->id }}">{{__('string.help_me_to_figure_out_the_price')}}</a>
                                     </td>
                                 </tr>
                                 <tr>
