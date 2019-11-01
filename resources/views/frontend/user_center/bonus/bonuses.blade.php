@@ -66,22 +66,20 @@
             }
         });
 
-        function putSession(data)
-        {
-            $.ajax({
-                type: 'POST',
-                url: '/put_session',
-                data: data
-            });
-        }
-
         function use(id, price) {
             if ('{{ $where }}' === 'fromAny')
                 window.location.href = '/';
             else
             if ('{{ $where }}' === 'fromDetail') {
-                putSession({bonus_id: id, bonus_price: price});
-                window.history.back();
+                $.ajax({
+                    type: 'POST',
+                    url: '/put_session',
+                    data: {bonus_id: id, bonus_price: price},
+                    success: function(data) {
+                        window.history.back();
+                        return false;
+                    }
+                });
             }
         }
     </script>
