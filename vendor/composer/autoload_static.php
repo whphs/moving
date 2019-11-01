@@ -521,6 +521,7 @@ class ComposerStaticInitb5970511de421d431438c96688e5c8de
         'App\\Models\\FloorPrice' => __DIR__ . '/../..' . '/app/Models/FloorPrice.php',
         'App\\Models\\MoveType' => __DIR__ . '/../..' . '/app/Models/MoveType.php',
         'App\\Models\\Scale' => __DIR__ . '/../..' . '/app/Models/Scale.php',
+        'App\\Models\\TempPhoto' => __DIR__ . '/../..' . '/app/Models/TempPhoto.php',
         'App\\Models\\Vehicle' => __DIR__ . '/../..' . '/app/Models/Vehicle.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

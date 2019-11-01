@@ -22,8 +22,13 @@
 @section('content')
     <div id = "easyMoveContent">
         <main>
+
             <section class="south-contact-area" style ="padding-top:3em;" >
+
                 <div class="container">
+                    <div class="alert alert-danger"  style="display: none;">
+                        <strong>Fail!</strong> You need to fill in all field!
+                    </div>
                     <!-- select truck start -->
                     <div class="row">
                         <div class="col-12">
@@ -90,6 +95,7 @@
                                         </li>
                                     </ul>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -99,7 +105,7 @@
                             <div class="content-sidebar">
                                 <div class="card" style="margin:10px 0">
                                     <div class="card-header">
-                                        Big baggage<span style="color: #999;font-weight: 100;">(washer,refrigerator...)</span>
+                                        {{__('string.big_baggage')}}<span style="color: #999;font-weight: 100;">{{__('string.big_baggage_example')}}</span>
                                         <i class="fa fa-angle-right direct"></i>
                                         <span id = "itemCount" class="detail"></span>
                                     </div>
@@ -131,18 +137,18 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </section>
+
 
             <!-- terms and policy -->
             <div class="container">
                 <p style="font-size: 12px;margin-bottom: initial;">{{__('string.note_detail')}}</p>
                 <div id="holder">
                     <input type="checkbox" id="checkboxTerm" class="regular-checkbox" /><label for="checkboxTerm"></label>
-                    <span style="font-size: 12px;position: relative;bottom: 13px;">
-           This is test example<a href="#" style="color: #947054;font-size: 12px;">{{__('string.note_link')}}</a></span>
+                    <span style="font-size: 12px; position: relative; bottom: 13px;">
+                        This is test example <a href="#" style="color: #947054;font-size: 12px;"> {{__('string.note_link')}}</a>
+                    </span>
                 </div>
             </div>
             <div class="container" style="position: relative;top:20px;">
@@ -174,8 +180,8 @@
                 <div class="modal-header">
                     <div class="classynav">
                         <ul style="padding: 3px;">
-                            <li><span class = "time-setting" id = "timeSetting" data-dismiss = 'modal' >Setting</span></li>
-                            <li style="float: right;"><span class = "time-setting" data-dismiss = 'modal'>Exit</span></li>
+                            <li><span class = "time-setting" id = "timeSetting" data-dismiss = 'modal' >{{__('string.setting')}}</span></li>
+                            <li style="float: right;"><span class = "time-setting" data-dismiss = 'modal'>{{__('string.exit')}}</span></li>
                         </ul>
 
                     </div>
@@ -186,6 +192,11 @@
                         <div class="input-group date">
                             <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY" style="margin-top: 15%;">
                         </div>
+                        {{--                        <div class="date-selector">--}}
+                        {{--                            <div class="year" id="year1"></div>--}}
+                        {{--                            <div class="month" id="month1"></div>--}}
+                        {{--                            <div class="day" id="day1"></div>--}}
+                        {{--                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -194,7 +205,7 @@
         <div class="modal" id="reservationModal" tabindex="-1" role="dialog">
             <div class="modal-content">
                 <div class="modal-header" style="border:unset;">
-                    <p class="reservation-price">$230</p>
+                    <p class="reservation-price" id="reservationPrice"></p>
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body" style="min-height: 140px;">
@@ -203,7 +214,7 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item" >
                                     {!! Html::image("frontend/assets/img/icons/wechat.png",'calendar',['class' => 'reservation-img']) !!}
-                                    Wechat
+                                    {{__('string.WeChat')}}
                                     <div class="custom-control custom-radio custom-control-inline wechatRadio" style="float: right">
                                         <input type="radio" class="custom-control-input" id="wechat" name="wechat" value="wechat" checked>
                                         <label class="custom-control-label" for="wechatRadio">&nbsp</label>
@@ -211,7 +222,7 @@
                                 </li>
                                 <li class="list-group-item">
                                     {!! Html::image("frontend/assets/img/icons/zhubao.png",'calendar',['class' => 'reservation-img']) !!}
-                                    Zhubao
+                                    {{__('string.ZhuBao')}}
                                     <div class="custom-control custom-radio custom-control-inline zhubaoRadio" style="float: right">
                                         <input type="radio" class="custom-control-input" id = "zhubao" name="zhubao" value="zhubao">
                                         <label class="custom-control-label" for="zubaoRadio">&nbsp</label>
@@ -224,8 +235,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    {{--                <button type="button" id = "reservationBtn" class ="btn south-btn m-1" data-dismiss="modal">Submit</button>--}}
-                    {!! Form::submit('Submit',['id' => 'reservationBtn','class'=>'btn south-btn m-1','data-dismiss' => 'modal'])!!}
+                    <button type="button" id = "reservationBtn" class ="btn south-btn m-1" data-dismiss = "modal">Submit</button>
                 </div>
 
             </div>
@@ -321,11 +331,12 @@
                     <button type="button" class="close" data-dismiss="modal" style="font-size: 29px;margin-right: -3px;">&times;</button>
                 </div>
                 <!-- Modal body -->
+
                 <div class="modal-body" style="padding-bottom: 1rem;">
                     <div class="item-description">
-                        <textarea id = "itemDescription" rows = "3" cols ="10" placeholder="Please enter moving item description."></textarea>
+                        <textarea id = "itemDescription" rows = "3" cols ="10" placeholder="{{__('string.big_item_description')}}"></textarea>
                         <div class="clear-description">
-                            <span>200character</span>
+                            <span>{{__('string.200charater')}}</span>
                             <span id = "clearBtn" style="float: right;">{{__('string.clear')}}</span>
                         </div>
                     </div>
@@ -337,14 +348,16 @@
                     {{--                            <i class="fa fa-clock-o" style="margin-right: 3px;"></i><span id = "historyDes2">This is test</span>--}}
                     {{--                        </div>--}}
                     {{--                    </div>--}}
+
                     <div class="upload-photo">
-                        <p style="font-size: 15px;font-weight: bold">Upload Photo</p>
+                        <p style="font-size: 15px;font-weight: bold">{{__('string.upload_photo')}}</p>
                         <div class="photo-multi-thumb" data-name = "main_photo" data-required = "true"></div>
                     </div>
+
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" id = "photoSettingBtn" class ="btn south-btn m-1" data-dismiss="modal">Submit</button>
+                    <button type="button" id = "photoSettingBtn" class ="btn south-btn m-1" data-dismiss="modal">{{__('string.submit')}}</button>
                 </div>
 
             </div>
@@ -354,7 +367,7 @@
         <div class="modal" id="specialItemModal" tabindex="-1" role="dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="big-item-title">Big Item</span>
+                    <span class="big-item-title">{{__('string.big_item')}}</span>
                     <button type="button" class="close" data-dismiss="modal" style="font-size: 29px;margin-right: -18px;">&times;</button>
                 </div>
                 <!-- Modal body -->
@@ -370,7 +383,7 @@
                         </div>
                     </div>
                     <div class="add-special-item">
-                        <p>Add Item</p>
+                        <p>{{__('string.add_item')}}</p>
                         <div style="text-align: center;">
                             {!! Html::image('frontend/assets/img/icons/minus.png','minus button',['class' => 'min-button']) !!}
                             <span id="qty" name="qty" style="padding: 15px;">1</span>
@@ -380,7 +393,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" id = "specialItemBtn" class ="btn south-btn m-1" data-dismiss="modal">Submit</button>
+                    <button type="button" id = "specialItemBtn" class ="btn south-btn m-1" data-dismiss="modal">{{__('string.submit')}}</button>
                 </div>
 
             </div>
@@ -391,6 +404,7 @@
 @endsection
 @section('scripts')
     {!! Html::script('frontend/assets/js/upload-photo.js') !!}
+    {{--    loc--}}
     <script type="text/javascript">
         photoMultiThumb.init();
 
@@ -408,6 +422,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         let handlingService = 0;
         let distance = 0;
         let big_item = 0;
@@ -422,12 +437,15 @@
         let where_to = "";
         let floor_to = 1;
         let helper_count = 0;
+
         let vehicles = null;
-        // let selectedVehicleId = 1;
+        let tempPhotos = null;
         let selectedVehicle = null;
         let selectedIndex = 0;
         let distancePrices = [];
+
         let totalPrice = 0;
+
         $("#addBaggage").hide();
         // Calculate total price for changed statement.
         function calcTotalPrice() {
@@ -469,6 +487,7 @@
             }
 
             $('#displayPrice').text(totalPrice);
+            $('#reservationPrice').text(totalPrice + '{{__('string.money_unit')}}');
         }
 
         // Click location buttons
@@ -578,11 +597,51 @@
         });
         //When set photo setting
         $('#photoSettingBtn').click(function () {
+
             description = $('#itemDescription').val();
             $('#orderNote').text(description);
             putSession({description: description});
+            // Photo Upload
+            let imgArray = [];
+            let images = $('.photo-multi-thumb').find('.thumb-image.added');
+            if(images.length !== 0){
+                for (let i = 0 ; i < images.length ; i ++) {
+                    let data = $(images[i]).attr('src');
+                    imgArray.push(data);
+                }
+
+                $.ajax( {
+                    type: 'POST',
+                    url: '/upload_photo',
+                    data: {imgData: imgArray},
+                    success:function(data){
+                        for (let i = 0 ; i < data.length ; i ++) {
+                            let elem = $('.photo-multi-thumb').find('.photo-view-thumb')[i];
+                            if (elem) {
+                                $(elem).data('temp_photo_id', data[i]);
+                            }
+                        }
+                    }
+                });
+            }
+
+
+
+        });
+
+        $('.photo-multi-thumb').on('click', '.thumb-remove',  function() {
+            let photoId = $(this).parent().data('temp_photo_id');
+            $.ajax( {
+                type: 'GET',
+                url: '/delete_photo/' + photoId,
+                success:function(data){
+                    console.log(data);
+                }
+            });
+            $(this).parent().remove();
         });
         //When set time
+
         $('#timeSetting').click(function () {
             when = $('#datepicker').val();
             $('#selectTimeCon').text(when);
@@ -614,38 +673,60 @@
             $("#wechat").prop("checked",false);
         });
         // When click submit button.
+
         $("#reservationBtn").click(function () {
-            let data = {
-                user_id: 1,
-                vehicle_id: selectedVehicle.id,
-                big_item: parseInt(big_item),
-                where_from: where_from,
-                floor_from: parseInt(floor_from),
-                where_to: where_to,
-                floor_to: parseInt(floor_to),
-                when: when,
-                description: description,
-                phone: phone,
-                distance: distance,
-                helper_count: parseInt(helper_count),
-                price: totalPrice
-            };
-            console.log(data);
-            $.ajax({
-                type:'POST',
-                url:'/booking/submit',
-                data: data,
-                success:function(data){
-                    alert(data.success);
-                }
-            });
+
+            if(when === "" || where_from === "" || where_to === ""){
+                $('.alert.alert-danger').show();
+                $('.alert.alert-danger').css("opacity","100");
+                window.setTimeout(function() {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                        $('.alert.alert-success').hide();
+                    });
+                }, 2000);
+
+            }else{
+                let data = {
+                    user_id: 1,
+                    vehicle_id: selectedVehicle.id,
+                    big_item: parseInt(big_item),
+                    where_from: where_from,
+                    floor_from: parseInt(floor_from),
+                    where_to: where_to,
+                    floor_to: parseInt(floor_to),
+                    when: when,
+                    description: description,
+                    phone: phone,
+                    distance: distance,
+                    helper_count: parseInt(helper_count),
+                    price: totalPrice
+                };
+                console.log(data);
+                $.ajax({
+                    type:'POST',
+                    url:'/booking/submit',
+                    data: data,
+                    success:function(data){
+                        console.log(data);
+                    }
+                });
+            }
+
         });
 
 
         $(document).ready( function() {
 
-
             vehicles = {!! $vehicles !!};
+            tempPhotos = {!! $tempPhotos !!};
+            if(tempPhotos)
+            {
+                for(let i = 0; i < tempPhotos.length; i++){
+                    photoMultiThumb.photoAdded(tempPhotos[i].id,tempPhotos[i].path);
+                }
+            }
+
+
             @foreach($vehicles as $vehicle)
             distancePrices.push({!! $vehicle->distancePrices !!});
             @endforeach

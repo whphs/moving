@@ -39,9 +39,9 @@
                             <div style="margin-top: 10px;">
                                 <table style="width: 100%; margin-top: 5px;">
                                     <tr>
-                                        <th style="width: 20%;">Load</th>
-                                        <th style="width: 60%;">Length*Width*High</th>
-                                        <th style="width: 20%;">Volume</th>
+                                        <th style="width: 20%;">{{__('string.load')}}</th>
+                                        <th style="width: 60%;">{{__('string.l_w_h')}}</th>
+                                        <th style="width: 20%;">{{__('string.volume')}}</th>
                                     </tr>
                                     <tr>
                                         <td>{{ $vehicle->load_weight }}</td>
@@ -61,7 +61,7 @@
                 <div class="tab-content">
                     @for ($i = 0; $i < count($vehicles); $i ++)
                         <div class="tab-pane" id="vehicle_info{{ $i }}">
-                            <span>Basic fare</span>
+                            <span>{{__('string.basic_fare')}}</span>
                             <table class="table table-striped table-hover">
                                 <tr>
                                     <td>
@@ -83,22 +83,22 @@
                                 @endfor
                             </table>
 
-                            <span>Extermal demand handling</span>
+                            <span>{{__('string.external_demand_handling')}}</span>
                             <table class="table table-striped table-hover">
                                 <tr>
                                     <td>
-                                        Preview
+                                        {{__('string.preview')}}
                                     </td>
                                     <td>
-                                        <a href="/standard/preview/{{ $vehicles[$i]->id }}">Help me to figure out the price</a>
+                                        <a href="/standard/preview/{{ $vehicles[$i]->id }}">{{__('string.help_me_to_figure_out_the_price')}}</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Trolley
+                                        {{__('string.trolley')}}
                                     </td>
                                     <td>
-                                        Free Admission
+                                        {{__('string.free_admission')}}
                                     </td>
                                 </tr>
                             </table>

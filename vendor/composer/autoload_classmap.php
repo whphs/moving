@@ -46,6 +46,7 @@ return array(
     'App\\Models\\FloorPrice' => $baseDir . '/app/Models/FloorPrice.php',
     'App\\Models\\MoveType' => $baseDir . '/app/Models/MoveType.php',
     'App\\Models\\Scale' => $baseDir . '/app/Models/Scale.php',
+    'App\\Models\\TempPhoto' => $baseDir . '/app/Models/TempPhoto.php',
     'App\\Models\\Vehicle' => $baseDir . '/app/Models/Vehicle.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

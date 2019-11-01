@@ -13,20 +13,20 @@
                     <td class="p-l-10">
                         <table>
                             <tr>
-                                <td class="w-55p" style="font-weight: bold;">From : </td>
+                                <td class="w-55p" style="font-weight: bold;">{{__('string.from')}} : </td>
                                 <td><span>{{ $booking->where_from }}</span></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: bold;">To : </td>
+                                <td style="font-weight: bold;">{{__('string.to')}} : </td>
                                 <td>{{ $booking->where_to }}</td>
                             </tr>
                             <tr>
-                                <td style="font-weight: bold;">Price : </td>
-                                <td>{{ $booking->price }}</td>
+                                <td style="font-weight: bold;">{{__('string.price')}} : </td>
+                                <td>{{ $booking->price }}{{__('string.money_unit')}}</td>
                             </tr>
                             <tr>
-                                <td style="font-weight: bold;">Distance : </td>
-                                <td>{{ $booking->distance }}</td>
+                                <td style="font-weight: bold;">{{__('string.distance')}} : </td>
+                                <td>{{ $booking->distance }}{{__('string.km')}}</td>
                             </tr>
                         </table>
                     </td>

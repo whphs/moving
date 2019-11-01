@@ -20,9 +20,9 @@
         <p>{{ $aboutUs->introduction }}</p>
         <hr>
         <div class="mt-30">
-            <label>Phone</label>:<a href="">{{ $aboutUs->phone }}</a><br>
-            <label>Email</label>:<a href="">{{ $aboutUs->email }}</a><br>
-            <label>Website</label>:<a href="">{{ $aboutUs->website }}</a><br>
+            <label>{{__('string.about_us')}}</label>:<a href="">{{ $aboutUs->phone }}</a><br>
+            <label>{{__('string.email')}}</label>:<a href="">{{ $aboutUs->email }}</a><br>
+            <label>{{__('string.website')}}</label>:<a href="">{{ $aboutUs->website }}</a><br>
         </div>
     </div>
 @endsection

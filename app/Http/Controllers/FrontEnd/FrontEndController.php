@@ -7,12 +7,18 @@ use App\Models\Bonus;
 use App\Models\Scale;
 use App\Models\AboutUs;
 use App\Models\Booking;
+use App\Models\TempPhoto;
 use App\Models\Vehicle;
 use App\Models\Agreement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-//use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\ServiceProvider;
+
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class FrontEndController extends Controller
 {
@@ -58,7 +64,8 @@ class FrontEndController extends Controller
      */
     public function easyMoveDetail() {
         $vehicles = $this->vehiclesWithParams(Area::first()->id);
-        return view('frontend.request.easy_move.detail',compact('vehicles'));
+        $tempPhotos = TempPhoto::where('user_id', session()->get('user_id'))->get();
+        return view('frontend.request.easy_move.detail',compact('vehicles', 'tempPhotos'));
     }
 
     public function easyMovePreview(){
@@ -74,7 +81,38 @@ class FrontEndController extends Controller
     public function selectFloor($move_type, $location,$address) {
         return view('frontend.request.common.floor')->with(['move_type' => $move_type, 'location' => $location, 'address' => $address]);
     }
+    public function uploadPhoto(Request $request)
+    {
+        $img64Date = $request->imgData;
+        $responseData = [];
+        $userId = session()->get('user_id');
+        $tempOldPhoto = TempPhoto::where('user_id', $userId);
+        foreach ($tempOldPhoto->get() as $index => $oldPhoto)
+        {
+            File::delete(public_path().'/storage/uploads/temp_photo/' . $oldPhoto->path);
+        }
+        $tempOldPhoto->delete();
+        for($i = 0; $i < count($img64Date); $i++)
+        {
+            $base64_str = substr($img64Date[$i], strpos($img64Date[$i], ",")+1);
+            $path = time() . '_thing' . $i . '.png';
+            File::put(public_path().'/storage/uploads/temp_photo/' . $path, base64_decode($base64_str));
 
+            $tempPhoto = new TempPhoto;
+            $tempPhoto->user_id = $userId;
+            $tempPhoto->path = $path;
+            $tempPhoto->save();
+
+            $responseData[] = $tempPhoto->id;
+        }
+        return response()->json($responseData);
+    }
+
+    public function deletePhoto($id) {
+        $tempPhoto = TempPhoto::find($id);
+        File::delete(public_path().'/storage/uploads/temp_photo/' . $tempPhoto->path);
+        $tempPhoto->delete();
+    }
     /**
      * Display more guide of safe move with id
      *
@@ -93,8 +131,9 @@ class FrontEndController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function safeMoveDetail() {
-        $scale = Scale::find(session()->get('scale_id'));
-        return view('frontend.request.safe_move.detail', compact('scale'));
+        $scales = $this->scalesWithParams(Area::first()->id);
+        $tempPhotos = TempPhoto::where('user_id', session()->get('user_id'))->get();
+        return view('frontend.request.safe_move.detail', compact('scales', 'tempPhotos'));
     }
 
     /**
@@ -225,9 +264,27 @@ class FrontEndController extends Controller
             $booking->bonus_id      = $request->bonus_id;
         }
 
+        $livePhotos = [$booking->photo_0, $booking->photo_1, $booking->photo_2];
+
+        $tempPhotos = TempPhoto::where('user_id', $request->user_id)->get();
+
+        foreach ($tempPhotos as $index => $photo) {
+            if ($index == 0) {
+                $booking->photo_0 = $photo->path;
+            } else if ($index == 1) {
+                $booking->photo_1 = $photo->path;
+            } else {
+                $booking->photo_2 = $photo->path;
+            }
+
+            File::copy(public_path() . '/storage/uploads/temp_photo/' . $photo->path, public_path() . '/storage/uploads/live_photo/' . $photo->path);
+        }
 
         $booking->save();
 
-//        return response()->json(['success'=>'Got Simple Ajax Request.']);
+
+
+        return response()->json($booking);
     }
+
 }

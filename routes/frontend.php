@@ -36,3 +36,6 @@ Route::get('/standard/description/{id}', 'FrontEndController@standardDescription
 Route::get('/about_us', 'FrontEndController@aboutUs')->name('about_us');
 
 Route::post('booking/submit', 'FrontEndController@submitBooking')->name('booking.submit');
+Route::post('upload_photo', 'FrontEndController@uploadPhoto')->name('upload_photo');
+Route::get('delete_photo/{id}', 'FrontEndController@deletePhoto')->name('delete_photo');
+//Route::get('load_temp_photo', 'FrontEndController@loadTempPhoto')->name('load_temp_photo');

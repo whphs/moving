@@ -263,7 +263,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/put_session',
-                data: {vehicle_id : vehicleId}
+                data: {vehicle_id : vehicleId, user_id : 1}
             });
 
             window.location.href = "easy_move/detail";
