@@ -3,6 +3,9 @@
 @section('content')
     <section class="south-contact-area">
         <div class="container">
+            <div class="alert alert-danger"  style="display: none;">
+                <strong>Fail!</strong> You need to fill in all field!
+            </div>
             <div class="row">
                 <!-- Select location -->
                 <div class="col-12 col-lg-6">
@@ -324,59 +327,70 @@
         });
 
         $("#reservationBtn").click(function () {
-            let data = {
-                user_id: 1,
-                scale_id: selectedScale.id,
-                big_item: parseInt(big_item),
-                where_from: where_from,
-                floor_from: parseInt(floor_from),
-                where_to: where_to,
-                floor_to: parseInt(floor_to),
-                when: when,
-                description: $('#itemDescription').val(),
-                phone: $('#phoneNum').val(),
-                distance: distance,
-                price:  parseInt(realPrice),
-                bonus_id: parseInt(bonusId),
-            };
+            if(when === "" || where_from === "" || where_to === ""){
+                $('.alert.alert-danger').show();
+                $('.alert.alert-danger').css("opacity","100");
+                window.setTimeout(function() {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                        $('.alert.alert-success').hide();
+                    });
+                }, 2000);
 
-            description = $('#itemDescription').val();
-            putSession({description: description});
-            phone = $('#phoneNum').val();
-            putSession({phone: phone});
+            }else {
+                let data = {
+                    user_id: 1,
+                    scale_id: selectedScale.id,
+                    big_item: parseInt(big_item),
+                    where_from: where_from,
+                    floor_from: parseInt(floor_from),
+                    where_to: where_to,
+                    floor_to: parseInt(floor_to),
+                    when: when,
+                    description: $('#itemDescription').val(),
+                    phone: $('#phoneNum').val(),
+                    distance: distance,
+                    price: parseInt(realPrice),
+                    // bonus_id: parseInt(bonusId),
+                };
 
-            let imgArray = [];
-            let images = $('.photo-multi-thumb').find('.thumb-image.added');
-            if(images.length !== 0){
-                for (let i = 0 ; i < images.length ; i ++) {
-                    let data = $(images[i]).attr('src');
-                    imgArray.push(data);
-                }
+                description = $('#itemDescription').val();
+                putSession({description: description});
+                phone = $('#phoneNum').val();
+                putSession({phone: phone});
 
-                $.ajax( {
-                    type: 'POST',
-                    url: '/upload_photo',
-                    data: {imgData: imgArray},
-                    success:function(data){
-                        for (let i = 0 ; i < data.length ; i ++) {
-                            let elem = $('.photo-multi-thumb').find('.photo-view-thumb')[i];
-                            if (elem) {
-                                $(elem).data('temp_photo_id', data[i]);
+                let imgArray = [];
+                let images = $('.photo-multi-thumb').find('.thumb-image.added');
+                if (images.length !== 0) {
+                    for (let i = 0; i < images.length; i++) {
+                        let data = $(images[i]).attr('src');
+                        imgArray.push(data);
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/upload_photo',
+                        data: {imgData: imgArray},
+                        success: function (data) {
+                            for (let i = 0; i < data.length; i++) {
+                                let elem = $('.photo-multi-thumb').find('.photo-view-thumb')[i];
+                                if (elem) {
+                                    $(elem).data('temp_photo_id', data[i]);
+                                }
                             }
                         }
+                    });
+                }
+
+                console.log(data);
+                $.ajax({
+                    type: 'POST',
+                    url: '/booking/submit',
+                    data: data,
+                    success: function (data) {
+                        alert(data.success);
                     }
                 });
             }
-
-            console.log(data);
-            $.ajax({
-                type:'POST',
-                url:'/booking/submit',
-                data: data,
-                success:function(data){
-                    alert(data.success);
-                }
-            });
         });
 
         $('.photo-multi-thumb').on('click', '.thumb-remove',  function() {

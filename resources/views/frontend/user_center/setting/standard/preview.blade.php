@@ -26,7 +26,7 @@
                 <div class="content-sidebar">
                     <div class="card" style="margin:10px 0">
                         <div class="card-header">{{__('string.please_select_the_handling_floor')}}</div>
-                        <ul class="timeline">
+                        <ul class="timeline m-b-0">
                             <li class="current-location" data-toggle="modal" data-target="#selectFromFloorModal">
                                 <span style="margin-left: -40px;">{{__('string.your_shipping_floor')}}</span>
                                 <span style="float: right; margin-right: 20px;">

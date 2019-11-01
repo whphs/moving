@@ -260,9 +260,6 @@ class FrontEndController extends Controller
             $booking->helper_count  = $request->helper_count;
         }
         $booking->phone         = $request->phone;
-        if($request->bonus_id){
-            $booking->bonus_id      = $request->bonus_id;
-        }
 
         $livePhotos = [$booking->photo_0, $booking->photo_1, $booking->photo_2];
 
@@ -281,8 +278,6 @@ class FrontEndController extends Controller
         }
 
         $booking->save();
-
-
 
         return response()->json($booking);
     }

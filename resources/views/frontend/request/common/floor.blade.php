@@ -2,7 +2,7 @@
 
 @section('content')
     <section>
-        {!! Html::image('frontend/assets/img/bg-img/feature5.jpg','map',['style'=>'height: 353px;']) !!}
+        {!! Html::image('frontend/assets/img/bg-img/feature5.jpg','map',['style'=>'height: 353px; width: 100%;']) !!}
         <div class="container" style="font-size: 15px;font-weight: bold;">
             <div class="row" style="border-bottom: 1px solid #e0e0e0">
                 <div class="col-12">
@@ -31,7 +31,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <i class="fa fa-building"></i>
-                                        <input placeholder="Yinhe Dajie" style="border:unset;color: #7d7d7d">
+                                        <input placeholder="Yinhe Dajie" style="border:unset; color: #7d7d7d;">
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                 <div class="col-12">
                     <div class="select-area">
                         <button type="button" id = "specialItemBtn" class ="btn south-btn m-1"  style="bottom: -5px;width: 100%;height: 33px;">
-                            {{__('string.reservation_btn')}}
+                            {{__('string.submit')}}
                         </button>
                     </div>
                 </div>

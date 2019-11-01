@@ -180,10 +180,11 @@
                 <div class="modal-header">
                     <div class="classynav">
                         <ul style="padding: 3px;">
-                            <li><span class = "time-setting" id = "timeSetting" data-dismiss = 'modal' >{{__('string.setting')}}</span></li>
-                            <li style="float: right;"><span class = "time-setting" data-dismiss = 'modal'>{{__('string.exit')}}</span></li>
+{{--                            <li><span class = "time-setting" id = "timeSetting" data-dismiss = "modal" >{{__('string.setting')}}</span></li>--}}
+{{--                            <li style="float: right;"><span class = "time-setting" data-dismiss = "modal">{{__('string.exit')}}</span></li>--}}
+                            <button type="button" class="time-setting" id="timeSetting" data-dismiss="modal">{{__('string.setting')}}</button>
+                            <button type="button" class="close" data-dismiss="modal">{{__('string.exit')}}</button>
                         </ul>
-
                     </div>
                 </div>
                 <!-- Modal body -->
@@ -544,6 +545,7 @@
 
         // Add Baggage Scripts
         $('#handlingService').click(function() {
+            console.log("when",selectedVehicle);
             if(this.checked) {
                 $("#addBaggage").show();
             } else {
@@ -624,9 +626,6 @@
                     }
                 });
             }
-
-
-
         });
 
         $('.photo-multi-thumb').on('click', '.thumb-remove',  function() {
@@ -640,13 +639,15 @@
             });
             $(this).parent().remove();
         });
-        //When set time
 
+        //When set time
         $('#timeSetting').click(function () {
             when = $('#datepicker').val();
             $('#selectTimeCon').text(when);
             putSession({when: when});
+
         });
+
         function getSelectedVehicle(id) {
             for (let i = 0 ; i < vehicles.length ; i ++) {
                 if (parseInt(id) === vehicles[i].id) {
