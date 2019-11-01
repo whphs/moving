@@ -401,7 +401,18 @@
             return null;
         }
 
-        $(document).ready(function () {
+        if (document.addEventListener) {
+            window.addEventListener('pageshow', function (event) {
+                if (event.persisted || window.performance && 
+                    window.performance.navigation.type == 2) 
+                {
+                    location.reload();
+                }
+            },
+            false);
+        }
+
+        $(document).ready(function() {
             scales = {!! $scales !!};
 
             tempPhotos = {!! $tempPhotos !!};
@@ -484,7 +495,12 @@
                 bonusId = sessionData.bonus_id;
                 bonusPrice = sessionData.bonus_price;
             }
+            else
+            {
+                $('#usedBonusPrice').text('not received');
+            }
 
+            
             console.log(sessionData);
 
             calcTotalPrice();
