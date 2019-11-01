@@ -445,6 +445,7 @@
         // Calculate total price for changed statement.
         function calcTotalPrice() {
             totalPrice = selectedVehicle.init_price;
+
             let plusPrice = 0;
             if (distance > selectedVehicle.init_distance) {
                 for (let i = 0 ; i < distancePrices[selectedIndex].length ; i ++) {
@@ -458,25 +459,24 @@
                 }
             }
             totalPrice += plusPrice;
+
+            let floorFrom = floor_from;
+            let floorTo = floor_to;
+            if (floorFrom === 100) {
+                floorFrom = 1;
+            } else {
+                floorFrom --;
+            }
+            if (floorTo === 100) {
+                floorTo = 1;
+            } else {
+                floorTo --;
+            }
+            totalPrice += ((floorFrom + floorTo) * selectedVehicle.price_per_floor);
             if (handlingService) {
                 totalPrice += selectedVehicle.init_price_for_items;
-                let floorFrom = floor_from;
-                let floorTo = floor_to;
-                if (floorFrom === 100) {
-                    floorFrom = 1;
-                } else {
-                    floorFrom --;
-                }
-                if (floorTo === 100) {
-                    floorTo = 1;
-                } else {
-                    floorTo --;
-                }
-
-                totalPrice += ((floorFrom + floorTo) * selectedVehicle.price_per_floor);
-
+                console.log(totalPrice);
                 totalPrice += selectedVehicle.price_per_big_item * big_item;
-
                 totalPrice += (floorFrom + floorTo) * big_item * selectedVehicle.price_per_floor_for_big_item;
             }
 
